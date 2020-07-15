@@ -1,0 +1,28 @@
+{
+  "id": "hubLandscape",
+  "name": "Hub Landscape",
+  "mode": "hub",
+  "shape" : "rectangle",
+  "dpSizeRange" : {
+    "minWidth": 1280,
+    "maxWidth": 1920,
+    "minHeight": 600,
+    "maxHeight": 1279
+  },
+  "exampleDevices" : [
+    {
+      "id": "echoShow2",
+      "name": "Echo Show 2",
+      "width": 1280,
+      "height": 800,
+      "dpi": 160
+    },
+    {
+      "id": "fireHd10",
+      "name": "Fire HD 10 (Show Mode)",
+      "width": 1280,
+      "height": 750,
+      "dpi": 240
+    }
+  ]
+}

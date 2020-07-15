@@ -1,0 +1,21 @@
+{
+  "id": "hubRound",
+  "name": "Hub Round",
+  "mode": "hub",
+  "shape" : "round",
+  "dpSizeRange" : {
+    "minWidth": 100,
+    "maxWidth": 599,
+    "minHeight": 100,
+    "maxHeight": 599
+  },
+  "exampleDevices" : [
+    {
+      "id": "echoSpot",
+      "name": "Echo Spot",
+      "width": 480,
+      "height": 480,
+      "dpi": 160
+    }
+  ]
+}

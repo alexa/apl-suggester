@@ -1,0 +1,6 @@
+{
+  "type": "Idle",
+  "delay": 30000,
+  "screenLock": true,
+  "sequencer": "MAIN"
+}

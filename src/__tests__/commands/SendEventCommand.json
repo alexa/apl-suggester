@@ -1,0 +1,5 @@
+{
+  "type": "SendEvent",
+  "arguments": [ "he bought it" ],
+  "sequencer": "MAIN"
+}

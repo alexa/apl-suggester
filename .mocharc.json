@@ -1,0 +1,11 @@
+{
+  "extension": ["ts"],
+  "package": "./package.json",
+  "reporter": "spec",
+  "require": [
+    "ts-node/register", "jsdom-global/register", "ts-node/register"
+  ]
+}
+
+
+

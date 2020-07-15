@@ -1,0 +1,35 @@
+{
+  "id": "hubLandscapeMedium",
+  "name": "Hub Landscape Medium",
+  "mode": "hub",
+  "shape" : "rectangle",
+  "dpSizeRange" : {
+    "minWidth": 960,
+    "maxWidth": 1279,
+    "minHeight": 600,
+    "maxHeight": 959
+  },
+  "exampleDevices" : [
+    {
+      "id": "echoShow1",
+      "name": "Echo Show 1",
+      "width": 1024,
+      "height": 600,
+      "dpi": 160
+    },
+    {
+      "id": "fire7",
+      "name": "Fire 7",
+      "width": 1024,
+      "height": 600,
+      "dpi": 160
+    },
+    {
+      "id": "fireHd8",
+      "name": "Fire HD 8 (Show Mode)",
+      "width": 960,
+      "height": 600,
+      "dpi": 213
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "AnimateItem",
+  "easing": "ease-in-out",
+  "duration": 600,
+  "componentId": "myFlyingComponent",
+  "sequencer": "MAIN",
+  "value": [
+    {
+      "property": "opacity",
+      "to": 1
+    },
+    {
+      "property": "transform",
+      "from": [
+        { "translateX": 200 },
+        { "rotate": 90 }
+      ],
+      "to": [
+        { "translateX": 0 },
+        { "rotate": 0 }
+      ]
+    }
+  ]
+}

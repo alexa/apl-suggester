@@ -1,0 +1,7 @@
+{
+  "type": "AutoPage",
+  "componentId": "mySportsPager",
+  "delay": 500,
+  "duration": 1000,
+  "sequencer": "MAIN"
+}

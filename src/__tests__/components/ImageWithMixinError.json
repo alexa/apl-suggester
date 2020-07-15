@@ -1,0 +1,11 @@
+{
+    "type": "Image",
+    "source": "${payload.bodyTemplate7Data.backgroundImage.sources[0].url}",
+    "scale": "best-fill",
+    "width": "100vw",
+    "height": "100vh",
+    "grow": 1,
+    "separator": true,
+    "numbering": "normal",
+    "extraField": "should fail"
+}

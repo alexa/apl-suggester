@@ -1,0 +1,9 @@
+{
+    "type": "Image",
+    "source": "${payload.bodyTemplate7Data.backgroundImage.sources[0].url}",
+    "scale": "best-fill",
+    "position": "absolute",
+    "width": "zzz",
+    "height": "100vh",
+    "scrim": true
+}

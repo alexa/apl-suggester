@@ -1,0 +1,9 @@
+{
+    "type": "Container",
+    "height": "99vh",
+    "width": "100vw",
+    "alignItems": "center",
+    "justifyContent": "end",
+    "direction": "columnReverse",
+    "wrap": "wrapReverse"
+}

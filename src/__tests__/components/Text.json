@@ -1,0 +1,19 @@
+{
+    "type": "Text",
+    "text": "${ordinal}",
+    "paddingBottom": "20dp",
+    "handleTick": [
+        {
+            "minimumDelay": 15000,
+            "description": "Every 15 seconds just go back to red to annoy folks",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "CurrentIndex",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "color": "white"
+}

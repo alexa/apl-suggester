@@ -1,0 +1,6 @@
+{
+  "type": "Scroll",
+  "componentId": "myScrollingList",
+  "distance": 1,
+  "sequencer": "MAIN"
+}

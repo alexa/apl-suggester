@@ -1,0 +1,24 @@
+{
+  "type": "text",
+  "fill": "@CirclePattern",
+  "fillOpacity": 1,
+  "fillTransform": "scale(0.5)",
+  "fontFamily": "amazon-ember, sans-serif",
+  "fontSize": 60,
+  "fontStyle": "italic",
+  "fontWeight": "bold",
+  "letterSpacing": 0.05,
+  "stroke": {
+    "type": "linear",
+    "colorRange": [ "yellow", "white" ],
+    "inputRange": [0, 1],
+    "angle": 90
+  },
+  "strokeOpacity": 1,
+  "strokeTransform": "",
+  "strokeWidth": 2,
+  "text": "Hello",
+  "x": 75,
+  "y": 50,
+  "textAnchor": "middle"
+}

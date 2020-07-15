@@ -1,0 +1,21 @@
+{
+  "id": "tvFullscreen",
+  "name": "TV Fullscreen",
+  "mode": "tv",
+  "shape" : "rectangle",
+  "dpSizeRange" : {
+    "minWidth": 960,
+    "maxWidth": 960,
+    "minHeight": 540,
+    "maxHeight": 540
+  },
+  "exampleDevices" : [
+    {
+      "id": "fireTvFullscreen",
+      "name": "Fire TV (Fullscreen)",
+      "width": 960,
+      "height": 540,
+      "dpi": 320
+    }
+  ]
+}

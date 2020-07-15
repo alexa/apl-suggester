@@ -1,0 +1,71 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "import": [
+      {
+        "name": "alexa-layouts",
+        "version": "1.0.0"
+      }
+    ],
+    "mainTemplate": {
+      "parameters": [
+        "payload"
+      ],
+      "items": [
+        {
+          "type": "Container",
+          "direction": "column",
+          "height": "100vh",
+          "width": "100vw",
+          "items": [
+            {
+              "type": "Video",
+              "height": "70%",
+              "width": "100%",
+              "autoplay": true,
+              "paddingTop": "60",
+              "audioTrack": "foreground",
+              "id": "VideoPlayer",
+              "source": [
+                {
+                  "url": "https://delivery.vidible.tv/video/redirect/5b634e2dbf488517fc64fbb4.mp4?bcid=5593271909eab110d8f43789&w=852&h=480&enc=mp4&domain=cdn.vidible.tv"
+                }
+              ],
+              "onPause": [
+                {
+                  "type": "SetValue",
+                  "componentId": "ControlMediaByTouchPlay",
+                  "property": "color",
+                  "value": "yellow"
+                },
+                {
+                  "type": "SetState",
+                  "componentId": "alexaPlayPauseToggleButton",
+                  "state": "checked",
+                  "value": true
+                }
+              ],
+              "onPlay": [
+                {
+                  "type": "SetValue",
+                  "componentId": "ControlMediaByTouchPause",
+                  "property": "color",
+                  "value": "red"
+                },
+                {
+                  "type": "SetState",
+                  "componentId": "alexaPlayPauseToggleButton",
+                  "state": "checked",
+                  "value": false
+                }
+              ]
+            },
+            {
+              "type": "AlexaTransportControls",
+              "mediaComponentId": "VideoPlayer"
+            }
+          ]
+        }
+      ]
+    }
+  }

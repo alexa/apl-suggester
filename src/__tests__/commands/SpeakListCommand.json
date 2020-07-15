@@ -1,0 +1,9 @@
+{
+  "type": "SpeakList",
+  "componentId": "movieList",
+  "start": 3,
+  "count": 3,
+  "minimumDwellTime": 700,
+  "align": "center",
+  "sequencer": "MAIN"
+}

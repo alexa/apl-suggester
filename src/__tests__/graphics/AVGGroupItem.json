@@ -1,0 +1,8 @@
+{
+  "type": "group",
+  "opacity": 1.0,
+  "rotation": 0,
+  "style": "standardToggleButton",
+  "transform": "translate(60 0)",
+  "clipPath": "M45,82 A36,36,0,0,1,45,8 A36,36,0,1,1,45,82 Z"
+}

@@ -1,0 +1,35 @@
+{
+  "type": "APL",
+  "version": "1.4",
+  "import": [
+    {
+      "name": "alexa-layouts",
+      "version": "1.0.0"
+    }
+  ],
+  "mainTemplate": {
+    "parameters": [
+      "payload"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "direction": "column",
+        "height": "100vh",
+        "width": "100vw",
+        "items": [
+          {
+            "type": "GridSequence",
+            "height": "300dp",
+            "scrollDirection": "horizontal",
+            "childWidths": [ "20%", "30%", "auto" ],
+            "childHeight": "50%",
+            "data": "${listData}",
+            "numbered": true,
+            "items": []
+          }
+        ]
+      }
+    ]
+  }
+}

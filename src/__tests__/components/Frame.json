@@ -1,0 +1,28 @@
+{
+    "type": "Frame",
+    "backgroundColor": "rgba(0,0,0,0)",
+    "borderColor": "rgba(0,0,0,0)",
+    "borderRadius": 0,
+    "borderStrokeWidth": 10,
+    "borderWidth": 100,
+    "borderTopLeftRadius": 0,
+    "borderTopRightRadius": 10,
+    "borderBottomLeftRadius": 23,
+    "borderBottomRightRadius": 78,
+    "id": "myFrame",
+    "style": "mystyle",
+    "handleTick": [
+        {
+            "minimumDelay": 15000,
+            "description": "Every 15 seconds just go back to red to annoy folks",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "CurrentIndex",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "width": 10
+}

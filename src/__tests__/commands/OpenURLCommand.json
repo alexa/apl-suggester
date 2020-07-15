@@ -1,0 +1,6 @@
+{
+  "type": "OpenURL",
+  "source": "https://www.amazon.com/dp/B07H1QBW2L",
+  "onFail": [],
+  "sequencer": "MAIN"
+}

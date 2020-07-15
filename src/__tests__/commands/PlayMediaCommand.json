@@ -1,0 +1,7 @@
+{
+  "type": "PlayMedia",
+  "componentId": "myAudioPlayer",
+  "source": "http://music.amazon.com/s3/MAGIC_TRACK_HERE",
+  "audioTrack": "background",
+  "sequencer": "MAIN"
+}

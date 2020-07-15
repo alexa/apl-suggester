@@ -1,0 +1,6 @@
+{
+  "type": "ControlMedia",
+  "componentId": "myAudioPlayer",
+  "command": "next",
+  "sequencer": "MAIN"
+}

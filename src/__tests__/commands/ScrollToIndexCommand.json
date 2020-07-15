@@ -1,0 +1,7 @@
+{
+  "type": "ScrollToIndex",
+  "componentId": "recipeSteps",
+  "index": 4,
+  "align": "center",
+  "sequencer": "MAIN"
+}

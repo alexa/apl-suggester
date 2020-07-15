@@ -1,0 +1,27 @@
+{
+    "type": "TouchWrapper",
+    "onFocus": [],
+    "onBlur": [],
+    "handleKeyDown": [],
+    "handleKeyUp": [],
+    "gestures": [],
+    "onCancel": [],
+    "onDown": [],
+    "onMove": [],
+    "onPress": [],
+    "onUp": [],
+    "handleTick": [
+        {
+            "minimumDelay": 15000,
+            "description": "Every 15 seconds just go back to red to annoy folks",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "CurrentIndex",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "height": "80vh"
+  }

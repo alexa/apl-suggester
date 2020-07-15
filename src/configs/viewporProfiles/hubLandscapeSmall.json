@@ -1,0 +1,21 @@
+{
+  "id": "hubLandscapeSmall",
+  "name": "Hub Landscape Small",
+  "mode": "hub",
+  "shape" : "rectangle",
+  "dpSizeRange" : {
+    "minWidth": 960,
+    "maxWidth": 1279,
+    "minHeight": 100,
+    "maxHeight": 599
+  },
+  "exampleDevices" : [
+    {
+      "id": "echoShow5",
+      "name": "Echo Show 5",
+      "width": 960,
+      "height": 480,
+      "dpi": 160
+    }
+  ]
+}

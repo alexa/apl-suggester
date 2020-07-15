@@ -1,0 +1,16 @@
+{
+    "type": "EditText",
+    "text": "the text to display",
+    "color": "red",
+    "size": 8,
+    "borderWidth": 2,
+    "borderStrokeWidth": 1,
+    "borderColor": "darkgrey",
+    "hintColor": "grey",
+    "hintWeight": "200",
+    "fontSize": "20dp",
+    "validCharacters": "0-9a-fA-F",
+    "secureInput": true,
+    "opacity": 0.5,
+    "style": "myTextStyle"
+}

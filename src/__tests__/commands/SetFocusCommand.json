@@ -1,0 +1,5 @@
+{
+  "type": "SetFocus",
+  "componentId": "myButton",
+  "sequencer": "MAIN"
+}

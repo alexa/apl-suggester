@@ -1,0 +1,7 @@
+{
+  "type": "SetPage",
+  "componentId": "myWeatherPager",
+  "position": "relative",
+  "value": 1,
+  "sequencer": "MAIN"
+}

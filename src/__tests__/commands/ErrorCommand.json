@@ -1,0 +1,6 @@
+{
+  "type": "SetState",
+  "componentId": "myButton",
+  "state": "notAllowed",
+  "sequencer": "MAIN"
+}

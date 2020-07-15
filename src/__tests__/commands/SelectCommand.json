@@ -1,0 +1,50 @@
+{
+  "type": "Select",
+  "sequencer": "MAIN",
+  "commands": [
+    {
+      "when": "${SearchCategory == data.category && data.rating >= 8.0}",
+      "type": "SetValue",
+      "property": "text",
+      "value": "Here's a great movie for your category: ${data.title}"
+    },
+    {
+      "when": "${SearchCategory == data.category}",
+      "type": "SetValue",
+      "property": "text",
+      "value": "Here's an okay movie for your category: ${data.title}"
+    }
+  ],
+  "data": [
+    {
+      "title": "The Lion King",
+      "category": "Animation",
+      "rating": 7.0
+    },
+    {
+      "title": "Toy Story 4",
+      "category": "Animation",
+      "rating": 8.0
+    },
+    {
+      "title": "Coco",
+      "category": "Animation",
+      "rating": 8.4
+    },
+    {
+      "title": "Aladdin",
+      "category": "Adventure",
+      "rating": 7.1
+    },
+    {
+      "title": "Avatar",
+      "category": "Adventure",
+      "rating": 7.8
+    }
+  ],
+  "otherwise": {
+    "type": "SetValue",
+    "property": "text",
+    "value": "No movie is found."
+  }
+}

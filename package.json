@@ -1,0 +1,83 @@
+{
+  "name": "apl-suggester",
+  "version": "1.1.0",
+  "description": "This Package is developed for providing suggestions and validations on APL templates.",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "scripts": {
+    "compile": "tsc",
+    "unittest-watch": "mocha --watch src/**/__tests__/*.spec.{ts,tsx} --watch-extensions ts,tsx --config ./.mocharc.json",
+    "unittest": "mocha --config ./.mocharc.json 'src/**/__tests__/*.spec.{ts,tsx}'",
+    "lintsrc": "tslint --type-check --project tsconfig.json -c tslint.json 'src/**/*.ts'",
+    "linttst": "tslint --type-check --project tsconfig.json -c tslint.json 'tst/**/*.ts'",
+    "lint": "npm run lintsrc && npm run linttst",
+    "test": "nyc npm run unittest",
+    "test-watch": "nyc npm run unittest-watch",
+    "cleanup": "rm -rf dist",
+    "start": "npm run lint && npm run test && npm run cleanup && npm run compile",
+    "start-test": "npm run start && webpack --watch",
+    "release": "npm run start",
+    "watch": "tsc --watch"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "nyc": {
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "check-coverage": true,
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0,
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "dist/tst",
+      "tst",
+      "src/**/__tests__/**/*"
+    ]
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.48",
+    "awesome-typescript-loader": "5.x",
+    "axios-mock-adapter": "^1.16.0",
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.x",
+    "jsdom": "^15.2.1",
+    "lint-staged": "^10.0.8",
+    "mocha": "^8.0.1",
+    "nyc": ">14.0.0",
+    "sinon": "^2.2.x",
+    "tslint": "^5.1.x",
+    "webpack": "^4.39.3"
+  },
+  "dependencies": {
+    "@types/chai": "3.5.x",
+    "@types/core-js": "2.5.x",
+    "@types/node": "12.0.x",
+    "@types/sinon": "2.2.x",
+    "ajv": "6.10.x",
+    "axios": "0.18.x",
+    "immutable": ">4.0.0-rc",
+    "jsdom-global": "3.0.x",
+    "ts-node": "3.3.x",
+    "typescript": "3.x"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "type": "ScrollToComponent",
+  "componentId": "recipeSteps",
+  "align": "center",
+  "sequencer": "MAIN"
+}

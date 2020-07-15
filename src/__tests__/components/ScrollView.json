@@ -1,0 +1,85 @@
+{
+    "type": "ScrollView",
+    "width": "100vw",
+    "height": "100vh",
+    "handleTick": [
+        {
+            "minimumDelay": 15000,
+            "description": "Every 15 seconds just go back to red to annoy folks",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "CurrentIndex",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "handleKeyDown": [
+        {
+            "when": "${event.keyboard.code == 'KeyW'}",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "y",
+                    "value": "${y - 10}"
+                },
+                {
+                    "type": "SetValue",
+                    "property": "transform",
+                    "value": [ { "translateX": "${x}", "translateY": "${y}" } ]
+                }
+            ]
+        },
+        {
+            "when": "${event.keyboard.code == 'KeyS'}",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "y",
+                    "value": "${y + 10}"
+                },
+                {
+                    "type": "SetValue",
+                    "property": "transform",
+                    "value": [ { "translateX": "${x}", "translateY": "${y}" } ]
+                }
+            ]
+        },
+        {
+            "when": "${event.keyboard.code == 'KeyA'}",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "x",
+                    "value": "${x - 10}"
+                },
+                {
+                    "type": "SetValue",
+                    "property": "transform",
+                    "value": [ { "translateX": "${x}", "translateY": "${y}" } ]
+                }
+            ]
+        },
+        {
+            "when": "${event.keyboard.code == 'KeyD'}",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "x",
+                    "value": "${x + 10}"
+                },
+                {
+                    "type": "SetValue",
+                    "property": "transform",
+                    "value": [ { "translateX": "${x}", "translateY": "${y}" } ]
+                }
+            ]
+        },
+        {
+            "when": "${event.keyboard.code == 'Enter'}",
+            "description": "Block the normal 'enter' behavior"
+        }
+    ],
+    "items": []
+}

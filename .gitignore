@@ -1,0 +1,12 @@
+node_modules
+build
+package-lock.json
+.nyc_output
+.idea
+.DS_Store
+AlexaApmlSuggester.iml
+dist
+.vscode
+tst-web/
+*.iml
+coverage

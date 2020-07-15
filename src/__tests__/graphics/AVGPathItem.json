@@ -1,0 +1,18 @@
+{
+  "type": "path",
+  "fill": "#d8d8d8",
+  "fillOpacity": 1,
+  "fillTransform": "",
+  "pathData": "M25,50 a25,25 0 1 1 50,0 a25,25 0 1 1 -50,0",
+  "pathLength": 0,
+  "stroke": "#979797",
+  "strokeDashArray": [],
+  "strokeDashOffset": 0,
+  "strokeLineCap": "butt",
+  "strokeLineJoin": "miter",
+  "strokeMiterLimit": 4,
+  "strokeWidth": 2,
+  "strokeOpacity": 1,
+  "strokeTransform": "",
+  "style": "sliderThin"
+}

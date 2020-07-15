@@ -1,0 +1,20 @@
+{
+    "type": "Image",
+    "source": "${payload.bodyTemplate7Data.backgroundImage.sources[0].url}",
+    "scale": "best-fill",
+    "width": "100vw",
+    "handleTick": [
+        {
+            "minimumDelay": 15000,
+            "description": "Every 15 seconds just go back to red to annoy folks",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "CurrentIndex",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "height": "100vh"
+}

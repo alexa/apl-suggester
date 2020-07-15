@@ -1,0 +1,7 @@
+{
+  "type": "Sequential",
+  "delay": 1000,
+  "repeatCount": 2,
+  "commands": [],
+  "sequencer": "MAIN"
+}

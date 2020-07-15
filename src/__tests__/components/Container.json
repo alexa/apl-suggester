@@ -1,0 +1,22 @@
+{
+    "type": "Container",
+    "height": "100vh",
+    "width": "100vw",
+    "alignItems": "center",
+    "justifyContent": "end",
+    "handleTick": [
+        {
+            "minimumDelay": 15000,
+            "description": "Every 15 seconds just go back to red to annoy folks",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "property": "CurrentIndex",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "direction": "column",
+    "wrap": "noWrap"
+}
