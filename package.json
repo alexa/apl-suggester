@@ -28,7 +28,8 @@
     "start": "npm run lint && npm run test && npm run cleanup && npm run compile",
     "start-test": "npm run start && webpack --watch",
     "release": "npm run start",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run release"
   },
   "files": [
     "dist/**"
