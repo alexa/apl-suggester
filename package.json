@@ -7,11 +7,11 @@
   },
   "license": "Apache 2.0",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/alexa/apl-suggester/issues"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git://github.com/alexa/apl-suggester"
   },
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
