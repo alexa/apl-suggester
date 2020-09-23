@@ -1,0 +1,44 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "resources": [],
+    "styles": {},
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "AlexaHeadline",
+                "id": "CheeseHeadline",
+                "primaryText": "${payload.headlineTemplateData.properties.textContent.primaryText.text}",
+                "secondaryText": "${payload.headlineTemplateData.properties.textContent.secondaryText.text}",
+                "headerBackButton": false,
+                "headerAttributionImage": "${payload.headlineTemplateData.properties.logoUrl}",
+                "headerAttributionPrimacy": true,
+                "headerDivider": false,
+                "footerHintText": "${payload.headlineTemplateData.properties.hintText}",
+                "backgroundImageSource": "${payload.headlineTemplateData.properties.backgroundImage.sources[0].url}",
+                "backgroundColorOverlay": true,
+                "speech": "${payload.headlineTemplateData.properties.welcomeSpeech}"
+            }
+        ]
+    },
+    "onMount": [
+        {
+            "type": "SpeakItem",
+            "componentId": "CheeseHeadline"
+        }
+    ]
+}

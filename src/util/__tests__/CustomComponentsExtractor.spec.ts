@@ -42,17 +42,15 @@ describe('CustomComponentsExtractor tests', () => {
     it('should extract all including imported components', async () => {
         const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
         const componentsWithoutMainTemplate = await customComponentsExtractor.extractCustomComponents(apl);
-        expect(componentsWithoutMainTemplate.getCustomComponentNames()).to.have.lengthOf(4);
+        expect(componentsWithoutMainTemplate.getCustomComponentNames()).to.have.lengthOf(2);
         expect(Object.keys(componentsWithoutMainTemplate.getCustomComponentJsonSchema('AlexaHeader').properties)).
         to.have.lengthOf(10);
-        expect(Object.keys(componentsWithoutMainTemplate.getCustomComponentJsonSchema('VerticalListItem').properties)).
-        to.have.lengthOf(5);
     });
 
     it('should get all including imported component types as well', async () => {
         const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
         const componentTypesWithoutMainTemplate = await customComponentsExtractor
         .getCustomComponentTypesAndValidate(apl);
-        expect(componentTypesWithoutMainTemplate).to.have.lengthOf(7);
+        expect(componentTypesWithoutMainTemplate).to.have.lengthOf(5);
     });
 });

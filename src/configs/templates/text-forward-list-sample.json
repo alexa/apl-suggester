@@ -1,0 +1,37 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "resources": [],
+    "styles": {},
+    "onMount": [],
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaTextList",
+                "id": "cheeseList",
+                "headerTitle": "${payload.textListData.title}",
+                "headerBackButton": false,
+                "headerAttributionImage": "${payload.textListData.logoUrl}",
+                "backgroundImageSource": "${payload.textListData.backgroundImage.sources[0].url}",
+                "backgroundBlur": false,
+                "backgroundColorOverlay": true,
+                "listItems": "${payload.textListData.listItems}",
+                "hintText": "${payload.textListData.hintText}"
+            }
+        ]
+    }
+}

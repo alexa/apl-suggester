@@ -1,0 +1,47 @@
+{
+    "headlineTemplateData": {
+        "type": "object",
+        "objectId": "headlineSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_2.jpg",
+                        "size": "small",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    },
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_2.jpg",
+                        "size": "large",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    }
+                ]
+            },
+            "textContent": {
+                "primaryText": {
+                    "type": "PlainText",
+                    "text": "Welcome to The Daily Cheese"
+                },
+                "secondaryText": {
+                    "type": "PlainText",
+                    "text": "Eating a small amount of cheese every day may benefit heart health"
+                }
+            },
+            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
+            "hintText": "Try, \"Alexa, what is today's cheesy joke?\"",
+            "welcomeSpeechSSML": "<speak><amazon:emotion name='excited' intensity='medium'>Welcome to The Daily Cheese</amazon:emotion></speak>"
+        },
+        "transformers": [
+            {
+                "inputPath": "welcomeSpeechSSML",
+                "transformer": "ssmlToSpeech",
+                "outputName": "welcomeSpeech"
+            }
+        ]
+    }
+}

@@ -1,0 +1,134 @@
+{
+    "detailImageLeftData": {
+        "type": "object",
+        "objectId": "detailImageLeftSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_pizza_1.jpg",
+                    "size": "small",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                },
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_pizza_1.jpg",
+                    "size": "large",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                }
+            ]
+        },
+        "title": "Pepperoni Pizza",
+        "image": {
+            "contentDescription": "Recipe by Easy Cooking",
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/pizza_pepperoni.jpg",
+                    "size": "small",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                },
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/details_bt3.png",
+                    "size": "large",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                }
+            ]
+        },
+        "textContent": {
+            "primaryText": {
+                "type": "PlainText",
+                "text": "Oven Baked Pepperoni Pizza"
+            },
+            "secondaryText": {
+                "type": "PlainText",
+                "text": "1 hr 30 mins, 4 servings"
+            }
+        },
+        "ingredients": [
+            {
+                "ingredientsContentText": "2 large egg whites",
+                "ingredientsPrimaryAction": {
+                    "type": "SendEvent",
+                    "arguments": [
+                        "ListItemSelected",
+                        "${ordinal}"
+                    ]
+                }
+            },
+            {
+                "ingredientsContentText": "1 large egg",
+                "ingredientsPrimaryAction": {
+                    "type": "SendEvent",
+                    "arguments": [
+                        "ListItemSelected",
+                        "${ordinal}"
+                    ]
+                }
+            },
+            {
+                "ingredientsContentText": "1/3 cup tapioca flour",
+                "ingredientsPrimaryAction": {
+                    "type": "SendEvent",
+                    "arguments": [
+                        "ListItemSelected",
+                        "${ordinal}"
+                    ]
+                }
+            },
+            {
+                "ingredientsContentText": "1/3 cup potato starch",
+                "ingredientsPrimaryAction": {
+                    "type": "SendEvent",
+                    "arguments": [
+                        "ListItemSelected",
+                        "${ordinal}"
+                    ]
+                }
+            }
+        ],
+        "buttons": [
+            {
+                "text": "Save",
+                "action": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "Save ${payload.detailImageLeftData.textContent.primaryText.text}"
+                        ]
+                    },
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseDetail",
+                        "property": "ingredientsText",
+                        "value": "${payload.detailImageLeftData.textContent.primaryText.text} saved!"
+                    }
+                ]
+            },
+            {
+                "text": "Add to shopping list",
+                "action": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "Add ${payload.detailImageLeftData.textContent.primaryText.text}"
+                        ]
+                    },
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseDetail",
+                        "property": "ingredientsText",
+                        "value": "${payload.detailImageLeftData.textContent.primaryText.text} added!"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_pizza.png"
+    }
+}

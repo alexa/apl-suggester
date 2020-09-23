@@ -1,0 +1,57 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "resources": [],
+    "styles": {},
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaDetail",
+                "id": "cheeseDetail",
+                "detailType": "generic",
+                "detailImageAlignment": "right",
+                "headerTitle": "${payload.detailImageRightData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.detailImageRightData.logoUrl}",
+                "imageBlurredBackground": false,
+                "imageScale": "best-fill",
+                "imageAspectRatio": "square",
+                "imageAlignment": "right",
+                "imageSource": "${payload.detailImageRightData.image.sources[0].url}",
+                "imageCaption": "${payload.detailImageRightData.image.contentDescription}",
+                "primaryText": "${payload.detailImageRightData.textContent.primaryText.text}",
+                "secondaryText": "${payload.detailImageRightData.textContent.secondaryText.text}",
+                "bodyText": "${payload.detailImageRightData.textContent.content.text}",
+                "button1Text": "${payload.detailImageRightData.buttons[0].text}",
+                "button2Text": "${payload.detailImageRightData.buttons[1].text}",
+                "button1Theme": "light",
+                "button2Theme": "light",
+                "button1PrimaryAction": "${payload.detailImageRightData.buttons[0].action}",
+                "button2PrimaryAction": "${payload.detailImageRightData.buttons[1].action}",
+                "backgroundImageSource": "${payload.detailImageRightData.backgroundImage.sources[0].url}",
+                "backgroundBlur": true,
+                "theme": "light"
+            }
+        ]
+    },
+    "onMount": [
+        {
+            "type": "SpeakItem",
+            "componentId": "cheeseDetailScroll",
+            "minimumDwellTime": 700
+        }
+    ]
+}

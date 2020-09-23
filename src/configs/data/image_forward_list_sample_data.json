@@ -1,0 +1,148 @@
+{
+    "imageListData": {
+        "type": "object",
+        "objectId": "imageListSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                    "size": "small",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                },
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                    "size": "large",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                }
+            ]
+        },
+        "title": "Food pairings | Wine pairings",
+        "listItems": [
+            {
+                "primaryText": "Parmesan",
+                "secondaryText": "Country: Italy",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 2.87,
+                "ratingText": "(345)",
+                "imageAlignment": "right",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_parmesan.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[0].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Mozzarella",
+                "secondaryText": "Country: Italy",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 4.5,
+                "ratingText": "(143)",
+                "imageAlignment": "left",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_mozzarella.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[1].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Blue Cheese",
+                "secondaryText": "Country: France",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 3.2,
+                "ratingText": "(25)",
+                "imageAlignment": "left",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_blue.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Brie",
+                "secondaryText": "Country: France",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 4.2,
+                "ratingText": "(435)",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_brie.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[3].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Camembert",
+                "secondaryText": "Country: Normandy",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 4.75,
+                "ratingText": "(631)",
+                "imageAlignment": "right",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_camembert.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[4].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Gouda",
+                "secondaryText": "Country: Netherlands",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 3.87,
+                "ratingText": "(321)",
+                "imageAlignment": "left",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_gouda.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[5].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Gruyere",
+                "secondaryText": "Country: Switzerland",
+                "ratingSlotMode": "multiple",
+                "ratingNumber": 4.58,
+                "ratingText": "(436)",
+                "imageAlignment": "right",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_gruyere.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[6].primaryText} is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
+        "hintText": "Try, \"Alexa, what is today's cheesy joke?\""
+    }
+}

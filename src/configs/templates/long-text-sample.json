@@ -1,0 +1,76 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "resources": [],
+    "styles": {},
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "Container",
+                "height": "100vh",
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "backgroundImageSource": "${payload.longTextTemplateData.properties.backgroundImage.sources[0].url}",
+                        "backgroundBlur": false,
+                        "colorOverlay": true,
+                        "backgroundScale": "best-fill"
+                    },
+                    {
+                        "type": "Container",
+                        "height": "100vh",
+                        "width": "100vw",
+                        "items": [
+                            {
+                                "type": "AlexaHeader",
+                                "headerTitle": "${payload.longTextTemplateData.properties.title}",
+                                "headerAttributionImage": "${payload.longTextTemplateData.properties.logoUrl}",
+                                "headerDivider": false
+                            },
+                            {
+                                "type": "ScrollView",
+                                "grow": 1,
+                                "paddingTop": "@spacingMedium",
+                                "paddingBottom": "${@spacing3XLarge + @spacingXSmall}",
+                                "paddingLeft": "@marginHorizontal",
+                                "paddingRight": "@marginHorizontal",
+                                "items": [
+                                    {
+                                        "type": "Text",
+                                        "id": "CheeseContent",
+                                        "style": "textStyleBody",
+                                        "text": "${payload.longTextTemplateData.properties.textContent.primaryText.text}",
+                                        "speech": "${payload.longTextTemplateData.properties.cheeseInfoSpeech}",
+                                        "textAlign": "left"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "onMount": [
+        {
+            "type": "SpeakItem",
+            "componentId": "CheeseContent",
+            "highlightMode": "line",
+            "align": "center"
+        }
+    ]
+}

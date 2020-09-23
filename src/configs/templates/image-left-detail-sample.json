@@ -1,0 +1,50 @@
+{
+    "type": "APL",
+    "version": "1.4",
+    "settings": {},
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "resources": [],
+    "styles": {},
+    "onMount": [],
+    "graphics": {},
+    "commands": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaDetail",
+                "id": "cheeseDetail",
+                "detailType": "recipe",
+                "detailImageAlignment": "left",
+                "headerTitle": "${payload.detailImageLeftData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.detailImageLeftData.logoUrl}",
+                "imageBlurredBackground": true,
+                "imageScale": "best-fit",
+                "imageAspectRatio": "square",
+                "imageSource": "${payload.detailImageLeftData.image.sources[0].url}",
+                "imageCaption": "${payload.detailImageLeftData.image.contentDescription}",
+                "primaryText": "${payload.detailImageLeftData.textContent.primaryText.text}",
+                "secondaryText": "${payload.detailImageLeftData.textContent.secondaryText.text}",
+                "ratingNumber": 4.5,
+                "ratingText": "(326)",
+                "bodyText": "${payload.detailImageLeftData.textContent.content.text}",
+                "button1Text": "${payload.detailImageLeftData.buttons[0].text}",
+                "button2Text": "${payload.detailImageLeftData.buttons[1].text}",
+                "button1PrimaryAction": "${payload.detailImageLeftData.buttons[0].action}",
+                "button2PrimaryAction": "${payload.detailImageLeftData.buttons[1].action}",
+                "ingredientsText": "Ingredients",
+                "ingredientListItems": "${payload.detailImageLeftData.ingredients}",
+                "backgroundImageSource": "${payload.detailImageLeftData.backgroundImage.sources[0].url}",
+                "backgroundColorOverlay": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,131 @@
+{
+    "textListData": {
+        "type": "object",
+        "objectId": "textListSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                    "size": "small",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                },
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                    "size": "large",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                }
+            ]
+        },
+        "title": "Food pairings | Wine pairings",
+        "listItems": [
+            {
+                "primaryText": "Parmesan",
+                "secondaryText": "Serving Size: 1oz (28g)",
+                "tertiaryText": "122 cal",
+                "imageAlignment": "center",
+                "imageBlurredBackground": true,
+                "imageScale": "best-fit",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_parmesan_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[0].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Mozzarella",
+                "secondaryText": "Serving Size: 1oz (28g)",
+                "tertiaryText": "78 cal",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_mozzarella_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[1].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Blue Cheese",
+                "secondaryText": "Serving Size: 1c, crumbled (135g)",
+                "tertiaryText": "476 cal",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_blue_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Brie",
+                "secondaryText": "Serving Size: 1oz (28g)",
+                "tertiaryText": "95 cal",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_brie_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[3].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Camembert",
+                "secondaryText": "Serving Size: 1c (246g)",
+                "tertiaryText": "737 cal",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_camembert_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[4].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Gouda",
+                "secondaryText": "Serving Size: 1oz (28g)",
+                "tertiaryText": "100 cal",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_gouda_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[5].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Gruyere",
+                "secondaryText": "Serving Size: 1 slice (28g)",
+                "tertiaryText": "116 cal",
+                "imageThumbnailSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_gruyere_sq.jpg",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[6].primaryText} is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png",
+        "hintText": "Try, \"Alexa, what is today's cheesy joke?\""
+    }
+}

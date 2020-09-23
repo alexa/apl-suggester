@@ -1,0 +1,96 @@
+{
+    "detailImageRightData": {
+        "type": "object",
+        "objectId": "detailImageRightSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                    "size": "small",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                },
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/bg_cheese_1.jpg",
+                    "size": "large",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                }
+            ]
+        },
+        "title": "Food pairings | Wine pairings",
+        "image": {
+            "contentDescription": "Grated parmesan cheese",
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_parmesan.jpg",
+                    "size": "small",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                },
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/cheese_parmesan.jpg",
+                    "size": "large",
+                    "widthPixels": 0,
+                    "heightPixels": 0
+                }
+            ]
+        },
+        "textContent": {
+            "primaryText": {
+                "type": "PlainText",
+                "text": "Parmigiano Reggiano"
+            },
+            "secondaryText": {
+                "type": "PlainText",
+                "text": "Country of origin: Italy"
+            },
+            "content": {
+                "type": "PlainText",
+                "text": "Parmesan cheese is made from unpasteurized milk. It has a hard, gritty texture, and is fruity and nutty in taste. It is produced from cow's milk and has aged 12–36 months. It is named after the producing areas, the provinces of Parma, Reggio Emilia."
+            }
+        },
+        "buttons": [
+            {
+                "text": "Save",
+                "action": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "Save ${payload.detailImageRightData.textContent.primaryText.text}"
+                        ]
+                    },
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseDetail",
+                        "property": "bodyText",
+                        "value": "${payload.detailImageRightData.textContent.primaryText.text} saved to your favorite item!"
+                    }
+                ]
+            },
+            {
+                "text": "Add to shopping list",
+                "action": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "Add ${payload.detailImageRightData.textContent.primaryText.text}"
+                        ]
+                    },
+                    {
+                        "type": "SetValue",
+                        "componentId": "cheeseDetail",
+                        "property": "bodyText",
+                        "value": "${payload.detailImageRightData.textContent.primaryText.text} added to shopping list."
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v2/icon_cheese.png"
+    }
+}

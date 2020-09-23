@@ -109,10 +109,9 @@ describe('ComponentSchemaController.', () => {
     it('should return a list of supported components.', async () => {
         const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
         let result = await componentSchemaController.getAvailableComponents(apl);
-        expect(result.length).to.be.equal(16);
+        expect(result.length).to.be.equal(14);
         expect(result.includes('Image')).to.be.equal(true);
         expect(result.includes('AlexaHeader')).to.be.equal(true);
-        expect(result.includes('VerticalListItem')).to.be.equal(true);
         result = await componentSchemaController.getAvailableComponents();
         expect(result.length).to.be.equal(12);
     });

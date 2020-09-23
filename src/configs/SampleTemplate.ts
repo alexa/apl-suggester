@@ -1,35 +1,19 @@
-/*
- *   Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
- *   Licensed under the Apache License, Version 2.0 (the "License").
- *   You may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- */
-
-import * as bt1Apl from './templates/ask_body1_apl.json';
-import * as bt2Apl from './templates/ask_body2_apl.json';
-import * as bt3Apl from './templates/ask_body3_apl.json';
-import * as bt6Apl from './templates/ask_body6_apl.json';
-import * as bt7Apl from './templates/ask_body7_apl.json';
-import * as lt1Apl from './templates/ask_list1_apl.json';
-import * as lt2Apl from './templates/ask_list2_apl.json';
+import * as longTextApl from './templates/long-text-sample.json';
+import * as imageRightDetailApl from './templates/image-right-detail-sample.json';
+import * as imageLeftDetailApl from './templates/image-left-detail-sample.json';
+import * as shortTextApl from './templates/short-text-sample.json';
+import * as imageDisplayApl from './templates/image-display-sample.json';
+import * as textForwardListApl from './templates/text-forward-list-sample.json';
+import * as imageForwardlistApl from './templates/image-forward-list-sample.json';
 import * as defaultApl from './templates/default_apl.json';
 
-import * as bt1data from './data/ask_body1_data.json';
-import * as bt2data from './data/ask_body2_data.json';
-import * as bt3data from './data/ask_body3_data.json';
-import * as bt6data from './data/ask_body6_data.json';
-import * as bt7data from './data/ask_body7_data.json';
-import * as lt1data from './data/ask_list1_data.json';
-import * as lt2data from './data/ask_list2_data.json';
+import * as longTextData from './data/long_text_sample_data.json';
+import * as imageRightDetailData from './data/image_right_detail_sample_data.json';
+import * as imageLeftDetailData from './data/image_left_detail_sample_data.json';
+import * as shortTextData from './data/short_text_sample_data.json';
+import * as imageDisplayData from './data/image_display_sample_data.json';
+import * as textForwardListData from './data/text_forward_list_sample_data.json';
+import * as imageForwardListData from './data/image_forward_list_sample_data.json';
 import * as defaultData from './data/default_data.json';
 
 import { Map } from 'immutable';
@@ -66,32 +50,32 @@ export enum SampleTemplateName {
  */
 const SAMPLE_TEMPLATE_METADATA : Map<string, ISampleTemplate> = Map({
     LONG_TEXT_SAMPLE : {
-        apl: bt1Apl,
-        data: bt1data
+        apl: longTextApl,
+        data: longTextData
     },
     IMAGE_RIGHT_DETAIL_SAMPLE : {
-        apl: bt2Apl,
-        data: bt2data
+        apl: imageRightDetailApl,
+        data: imageRightDetailData
     },
     IMAGE_LEFT_DETAIL_SAMPLE : {
-        apl: bt3Apl,
-        data: bt3data
+        apl: imageLeftDetailApl,
+        data: imageLeftDetailData
     },
     SHORT_TEXT_SAMPLE : {
-        apl: bt6Apl,
-        data: bt6data
+        apl: shortTextApl,
+        data: shortTextData
     },
     IMAGE_DISPLAY_SAMPLE : {
-        apl: bt7Apl,
-        data: bt7data
+        apl: imageDisplayApl,
+        data: imageDisplayData
     },
     TEXT_FORWARD_LIST_SAMPLE : {
-        apl: lt1Apl,
-        data: lt1data
+        apl: textForwardListApl,
+        data: textForwardListData
     },
     IMAGE_FORWARD_LIST_SAMPLE : {
-        apl: lt2Apl,
-        data: lt2data
+        apl: imageForwardlistApl,
+        data: imageForwardListData
     },
     START_FROM_SCRATCH : {
         apl: defaultApl,
