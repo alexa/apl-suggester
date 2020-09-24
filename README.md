@@ -1,4 +1,4 @@
-# Alexa APL Suggester
+# Alexa APL Suggester 
 
 ## Overview
 This package is developed for providing suggestions and validations on APL (Alexa Presentation Language) templates. Currently it performs static instead of runtime checks. The output warnings are aimed for suggesting best practice of writing APL templates but don't indicate that the template can't be rendered.
