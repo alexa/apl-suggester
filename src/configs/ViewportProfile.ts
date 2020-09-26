@@ -16,11 +16,11 @@
 
 import { OrderedMap } from 'immutable';
 
-import * as hubRound from './viewporProfiles/hubRound.json';
-import * as hubLandscapeSmall from './viewporProfiles/hubLandscapeSmall.json';
-import * as hubLandscapeMedium from './viewporProfiles/hubLandscapeMedium.json';
-import * as hubLandscape from './viewporProfiles/hubLandscape.json';
-import * as tvFullscreen from './viewporProfiles/tvFullscreen.json';
+import * as hubRound from './viewportProfiles/hubRound.json';
+import * as hubLandscapeSmall from './viewportProfiles/hubLandscapeSmall.json';
+import * as hubLandscapeMedium from './viewportProfiles/hubLandscapeMedium.json';
+import * as hubLandscape from './viewportProfiles/hubLandscape.json';
+import * as tvFullscreen from './viewportProfiles/tvFullscreen.json';
 
 /**
  * Shape of viewport profile
