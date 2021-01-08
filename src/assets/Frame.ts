@@ -157,6 +157,31 @@ export const JSON_SCHEMA : IJsonSchema = {
         "$ref": "#/definitions/Component"
       }
     },
+    "Component": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this component. Used to select an appropriate child type for inflation"
+        },
+        "when": {
+          "type": "boolean",
+          "description": "If false, this component is omitted."
+        },
+        "speech": {
+          "$ref": "#/definitions/url",
+          "description": "The URL to download the audio from"
+        },
+        "entity": {
+          "$ref": "#/definitions/EntityArray",
+          "description": "An Array of entities associated with the component"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
     "color": {
       "type": "string"
     },
