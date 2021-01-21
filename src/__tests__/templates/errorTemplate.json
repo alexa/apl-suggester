@@ -213,6 +213,13 @@
                                 "align": "center"
                             }
                         ]
+                    },
+                    {
+                        "type": "Sequence",
+                        "scrollDirection": "${@viewportProfile == @hubRoundSmall ? 'vertical' : 'horizontal'}",
+                        "data": "${labels}",
+                        "width": "auto",
+                        "items": []
                     }
                 ]
             }

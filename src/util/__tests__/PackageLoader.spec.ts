@@ -22,7 +22,7 @@ import { expect } from 'chai';
 
 import { PackageLoader } from '../PackageLoader';
 import { IMPORT_GUI_TEMPLATE } from './template_test_cases/importGUITemplate';
-import { IMPORT_ALEXA_VIEWPORT_PROFILES, IMPORT_LAYOUT_TEMPLATE, IMPORT_STYLES_TEMPLATE }
+import { IMPORT_ALEXA_VIEWPORT_PROFILES, IMPORT_LAYOUT_TEMPLATE_10, IMPORT_STYLES_TEMPLATE }
     from './template_test_cases/importInternalTemplate';
 import { INTERNAL_ALEXA_GUI_SOURCE, packageJson } from './template_test_cases/packageJsonTemplate';
 
@@ -94,7 +94,7 @@ describe('PackageLoader', () => {
         }];
 
         let mock = new MockAdapter(axios);
-        mock.onGet(LAYOUT_URL).reply(200, IMPORT_LAYOUT_TEMPLATE);
+        mock.onGet(LAYOUT_URL).reply(200, IMPORT_LAYOUT_TEMPLATE_10);
         mock.onGet(STYLES_URL).reply(200, IMPORT_STYLES_TEMPLATE);
         mock.onGet(VIEWPORT_PROFILES_URL).reply(200, IMPORT_ALEXA_VIEWPORT_PROFILES);
         packageLoader = new PackageLoader({});

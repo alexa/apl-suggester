@@ -15,7 +15,8 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
+import * as commonDefinition from "./CommonDefinition";
 import {Categories, IJsonSchema} from './IJsonSchema';
 
 export const JSON_SCHEMA : IJsonSchema = {
@@ -24,6 +25,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "url": {
             "type": "string"
         },
+        "ActionArray": commonDefinition.ActionArray,
+        "Action": commonDefinition.Action,
         "EntityArray": {
             "type": "array",
             "items": {
@@ -115,7 +118,7 @@ export const JSON_SCHEMA : IJsonSchema = {
                     "description": "The name to add to data-binding"
                 },
                 "value": {
-                    "type": "string",
+                    "$ref": "#/definitions/any",
                     "description": "The value to add to data-binding. May be a data-bound expression"
                 },
                 "type": {
@@ -208,6 +211,15 @@ export const JSON_SCHEMA : IJsonSchema = {
                 },
                 {
                     "type": "object"
+                },
+                {
+                    "type": "array"
+                },
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "null"
                 }
             ]
         },
@@ -281,6 +293,7 @@ export const JSON_SCHEMA : IJsonSchema = {
                 "type"
             ]
         },
+        "Role": commonDefinition.Role,
         "TransformArray": {
             "type": "array",
             "items": {
@@ -462,6 +475,16 @@ export const JSON_SCHEMA : IJsonSchema = {
             "category": Categories.aboutComponent,
             "description": "A text string used by a screen reader when the user selects accessibility mode."
         },
+        "actions": {
+            "$ref": "#/definitions/ActionArray",
+            "category": Categories.aboutComponent,
+            "description": "Programmatic equivalents for complex touch interactions"
+        },
+        "role": {
+            "$ref": "#/definitions/Role",
+            "category": Categories.aboutComponent,
+            "description": "Role or purpose of the component."
+        },
         "data": {
             "$ref": "#/definitions/anyArray",
             "category": Categories.gridSequence,
@@ -571,18 +594,6 @@ export const JSON_SCHEMA : IJsonSchema = {
                 "vertical"
             ],
             "default": "vertical"
-        },
-        "snap": {
-            "type": "string",
-            "category": Categories.gridSequence,
-            "description": "The alignment to snap to after scrolling.",
-            "enum": [
-                "none",
-                "start",
-                "center",
-                "end"
-            ],
-            "default": "none"
         },
         "item": {},
         "items": {}

@@ -15,41 +15,38 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
 import { IJsonSchema } from '../IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "definitions": {
-    "AVGItemArray": {
+    "anyArray": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/AVGItem"
+        "$ref": "#/definitions/any"
       }
     },
-    "AVGItem": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "Indicates this item is a AVG item.",
-          "enum": [
-              "path",
-              "group",
-              "text"
-          ]
+    "any": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object"
         }
-      },
-      "required": [
-        "type"
-      ],
-      "additionalProperties": true,
-      "type": "object"
+      ]
     },
-    "Transform": {
-      "type": "string",
-      "description": "Transform applied to the contents of the group."
-    }
   },
   "type": "object",
   "properties": {
+    "bind": {
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/BindingArray"
+    },
+    "filters": {
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGFilterArray"
+    },
     "type": {
       "type": "string",
       "description": "Indicates this item is a path.",
@@ -61,22 +58,25 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "string",
       "description": "Clipping path."
     },
+    "data": {
+      "$ref": "#/definitions/anyArray",
+      "description": "Data to bind into the child items."
+    },
     "item": {
-      "$ref": "#/definitions/AVGItemArray"
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGItemArray"
     },
     "items": {
-      "$ref": "#/definitions/AVGItemArray"
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGItemArray"
     },
     "opacity": {
       "type": "number",
       "description": "The opacity of the group."
     },
     "style": {
-      "type": "string",
-      "description": "Named style to apply"
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/Style"
     },
     "transform": {
-      "$ref": "#/definitions/Transform"
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/Transform"
     },
     "rotation": {
       "type": "number",
@@ -105,6 +105,10 @@ export const JSON_SCHEMA : IJsonSchema = {
     "translateY": {
       "type": "number",
       "description": "Y-coordinate translation (viewport coordinates)"
+    },
+    "when": {
+      "type": "boolean",
+      "description": "If it evaluates to false, this item does not inflate"
     }
   },
   "required": [

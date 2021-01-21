@@ -15,7 +15,7 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
 import { IJsonSchema } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -141,6 +141,10 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "Graphic": {
       "properties": {
+        "data": {
+          "$ref": "#/definitions/anyArray",
+          "description": "Data to bind into the child items."
+        },
         "description": {
           "type": "string",
           "description": "Optional description of this vector graphic."
@@ -190,7 +194,9 @@ export const JSON_SCHEMA : IJsonSchema = {
           "type": "string",
           "description": "The current release version of the AVG standard.",
           "enum": [
-            "1.0"
+              "1.0",
+              "1.1",
+              "1.2"
           ]
         },
         "viewportHeight": {
@@ -466,13 +472,220 @@ export const JSON_SCHEMA : IJsonSchema = {
             "group",
             "text"
           ]
-        }
+        },
+        "when": {
+          "type": "boolean",
+          "description": "If it evaluates to false, this item does not inflate"
+        },
+        "pathData": {
+          "type": "string",
+          "description": "The path drawing data."
+        },
+        "fillOpacity": {
+          "type": "number",
+          "description": "The opacity of the path fill."
+        },
+        "pathLength": {
+          "type": "number",
+          "description": "If defined, specifies the “length” of the path"
+        },
+        "strokeDashArray": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Pattern of dashes and gaps"
+        },
+        "strokeDashOffset": {
+          "type": "number",
+          "description": "Offset into dash array pattern"
+        },
+        "strokeLineCap": {
+          "type": "string",
+          "description": "Shape to be used at the end of open paths",
+          "enum": [
+            "butt",
+            "round",
+            "square"
+          ]
+        },
+        "strokeLineJoin": {
+          "type": "string",
+          "description": "How path corners are drawn",
+          "enum": [
+            "bevel",
+            "miter",
+            "round"
+          ]
+        },
+        "strokeMiterLimit": {
+          "type": "number",
+          "description": "When sharp path corners are beveled"
+        },
+        "strokeOpacity": {
+          "type": "number",
+          "description": "The opacity of the path stroke."
+        },
+        "strokeWidth": {
+          "type": "number",
+          "description": "The width of the path stroke."
+        },
+        "fontFamily": {
+          "type": "string",
+          "description": "The name of the font family"
+        },
+        "fontSize": {
+          "type": "number",
+          "description": "The size of the font"
+        },
+        "fontStyle": {
+          "type": "string",
+          "description": "The style of the font",
+          "enum": [
+              "normal",
+              "italic"
+          ]
+        },
+        "fontWeight": {
+          "type": "string",
+          "description": "The weight of the font",
+          "enum": [
+              "normal",
+              "bold",
+              "100",
+              "200",
+              "300",
+              "400",
+              "500",
+              "600",
+              "700",
+              "800",
+              "900"
+          ]
+        },
+        "letterSpacing": {
+          "type": "number",
+          "description": "Additional space to add between letters"
+        },
+        "text": {
+          "type": "string",
+          "description": "The text to display"
+        },
+        "textAnchor": {
+          "type": "string",
+          "description": "Direction the text hangs from the starting point",
+          "enum": [
+              "start",
+              "middle",
+              "end"
+          ]
+        },
+        "x": {
+          "type": "number",
+          "description": "X-coordinate starting point (viewport coordinates)"
+        },
+        "y": {
+          "type": "number",
+          "description": "Y-coordinate starting point (viewport coordinates)"
+        },
+        "clipPath": {
+          "type": "string",
+          "description": "Clipping path."
+        },
+        "data": {
+          "$ref": "#/definitions/anyArray",
+          "description": "Data to bind into the child items."
+        },
+        "opacity": {
+          "type": "number",
+          "description": "The opacity of the group."
+        },
+        "rotation": {
+          "type": "number",
+          "description": "Rotation angle of the group, in degrees."
+        },
+        "pivotX": {
+          "type": "number",
+          "description": "X-coordinate of the rotation pivot point (viewport coordinates)."
+        },
+        "pivotY": {
+          "type": "number",
+          "description": "Y-coordinate of the rotation pivot point (viewport coordinates)."
+        },
+        "scaleX": {
+          "type": "number",
+          "description": "Scaling factor on the X-axis."
+        },
+        "scaleY": {
+          "type": "number",
+          "description": "Scaling factor on the Y-axis."
+        },
+        "translateX": {
+          "type": "number",
+          "description": "X-coordinate translation (viewport coordinates)"
+        },
+        "translateY": {
+          "type": "number",
+          "description": "Y-coordinate translation (viewport coordinates)"
+        },
+        "filters": {
+          "$ref": "#/definitions/AVGFilterArray",
+          "description": "One or more filtering operations to apply to the vector graphic"
+        },
       },
       "required": [
         "type"
       ],
       "additionalProperties": true,
       "type": "object"
+    },
+    "AVGFilterArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AVGFilter"
+      }
+    },
+    "AVGFilter": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/FilterDropShadow"
+        }
+      ]
+    },
+    "FilterDropShadow": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply",
+          "enum": [
+            "DropShadow"
+          ]
+        },
+        "color": {
+          "$ref": "#/definitions/color",
+          "description": "Color of the shadow",
+          "default": "black"
+        },
+        "horizontalOffset": {
+          "type": "number",
+          "description": "Horizontal offset of the shadow",
+          "default": 0
+        },
+        "radius": {
+          "type": "number",
+          "description": "Blur radius of the shadow",
+          "default": 0
+        },
+        "verticalOffset": {
+          "type": "number",
+          "description": "Vertical offset of the shadow",
+          "default": 0
+        },
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
     },
     "Setting": {
       "$ref": "#/definitions/any"
@@ -614,10 +827,16 @@ export const JSON_SCHEMA : IJsonSchema = {
           "type": "number"
         },
         {
+          "type": "object"
+        },
+        {
+          "type": "array"
+        },
+        {
           "type": "boolean"
         },
         {
-          "type": "object"
+          "type": "null"
         }
       ]
     },
@@ -749,6 +968,19 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "Easing": {
       "type": "string"
+    },
+    "AVGPathItemFillOrStroke": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/Color"
+        },
+        {
+          "$ref": "#/definitions/AVGGradient"
+        },
+        {
+          "$ref": "#/definitions/AVGPattern"
+        }
+      ]
     },
     "AVGGradient": {
       "oneOf": [
@@ -1033,7 +1265,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "The name to add to data-binding"
         },
         "value": {
-          "type": "string",
+          "$ref": "#/definitions/any",
           "description": "The value to add to data-binding. May be a data-bound expression"
         },
         "type": {
@@ -1333,7 +1565,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.1",
         "1.2",
         "1.3",
-        "1.4"
+        "1.4",
+        "1.5"
       ]
     },
     "tests": {

@@ -21,6 +21,10 @@ import * as shortTextApl from './templates/short-text-sample.json';
 import * as imageDisplayApl from './templates/image-display-sample.json';
 import * as textForwardListApl from './templates/text-forward-list-sample.json';
 import * as imageForwardlistApl from './templates/image-forward-list-sample.json';
+import * as testAplAnimation1 from './templates/test-apl-animation1.json';
+import * as testAplAnimation2 from './templates/test-apl-animation2.json';
+import * as testAplLayout1 from './templates/test-apl-layout1.json';
+import * as testAplLayout2 from './templates/test-apl-layout2.json';
 import * as defaultApl from './templates/default_apl.json';
 
 import * as longTextData from './data/long_text_sample_data.json';
@@ -30,6 +34,10 @@ import * as shortTextData from './data/short_text_sample_data.json';
 import * as imageDisplayData from './data/image_display_sample_data.json';
 import * as textForwardListData from './data/text_forward_list_sample_data.json';
 import * as imageForwardListData from './data/image_forward_list_sample_data.json';
+import * as testAplAnimation1Data from './data/test_apl_animation1_data.json';
+import * as testAplAnimation2Data from './data/test_apl_animation2-data.json';
+import * as testAplLayout1Data from './data/test_apl_layout1_data.json';
+import * as testAplLayout2Data from './data/test_apl_layout2_data.json';
 import * as defaultData from './data/default_data.json';
 
 import { Map } from 'immutable';
@@ -40,6 +48,7 @@ import { Map } from 'immutable';
  * @interface ISampleTemplate
  * @property {number} apl - apl document of sample template
  * @property {number} data - apl dataSource of sample template
+ * @property {number} type - type of sample template
  *
  */
 export interface ISampleTemplate {
@@ -58,7 +67,11 @@ export enum SampleTemplateName {
     IMAGE_DISPLAY_SAMPLE = 'IMAGE_DISPLAY_SAMPLE',
     TEXT_FORWARD_LIST_SAMPLE = 'TEXT_FORWARD_LIST_SAMPLE',
     IMAGE_FORWARD_LIST_SAMPLE = 'IMAGE_FORWARD_LIST_SAMPLE',
-    START_FROM_SCRATCH = 'START_FROM_SCRATCH'
+    START_FROM_SCRATCH = 'START_FROM_SCRATCH',
+    TEST_APL_ANIMATION1_SAMPLE = 'TEST_APL_ANIMATION1_SAMPLE',
+    TEST_APL_ANIMATION2_SAMPLE = 'TEST_APL_ANIMATION2_SAMPLE',
+    TEST_APL_LAYOUT1_SAMPLE = 'TEST_APL_LAYOUT1_SAMPLE',
+    TEST_APL_LAYOUT2_SAMPLE = 'TEST_APL_LAYOUT2_SAMPLE'
 }
 
 /**
@@ -96,6 +109,22 @@ const SAMPLE_TEMPLATE_METADATA : Map<string, ISampleTemplate> = Map({
     START_FROM_SCRATCH : {
         apl: defaultApl,
         data: defaultData
+    },
+    TEST_APL_ANIMATION1_SAMPLE : {
+        apl: testAplAnimation1,
+        data: testAplAnimation1Data
+    },
+    TEST_APL_ANIMATION2_SAMPLE : {
+        apl: testAplAnimation2,
+        data: testAplAnimation2Data
+    },
+    TEST_APL_LAYOUT1_SAMPLE : {
+        apl: testAplLayout1,
+        data: testAplLayout1Data
+    },
+    TEST_APL_LAYOUT2_SAMPLE : {
+        apl: testAplLayout2,
+        data: testAplLayout2Data
     }
 });
 

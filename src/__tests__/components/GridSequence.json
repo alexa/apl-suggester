@@ -6,6 +6,28 @@
   "childHeight": "50%",
   "data": "${listData}",
   "numbered": true,
+  "bind": [
+    {
+      "name": "booleanValue",
+      "type": "boolean",
+      "value": false
+    },
+    {
+      "name": "booleanValueAsStringWithExpression",
+      "type": "boolean",
+      "value": "${false}"
+    },
+    {
+      "name": "booleanValueAsNumber",
+      "type": "boolean",
+      "value": 1
+    },
+    {
+      "name": "booleanValueAsNull",
+      "type": "boolean",
+      "value": null
+    }
+  ],
   "handleTick": [
     {
       "minimumDelay": 15000,
@@ -85,5 +107,32 @@
       "description": "Block the normal 'enter' behavior"
     }
   ],
+  "actions": [
+    {
+      "name": "activate",
+      "label": "Reply to user",
+      "enabled": true,
+      "commands": [
+        {
+          "type": "SendEvent",
+          "arguments": "Activated by action invocation"
+        },
+        {
+          "type": "SendEvent",
+          "arguments": "Reply"
+        }
+      ]
+    },
+    {
+      "name": "thumbsup",
+      "label": "Mark positively",
+      "command": {
+        "type": "SetValue",
+        "property": "Rating",
+        "value": 1
+      }
+    }
+  ],
+  "role": "tablist",
   "items": []
 }

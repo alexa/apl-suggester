@@ -14,5 +14,15 @@
   "strokeWidth": 2,
   "strokeOpacity": 1,
   "strokeTransform": "",
-  "style": "sliderThin"
+  "style": "sliderThin",
+  "when": "${isShowed}",
+  "filters": [
+    {
+        "type": "DropShadow",
+        "color": "black",
+        "horizontalOffset": -3,
+        "radius": 3,
+        "verticalOffset": 3
+    }
+]
 }

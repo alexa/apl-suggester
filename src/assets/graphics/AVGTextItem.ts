@@ -199,37 +199,15 @@ export const JSON_SCHEMA : IJsonSchema = {
             ],
             "additionalProperties": false
         },
-        "AVGItemArray": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/AVGItem"
-            }
-        },
-        "AVGItem": {
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "description": "Indicates this item is a AVG item.",
-                    "enum": [
-                        "path",
-                        "group",
-                        "text"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "additionalProperties": true,
-            "type": "object"
-        },
-        "Transform": {
-            "type": "string",
-            "description": "Transform applied to the contents of the group."
-        }
     },
     "type": "object",
     "properties": {
+        "bind": {
+            "$ref": "AVGBasedItemDefinitions.json#/definitions/BindingArray"
+        },
+        "filters": {
+            "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGFilterArray"
+        },
         "type": {
             "type": "string",
             "description": "Indicates this item is a text item.",
@@ -303,8 +281,7 @@ export const JSON_SCHEMA : IJsonSchema = {
             "description": "The width of the text stroke."
         },
         "style": {
-            "type": "string",
-            "description": "Named style to apply"
+            "$ref": "AVGBasedItemDefinitions.json#/definitions/Style"
         },
         "text": {
             "type": "string",
@@ -318,6 +295,10 @@ export const JSON_SCHEMA : IJsonSchema = {
                 "middle",
                 "end"
             ]
+        },
+        "when": {
+            "type": "boolean",
+            "description": "If it evaluates to false, this item does not inflate"
         },
         "x": {
             "type": "number",

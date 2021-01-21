@@ -20,7 +20,7 @@ import { expect } from 'chai';
 import { ThirdPartyComponentLoader } from '../ThirdPartyComponentsLoader';
 import * as sinon from 'sinon';
 import { PackageLoader, ILoadedResult } from '../PackageLoader';
-import { IMPORT_LAYOUT_TEMPLATE } from './template_test_cases/importInternalTemplate';
+import { IMPORT_LAYOUT_TEMPLATE_13 } from './template_test_cases/importInternalTemplate';
 
 describe('ThirdPartyComponentLoader', () => {
     const thirdPartyComponentLoader = new ThirdPartyComponentLoader();
@@ -29,7 +29,7 @@ describe('ThirdPartyComponentLoader', () => {
     beforeEach(() => {
         stub = sinon.stub(PackageLoader.prototype, 'load').returns(new Promise((resolve) => {
             resolve([{
-                json : IMPORT_LAYOUT_TEMPLATE,
+                json : IMPORT_LAYOUT_TEMPLATE_13,
                 justLoaded : true,
                 name : 'alexa-layouts'
             } as ILoadedResult]);

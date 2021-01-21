@@ -15,14 +15,18 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
+import * as commonDefinition from "./CommonDefinition";
 import { IJsonSchema, Categories } from './IJsonSchema';
+
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "url": {
       "type": "string"
     },
+    "ActionArray": commonDefinition.ActionArray,
+    "Action": commonDefinition.Action,
     "EntityArray": {
       "type": "array",
       "items": {
@@ -114,7 +118,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "The name to add to data-binding"
         },
         "value": {
-          "type": "string",
+          "$ref": "#/definitions/any",
           "description": "The value to add to data-binding. May be a data-bound expression"
         },
         "type": {
@@ -140,6 +144,28 @@ export const JSON_SCHEMA : IJsonSchema = {
         "value"
       ]
     },
+    "any": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object"
+        },
+        {
+          "type": "array"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "dimension": {
       "oneOf": [
         {
@@ -154,6 +180,51 @@ export const JSON_SCHEMA : IJsonSchema = {
     "color": {
       "type": "string"
     },
+    "FilterBlend": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply"
+        },
+        "destination": {
+          "type": "integer",
+          "description": "Index of the destination image",
+          "default": -2
+        },
+        "mode": {
+          "type": "string",
+          "description": "Blend mode to apply",
+          "default": "normal",
+          "enum": [
+            "normal",
+            "multiply",
+            "screen",
+            "overlay",
+            "darken",
+            "lighten",
+            "color-dodge",
+            "color-burn",
+            "hard-light",
+            "soft-light",
+            "difference",
+            "exclusion",
+            "hue",
+            "saturation",
+            "color",
+            "luminosity"
+          ]
+        },
+        "source": {
+          "type": "integer",
+          "description": "Index of the source image",
+          "default": -1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
     "FilterBlur": {
       "properties": {
         "type": {
@@ -162,12 +233,71 @@ export const JSON_SCHEMA : IJsonSchema = {
         },
         "radius": {
           "$ref": "#/definitions/dimension"
+        },
+        "source": {
+          "type": "integer",
+          "description": "Index of the source image"
         }
       },
       "additionalProperties": false,
       "required": [
-        "type",
-        "radius"
+        "type"
+      ]
+    },
+    "FilterColor": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply"
+        },
+        "color": {
+          "$ref": "#/definitions/color",
+          "description": "Solid color",
+          "default": "transparent"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
+    "FilterGradient": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply"
+        },
+        "gradient": {
+          "$ref": "#/definitions/Gradient",
+          "description": "Gradient",
+          "default": "transparent"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
+    "FilterGrayscale": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Proportion of the conversion",
+          "default": 0.0
+        },
+        "source": {
+          "type": "integer",
+          "description": "Index of the source image",
+          "default": -1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
       ]
     },
     "FilterNoise": {
@@ -187,6 +317,59 @@ export const JSON_SCHEMA : IJsonSchema = {
         "sigma": {
           "type": "number",
           "description": "Standard deviation of the noise"
+        },
+        "source": {
+          "type": "integer",
+          "description": "Index of the source image"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
+    "FilterSaturate": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Proportion of the conversion",
+          "default": 1.0
+        },
+        "source": {
+          "type": "integer",
+          "description": "Index of the source image",
+          "default": -1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
+    "FilterExtension": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply"
+        },
+        "lower": {
+          "type": "number",
+          "description": "Lower bound for edge detection",
+          "default": 0.1
+        },
+        "upper": {
+          "type": "number",
+          "description": "Proportion of the conversion",
+          "default": 0.9
+        },
+        "source": {
+          "type": "integer",
+          "description": "Index of the source image",
+          "default": -1
         }
       },
       "additionalProperties": false,
@@ -200,7 +383,25 @@ export const JSON_SCHEMA : IJsonSchema = {
           "$ref": "#/definitions/FilterBlur"
         },
         {
+          "$ref": "#/definitions/FilterBlend"
+        },
+        {
+          "$ref": "#/definitions/FilterColor"
+        },
+        {
+          "$ref": "#/definitions/FilterGradient"
+        },
+        {
+          "$ref": "#/definitions/FilterGrayscale"
+        },
+        {
+          "$ref": "#/definitions/FilterSaturate"
+        },
+        {
           "$ref": "#/definitions/FilterNoise"
+        },
+        {
+          "$ref": "#/definitions/FilterExtension"
         }
       ]
     },
@@ -304,6 +505,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         "type"
       ]
     },
+    "Role": commonDefinition.Role,
     "TransformArray": {
       "type": "array",
       "items": {
@@ -484,6 +686,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "string",
       "category": Categories.aboutComponent,
       "description": "A text string used by a screen reader when the user selects accessibility mode."
+    },
+    "actions": {
+      "$ref": "#/definitions/ActionArray",
+      "category": Categories.aboutComponent,
+      "description": "Programmatic equivalents for complex touch interactions"
+    },
+    "role": {
+      "$ref": "#/definitions/Role",
+      "category": Categories.aboutComponent,
+      "description": "Role or purpose of the component."
     },
     "source": {
       "$ref": "#/definitions/url",

@@ -16,30 +16,22 @@
 
 import { expect } from 'chai';
 import { CustomComponentsExtractor } from '../CustomComponentsExtractor';
-import { PackageLoader, ILoadedResult } from '../PackageLoader';
+import { ILoadedResult } from '../PackageLoader';
 import * as sinon from 'sinon';
-import { IMPORT_LAYOUT_TEMPLATE } from './template_test_cases/importInternalTemplate';
+import { IMPORT_LAYOUT_TEMPLATE_10, IMPORT_LAYOUT_TEMPLATE_13 } from './template_test_cases/importInternalTemplate';
 import { getSampleTemplate, SampleTemplateName } from '../../configs';
+import { ThirdPartyComponentLoader } from '../ThirdPartyComponentsLoader';
 
 describe('CustomComponentsExtractor tests', () => {
     let stub;
     const customComponentsExtractor = CustomComponentsExtractor.getInstance();
-
-    beforeEach(() => {
-        stub = sinon.stub(PackageLoader.prototype, 'load').returns(new Promise((resolve) => {
-            resolve([{
-                json : IMPORT_LAYOUT_TEMPLATE,
-                justLoaded : true,
-                name : 'alexa-layouts'
-            } as ILoadedResult]);
-        }));
-    });
 
     afterEach(() => {
         stub.restore();
     });
 
     it('should extract all including imported components', async () => {
+        stubAlexaLayout(IMPORT_LAYOUT_TEMPLATE_13);
         const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
         const componentsWithoutMainTemplate = await customComponentsExtractor.extractCustomComponents(apl);
         expect(componentsWithoutMainTemplate.getCustomComponentNames()).to.have.lengthOf(2);
@@ -47,10 +39,29 @@ describe('CustomComponentsExtractor tests', () => {
         to.have.lengthOf(10);
     });
 
-    it('should get all including imported component types as well', async () => {
+    it('should get all including imported component types for APL 1.0', async () => {
+        await extractComponents(IMPORT_LAYOUT_TEMPLATE_10, 5);
+    });
+
+    it('should get all including imported component types which are exported for APL 1.3+', async () => {
+        await extractComponents(IMPORT_LAYOUT_TEMPLATE_13, 2);
+    });
+
+    const extractComponents = async (json, expectedNumberOfComponents) => {
+        stubAlexaLayout(json);
         const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
         const componentTypesWithoutMainTemplate = await customComponentsExtractor
-        .getCustomComponentTypesAndValidate(apl);
-        expect(componentTypesWithoutMainTemplate).to.have.lengthOf(5);
-    });
+            .getCustomComponentTypesAndValidate(apl);
+        expect(componentTypesWithoutMainTemplate).to.have.lengthOf(expectedNumberOfComponents);
+    };
+
+    const stubAlexaLayout = (json) => {
+        stub = sinon.stub(ThirdPartyComponentLoader.prototype, 'load').returns(new Promise((resolve) => {
+            resolve([{
+                json,
+                justLoaded : true,
+                name : 'alexa-layouts'
+            } as ILoadedResult]);
+        }));
+    };
 });

@@ -15,8 +15,10 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
+import * as commonDefinition from "./CommonDefinition";
 import { IJsonSchema, Categories } from './IJsonSchema';
+
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
@@ -33,8 +35,8 @@ export const JSON_SCHEMA : IJsonSchema = {
             "description": "The name to add to data-binding"
           },
           "value": {
-            "type": "string",
-            "description": "The value to add to data-binding. May be a data-bound expression"
+              "$ref": "#/definitions/any",
+              "description": "The value to add to data-binding. May be a data-bound expression"
           },
           "type": {
             "type": "string",
@@ -59,6 +61,30 @@ export const JSON_SCHEMA : IJsonSchema = {
           "value"
         ]
       },
+      "any": {
+          "oneOf": [
+              {
+                  "type": "string"
+              },
+              {
+                  "type": "number"
+              },
+              {
+                  "type": "object"
+              },
+              {
+                  "type": "array"
+              },
+              {
+                  "type": "boolean"
+              },
+              {
+                  "type": "null"
+              }
+          ]
+      },
+      "ActionArray": commonDefinition.ActionArray,
+      "Action": commonDefinition.Action,
       "EntityArray": {
         "type": "array",
         "items": {
@@ -285,7 +311,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           }
       }
     },
-
+      "Role": commonDefinition.Role,
   },
   "type": "object",
   "properties": {
@@ -293,6 +319,16 @@ export const JSON_SCHEMA : IJsonSchema = {
         "type": "string",
         "category": Categories.aboutComponent,
         "description": "Voice-over will read this string when the user selects this component"
+      },
+      "actions": {
+          "$ref": "#/definitions/ActionArray",
+          "category": Categories.aboutComponent,
+          "description": "Programmatic equivalents for complex touch interactions"
+      },
+      "role": {
+          "$ref": "#/definitions/Role",
+          "category": Categories.aboutComponent,
+          "description": "Role or purpose of the component."
       },
       "bind": {
         "$ref": "#/definitions/BindingArray",

@@ -25,7 +25,6 @@ import { ErrorController } from '../errors/ErrorController';
 export class AplComponentRepresentation {
     private aplTemplates : object[];
     private componentTypeToJsonSchemaMap : Map<string, IJsonSchema>;
-    private static BLACK_LIST = ['AlexaHeaderDetails', 'AlexaHeaderAttribution', 'AlexaHeaderBackButton'];
 
     constructor(aplTemplates : object[]) {
         this.aplTemplates = aplTemplates;
@@ -34,14 +33,12 @@ export class AplComponentRepresentation {
     }
 
     public getCustomComponentNames() : string[] {
-        return Array.from(this.componentTypeToJsonSchemaMap.keys()).filter((item) => {
-            return !AplComponentRepresentation.BLACK_LIST.includes(item);
-        });
+        return Array.from(this.componentTypeToJsonSchemaMap.keys());
     }
 
     private fillCustomComponentMap() {
         this.aplTemplates
-        .map((aplTemplate) => Object.entries(aplTemplate['layouts'] || {}))
+        .map((aplTemplate) => Object.entries(getTemplateLayouts(aplTemplate)))
         .reduce((item, nextItem) => item.concat(nextItem), [])
         .forEach((entry) => {
             this.componentTypeToJsonSchemaMap.set(
@@ -98,7 +95,7 @@ export class CustomComponentsExtractor {
         const loadResults : ILoadedResult[] = await this.thirdPartyComponentLoader.load(aplTemplate['import'] || []);
         const aplTemplates = loadResults
         .map((loadResult) => loadResult.json)
-        .filter((jsonObject) => Object.entries(jsonObject).length !== 0)
+        .filter((jsonObject) => Object.entries(getTemplateLayouts(jsonObject)).length !== 0)
         .concat(aplTemplate);
         return new AplComponentRepresentation(aplTemplates);
     }
@@ -113,7 +110,7 @@ export class CustomComponentsExtractor {
         .filter(this.isValidLoadResult)
         .map((loadResult) => loadResult.json)
         .concat(aplTemplate)
-        .map((jsonObject) => Object.keys(jsonObject['layouts'] || {}))
+        .map((jsonObject) => Object.keys(getTemplateLayouts(jsonObject)))
         .reduce((item, nextItem) => item.concat(nextItem), []);
     }
 
@@ -124,12 +121,27 @@ export class CustomComponentsExtractor {
                 ErrorDefinitions.PACKAGE_LOADER_CANNOT_FETCH_URL.code,
                 {
                     url: loadResult.name,
-                    path: '/import'
+                    path: '/import',
+                    error: loadResult.error
                 }
             );
             return false;
         }
 
         return true;
+    }
+}
+
+function getTemplateLayouts(aplTemplate : any) : Object {
+    // if document doesn't specify exported layouts we assume that all layouts are available to consumers
+    const allLayouts = aplTemplate.layouts || {};
+    if (!aplTemplate.export) {
+        return allLayouts;
+    } else {
+        const templates = {};
+        aplTemplate.export.layouts?.
+          map((exportedLayout) => ((typeof exportedLayout  === 'string') ? exportedLayout : exportedLayout.name)).
+          forEach((templateName) => templates[templateName] = allLayouts[templateName]);
+        return templates;
     }
 }

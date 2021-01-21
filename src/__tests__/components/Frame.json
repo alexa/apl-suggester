@@ -24,5 +24,54 @@
             ]
         }
     ],
-    "width": 10
+    "width": 10,
+    "bind": [
+        {
+            "name": "booleanValue",
+            "type": "boolean",
+            "value": false
+        },
+        {
+            "name": "booleanValueAsStringWithExpression",
+            "type": "boolean",
+            "value": "${false}"
+        },
+        {
+            "name": "booleanValueAsNumber",
+            "type": "boolean",
+            "value": 1
+        },
+        {
+            "name": "booleanValueAsNull",
+            "type": "boolean",
+            "value": null
+        }
+    ],
+    "actions": [
+        {
+            "name": "activate",
+            "label": "Reply to user",
+            "commands": [
+                {
+                    "type": "SendEvent",
+                    "arguments": "Activated by action invocation"
+                },
+                {
+                    "type": "SendEvent",
+                    "arguments": "Reply"
+                }
+            ]
+        },
+        {
+            "name": "thumbsup",
+            "label": "Mark positively",
+            "enabled": true,
+            "command": {
+                "type": "SetValue",
+                "property": "Rating",
+                "value": 1
+            }
+        }
+    ],
+    "role": "progressbar"
 }

@@ -171,6 +171,7 @@ export class PackageLoader {
                 }).catch((error) => {
                     pkg.json = {};
                     pkg.state = LoadState.done;
+                    pkg.error = error;
                     return Promise.resolve();
                 });
             } else {
@@ -263,7 +264,8 @@ export class PackageLoader {
             return {
                 name,
                 json: this.loadPackages.get(name).json,
-                justLoaded: this.loadPackages.get(name).loadSeries === this.loadSeries
+                justLoaded: this.loadPackages.get(name).loadSeries === this.loadSeries,
+                error: this.loadPackages.get(name).error
             };
         });
     }
@@ -286,6 +288,7 @@ export interface ILoadingProcessData {
     json : object;
     state : LoadState;
     loadSeries : number;
+    error? : any;
 }
 
 /**
@@ -313,4 +316,5 @@ export interface ILoadedResult {
     name : string;
     json : object;
     justLoaded : boolean;
+    error : any;
 }
