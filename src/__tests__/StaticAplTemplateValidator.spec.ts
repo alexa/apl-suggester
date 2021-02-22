@@ -55,6 +55,10 @@ describe('Integration Test to verify the JSON schema.', () => {
         expect(result.length).to.be.equal(9);
     });
 
+    it('should compile with alexandermartin template.', async () => {
+        await readSchemaAndPassAllValidations('alexanderMartin.json');
+    });
+
     it('should compile with video template when souce is array of string.', async () => {
         await readSchemaAndPassAllValidations('videoAplTemplateWithArraySource.json');
     });
