@@ -36,6 +36,7 @@ import { IAplGraphic } from './util/graphics/IAplGraphic';
 import { AplCommandsExtractor } from './util/commands/AplCommandsExtractor';
 import { CommandSchemaValidator } from './CommandSchemaValidator';
 import { IAplCommand } from './util/commands/IAplCommand';
+import { containsVariableString } from './util/VariableStringChecker';
 
 /**
  * Static apl json template validator.
@@ -240,6 +241,46 @@ export class StaticAplTemplateValidator {
     }
 
     /**
+     * Publish validation notification based on given DataSources template.
+     * @param {object} dataSources
+     * @returns {IValidationInfo[]} validation warnings.
+     * @memberof StaticAplTemplateValidator
+     */
+    public async validateDataSources(dataSources : object) : Promise<IValidationInfo[]> {
+        return Object.keys(dataSources).filter((key) => !this.isObject(dataSources[key]))
+            .map((key) => StaticAplTemplateValidator.asValidationWarnInfo({
+                dataPath: `Data.${key}`,
+                message: `${key} in DataSources should be an object`
+            }));
+    }
+
+    /**
+     * Publish validation notification based on given sources.
+     * @param {object} sources
+     * @returns {IValidationInfo[]} validation warnings.
+     * @memberof StaticAplTemplateValidator
+     */
+    public async validateSources(sources : object) : Promise<IValidationInfo[]> {
+        if (!this.isObject(sources)) {
+            return [
+                StaticAplTemplateValidator.asValidationWarnInfo({
+                    dataPath: '',
+                    message: 'sources should be an object'
+                })
+            ];
+        }
+        return Object.keys(sources).filter((key) => !this.isObject(sources[key]))
+            .map((key) => StaticAplTemplateValidator.asValidationWarnInfo({
+                dataPath: `/${key}`,
+                message: `${key} in sources should be an object`
+            }));
+    }
+
+    private isObject(obj : any) : boolean {
+        return (!!obj) && (obj.constructor === Object);
+    }
+
+    /**
      * Convert error object to IValidationInfo.
      * @public
      * @param {object} error
@@ -293,7 +334,9 @@ export class StaticAplTemplateValidator {
             return false;
         }
 
-        if (!availableComponentTypes.includes(component.componentType)) {
+        // Not a Primitive component and not a data binding expression(any string contains ${})
+        if (!availableComponentTypes.includes(component.componentType) &&
+            !containsVariableString(component.componentType)) {
             this.errorController.triggerValidationError(
                 ErrorDefinitions.META_TEMPLATE_UNABLE_TO_FIND_LAYOUT.code,
                 {

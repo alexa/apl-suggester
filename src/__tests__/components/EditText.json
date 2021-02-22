@@ -12,5 +12,54 @@
     "validCharacters": "0-9a-fA-F",
     "secureInput": true,
     "opacity": 0.5,
-    "style": "myTextStyle"
+    "style": "myTextStyle",
+    "bind": [
+        {
+            "name": "booleanValue",
+            "type": "boolean",
+            "value": false
+        },
+        {
+            "name": "booleanValueAsStringWithExpression",
+            "type": "boolean",
+            "value": "${false}"
+        },
+        {
+            "name": "booleanValueAsNumber",
+            "type": "boolean",
+            "value": 1
+        },
+        {
+            "name": "booleanValueAsNull",
+            "type": "boolean",
+            "value": null
+        }
+    ],
+    "actions": [
+        {
+            "name": "activate",
+            "label": "Reply to user",
+            "enabled": true,
+            "commands": [
+                {
+                    "type": "SendEvent",
+                    "arguments": "Activated by action invocation"
+                },
+                {
+                    "type": "SendEvent",
+                    "arguments": "Reply"
+                }
+            ]
+        },
+        {
+            "name": "thumbsup",
+            "label": "Mark positively",
+            "command": {
+                "type": "SetValue",
+                "property": "Rating",
+                "value": 1
+            }
+        }
+    ],
+    "role": "adjustable"
 }

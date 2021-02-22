@@ -15,14 +15,18 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
+import * as commonDefinition from "./CommonDefinition";
 import { IJsonSchema, Categories } from './IJsonSchema';
+
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "url": {
       "type": "string"
     },
+    "ActionArray": commonDefinition.ActionArray,
+    "Action": commonDefinition.Action,
     "EntityArray": {
       "type": "array",
       "items": {
@@ -114,7 +118,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "The name to add to data-binding"
         },
         "value": {
-          "type": "string",
+          "$ref": "#/definitions/any",
           "description": "The value to add to data-binding. May be a data-bound expression"
         },
         "type": {
@@ -138,6 +142,28 @@ export const JSON_SCHEMA : IJsonSchema = {
       "required": [
         "name",
         "value"
+      ]
+    },
+    "any": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object"
+        },
+        {
+          "type": "array"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
       ]
     },
     "dimension": {
@@ -232,6 +258,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         "type"
       ]
     },
+    "Role": commonDefinition.Role,
     "TransformArray": {
       "type": "array",
       "items": {
@@ -412,6 +439,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "string",
       "category": Categories.aboutComponent,
       "description": "A text string used by a screen reader when the user selects accessibility mode."
+    },
+    "actions": {
+      "$ref": "#/definitions/ActionArray",
+      "category": Categories.aboutComponent,
+      "description": "Programmatic equivalents for complex touch interactions"
+    },
+    "role": {
+      "$ref": "#/definitions/Role",
+      "category": Categories.aboutComponent,
+      "description": "Role or purpose of the component."
     },
     "shadowColor": {
       "$ref": "#/definitions/color",

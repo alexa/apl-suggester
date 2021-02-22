@@ -56,6 +56,31 @@ describe('AplComponentsExtractor tests', () => {
         }
     };
 
+    const APL_DOC_WITH_CUSTOM_LAYOUT_CONTAINS_SELF = {
+        layouts: {
+            custom: {
+                item: {
+                    type: 'custom'
+                }
+            }
+        },
+        mainTemplate: {
+            parameters: [
+                'payload'
+            ],
+            items: [
+                {
+                    type: 'Container',
+                    items: [
+                        {
+                            type: 'custom'
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
     const aplComponentsExtractor = AplComponentsExtractor.getInstance();
 
     it('should be able to extract all components from requested APL template', () => {
@@ -83,5 +108,16 @@ describe('AplComponentsExtractor tests', () => {
         delete aplWithoutLayout.layouts;
         const componentsWithoutLayout = aplComponentsExtractor.extractComponents(aplWithoutLayout);
         expect(componentsWithoutLayout.length).to.be.equal(2);
+    });
+
+    it('should not throws with custom layout contains self', () => {
+        const components =
+            aplComponentsExtractor.extractComponents(APL_DOC_WITH_CUSTOM_LAYOUT_CONTAINS_SELF);
+        expect(components.length).to.be.equal(5);
+        expect(components.filter((c) => c.jsonPath === undefined)).to.have.lengthOf(0);
+        expect(components.filter((c) => c.parentComponentType === undefined)).to.have.lengthOf(0);
+        expect(components.filter((c) => c.componentType === 'custom')[0].parentComponentType).to.be.equal('Container');
+        expect(components.filter((c) => c.componentType === 'Container')[0].parentComponentType)
+           .to.be.equal('mainTemplate');
     });
 });

@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-import { isVariableString } from './VariableStringChecker';
+import { containsVariableString } from './VariableStringChecker';
 
 export class ValidationErrorFilter {
     private static userDefinedPropertyPrefix = '-user-';
@@ -131,7 +131,7 @@ export class ValidationErrorFilter {
         return errors.filter((eachError) => {
             const actualValue = eachError['data'];
             if (actualValue && typeof(actualValue) === 'string') {
-                if (isVariableString(actualValue)) {
+                if (containsVariableString(actualValue)) {
                     return false;
                 }
             }

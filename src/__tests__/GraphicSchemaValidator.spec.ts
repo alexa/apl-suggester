@@ -33,12 +33,29 @@ describe('GraphicSchemaValidator.', () => {
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/graphics/ErrorGraphic.json`, 'utf8');
         const result =  graphicSchemaValidator.validateGraphic(JSON.parse(data), 'path');
-        expect(result.length).to.be.equal(2);
+        expect(result.length).to.be.equal(10);
         expect(result[0].path).to.be.equal('/');
         expect(result[0].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[0].errorMessage.indexOf('pathData') > 0).to.be.equal(true);
-        expect(result[1].path).to.be.equal('/stroke');
+        expect(result[1].path).to.be.equal('/');
         expect(result[1].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[2].path).to.be.equal('/bind/0');
+        expect(result[2].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[2].errorMessage.indexOf('value') > 0).to.be.equal(true);
+        expect(result[3].path).to.be.equal('/filters/0/type');
+        expect(result[3].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[4].path).to.be.equal('/filters/0/horizontalOffset');
+        expect(result[4].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[5].path).to.be.equal('/when');
+        expect(result[5].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[6].path).to.be.equal('/fill');
+        expect(result[6].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[7].path).to.be.equal('/');
+        expect(result[7].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[7].errorMessage.indexOf('pathData') > 0).to.be.equal(true);
+        expect(result[8].path).to.be.equal('/pathLength');
+        expect(result[8].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[9].path).to.be.equal('/stroke');
+        expect(result[9].level).to.be.equal(NotificationLevel.WARN);
     });
 
     async function verifyGraphic(fileName : string, type : string) {

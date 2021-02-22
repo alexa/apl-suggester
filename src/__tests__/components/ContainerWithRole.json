@@ -4,28 +4,6 @@
     "width": "100vw",
     "alignItems": "center",
     "justifyContent": "end",
-    "bind": [
-        {
-            "name": "booleanValue",
-            "type": "boolean",
-            "value": false
-        },
-        {
-            "name": "booleanValueAsStringWithExpression",
-            "type": "boolean",
-            "value": "${false}"
-        },
-        {
-            "name": "booleanValueAsNumber",
-            "type": "boolean",
-            "value": 1
-        },
-        {
-            "name": "booleanValueAsNull",
-            "type": "boolean",
-            "value": null
-        }
-    ],
     "handleTick": [
         {
             "minimumDelay": 15000,
@@ -39,6 +17,7 @@
             ]
         }
     ],
+    "role": "radiogroup",
     "direction": "column",
     "wrap": "noWrap"
 }

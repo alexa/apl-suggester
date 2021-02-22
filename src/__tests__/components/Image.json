@@ -3,6 +3,28 @@
     "source": "${payload.bodyTemplate7Data.backgroundImage.sources[0].url}",
     "scale": "best-fill",
     "width": "100vw",
+    "bind": [
+        {
+            "name": "booleanValue",
+            "type": "boolean",
+            "value": false
+        },
+        {
+            "name": "booleanValueAsStringWithExpression",
+            "type": "boolean",
+            "value": "${false}"
+        },
+        {
+            "name": "booleanValueAsNumber",
+            "type": "boolean",
+            "value": 1
+        },
+        {
+            "name": "booleanValueAsNull",
+            "type": "boolean",
+            "value": null
+        }
+    ],
     "handleTick": [
         {
             "minimumDelay": 15000,
@@ -14,6 +36,88 @@
                     "value": 0
                 }
             ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "activate",
+            "label": "Reply to user",
+            "enabled": true,
+            "commands": [
+                {
+                    "type": "SendEvent",
+                    "arguments": "Activated by action invocation"
+                },
+                {
+                    "type": "SendEvent",
+                    "arguments": "Reply"
+                }
+            ]
+        },
+        {
+            "name": "thumbsup",
+            "label": "Mark positively",
+            "command": {
+                "type": "SetValue",
+                "property": "Rating",
+                "value": 1
+            }
+        }
+    ],
+    "role": "image",
+    "filters": [
+        {
+            "type": "Blur",
+            "radius": "10dp"
+        },
+        {
+            "type": "Noise",
+            "sigma": 20
+        },
+        {
+            "type": "Blend",
+            "destination": -2,
+            "mode": "normal"
+        },
+        {
+            "type": "Color",
+            "color": "#B620E0"
+        },
+        {
+            "type": "Gradient",
+            "gradient": {
+                "type": "linear",
+                "colorRange": [
+                    "#FF000066",
+                    "#F7C10066",
+                    "#6DD40066",
+                    "#0091FF66",
+                    "#6236FF66"
+                ],
+                "inputRange": [
+                    0,
+                    0.25,
+                    0.55,
+                    0.8,
+                    1
+                ],
+                "angle": 270
+            }
+        },
+        {
+            "type": "Grayscale",
+            "amount": 1,
+            "source": 12
+        },
+        {
+            "type": "Saturate",
+            "amount": 2
+        },
+        {
+            "type": "FilterExtension",
+            "lower": 0.2,
+            "upper": 0.7,
+            "source": -2
         }
     ],
     "height": "100vh"

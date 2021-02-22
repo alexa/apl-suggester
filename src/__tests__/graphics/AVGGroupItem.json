@@ -4,5 +4,15 @@
   "rotation": 0,
   "style": "standardToggleButton",
   "transform": "translate(60 0)",
-  "clipPath": "M45,82 A36,36,0,0,1,45,8 A36,36,0,1,1,45,82 Z"
+  "clipPath": "M45,82 A36,36,0,0,1,45,8 A36,36,0,1,1,45,82 Z",
+  "data": "${listData}",
+  "filters": [
+    {
+        "type": "DropShadow",
+        "color": "black",
+        "horizontalOffset": -3,
+        "radius": 3,
+        "verticalOffset": 3
+    }
+]
 }

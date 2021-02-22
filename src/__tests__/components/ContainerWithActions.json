@@ -1,37 +1,9 @@
 {
-    "type": "TouchWrapper",
-    "onFocus": [],
-    "onBlur": [],
-    "handleKeyDown": [],
-    "handleKeyUp": [],
-    "gestures": [],
-    "onCancel": [],
-    "onDown": [],
-    "onMove": [],
-    "onPress": [],
-    "onUp": [],
-    "bind": [
-        {
-            "name": "booleanValue",
-            "type": "boolean",
-            "value": false
-        },
-        {
-            "name": "booleanValueAsStringWithExpression",
-            "type": "boolean",
-            "value": "${false}"
-        },
-        {
-            "name": "booleanValueAsNumber",
-            "type": "boolean",
-            "value": 1
-        },
-        {
-            "name": "booleanValueAsNull",
-            "type": "boolean",
-            "value": null
-        }
-    ],
+    "type": "Container",
+    "height": "100vh",
+    "width": "100vw",
+    "alignItems": "center",
+    "justifyContent": "end",
     "handleTick": [
         {
             "minimumDelay": 15000,
@@ -71,6 +43,6 @@
             }
         }
     ],
-    "role": "checkbox",
-    "height": "80vh"
-  }
+    "direction": "column",
+    "wrap": "noWrap"
+}

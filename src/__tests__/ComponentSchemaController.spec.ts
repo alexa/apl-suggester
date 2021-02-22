@@ -20,7 +20,7 @@ import * as sinon from 'sinon';
 import { ComponentSchemaController } from '../ComponentSchemaController';
 import { NotificationLevel } from '../IValidationInfo';
 import { PackageLoader, ILoadedResult } from '../util/PackageLoader';
-import { IMPORT_LAYOUT_TEMPLATE } from '../util/__tests__/template_test_cases/importInternalTemplate';
+import { IMPORT_LAYOUT_TEMPLATE_13 } from '../util/__tests__/template_test_cases/importInternalTemplate';
 import { getSampleTemplate, SampleTemplateName } from '../configs';
 import * as aplTemplate from '../configs/templates/default_apl.json';
 
@@ -32,7 +32,7 @@ describe('ComponentSchemaController.', () => {
         componentSchemaController = ComponentSchemaController.getInstance();
         stub = sinon.stub(PackageLoader.prototype, 'load').returns(new Promise((resolve) => {
             resolve([{
-                json : IMPORT_LAYOUT_TEMPLATE,
+                json : IMPORT_LAYOUT_TEMPLATE_13,
                 justLoaded : true,
                 name : 'alexa-layouts'
             } as ILoadedResult]);
@@ -75,7 +75,7 @@ describe('ComponentSchemaController.', () => {
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/components/ErrorComponent.json`, 'utf8');
         const result = await componentSchemaController.validateComponent({}, JSON.parse(data), 'Image');
-        expect(result.length).to.be.equal(3);
+        expect(result.length).to.be.equal(6);
         expect(result[0].path).to.be.equal('/');
         expect(result[0].level).to.be.equal(NotificationLevel.WARN);
         expect(result[0].errorMessage.indexOf('position') > 0).to.be.equal(true);
@@ -84,6 +84,14 @@ describe('ComponentSchemaController.', () => {
         expect(result[1].errorMessage.indexOf('scrim') > 0).to.be.equal(true);
         expect(result[2].path).to.be.equal('/width');
         expect(result[2].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[3].path).to.be.equal('/actions/0');
+        expect(result[3].errorMessage.indexOf('name') > 0).to.be.equal(true);
+        expect(result[3].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[4].path).to.be.equal('/actions/1/enabled');
+        expect(result[4].errorMessage.indexOf('boolean') > 0).to.be.equal(true);
+        expect(result[4].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[5].path).to.be.equal('/role');
+        expect(result[5].level).to.be.equal(NotificationLevel.WARN);
     });
 
     it('should validate Image component correctly with mixin support.', async () => {

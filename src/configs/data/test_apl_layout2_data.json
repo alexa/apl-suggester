@@ -1,0 +1,114 @@
+{
+    "listTemplateData": {
+        "type": "object",
+        "objectId": "listSample1",
+        "imageHideScrim": false,
+        "imageShowProgressBar": true,
+        "imageRoundedCorner": true,
+        "imageScale": "best-fit",
+        "imageAlignment": "center",
+        "imageBlurredBackground": true,
+        "imageWidth": 300,
+        "imageHeight": 300,
+        "backgroundImageSource": "https://s3.amazonaws.com/allrecipes-stock-images/00_Bg_AllRecipes.png",
+        "listItems": [
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text testing the max width of this",
+                "providerText": "Provider Text 1",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/1153662.jpg",
+                "imageAspectRatio": "square",
+                "backgroundImageSource": "https://s3.amazonaws.com/allrecipes-stock-images/00_Bg_AllRecipes.png"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "providerText": "Provider Text 2",
+                "token": "selectRecipe13872",
+                "imageProgressBarPercentage": 50,
+                "imageAspectRatio": "square",
+                "backgroundImageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/BT6_Background.png"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "providerText": "Provider Text 2",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/303241.jpg",
+                "token": "selectRecipe22544",
+                "imageProgressBarPercentage": 90,
+                "disabled": true,
+                "backgroundImageSource": "https://ask-skills-assets.s3.amazonaws.com/apl-layout-assets/fiji+background.jpg"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/966157.jpg",
+                "token": "selectRecipe8355",
+                "imageAspectRatio": "round",
+                "providerText": "Provider Text 2",
+                "backgroundImageSource": "https://s3.amazonaws.com/allrecipes-stock-images/00_Bg_AllRecipes.png"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "providerText": "Provider Text 2",
+                "imageProgressBarPercentage": 90,
+                "imageAspectRatio": "standard_landscape",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/1153662.jpg",
+                "token": "selectRecipe24090",
+                "backgroundImageSource": "https://ask-skills-assets.s3.amazonaws.com/apl-layout-assets/fiji+background.jpg"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "providerText": "Provider Text 2",
+                "imageAspectRatio": "standard_portrait",
+                "imageProgressBarPercentage": 90,
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/141653.jpg",
+                "token": "selectRecipe13564",
+                "backgroundImageSource": "https://s3.amazonaws.com/allrecipes-stock-images/00_Bg_AllRecipes.png"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "imageAspectRatio": "poster_portrait",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/4573769.jpg",
+                "token": "selectRecipe18433",
+                "backgroundImageSource": "https://ask-skills-assets.s3.amazonaws.com/apl-layout-assets/fiji+background.jpg"
+            },
+            {
+                "primaryText": "Pecan Pie primary text can wrap up to two lines",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "imageProgressBarPercentage": 90,
+                "imageAspectRatio": "poster_landscape",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/1754648.jpg",
+                "token": "selectRecipe15994"
+            },
+            {
+                "primaryText": "Pecan Pie 9",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "imageProgressBarPercentage": 90,
+                "imageAspectRatio": "widescreen",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/1846184.jpg",
+                "token": "selectRecipe12577",
+                "backgroundImageSource": "https://ask-skills-assets.s3.amazonaws.com/apl-layout-assets/fiji+background.jpg"
+            },
+            {
+                "primaryText": "Pecan Pie 10",
+                "secondaryText": "Secondary Text",
+                "tertiaryText": "Tertiary Text",
+                "imageSource": "https://images.media-allrecipes.com/userphotos/250x250/2898253.jpg",
+                "token": "selectRecipe15739"
+            }
+        ]
+    }
+}

@@ -5,5 +5,36 @@
     "position": "absolute",
     "width": "zzz",
     "height": "100vh",
-    "scrim": true
+    "scrim": true,
+    "actions": [
+        {
+            "label": "Reply to user",
+            "commands": [
+                {
+                    "type": "SendEvent",
+                    "arguments": "Activated by action invocation"
+                },
+                {
+                    "type": "SendEvent",
+                    "arguments": "Reply"
+                }
+            ]
+        },
+        {
+            "name": "Activate",
+            "label": "Reply to user",
+            "enabled": "true",
+            "commands": [
+                {
+                    "type": "SendEvent",
+                    "arguments": "Activated by action invocation"
+                },
+                {
+                    "type": "SendEvent",
+                    "arguments": "Reply"
+                }
+            ]
+        }
+    ],
+    "role": "image_"
 }

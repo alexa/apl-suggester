@@ -20,7 +20,7 @@ import { StaticAplTemplateValidator } from '../StaticAplTemplateValidator';
 import { IValidationInfo } from '../validation';
 import { PackageLoader, ILoadedResult } from '../util/PackageLoader';
 import * as sinon from 'sinon';
-import { IMPORT_LAYOUT_TEMPLATE } from '../util/__tests__/template_test_cases/importInternalTemplate';
+import { IMPORT_LAYOUT_TEMPLATE_13 } from '../util/__tests__/template_test_cases/importInternalTemplate';
 import { getSampleTemplates } from '../configs';
 
 describe('Integration Test to verify the JSON schema.', () => {
@@ -30,7 +30,7 @@ describe('Integration Test to verify the JSON schema.', () => {
         validator = new StaticAplTemplateValidator();
         stub = sinon.stub(PackageLoader.prototype, 'load').returns(new Promise((resolve) => {
             resolve([{
-                json : IMPORT_LAYOUT_TEMPLATE,
+                json : IMPORT_LAYOUT_TEMPLATE_13,
                 justLoaded : true,
                 name : 'alexa-layouts'
             } as ILoadedResult]);
@@ -77,6 +77,52 @@ describe('Integration Test to verify the JSON schema.', () => {
 
     it('should compile with grid sequence template.', async () => {
         await readSchemaAndPassAllValidations('gridSequenceAplTemplate.json');
+    });
+
+    it('should compile with graphic template.', async () => {
+        await readSchemaAndPassAllValidations('graphicAplTemplate.json');
+    });
+
+    it('should validate DataSource', async () => {
+        let result = await validator.validateDataSources({});
+        expect(result).to.have.lengthOf(0);
+        result = await validator.validateDataSources({ key: 'string'});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateDataSources({ key: false});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateDataSources({ key: null});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateDataSources({ key: []});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateDataSources({ key: ['string']});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateDataSources({ key: {}});
+        expect(result).to.have.lengthOf(0);
+        result = await validator.validateDataSources({ key: { A: 'b'}});
+        expect(result).to.have.lengthOf(0);
+    });
+
+    it('should validate sources', async () => {
+        let result = await validator.validateSources('');
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateSources({});
+        expect(result).to.have.lengthOf(0);
+        result = await validator.validateSources({ key: 'string'});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateSources({ key: false});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateSources({ key: null});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateSources({ key: []});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateSources({ key: ['string']});
+        expect(result).to.have.lengthOf(1);
+        result = await validator.validateSources({ key: {}});
+        expect(result).to.have.lengthOf(0);
+        result = await validator.validateSources({ key: { A: 'b'}});
+        expect(result).to.have.lengthOf(0);
+        result = await validator.validateSources([{A: 'a'}]);
+        expect(result).to.have.lengthOf(1);
     });
 
     async function readSchemaAndPassAllValidations(fileName : string) {

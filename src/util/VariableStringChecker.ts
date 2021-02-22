@@ -20,22 +20,14 @@
  * Util method to check whether the string is defined as a variable.
  * @export
  */
-export function isVariableString(actualValue : string) : boolean {
-    return actualValue.startsWith('@') || isVariableStartingWithDollarSign(actualValue);
+export function containsVariableString(actualValue : string) : boolean {
+    return actualValue.startsWith('@') || isVariableADataBindingExpression(actualValue);
 }
 
-const VALID_DIMENSION_SET = new Set(['vw', 'dp', 'vh', 'px', '%']);
-
-function isVariableStartingWithDollarSign(actualValue : string) {
-    if (!actualValue.startsWith('${')) {
-        return false;
-    }
-    const rightBraceIndex = actualValue.indexOf('}');
-    if (rightBraceIndex < 0) {
-        return false;
-    }
-    if (rightBraceIndex === actualValue.length - 1) {
-        return true;
-    }
-    return VALID_DIMENSION_SET.has(actualValue.substring(rightBraceIndex + 1));
+/**
+ * Check if the string is a data binding expression
+ * @param actualValue
+ */
+function isVariableADataBindingExpression(actualValue : string) {
+    return /.*\${.+}.*/.test(actualValue);
 }

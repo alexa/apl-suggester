@@ -21,6 +21,11 @@
  */
 export interface IJsonSchema extends Object {
     /**
+     * Id of the JSON schema.
+     */
+    $id? : string;
+
+    /**
      * Reference of the JSON schema.
      */
     $ref? : string;

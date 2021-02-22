@@ -20,5 +20,19 @@
   "text": "Hello",
   "x": 75,
   "y": 50,
-  "textAnchor": "middle"
+  "textAnchor": "middle",
+  "bind": [
+    { "name": "AspectRatio", "value": "${width/height}" },
+    { "name": "ReallyWide", "value": "${AspectRatio > 2}", "type": "boolean"},
+    { "name": "Tallish", "value": "${AspectRatio < 1}"}
+  ],
+  "filters": [
+    {
+        "type": "DropShadow",
+        "color": "black",
+        "horizontalOffset": -3,
+        "radius": 3,
+        "verticalOffset": 3
+    }
+]
 }

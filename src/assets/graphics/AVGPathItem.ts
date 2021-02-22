@@ -185,11 +185,11 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Width of the pattern"
         },
         "item": {
-          "$ref": "#/definitions/AVGItemArray",
+          "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGItemArray",
           "description": "An array of drawing items"
         },
         "items": {
-          "$ref": "#/definitions/AVGItemArray",
+          "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGItemArray",
           "description": "An array of drawing items"
         }
       },
@@ -199,37 +199,19 @@ export const JSON_SCHEMA : IJsonSchema = {
       ],
       "additionalProperties": false
     },
-    "AVGItemArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/AVGItem"
-      }
-    },
-    "AVGItem": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "Indicates this item is a AVG item.",
-          "enum": [
-            "path",
-            "group",
-            "text"
-          ]
-        }
-      },
-      "required": [
-        "type"
-      ],
-      "additionalProperties": true,
-      "type": "object"
-    },
-    "Transform": {
-      "type": "string",
-      "description": "Transform applied to the contents of the group."
-    }
   },
   "type": "object",
   "properties": {
+    "bind": {
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/BindingArray"
+    },
+    "filters": {
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGFilterArray"
+    },
+    "when": {
+      "type": "boolean",
+      "description": "If it evaluates to false, this item does not inflate"
+    },
     "type": {
       "type": "string",
       "description": "Indicates this item is a path.",
@@ -246,7 +228,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "The opacity of the path fill."
     },
     "fillTransform": {
-      "$ref": "#/definitions/Transform",
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/Transform",
       "description": "Transformation applied against the fill gradient or pattern"
     },
     "pathData": {
@@ -299,7 +281,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "The opacity of the path stroke."
     },
     "strokeTransform": {
-      "$ref": "#/definitions/Transform",
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/Transform",
       "description": "Transform applied against the stroke gradient or pattern"
     },
     "strokeWidth": {
@@ -307,8 +289,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "The width of the path stroke."
     },
     "style": {
-      "type": "string",
-      "description": "Named style to apply"
+      "$ref": "AVGBasedItemDefinitions.json#/definitions/Style"
     }
   },
   "required": [

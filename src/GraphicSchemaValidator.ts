@@ -25,6 +25,7 @@ import { NotificationLevel } from './IValidationInfo';
 import * as AVGGroupItemJSONSchema from './assets/graphics/AVGGroupItem';
 import * as AVGPathItemJSONSchema from './assets/graphics/AVGPathItem';
 import * as AVGTextItemJSONSchema from './assets/graphics/AVGTextItem';
+import * as AVGBasedItemJSONSchema from './assets/graphics/AVGBaseItem';
 
 /**
  * Entrance to validate graphics.
@@ -87,7 +88,9 @@ export class GraphicSchemaValidator {
             jsonPointers : true,
             allErrors : true,
             verbose : true
-        }).compile(graphicJsonSchema);
+        })
+        .addSchema(AVGBasedItemJSONSchema.JSON_SCHEMA)
+        .compile(graphicJsonSchema);
         const succeed = validateFunction(jsonObject);
         if (succeed) {
             return [];

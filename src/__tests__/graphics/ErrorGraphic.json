@@ -1,4 +1,22 @@
 {
     "type": "path",
-    "stroke": 20
-  }
+    "stroke": 20,
+    "bind": [
+      { "name": "AspectRatio" },
+      { "name": "ReallyWide", "value": "${AspectRatio > 2}", "type": "boolean"}
+    ],
+    "filters": [
+      {
+          "type": "xed",
+          "color": "black",
+          "horizontalOffset": "",
+          "radius": 3,
+          "verticalOffset": 3
+      }
+  ],
+  "fill": 1,
+  "when": 3,
+  "pathLength": "gid",
+  "strockOpacity": "jhd",
+  "strokWidth": "kdh"
+}

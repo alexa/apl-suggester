@@ -158,7 +158,15 @@ export class AplComponentsExtractor {
         if (currentParent['type'] === this.ROOT_COMPONENT_TYPE || aplComponentTypes.includes(currentParent['type'])) {
             return currentParent;
         }
-        const parentComponent = components.filter((c) => c.componentType === currentParent['type']).shift();
+        const parentComponent = components.filter((c) => {
+            // avoid dead loop when a component's parent is the same type of itself
+            // for layouts/custom/item is custom
+            // currentParent is { "type": "custom"}, component is { "type": "custom" }
+            if (c.componentType === c.parentComponentType) {
+                return false;
+            }
+            return c.componentType === currentParent['type'];
+        }).shift();
         if (parentComponent === undefined
             || parentComponent.parentComponent === undefined
             || !parentComponent.parentComponent['type']) {
