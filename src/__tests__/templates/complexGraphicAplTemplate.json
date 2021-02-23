@@ -1,0 +1,96 @@
+{
+  "type": "APL",
+  "version": "1.5",
+  "background": {
+    "type": "radial",
+    "colorRange": [
+      "#f2f2f2",
+      "#dadada"
+    ],
+    "inputRange": [
+      0,
+      1
+    ]
+  },
+  "settings": {},
+  "theme": "dark",
+  "import": [],
+  "resources": [],
+  "styles": {},
+  "onMount": [],
+  "graphics": {
+    "Test": {
+      "parameters": [
+        "input"
+      ],
+      "type": "AVG",
+      "width": 600,
+      "height": 200,
+      "version": "1.2",
+      "items": [
+        {
+          "type": "group",
+          "items": [
+            {
+              "type": "text",
+              "text": "${input}",
+              "stroke": "#ffffff",
+              "strokeWidth": 25,
+              "fontWeight": "bold",
+              "fontSize": 90,
+              "fill": "#53bfc1",
+              "x": 90,
+              "y": 100,
+              "filters": [
+                {
+                  "type": "DropShadow",
+                  "color": "rgba(0,0,0,0.5)",
+                  "horizontalOffset": 0,
+                  "radius": 10,
+                  "verticalOffset": 0
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "${input}",
+              "stroke": "#53bfc1",
+              "strokeWidth": 5,
+              "fontWeight": "bold",
+              "fontSize": 90,
+              "fill": "#53bfc1",
+              "x": 90,
+              "y": 100
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "commands": {},
+  "layouts": {},
+  "mainTemplate": {
+    "parameters": [
+      "payload"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "width": "100vw",
+        "height": "100vh",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "items": [
+          {
+            "type": "VectorGraphic",
+            "source": "Test",
+            "input": "apl-suggester",
+            "width": 600,
+            "height": 200,
+            "scale": "best-fit"
+          }
+        ]
+      }
+    ]
+  }
+}
