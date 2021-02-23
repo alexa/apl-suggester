@@ -19,7 +19,7 @@
 import * as commonDefinition from "./CommonDefinition";
 import { IJsonSchema, Categories } from './IJsonSchema';
 
-export const JSON_SCHEMA : IJsonSchema = {
+export const JSON_SCHEMA: IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "url": {
@@ -326,7 +326,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "Control if the component is displayed on the screen."
     },
     "handleTick": {
-      "$ref":"#/definitions/tickHandlerArray",
+      "$ref": "#/definitions/tickHandlerArray",
       "category": Categories.aboutComponent,
       "description": "An array of Tick Event Handlers to execute as time passes."
     },

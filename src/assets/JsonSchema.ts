@@ -972,7 +972,7 @@ export const JSON_SCHEMA : IJsonSchema = {
     "AVGPathItemFillOrStroke": {
       "oneOf": [
         {
-          "$ref": "#/definitions/Color"
+          "$ref": "#/definitions/color"
         },
         {
           "$ref": "#/definitions/AVGGradient"
