@@ -3,6 +3,7 @@
   "name": "Mobile Large",
   "mode": "mobile",
   "shape": "rectangle",
+  "type": "standard",
   "dpSizeRange": {
     "minWidth": 1280,
     "maxWidth": 1920,

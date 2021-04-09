@@ -3,6 +3,7 @@
   "name": "Mobile Medium",
   "mode": "mobile",
   "shape": "rectangle",
+  "type": "standard",
   "dpSizeRange": {
     "minWidth": 960,
     "maxWidth": 1279,
