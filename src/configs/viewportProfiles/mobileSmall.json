@@ -1,0 +1,36 @@
+{
+  "id": "mobileSmall",
+  "name": "Mobile Small",
+  "mode": "mobile",
+  "shape": "rectangle",
+  "type": "standard",
+  "dpSizeRange": {
+    "minWidth": 600,
+    "maxWidth": 959,
+    "minHeight": 320,
+    "maxHeight": 1920
+  },
+  "exampleDevices": [
+    {
+      "id": "fireTablet7Portrait",
+      "name": "Fire Tablet 7 portrait",
+      "width": 600,
+      "height": 1024,
+      "dpi": 160
+    },
+    {
+      "id": "fireTablet8Portrait",
+      "name": "Fire Tablet 8 portrait",
+      "width": 600,
+      "height": 960,
+      "dpi": 213
+    },
+    {
+      "id": "fireTablet10Portrait",
+      "name": "Fire Tablet 10 portrait",
+      "width": 800,
+      "height": 1280,
+      "dpi": 240
+    }
+  ]
+}

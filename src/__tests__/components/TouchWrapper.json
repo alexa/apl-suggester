@@ -72,5 +72,12 @@
         }
     ],
     "role": "checkbox",
-    "height": "80vh"
+    "height": "80vh",
+    "padding": ["20dp", 10, "20px", 10],
+    "preserve": [ "checked", "Counter" ],
+    "nextFocusDown": "componentId1",
+    "nextFocusForward": "componentId2",
+    "nextFocusLeft": "componentId3",
+    "nextFocusRight": "componentId4",
+    "nextFocusUp": "componentId5"
   }

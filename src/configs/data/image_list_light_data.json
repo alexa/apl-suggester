@@ -1,0 +1,94 @@
+{
+    "imageListData": {
+        "type": "object",
+        "objectId": "imageListSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridListBackground_Light.png",
+                    "size": "large"
+                }
+            ]
+        },
+        "title": "Plant Stores Near Me",
+        "listItems": [
+            {
+                "primaryText": "Peonies & Petals Nursery",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridList_Image1.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[0].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Ivy Lane Nursery and Tree Farm",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridList_Image2.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[1].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "House of Hyacinth",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridList_Image3.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Swan Nursery",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridList_Image4.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[3].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "House of Peonies",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridList_Image5.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[4].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Spruce Nursery",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridList_Image6.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.imageListData.listItems[5].primaryText} is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-black.png",
+        "hintText": "Try, \"Alexa, select number 1\""
+    }
+}

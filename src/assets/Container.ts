@@ -27,6 +27,30 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
+    "dimension": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "paddingArray": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dimension",
+          }
+        },
+        {
+          "$ref": "#/definitions/dimension",
+        }
+      ]
+    },
     "EntityArray": {
       "type": "array",
       "items": {
@@ -106,17 +130,6 @@ export const JSON_SCHEMA : IJsonSchema = {
       "required": [
         "name",
         "value"
-      ]
-    },
-    "dimension": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
-        },
-        {
-          "type": "number"
-        }
       ]
     },
     "color": {
@@ -420,6 +433,26 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "number",
       "category": Categories.aboutComponent,
       "description": "Opacity of this component.  Also applies to children."
+    },
+    "preserve": {
+      "category": Categories.aboutComponent,
+      "description": "Properties preserved through reinflation.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ],
+    },
+    "padding": {
+      "$ref": "#/definitions/paddingArray",
+      "category": Categories.padding,
+      "description": "Space to add on the sides of the component."
     },
     "paddingLeft": {
       "$ref": "#/definitions/dimension",

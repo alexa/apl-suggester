@@ -16,11 +16,14 @@
 
 import { OrderedMap } from 'immutable';
 
-import * as hubRound from './viewporProfiles/hubRound.json';
-import * as hubLandscapeSmall from './viewporProfiles/hubLandscapeSmall.json';
-import * as hubLandscapeMedium from './viewporProfiles/hubLandscapeMedium.json';
-import * as hubLandscape from './viewporProfiles/hubLandscape.json';
-import * as tvFullscreen from './viewporProfiles/tvFullscreen.json';
+import * as hubRound from './viewportProfiles/hubRound.json';
+import * as hubLandscapeSmall from './viewportProfiles/hubLandscapeSmall.json';
+import * as hubLandscapeMedium from './viewportProfiles/hubLandscapeMedium.json';
+import * as hubLandscape from './viewportProfiles/hubLandscape.json';
+import * as tvFullscreen from './viewportProfiles/tvFullscreen.json';
+import * as mobileSmall from './viewportProfiles/mobileSmall.json';
+import * as mobileMedium from './viewportProfiles/mobileMedium.json';
+import * as mobileLarge from './viewportProfiles/mobileLarge.json';
 
 /**
  * Shape of viewport profile
@@ -43,7 +46,18 @@ export enum ViewportShape {
  */
 export enum ViewportMode {
     HUB = 'hub',
-    TV = 'tv'
+    TV = 'tv',
+    MOBILE = 'mobile'
+}
+
+/**
+ * Type of viewport profile
+ * @export
+ * @enum {string}
+ */
+export enum ViewportType {
+    STANDARD = 'standard',
+    OVERLAY = 'overlay'
 }
 
 /**
@@ -52,10 +66,11 @@ export enum ViewportMode {
  * @interface IViewportProfile
  * @property {string} id - id of the viewport profile such as "hubLandscapeMedium"
  * @property {string} name - name of viewport profile such as 'Hub Landscape Medium"
- * @property {string} shape - shape of viewport profile
- * @property {string} mode - mode of viewport profile, optional for custom viewport
- * @property {string} dpSizeRange - size range in dp of viewport profile
- * @property {string} exampleDevices - default viewports of viewport profile
+ * @property {ViewportShape} shape - shape of viewport profile
+ * @property {ViewportType} type - type of the viewport profile, optional for custom viewport
+ * @property {ViewportMode} mode - mode of viewport profile, optional for custom viewport
+ * @property {IViewportProfileSizeRange} dpSizeRange - size range in dp of viewport profile
+ * @property {IViewport[]} exampleDevices - default viewports of viewport profile
  * @property {boolean} isCustom - is custom viewport profile
  *
  */
@@ -63,6 +78,7 @@ export interface IViewportProfile {
     id : string;
     name : string;
     shape : ViewportShape;
+    type? : ViewportType;
     mode? : ViewportMode;
     dpSizeRange : IViewportProfileSizeRange;
     exampleDevices : IViewport[];
@@ -88,6 +104,9 @@ export interface IViewport {
     height : number;
     dpi : number;
     shape? : ViewportShape;
+    fullscreenDeviceId? : string;
+    fullscreenHeight? : number;
+    fullscreenWidth? : number;
 }
 
 /**
@@ -107,7 +126,7 @@ interface IViewportProfileSizeRange {
     maxHeight : number;
 }
 
-const HUB_LANDSCAPE_MEDIUM : IViewportProfile = hubLandscapeMedium as IViewportProfile;
+const HUB_LANDSCAPE : IViewportProfile = hubLandscape as IViewportProfile;
 
 /**
  * This is a mapping that contains the contents of vieport profiles.
@@ -115,9 +134,12 @@ const HUB_LANDSCAPE_MEDIUM : IViewportProfile = hubLandscapeMedium as IViewportP
 const VIEWPORT_PROFILE_METADATA : OrderedMap<string, IViewportProfile> = OrderedMap({
     hubRound : hubRound as IViewportProfile,
     hubLandscapeSmall : hubLandscapeSmall as IViewportProfile,
-    hubLandscapeMedium : HUB_LANDSCAPE_MEDIUM,
-    hubLandscape : hubLandscape as IViewportProfile,
-    tvFullscreen : tvFullscreen as IViewportProfile
+    hubLandscapeMedium : hubLandscapeMedium as IViewportProfile,
+    hubLandscape : HUB_LANDSCAPE,
+    tvFullscreen : tvFullscreen as IViewportProfile,
+    mobileSmall : mobileSmall as IViewportProfile,
+    mobileMedium : mobileMedium as IViewportProfile,
+    mobileLarge : mobileLarge as IViewportProfile
 });
 
 /**
@@ -133,7 +155,7 @@ export function getViewportProfiles() : OrderedMap<string, IViewportProfile> {
  * @export
  */
 export function getDefaultViewportProfile() : IViewportProfile {
-    return HUB_LANDSCAPE_MEDIUM;
+    return HUB_LANDSCAPE;
 }
 
 /**

@@ -5,5 +5,8 @@
     "alignItems": "center",
     "justifyContent": "end",
     "direction": "columnReverse",
-    "wrap": "wrapReverse"
+    "wrap": "wrapReverse",
+    "padding": [10, 20],
+    "paddingBottom": 40,
+    "preserve": [ "checked", "Counter" ]
 }

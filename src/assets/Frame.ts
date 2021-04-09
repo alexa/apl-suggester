@@ -27,6 +27,30 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
+    "dimension": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "paddingArray": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dimension",
+          }
+        },
+        {
+          "$ref": "#/definitions/dimension",
+        }
+      ]
+    },
     "EntityArray": {
       "type": "array",
       "items": {
@@ -166,22 +190,36 @@ export const JSON_SCHEMA : IJsonSchema = {
         }
       ]
     },
-    "dimension": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
-        },
-        {
-          "type": "number"
-        }
-      ]
-    },
     "ComponentArray": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/Component"
       }
+    },
+    "Component": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of this component. Used to select an appropriate child type for inflation"
+        },
+        "when": {
+          "type": "boolean",
+          "description": "If false, this component is omitted."
+        },
+        "speech": {
+          "$ref": "#/definitions/url",
+          "description": "The URL to download the audio from"
+        },
+        "entity": {
+          "$ref": "#/definitions/EntityArray",
+          "description": "An Array of entities associated with the component"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "type": "object"
     },
     "color": {
       "type": "string"
@@ -389,6 +427,26 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "number",
       "category": Categories.aboutComponent,
       "description": "Opacity of this component.  Also applies to children."
+    },
+    "preserve": {
+      "category": Categories.aboutComponent,
+      "description": "Properties preserved through reinflation.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ],
+    },
+    "padding": {
+      "$ref": "#/definitions/paddingArray",
+      "category": Categories.padding,
+      "description": "Space to add on the sides of the component."
     },
     "paddingLeft": {
       "$ref": "#/definitions/dimension",

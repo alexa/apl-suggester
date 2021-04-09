@@ -1,0 +1,165 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-viewport-profiles",
+            "version": "1.1.0"
+        }
+    ],
+    "graphics": {
+        "clock": {
+            "type": "AVG",
+            "version": "1.0",
+            "parameters": [
+                "time"
+            ],
+            "width": 480,
+            "height": 480,
+            "items": [
+                {
+                    "type": "path",
+                    "description": "Clock face",
+                    "pathData": "M240 0C107.45 0 0 107.45 0 240 0 372.55 107.45 480 240 480 372.55 480 480 372.55 480 240 480 107.45 372.55 0 240 0z",
+                    "fill": "#ac8fff"
+                },
+                {
+                    "type": "path",
+                    "description": "Clock tick mark",
+                    "pathData": "M243 434v30h-6v-30zM46 237v6H16v-6z m418 0v6h-30v-6zM243 16v30h-6V16z",
+                    "fill": "#fff"
+                },
+                {
+                    "type": "group",
+                    "description": "Hour hand",
+                    "rotation": "${Time.hours(time) * 30}",
+                    "pivotX": 240,
+                    "pivotY": 240,
+                    "items": [
+                        {
+                            "type": "path",
+                            "pathData": "M246.5 240h-13l4-150.5h5z",
+                            "fill": "#fafafa",
+                            "filters": [
+                                {
+                                    "type": "DropShadow",
+                                    "color": "rgba(#000000, 16%)",
+                                    "horizontalOffset": 0,
+                                    "verticalOffset": 3,
+                                    "radius": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "description": "Minute hand",
+                    "rotation": "${Time.minutes(time) * 6}",
+                    "pivotX": 240,
+                    "pivotY": 240,
+                    "items": [
+                        {
+                            "type": "path",
+                            "pathData": "M243.5 240h-7l2-206.5h3z",
+                            "fill": "#eaeaea",
+                            "filters": [
+                                {
+                                    "type": "DropShadow",
+                                    "color": "rgba(#000000, 16%)",
+                                    "horizontalOffset": 0,
+                                    "verticalOffset": 3,
+                                    "radius": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "description": "Second hand",
+                    "rotation": "${Time.seconds(time) * 6}",
+                    "pivotX": 240,
+                    "pivotY": 240,
+                    "items": [
+                        {
+                            "type": "path",
+                            "pathData": "M238.5 266.5h3v-234h-3z",
+                            "fill": "#f30",
+                            "filters": [
+                                {
+                                    "type": "DropShadow",
+                                    "color": "rgba(#000000, 16%)",
+                                    "horizontalOffset": 0,
+                                    "verticalOffset": 3,
+                                    "radius": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "description": "Clock pins",
+                    "items": [
+                        {
+                            "type": "path",
+                            "pathData": "M240 226.5C232.54 226.5 226.5 232.54 226.5 240 226.5 247.46 232.54 253.5 240 253.5 247.46 253.5 253.5 247.46 253.5 240 253.5 232.54 247.46 226.5 240 226.5z",
+                            "fill": "#fff"
+                        },
+                        {
+                            "type": "path",
+                            "pathData": "M240 231.5C235.31 231.5 231.5 235.31 231.5 240 231.5 244.69 235.31 248.5 240 248.5 244.69 248.5 248.5 244.69 248.5 240 248.5 235.31 244.69 231.5 240 231.5z",
+                            "fill": "#fff"
+                        },
+                        {
+                            "type": "path",
+                            "pathData": "M240 237.5C238.62 237.5 237.5 238.62 237.5 240 237.5 241.38 238.62 242.5 240 242.5 241.38 242.5 242.5 241.38 242.5 240 242.5 238.62 241.38 237.5 240 237.5z",
+                            "fill": "#151515"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": {
+            "type": "Container",
+            "width": "100%",
+            "height": "100%",
+            "item": {
+                "type": "Frame",
+                "width": "100%",
+                "height": "100%",
+                "backgroundColor": "white",
+                "item": {
+                    "type": "Container",
+                    "justifyContent": "center",
+                    "alignItems": "center",
+                    "width": "100%",
+                    "height": "100%",
+                    "bind": [
+                        {
+                            "name": "clockSize",
+                            "value": "${@viewportProfile != @hubRoundSmall ? viewport.height - 100 : viewport.width}",
+                            "type": "number"
+                        }
+                    ],
+                    "item": {
+                        "type": "VectorGraphic",
+                        "source": "clock",
+                        "width": "${clockSize}",
+                        "height": "${clockSize}",
+                        "scale": "best-fit",
+                        "align": "center",
+                        "time": "${localTime}"
+                    }
+                }
+            }
+        }
+    }
+}

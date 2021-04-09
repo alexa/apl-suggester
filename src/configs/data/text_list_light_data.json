@@ -1,0 +1,87 @@
+{
+    "textListData": {
+        "type": "object",
+        "objectId": "textListSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/textlist/AlexaTextListBackground_Light.png",
+                    "size": "large"
+                }
+            ]
+        },
+        "title": "Plant Stores Near Me",
+        "listItems": [
+            {
+                "primaryText": "Peonies & Petals Nursery",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[0].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Ivy Lane Nursery and Tree Farm",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[1].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "House of Hyacinth",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[2].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Swan Nursery",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[3].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "House of Peonies",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[4].primaryText} is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Spruce Nursery",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "plantList",
+                        "property": "headerTitle",
+                        "value": "${payload.textListData.listItems[5].primaryText} is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-black.png"
+    }
+}

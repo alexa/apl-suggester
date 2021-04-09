@@ -1,8 +1,9 @@
 {
   "id": "hubLandscape",
-  "name": "Hub Landscape",
+  "name": "Hub Landscape Large",
   "mode": "hub",
   "shape" : "rectangle",
+  "type": "standard",
   "dpSizeRange" : {
     "minWidth": 1280,
     "maxWidth": 1920,

@@ -32,7 +32,7 @@ describe('CustomComponentsExtractor tests', () => {
 
     it('should extract all including imported components', async () => {
         stubAlexaLayout(IMPORT_LAYOUT_TEMPLATE_13);
-        const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
+        const apl = getSampleTemplate(SampleTemplateName.TEXT_LIST).apl;
         const componentsWithoutMainTemplate = await customComponentsExtractor.extractCustomComponents(apl);
         expect(componentsWithoutMainTemplate.getCustomComponentNames()).to.have.lengthOf(2);
         expect(Object.keys(componentsWithoutMainTemplate.getCustomComponentJsonSchema('AlexaHeader').properties)).
@@ -49,7 +49,7 @@ describe('CustomComponentsExtractor tests', () => {
 
     const extractComponents = async (json, expectedNumberOfComponents) => {
         stubAlexaLayout(json);
-        const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
+        const apl = getSampleTemplate(SampleTemplateName.TEXT_LIST).apl;
         const componentTypesWithoutMainTemplate = await customComponentsExtractor
             .getCustomComponentTypesAndValidate(apl);
         expect(componentTypesWithoutMainTemplate).to.have.lengthOf(expectedNumberOfComponents);

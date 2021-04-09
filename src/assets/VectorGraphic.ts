@@ -26,6 +26,30 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
+    "dimension": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "paddingArray": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dimension",
+          }
+        },
+        {
+          "$ref": "#/definitions/dimension",
+        }
+      ]
+    },
     "EntityArray": {
       "type": "array",
       "items": {
@@ -162,17 +186,6 @@ export const JSON_SCHEMA : IJsonSchema = {
         },
         {
           "type": "null"
-        }
-      ]
-    },
-    "dimension": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
-        },
-        {
-          "type": "number"
         }
       ]
     },
@@ -501,6 +514,26 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.aboutComponent,
       "description": "Opacity of this component.  Also applies to children."
     },
+    "preserve": {
+      "category": Categories.aboutComponent,
+      "description": "Properties preserved through reinflation.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ],
+    },
+    "padding": {
+      "$ref": "#/definitions/paddingArray",
+      "category": Categories.padding,
+      "description": "Space to add on the sides of the component."
+    },
     "paddingLeft": {
       "$ref": "#/definitions/dimension",
       "category": Categories.padding,
@@ -607,6 +640,31 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/KeyHandlerArray",
       "category": Categories.aboutComponent,
       "description": "Keyboard handler(s) to evaluate when the component receives a key up."
+    },
+    "nextFocusDown": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the down key is pressed."
+    },
+    "nextFocusForward": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the tab key is pressed."
+    },
+    "nextFocusLeft": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the left key is pressed."
+    },
+    "nextFocusRight": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the right key is pressed."
+    },
+    "nextFocusUp": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the up key is pressed."
     },
     "gestures": {
       "$ref": "#/definitions/GestureHandlerArray",

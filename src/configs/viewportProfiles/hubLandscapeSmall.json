@@ -3,6 +3,7 @@
   "name": "Hub Landscape Small",
   "mode": "hub",
   "shape" : "rectangle",
+  "type": "standard",
   "dpSizeRange" : {
     "minWidth": 960,
     "maxWidth": 1279,

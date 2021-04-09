@@ -29,7 +29,7 @@ describe('SampleTemplate', () => {
     });
 
     it('should sample template with specific name has contents.', () => {
-        const template : ISampleTemplate = getSampleTemplate(SampleTemplateName.IMAGE_DISPLAY_SAMPLE);
+        const template : ISampleTemplate = getSampleTemplate(SampleTemplateName.SHORT_TEXT);
         expect(template.apl).to.be.an('object');
         expect(template.data).to.be.an('object');
     });

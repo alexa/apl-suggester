@@ -1,0 +1,133 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "paddingTop": "@spacingSmall",
+                "bind": [
+                    {
+                        "name": "sliderThumbPosition",
+                        "value": 0
+                    },
+                    {
+                        "name": "videoProgressValue",
+                        "type": "number",
+                        "value": 0
+                    },
+                    {
+                        "name": "videoTotalValue",
+                        "type": "number",
+                        "value": 0
+                    }
+                ],
+                "items": [
+                    {
+                        "type": "AlexaBackground"
+                    },
+                    {
+                        "type": "Video",
+                        "height": "100%",
+                        "width": "70vw",
+                        "alignSelf": "center",
+                        "shrink": 1,
+                        "autoplay": true,
+                        "audioTrack": "foreground",
+                        "id": "videoPlayerId",
+                        "source": [
+                            "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_277864451.mov",
+                            "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_292807382.mov",
+                            "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_320293418.mov"
+                        ],
+                        "onPlay": [
+                            {
+                                "type": "SetValue",
+                                "property": "videoTotalValue",
+                                "value": "${event.duration}"
+                            }
+                        ],
+                        "onTrackUpdate": [
+                            {
+                                "type": "SetValue",
+                                "property": "videoTotalValue",
+                                "value": "${event.duration}"
+                            }
+                        ],
+                        "onTimeUpdate": [
+                            {
+                                "type": "SetValue",
+                                "property": "videoProgressValue",
+                                "value": "${event.currentTime}"
+                            },
+                            {
+                                "type": "SetValue",
+                                "componentId": "slider",
+                                "property": "progressValue",
+                                "value": "${videoProgressValue}"
+                            },
+                            {
+                                "type": "SetValue",
+                                "property": "videoTotalValue",
+                                "value": "${event.duration}"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "alignItems": "center",
+                        "item": [
+                            {
+                                "type": "AlexaSlider",
+                                "id": "slider",
+                                "progressValue": "${videoProgressValue}",
+                                "totalValue": "${videoTotalValue}",
+                                "positionPropertyName": "sliderThumbPosition",
+                                "metadataDisplayed": true,
+                                "metadataPosition": "above_right",
+                                "width": "75vw",
+                                "paddingBottom": "90dp",
+                                "onUpCommand": [
+                                    {
+                                        "type": "SetValue",
+                                        "componentId": "debugText",
+                                        "property": "text",
+                                        "value": "${sliderThumbPosition - videoProgressValue}"
+                                    },
+                                    {
+                                        "type": "ControlMedia",
+                                        "componentId": "videoPlayerId",
+                                        "command": "seek",
+                                        "value": "${sliderThumbPosition - videoProgressValue}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "AlexaTransportControls",
+                                "mediaComponentId": "videoPlayerId",
+                                "playPauseToggleButtonId": "playPauseToggleButtonId",
+                                "primaryControlSize": "70dp",
+                                "secondaryControlSize": "60dp",
+                                "autoplay": true,
+                                "position": "absolute",
+                                "bottom": "10dp"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

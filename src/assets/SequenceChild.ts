@@ -15,23 +15,10 @@
  */
 
 /* tslint:disable */
-'use strict'
+'use strict';
 import { IJsonSchema, Categories } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "definitions": {
-    "dimension": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
-        },
-        {
-          "type": "number"
-        }
-      ]
-    }
-  },
   "type": "object",
   "properties": {
     "numbering": {

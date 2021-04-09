@@ -1,0 +1,35 @@
+{
+    "longTextTemplateData": {
+        "type": "object",
+        "objectId": "longTextSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/long_text/LongTextSampleBackground_Dark.png",
+                        "size": "large"
+                    }
+                ]
+            },
+            "title": "Did You Know?",
+            "textContent": {
+                "primaryText": {
+                    "type": "PlainText",
+                    "text": "The earth has more than 80,000 species of edible plants. If you’re ever in the mood to try something new, the good news is that there is certainly food you haven’t tasted yet!"
+                }
+            },
+            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-white.png",
+            "plantSpeechSSML": "<speak>The earth has more than 80,000 species of edible plants. If you’re ever in the mood to try something new, the good news is that there is certainly food you haven’t tasted yet!</speak>"
+        },
+        "transformers": [
+            {
+                "inputPath": "plantSpeechSSML",
+                "transformer": "ssmlToSpeech",
+                "outputName": "plantInfoSpeech"
+            }
+        ]
+    }
+}

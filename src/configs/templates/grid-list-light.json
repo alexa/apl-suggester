@@ -1,0 +1,462 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "default horizontal count",
+            "numbers": {
+                "imageSquareHorizontalCount": 3,
+                "imageRoundHorizontalCount": 3,
+                "imageStandardLandscapeHorizontalCount": 3,
+                "imageStandardPortraitHorizontalCount": 4,
+                "imagePosterLandscapeHorizontalCount": 3,
+                "imagePosterPortraitHorizontalCount": 4,
+                "imageWidescreenHorizontalCount": 3
+            },
+            "dimensions": {
+                "gridListMaxDataHeight": "140dp"
+            }
+        },
+        {
+            "description": "default horizontal count for hubRoundSmall",
+            "when": "${@viewportProfile == @hubRoundSmall}",
+            "numbers": {
+                "imageSquareHorizontalCount": 1,
+                "imageRoundHorizontalCount": 1,
+                "imageStandardLandscapeHorizontalCount": 1,
+                "imageStandardPortraitHorizontalCount": 2,
+                "imagePosterLandscapeHorizontalCount": 1,
+                "imagePosterPortraitHorizontalCount": 2,
+                "imageWidescreenHorizontalCount": 1
+            },
+            "dimensions": {
+                "gridListMaxDataHeight": "108dp"
+            }
+        },
+        {
+            "description": "default horizontal count for hubLandscapeSmall and hubLandscapeMedium",
+            "when": "${@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubLandscapeMedium}",
+            "numbers": {
+                "imageSquareHorizontalCount": 3,
+                "imageRoundHorizontalCount": 3,
+                "imageStandardLandscapeHorizontalCount": 3,
+                "imageStandardPortraitHorizontalCount": 4,
+                "imagePosterLandscapeHorizontalCount": 3,
+                "imagePosterPortraitHorizontalCount": 4,
+                "imageWidescreenHorizontalCount": 2
+            }
+        },
+        {
+            "description": "Image Size Definition for tvLandscapeXLarge",
+            "when": "${@viewportProfile == @tvLandscapeXLarge}",
+            "numbers": {
+                "imageSquareHorizontalCount": 4,
+                "imageRoundHorizontalCount": 4,
+                "imageStandardLandscapeHorizontalCount": 4,
+                "imageStandardPortraitHorizontalCount": 5,
+                "imagePosterLandscapeHorizontalCount": 4,
+                "imagePosterPortraitHorizontalCount": 5,
+                "imageWidescreenHorizontalCount": 4
+            },
+            "dimensions": {
+                "gridListMaxDataHeight": "70dp"
+            }
+        }
+    ],
+    "layouts": {
+        "AlexaGridList": {
+            "parameters": [
+                {
+                    "name": "theme",
+                    "description": "Colors will be swiched depend on the specified theme (light/dark). Default to dark theme",
+                    "type": "string",
+                    "default": "dark"
+                },
+                {
+                    "name": "headerAttributionOpacity",
+                    "type": "number",
+                    "default": "${@viewportProfileCategory == @hubRound ? 1 : @opacitySecondary}"
+                },
+                {
+                    "name": "headerTitle",
+                    "description": "Primary text to render in header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionText",
+                    "description": "Attribution text to render in header. Only shown when no headerAttributionImage is provided, and when headerAttributionPrimacy is true, or on a device that shows Title/Subtitle and Attribution.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image source. Only shown when headerAttributionPrimacy is true, or on a device that shows Title/Subtitle and Attribution.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionPrimacy",
+                    "description": "On devices that can only display one element due to screen size, Attribution is prioritized. Setting False displays Title/Subtitle.  Defaults to true.",
+                    "type": "boolean",
+                    "default": true
+                },
+                {
+                    "name": "headerBackButton",
+                    "description": "Toggle to display back button in header. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "headerBackButtonAccessibilityLabel",
+                    "description": "An accessibility label to describe the back button to customers who use a screen reader.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerBackButtonCommand",
+                    "description": "Command that is issued when back button is pressed.",
+                    "type": "any",
+                    "default": {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "goBack"
+                        ]
+                    }
+                },
+                {
+                    "name": "headerBackgroundColor",
+                    "description": "Optional color value to use as background color for Header. Defaults to transparent.",
+                    "type": "color",
+                    "default": "transparent"
+                },
+                {
+                    "name": "backgroundColor",
+                    "description": "Color value to use as background color for layout.",
+                    "type": "color"
+                },
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "backgroundVideoSource",
+                    "description": "URL for background video source.",
+                    "type": "any"
+                },
+                {
+                    "name": "backgroundScale",
+                    "description": "Image/video scale to apply to background image/video. Defaults to best-fill.",
+                    "type": "string",
+                    "default": "best-fill"
+                },
+                {
+                    "name": "backgroundAlign",
+                    "description": "Image/video alignment to apply to background image/video. Defaults to center.",
+                    "type": "string",
+                    "align": "center"
+                },
+                {
+                    "name": "backgroundBlur",
+                    "description": "Toggle to apply background blur. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundColorOverlay",
+                    "description": "Toggle to apply overlay scrim to background image/video. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundOverlayGradient",
+                    "description": "Toggle to apply gradient to background image/video. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "videoAutoPlay",
+                    "description": "Toggle to autoplay background video(s). Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "videoAudioTrack",
+                    "description": "Audio track to play on. Defaults to foreground. EM can select foreground | background | none.",
+                    "type": "string",
+                    "default": "foreground"
+                },
+                {
+                    "name": "listItems",
+                    "description": "The Items will be displayed in the list.",
+                    "type": "array"
+                },
+                {
+                    "name": "imageMetadataPrimacy",
+                    "description": "ImageMetadataPrimacy on devices that can only display one element due to screen size, Image's secondary and tertiary text is prioritized over hint text. Setting false displays hint text. Defaults to true",
+                    "type": "boolean",
+                    "default": true
+                },
+                {
+                    "name": "hideOrdinal",
+                    "description": "Toggle to hide ordinal in list item. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "imageHideScrim",
+                    "description": "Toggle to hide the overlay (scrim) between image and content to increase content readability. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "imageAspectRatio",
+                    "description": "Aspect ratio of the image. Options are square, round, standard_landscape, standard_portrait, poster_landscape, poster_portrait, widescreen. Default to square",
+                    "type": "string",
+                    "default": "square"
+                },
+                {
+                    "name": "imageScale",
+                    "description": "Scale setting for the image. Options are none, fill, best-fit, best-fill, best-fit-down. Default to best-fit",
+                    "type": "string",
+                    "default": "best-fit"
+                },
+                {
+                    "name": "imageAlignment",
+                    "description": "Alignment setting for the image. Options are bottom, bottom-left, bottom-right, center, left, right, top, top-left, top-right. Default to center",
+                    "type": "string",
+                    "default": "center"
+                },
+                {
+                    "name": "imageRoundedCorner",
+                    "description": "Whether to use rounded corners for the image",
+                    "type": "boolean",
+                    "default": true
+                },
+                {
+                    "name": "imageBlurredBackground",
+                    "description": "Set a blurred version of the image to appear behind the image to create a visually consistent container size",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "imageShowProgressBar",
+                    "description": "Toggle to display the progress bar on the image overlay. The progress bar will be displayed if imageProgressBarPercentage parameter is defined. Defaults to true.",
+                    "type": "boolean",
+                    "default": true
+                },
+                {
+                    "name": "defaultImageSource",
+                    "description": "URI for the default image on the list item so the image containers are never empty",
+                    "type": "string"
+                },
+                {
+                    "name": "listItemHorizontalCount",
+                    "description": "The number of list items in one screen",
+                    "type": "number",
+                    "default": 0
+                },
+                {
+                    "name": "listItemHeight",
+                    "description": "The height of list item. Default values will be applied if not provided.",
+                    "type": "dimension"
+                },
+                {
+                    "name": "primaryAction",
+                    "description": "The action that is triggered when the item is selected.",
+                    "type": "any"
+                },
+                {
+                    "name": "entities",
+                    "description": "Array of entity data bind to this layout",
+                    "type": "any"
+                },
+                {
+                    "name": "customLayoutName",
+                    "description": "custom defined responsive list items to be displayed.",
+                    "type": "any"
+                },
+                {
+                    "name": "imageShadow",
+                    "description": "Boolean to turn the drop shadow on or off on the image",
+                    "type": "boolean",
+                    "default": true
+                }
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "entities": "${entities}",
+                    "items": [
+                        {
+                            "type": "AlexaBackground",
+                            "backgroundColor": "${backgroundColor}",
+                            "backgroundImageSource": "${backgroundImageSource}",
+                            "backgroundVideoSource": "${backgroundVideoSource}",
+                            "backgroundScale": "${backgroundScale}",
+                            "backgroundAlign": "${backgroundAlign}",
+                            "backgroundBlur": "${backgroundBlur}",
+                            "colorOverlay": "${backgroundColorOverlay}",
+                            "overlayGradient": "${backgroundOverlayGradient}",
+                            "videoAutoPlay": "${backgroundVideoAutoPlay}",
+                            "videoAudioTrack": "${backgroundVideoAudioTrack}"
+                        },
+                        {
+                            "type": "AlexaHeader",
+                            "theme": "${theme}",
+                            "headerTitle": "${headerTitle}",
+                            "headerSubtitle": "${headerSubtitle}",
+                            "headerAttributionText": "${headerAttributionText}",
+                            "headerAttributionImage": "${headerAttributionImage}",
+                            "headerAttributionPrimacy": "${headerAttributionPrimacy}",
+                            "headerDivider": "${headerDivider}",
+                            "headerBackButton": "${headerBackButton}",
+                            "headerBackButtonCommand": "${headerBackButtonCommand}",
+                            "headerBackgroundColor": "${headerBackgroundColor}",
+                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                        },
+                        {
+                            "type": "Container",
+                            "height": "100vh",
+                            "justifyContent": "${(@viewportProfile == @hubRoundSmall || @viewportProfile == @hubLandscapeSmall) ? 'start' : 'center'}",
+                            "width": "100%",
+                            "bind": [
+                                {
+                                    "name": "defaultHorizontalCount",
+                                    "value": "${imageAspectRatio == 'square' ? @imageSquareHorizontalCount : (imageAspectRatio == 'round' ? @imageRoundHorizontalCount : (imageAspectRatio == 'standard_landscape' ? @imageStandardLandscapeHorizontalCount : (imageAspectRatio == 'standard_portrait' ? @imageStandardPortraitHorizontalCount : (imageAspectRatio == 'poster_landscape' ? @imagePosterLandscapeHorizontalCount : (imageAspectRatio == 'poster_portrait' ? @imagePosterPortraitHorizontalCount : @imageWidescreenHorizontalCount)))))}"
+                                }
+                            ],
+                            "shrink": 1,
+                            "paddingBottom": "0",
+                            "items": [
+                                {
+                                    "type": "GridSequence",
+                                    "id": "AlexaGridListSequence",
+                                    "bind": [
+                                        {
+                                            "name": "horizontalCount",
+                                            "value": "${listItemHorizontalCount || defaultHorizontalCount}"
+                                        },
+                                        {
+                                            "name": "itemWidth",
+                                            "value": "${Math.floor((viewport.width - (@marginHorizontal - @imageListItemInnerPadding)*2)/horizontalCount)}"
+                                        },
+                                        {
+                                            "name": "itemImageWidth",
+                                            "value": "${itemWidth - ((@imageListItemInnerPadding + @imageListItemImageBorder) * 2)}"
+                                        },
+                                        {
+                                            "name": "imageRatioPortraitX",
+                                            "value": "${imageAspectRatio == 'square' ? @squareRatioPortraitX : (imageAspectRatio == 'round' ? @roundRatioPortraitX : (imageAspectRatio == 'standard_landscape' ? @standardLandscapeRatioPortraitX : (imageAspectRatio == 'standard_portrait' ? @standardPortraitRatioPortraitX : (imageAspectRatio == 'poster_landscape' ? @posterLandscapeRatioPortraitX : (imageAspectRatio == 'poster_portrait' ? @posterPortraitRatioPortraitX : @widescreenRatioPortraitX)))))}"
+                                        },
+                                        {
+                                            "name": "itemImageHeight",
+                                            "value": "${itemImageWidth * imageRatioPortraitX}"
+                                        },
+                                        {
+                                            "name": "defaultGridHeight",
+                                            "value": "${itemImageHeight + @gridListMaxDataHeight + @imageListItemImageBottomPadding + (2 * @imageListItemInnerPadding)}"
+                                        },
+                                        {
+                                            "name": "itemHeight",
+                                            "value": "${listItemHeight || defaultGridHeight}"
+                                        }
+                                    ],
+                                    "alignSelf": "center",
+                                    "data": "${listItems}",
+                                    "scrollDirection": "vertical",
+                                    "paddingLeft": "${@marginHorizontal - @spacingXSmall}",
+                                    "paddingRight": "${@marginHorizontal - @spacingXSmall}",
+                                    "height": "100%",
+                                    "width": "100%",
+                                    "shrink": 1,
+                                    "numbered": true,
+                                    "childWidth": "${itemWidth}",
+                                    "childHeight": "${itemHeight}",
+                                    "onScroll": [
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "headerdivider",
+                                            "property": "opacity",
+                                            "value": "${event.source.position == 0 ? 0 : 1}"
+                                        }
+                                    ],
+                                    "item": [
+                                        {
+                                            "when": "${customLayoutName == null || customLayoutName == ''}",
+                                            "type": "AlexaImageListItem",
+                                            "theme": "${theme}",
+                                            "hideOrdinal": "${hideOrdinal}",
+                                            "primaryText": "${data.primaryText}",
+                                            "secondaryText": "${data.secondaryText}",
+                                            "tertiaryText": "${data.tertiaryText}",
+                                            "ratingSlotMode": "${data.ratingSlotMode}",
+                                            "ratingGraphicType": "${data.ratingGraphicType}",
+                                            "singleRatingGraphicWidth": "${data.singleRatingGraphicWidth}",
+                                            "ratingNumber": "${data.ratingNumber}",
+                                            "singleRatingGraphic": "${data.singleRatingGraphic}",
+                                            "fullRatingGraphic": "${data.fullRatingGraphic}",
+                                            "halfRatingGraphic": "${data.halfRatingGraphic}",
+                                            "emptyRatingGraphic": "${data.emptyRatingGraphic}",
+                                            "ratingText": "${data.ratingText}",
+                                            "hasPlayIcon": "${data.hasPlayIcon}",
+                                            "providerText": "${data.providerText}",
+                                            "imageSource": "${data.imageSource ? data.imageSource : defaultImageSource}",
+                                            "imageProgressBarPercentage": "${data.imageProgressBarPercentage}",
+                                            "imageShowProgressBar": "${data.imageShowProgressBar ? data.imageShowProgressBar : imageShowProgressBar}",
+                                            "imageHideScrim": "${data.imageHideScrim ? data.imageHideScrim : imageHideScrim}",
+                                            "imageRoundedCorner": "${data.imageRoundedCorner ? data.imageRoundedCorner : imageRoundedCorner}",
+                                            "imageScale": "${data.imageScale ? data.imageScale : imageScale}",
+                                            "imageShadow": "${data.imageShadow ? data.imageShadow : imageShadow}",
+                                            "imageAlignment": "${data.imageAlignment ? data.imageAlignment : imageAlignment}",
+                                            "imageAspectRatio": "${imageAspectRatio}",
+                                            "imageBlurredBackground": "${data.imageBlurredBackground ? data.imageBlurredBackground : imageBlurredBackground}",
+                                            "imageWidth": "${itemImageWidth}",
+                                            "imageHeight": "${listItemHorizontalCount != defaultHorizontalCount ? itemImageHeight : 0}",
+                                            "disabled": "${data.disabled}",
+                                            "imageMetadataPrimacy": "${imageMetadataPrimacy}",
+                                            "primaryAction": "${data.primaryAction ? data.primaryAction : primaryAction}",
+                                            "entities": "${data.entities ? data.entities : entities}"
+                                        },
+                                        {
+                                            "when": "${customLayoutName && customLayoutName != ''}",
+                                            "type": "${customLayoutName}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaGridList",
+                "id": "plantList",
+                "headerTitle": "${payload.gridListData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.gridListData.logoUrl}",
+                "backgroundImageSource": "${payload.gridListData.backgroundImage.sources[0].url}",
+                "backgroundBlur": false,
+                "backgroundColorOverlay": false,
+                "imageAspectRatio": "standard_landscape",
+                "imageScale": "best-fill",
+                "listItems": "${payload.gridListData.listItems}",
+                "theme": "light"
+            }
+        ]
+    }
+}

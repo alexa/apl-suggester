@@ -1,0 +1,739 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-viewport-profiles",
+            "version": "1.1.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Resource definitions for blocks",
+            "dimensions": {
+                "barHeight": "34dp",
+                "barWidth": "689dp",
+                "bottomCircleWidth": "200dp",
+                "bottomPadding": "0",
+                "middleCircleWidth": "116dp",
+                "squareWidth": "174dp"
+            }
+        },
+        {
+            "description": "Resource definitions for blocks on large hubs",
+            "when": "${@viewportProfile == @hubLandscapeLarge}",
+            "dimensions": {
+                "bottomPadding": "120dp"
+            }
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": {
+            "type": "Frame",
+            "width": "100%",
+            "height": "100%",
+            "backgroundColor": "white",
+            "item": {
+                "type": "Container",
+                "width": "100%",
+                "height": "100%",
+                "items": [
+                    {
+                        "type": "VectorGraphic",
+                        "id": "bottomCircle",
+                        "position": "absolute",
+                        "bottom": "@bottomPadding",
+                        "left": "${viewport.width/2 - @bottomCircleWidth/2}",
+                        "source": "bottomCircle",
+                        "width": "@bottomCircleWidth",
+                        "height": "@bottomCircleWidth",
+                        "scale": "best-fit",
+                        "align": "center"
+                    },
+                    {
+                        "type": "VectorGraphic",
+                        "id": "bar",
+                        "position": "absolute",
+                        "bottom": "${@bottomPadding + @bottomCircleWidth - 11}",
+                        "left": "${viewport.width/2 - @barWidth/2}",
+                        "source": "bar",
+                        "width": "@barWidth",
+                        "height": "@barHeight",
+                        "scale": "best-fit",
+                        "align": "center"
+                    },
+                    {
+                        "type": "VectorGraphic",
+                        "id": "middleCircle",
+                        "position": "absolute",
+                        "bottom": "${@bottomPadding + @bottomCircleWidth + @barHeight - 11}",
+                        "left": "${viewport.width/2 - @middleCircleWidth/2}",
+                        "align": "center",
+                        "source": "middleCircle",
+                        "width": "@middleCircleWidth",
+                        "height": "@middleCircleWidth",
+                        "scale": "best-fit"
+                    },
+                    {
+                        "type": "VectorGraphic",
+                        "id": "square",
+                        "position": "absolute",
+                        "bottom": "${@bottomPadding + @bottomCircleWidth + @barHeight + @middleCircleWidth - 15}",
+                        "left": "${viewport.width/2 - @squareWidth/2}",
+                        "source": "square",
+                        "width": "@squareWidth",
+                        "height": "@squareWidth",
+                        "scale": "best-fit",
+                        "align": "center"
+                    }
+                ]
+            }
+        }
+    },
+    "onMount": [
+        {
+            "type": "animateBlocks"
+        }
+    ],
+    "graphics": {
+        "bottomCircle": {
+            "type": "AVG",
+            "version": "1.1",
+            "width": "@bottomCircleWidth",
+            "height": "@bottomCircleWidth",
+            "description": "Bottom Circle",
+            "items": [
+                {
+                    "type": "group",
+                    "translateX": 100,
+                    "translateY": 100,
+                    "items": [
+                        {
+                            "type": "group",
+                            "description": "Ellipse 1 Fill",
+                            "items": [
+                                {
+                                    "type": "path",
+                                    "pathData": "M-89.5735,0 a89.5735,89.5735 0 0 1  179.147,0 a89.5735,89.5735 0 0 1  -179.147,0",
+                                    "fill": "rgb(45,69,135,1)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "description": "Ellipse 2 Fill",
+                            "items": [
+                                {
+                                    "type": "path",
+                                    "pathData": "M-34.1325,0 a34.1325,34.1325 0 0 1  68.265,0 a34.1325,34.1325 0 0 1  -68.265,0",
+                                    "fill": "rgb(199,227,255,1)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "bar": {
+            "type": "AVG",
+            "version": "1.1",
+            "width": "@barWidth",
+            "height": "@barHeight",
+            "description": "Bar",
+            "items": [
+                {
+                    "description": "Bar Fill",
+                    "type": "group",
+                    "items": [
+                        {
+                            "type": "path",
+                            "pathData": "M0,0 l689,0 l0,34 l-689,0 z",
+                            "fill": "rgb(199,227,255,1)"
+                        }
+                    ]
+                }
+            ]
+        },
+        "middleCircle": {
+            "type": "AVG",
+            "version": "1.1",
+            "width": "@middleCircleWidth",
+            "height": "@middleCircleWidth",
+            "description": "Middle Circle",
+            "items": [
+                {
+                    "type": "group",
+                    "translateX": 58,
+                    "translateY": 58,
+                    "items": [
+                        {
+                            "type": "group",
+                            "description": "Ellipse 1 Fill",
+                            "items": [
+                                {
+                                    "type": "path",
+                                    "pathData": "M-58,0 a58,58 0 0 1  116,0 a58,58 0 0 1  -116,0",
+                                    "fill": "rgb(125,179,234,1)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "translateX": -58,
+                            "translateY": -58,
+                            "description": "Path 1",
+                            "items": [
+                                {
+                                    "type": "group",
+                                    "description": "Path 1",
+                                    "items": [
+                                        {
+                                            "type": "path",
+                                            "pathData": "M58 0 C58,28.785 58,57.706999999999994 58,116 C25.935,116 0,89.92099999999999 0,58 C0,25.935 25.935,0 58,0z",
+                                            "fill": "rgb(45,69,135,1)"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "description": "Ellipse 2 Fill",
+                            "items": [
+                                {
+                                    "type": "path",
+                                    "pathData": "M-28.928,0 a28.928,28.928 0 0 1  57.856,0 a28.928,28.928 0 0 1  -57.856,0",
+                                    "fill": "rgb(255,255,255,1)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "square": {
+            "type": "AVG",
+            "version": "1.1",
+            "width": "@squareWidth",
+            "height": "@squareWidth",
+            "description": "Square",
+            "items": [
+                {
+                    "type": "group",
+                    "translateX": 87,
+                    "translateY": 87,
+                    "rotation": 45,
+                    "items": [
+                        {
+                            "type": "group",
+                            "items": {
+                                "type": "group",
+                                "description": "Rectangle 1 Fill",
+                                "items": [
+                                    {
+                                        "type": "path",
+                                        "pathData": "M-58,-58 l116,0 l0,116 l-116,0 z",
+                                        "fill": "rgb(164,144,248,1)"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "group",
+                            "rotation": 45,
+                            "items": {
+                                "type": "group",
+                                "description": "Rectangle 2 Fill",
+                                "items": [
+                                    {
+                                        "type": "path",
+                                        "pathData": "M-32.8715,-32.8715 l65.743,0 l0,65.743 l-65.743,0 z",
+                                        "fill": "rgb(255,255,255,1)"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "group",
+                            "items": {
+                                "type": "group",
+                                "rotation": 90,
+                                "description": "Rectangle 1052 Fill",
+                                "items": [
+                                    {
+                                        "type": "path",
+                                        "pathData": "M-20.3715,-20.3715 l40.743,0 l0,40.743 l-40.743,0 z",
+                                        "fill": "rgb(124.999999999905,179.00000000007,234.00000000012,1)"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "commands": {
+        "animateBlocks": {
+            "command": [
+                {
+                    "type": "Sequential",
+                    "commands": [
+                        {
+                            "type": "Parallel",
+                            "commands": [
+                                {
+                                    "type": "Sequential",
+                                    "description": "Bottom circle animation",
+                                    "commands": [
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "duration": 1000,
+                                            "componentId": "bottomCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 0
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": -31
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 800,
+                                            "duration": 2000,
+                                            "componentId": "bottomCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": -31
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 31
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 300,
+                                            "duration": 1000,
+                                            "componentId": "bottomCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 31
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Sequential",
+                                    "description": "Bar animation",
+                                    "commands": [
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "duration": 1000,
+                                            "componentId": "bar",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": -22
+                                                        },
+                                                        {
+                                                            "rotate": 10
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 800,
+                                            "duration": 2000,
+                                            "componentId": "bar",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": -22
+                                                        },
+                                                        {
+                                                            "rotate": 10
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 22
+                                                        },
+                                                        {
+                                                            "rotate": -10
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 300,
+                                            "duration": 1000,
+                                            "componentId": "bar",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 22
+                                                        },
+                                                        {
+                                                            "rotate": -10
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Sequential",
+                                    "description": "Middle circle animation",
+                                    "commands": [
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "duration": 1000,
+                                            "componentId": "middleCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 25
+                                                        },
+                                                        {
+                                                            "translateY": 7
+                                                        },
+                                                        {
+                                                            "rotate": 30
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 800,
+                                            "duration": 1000,
+                                            "componentId": "middleCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 25
+                                                        },
+                                                        {
+                                                            "translateY": 7
+                                                        },
+                                                        {
+                                                            "rotate": 30
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "duration": 1000,
+                                            "componentId": "middleCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": -40
+                                                        },
+                                                        {
+                                                            "translateY": 13
+                                                        },
+                                                        {
+                                                            "rotate": -30
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 300,
+                                            "duration": 1000,
+                                            "componentId": "middleCircle",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": -40
+                                                        },
+                                                        {
+                                                            "translateY": 13
+                                                        },
+                                                        {
+                                                            "rotate": -30
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Sequential",
+                                    "description": "Square animation",
+                                    "commands": [
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "duration": 1000,
+                                            "componentId": "square",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 34
+                                                        },
+                                                        {
+                                                            "translateY": 20
+                                                        },
+                                                        {
+                                                            "rotate": -16
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 800,
+                                            "duration": 1000,
+                                            "componentId": "square",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 34
+                                                        },
+                                                        {
+                                                            "translateY": 20
+                                                        },
+                                                        {
+                                                            "rotate": -16
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "duration": 1000,
+                                            "componentId": "square",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": -46
+                                                        },
+                                                        {
+                                                            "translateY": 24
+                                                        },
+                                                        {
+                                                            "rotate": 16
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "AnimateItem",
+                                            "easing": "ease-in-out",
+                                            "delay": 300,
+                                            "duration": 1000,
+                                            "componentId": "square",
+                                            "value": [
+                                                {
+                                                    "property": "transform",
+                                                    "from": [
+                                                        {
+                                                            "translateX": -46
+                                                        },
+                                                        {
+                                                            "translateY": 24
+                                                        },
+                                                        {
+                                                            "rotate": 16
+                                                        }
+                                                    ],
+                                                    "to": [
+                                                        {
+                                                            "translateX": 0
+                                                        },
+                                                        {
+                                                            "translateY": 0
+                                                        },
+                                                        {
+                                                            "rotate": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "animateBlocks"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

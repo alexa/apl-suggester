@@ -1,0 +1,35 @@
+{
+    "headlineTemplateData": {
+        "type": "object",
+        "objectId": "headlineSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/headline/HeadlineBackground_Light.png",
+                        "size": "large"
+                    }
+                ]
+            },
+            "textContent": {
+                "primaryText": {
+                    "type": "PlainText",
+                    "text": "Welcome to The Daily Plant Facts"
+                }
+            },
+            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-black.png",
+            "hintText": "Try, \"Alexa, what is the plant fact of the day?\"",
+            "welcomeSpeechSSML": "<speak><amazon:emotion name='excited' intensity='medium'>Welcome to The Daily Plant Facts</amazon:emotion></speak>"
+        },
+        "transformers": [
+            {
+                "inputPath": "welcomeSpeechSSML",
+                "transformer": "ssmlToSpeech",
+                "outputName": "welcomeSpeech"
+            }
+        ]
+    }
+}
