@@ -224,5 +224,8 @@
                 ]
             }
         ]
-    }
+    },
+    "onConfigChange": [{
+        "type": "Reinflate"
+    }]
 }

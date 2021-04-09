@@ -121,10 +121,17 @@ export const JSON_SCHEMA : IJsonSchema = {
       ]
     },
     "CommandArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Command"
-      }
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Command"
+          }
+        },
+        {
+          "$ref": "#/definitions/Command",
+        }
+      ]
     },
     "Command": {
       "properties": {
@@ -719,6 +726,10 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "Layout": {
       "properties": {
+        "bind": {
+          "$ref": "#/definitions/BindingArray",
+          "description": "Named values to add to the data-binding context"
+        },
         "parameters": {
           "$ref": "#/definitions/LayoutParameterArray",
           "description": "Named parameters that can be passed to this layout from another layout."
@@ -1518,6 +1529,10 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/Layout",
       "description": "The main layout to inflate for this document."
     },
+    "onConfigChange": {
+      "$ref": "#/definitions/CommandArray",
+      "description": "A list of commands to execute when the document configuration changes."
+    },
     "onMount": {
       "$ref": "#/definitions/CommandArray",
       "description": "A list of commands to execute when the document is first displayed."
@@ -1566,7 +1581,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.2",
         "1.3",
         "1.4",
-        "1.5"
+        "1.5",
+        "1.6"
       ]
     },
     "tests": {

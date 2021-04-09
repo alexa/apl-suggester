@@ -1,0 +1,46 @@
+{
+    "type": "APL",
+    "version": "1.5",
+    "layouts": {
+        "MyLayout": {
+            "description": "A basic layout for testing",
+            "parameters": [
+                {
+                    "name": "Title",
+                    "default": "Dr."
+                },
+                {
+                    "name": "FirstName"
+                },
+                {
+                    "name": "LastName"
+                }
+            ],
+            "bind": [
+                {
+                    "name": "FormalName",
+                    "value": "${Title} ${LastName}"
+                },
+                {
+                    "name": "Salutation",
+                    "value": "Dear ${FormalName}"
+                }
+            ],
+            "item": {
+                "type": "Text",
+                "text": "${Salutation}"
+            }
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": {
+            "type": "MyLayout",
+            "Title": "${payload.myTitle}",
+            "FirstName": "${payload.myFirstName}",
+            "LastName": "${payload.myLastName}"
+          }
+    }
+}

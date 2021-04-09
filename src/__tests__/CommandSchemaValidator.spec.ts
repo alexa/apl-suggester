@@ -134,6 +134,10 @@ describe('CommandSchemaValidator.', () => {
         await verifyCommand('SelectCommand.json', 'Select');
     });
 
+    it('should validate Reinflate command.', async () => {
+        await verifyCommand('ReinflateCommand.json', 'Reinflate');
+    });
+
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/commands/ErrorCommand.json`, 'utf8');
         const result =  commandSchemaValidator.validateCommand(JSON.parse(data), 'SetState');

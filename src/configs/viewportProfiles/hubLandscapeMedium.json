@@ -3,6 +3,7 @@
   "name": "Hub Landscape Medium",
   "mode": "hub",
   "shape" : "rectangle",
+  "type": "standard",
   "dpSizeRange" : {
     "minWidth": 960,
     "maxWidth": 1279,
@@ -13,13 +14,6 @@
     {
       "id": "echoShow1",
       "name": "Echo Show 1",
-      "width": 1024,
-      "height": 600,
-      "dpi": 160
-    },
-    {
-      "id": "fire7",
-      "name": "Fire 7",
       "width": 1024,
       "height": 600,
       "dpi": 160

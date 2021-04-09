@@ -130,5 +130,12 @@
         }
     ],
     "role": "summary",
-    "items": []
+    "items": [],
+    "padding": [10, "20dp", 10, 40],
+    "preserve": [ "scrollOffset", "scrollPercent", "Counter" ],
+    "nextFocusDown": "componentId1",
+    "nextFocusForward": "componentId2",
+    "nextFocusLeft": "componentId3",
+    "nextFocusRight": "componentId4",
+    "nextFocusUp": "componentId5"
 }

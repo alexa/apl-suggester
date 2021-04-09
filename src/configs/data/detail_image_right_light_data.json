@@ -1,0 +1,57 @@
+{
+    "detailImageRightData": {
+        "type": "object",
+        "objectId": "detailImageRightSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/detail/DetailListBackground_Light.png",
+                    "size": "large"
+                }
+            ]
+        },
+        "title": "Plant Stores",
+        "subtitle": "Seattle",
+        "image": {
+            "contentDescription": "",
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/detail/DetailListPhoto.png",
+                    "size": "large"
+                }
+            ]
+        },
+        "textContent": {
+            "primaryText": {
+                "type": "PlainText",
+                "text": "Peonies & Petals Nursery"
+            },
+            "rating": {
+                "number": 4.5,
+                "text": "248"
+            },
+            "locationText": {
+                "type": "PlainText",
+                "text": "1646 Hillcrest Street<br />Seattle, WA<br />(253) 387-0290"
+            },
+            "secondaryText": {
+                "type": "PlainText",
+                "text": "Today 9:00 AM - 4:00 PM<br />$$   Nurseries, Gardening, Home Goods<br />1.2 mi"
+            }
+        },
+        "buttons": [
+            {
+                "text": "Call"
+            },
+            {
+                "text": "Direction"
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-black.png"
+    }
+}

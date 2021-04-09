@@ -21,7 +21,7 @@ import { IValidationInfo } from '../validation';
 import { PackageLoader, ILoadedResult } from '../util/PackageLoader';
 import * as sinon from 'sinon';
 import { IMPORT_LAYOUT_TEMPLATE_13 } from '../util/__tests__/template_test_cases/importInternalTemplate';
-import { getSampleTemplates } from '../configs';
+import { getSampleTemplate, SampleTemplateName } from '../configs';
 
 describe('Integration Test to verify the JSON schema.', () => {
     let stub;
@@ -42,12 +42,9 @@ describe('Integration Test to verify the JSON schema.', () => {
     });
 
     it('should compile with sample templates.', async () => {
-        await Promise.all(
-            getSampleTemplates().map(async (template, name ) => {
-                const result = await validator.validate(template.apl);
-                expect(result, 'should compile with ' + name).to.have.lengthOf(0);
-            }).valueSeq()
-        );
+        const template = getSampleTemplate(SampleTemplateName.IMAGE_RIGHT_DETAIL);
+        const result = await validator.validate(template.apl);
+        expect(result.length).to.be.equal(0);
     });
 
     it('should received correct amount of validation errors.', async () => {
@@ -81,6 +78,10 @@ describe('Integration Test to verify the JSON schema.', () => {
 
     it('should compile with graphic template.', async () => {
         await readSchemaAndPassAllValidations('graphicAplTemplate.json');
+    });
+
+    it('should compile with layout template.', async () => {
+        await readSchemaAndPassAllValidations('layoutAplTemplate.json');
     });
 
     it('should validate DataSource', async () => {

@@ -134,5 +134,12 @@
     }
   ],
   "role": "tablist",
-  "items": []
+  "preserve": [ "checked", "Counter", "scrollOffset", "firstIndex" ],
+  "nextFocusDown": "componentId1",
+  "nextFocusForward": "componentId2",
+  "nextFocusLeft": "componentId3",
+  "nextFocusRight": "componentId4",
+  "nextFocusUp": "componentId5",
+  "items": [],
+  "snap": "forceEnd"
 }

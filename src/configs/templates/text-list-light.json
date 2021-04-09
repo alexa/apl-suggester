@@ -1,0 +1,544 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Public resource definitions for text list - defaults",
+            "dimensions": {
+                "textListPaddingLeft": "0",
+                "textListGutter": "0"
+            },
+            "strings": {
+                "textListScrollDirection": "vertical"
+            }
+        }
+    ],
+    "layouts": {
+        "AlexaTextList": {
+            "parameters": [
+                {
+                    "name": "theme",
+                    "description": "Colors will be switched depending on the specified theme (light/dark). Default to dark theme",
+                    "type": "string",
+                    "default": "dark"
+                },
+                {
+                    "name": "headerAttributionOpacity",
+                    "type": "number",
+                    "default": "${@viewportProfileCategory == @hubRound ? 1 : @opacitySecondary}"
+                },
+                {
+                    "name": "headerTitle",
+                    "description": "Primary text to render in header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerSubtitle",
+                    "description": "Secondary text to render in header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionText",
+                    "description": "Attribution text to render in header.  Only shown when no headerAttributionImage is provided, and when headerAttributionPrimacy is true, or on a device that shows Title/Subtitle and Attribution.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image source. Only shown when headerAttributionPrimacy is true, or on a device that shows Title/Subtitle and Attribution.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionPrimacy",
+                    "description": "On devices that can only display one element due to screen size, Attribution is prioritized. Setting False displays Title/Subtitle.  Defaults to true.",
+                    "type": "boolean",
+                    "default": true
+                },
+                {
+                    "name": "headerBackButton",
+                    "description": "Toggle to display back button in header.  Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "headerBackButtonAccessibilityLabel",
+                    "description": "An accessibility label to describe the back button to customers who use a screen reader.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerBackButtonCommand",
+                    "description": "Command that is issued when back button is pressed.",
+                    "type": "any",
+                    "default": {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "goBack"
+                        ]
+                    }
+                },
+                {
+                    "name": "headerBackgroundColor",
+                    "description": "Optional color value to use as background color for Header. Defaults to transparent.",
+                    "type": "color",
+                    "default": "transparent"
+                },
+                {
+                    "name": "backgroundColor",
+                    "description": "Color value to use as background color for layout.",
+                    "type": "color"
+                },
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "backgroundVideoSource",
+                    "description": "URL for background video source.",
+                    "type": "any"
+                },
+                {
+                    "name": "backgroundScale",
+                    "description": "Image/video scale to apply to background image/video. Defaults to best-fill.",
+                    "type": "string",
+                    "default": "best-fill"
+                },
+                {
+                    "name": "backgroundAlign",
+                    "description": "Image/video alignment to apply to background image/video. Defaults to center.",
+                    "type": "string",
+                    "align": "center"
+                },
+                {
+                    "name": "backgroundBlur",
+                    "description": "Toggle to apply background blur. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundColorOverlay",
+                    "description": "Toggle to apply overlay scrim to background image/video. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundOverlayGradient",
+                    "description": "Toggle to apply gradient to background image/video. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundVideoAutoPlay",
+                    "description": "Toggle to autoplay background video(s). Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundVideoAudioTrack",
+                    "description": "Audio track to play on. Defaults to foreground. EM can select foreground | background | none.",
+                    "type": "string",
+                    "default": "foreground"
+                },
+                {
+                    "name": "hideDivider",
+                    "description": "Toggle to hide the divider that appears at the bottom of each item to help separate it from the content below. Default to false",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "hideOrdinal",
+                    "description": "Toggle to hide ordinal in list item. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "primaryAction",
+                    "description": "The action that is triggered when the item is selected.",
+                    "type": "any"
+                },
+                {
+                    "name": "touchForward",
+                    "description": "Toggle to switch between touch forward and voice forward. Defaults to false, voice forward",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "secondaryTextPosition",
+                    "description": "The position of Secondary text, can be top or bottom.",
+                    "type": "string",
+                    "default": "bottom"
+                },
+                {
+                    "name": "tertiaryTextPosition",
+                    "description": "Tertiary text for each list item so that users can understand,",
+                    "type": "string",
+                    "default": "right"
+                },
+                {
+                    "name": "hideHorizontalMargin",
+                    "description": "Toggle to hide the default left and right padding of the text list item.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "listItems",
+                    "description": "Array of list item datasources to present in list.  See documentation on list item datasources for required data signature.",
+                    "type": "any"
+                },
+                {
+                    "name": "entities",
+                    "description": "Array of entity data bind to this layout",
+                    "type": "any"
+                },
+                {
+                    "name": "swipeDirection",
+                    "type": "string",
+                    "description": "The direction of the swipe gesture. The direction property can take the following values: left, right. By default swipe is disabled",
+                    "default": "none"
+                },
+                {
+                    "name": "swipeActionIcon",
+                    "description": "Custom swipe action icon source. Can be AVG or image URL",
+                    "type": "string"
+                },
+                {
+                    "name": "swipeActionIconType",
+                    "description": "Custom swipe action icon type: AVG or image",
+                    "type": "string"
+                },
+                {
+                    "name": "swipeActionIconForeground",
+                    "description": "Swipe action icon foreground color",
+                    "type": "string"
+                },
+                {
+                    "name": "swipeActionIconBackground",
+                    "description": "Swipe action icon background color",
+                    "type": "string"
+                },
+                {
+                    "name": "onSwipeMove",
+                    "type": "any",
+                    "description": "Command to execute onSwipeMove"
+                },
+                {
+                    "name": "onSwipeDone",
+                    "type": "any",
+                    "description": "Command to execute on onSwipeDone"
+                },
+                {
+                    "name": "optionsButton1Text",
+                    "type": "string",
+                    "description": "Text for first button in options list"
+                },
+                {
+                    "name": "optionsButton1Command",
+                    "type": "any",
+                    "description": "Command to bind to first button in options list"
+                },
+                {
+                    "name": "optionsButton2Text",
+                    "type": "string",
+                    "description": "Text for second button in options list"
+                },
+                {
+                    "name": "optionsButton2Command",
+                    "type": "any",
+                    "description": "Command to bind to second button in options list"
+                }
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "entities": "${entities}",
+                    "items": [
+                        {
+                            "type": "AlexaBackground",
+                            "backgroundColor": "${backgroundColor}",
+                            "backgroundImageSource": "${backgroundImageSource}",
+                            "backgroundVideoSource": "${backgroundVideoSource}",
+                            "backgroundScale": "${backgroundScale}",
+                            "backgroundAlign": "${backgroundAlign}",
+                            "backgroundBlur": "${backgroundBlur}",
+                            "colorOverlay": "${backgroundColorOverlay}",
+                            "overlayGradient": "${backgroundOverlayGradient}",
+                            "videoAutoPlay": "${backgroundVideoAutoPlay}",
+                            "videoAudioTrack": "${backgroundVideoAudioTrack}"
+                        },
+                        {
+                            "when": "${@viewportProfileCategory != @hubRound}",
+                            "type": "Container",
+                            "position": "absolute",
+                            "width": "100%",
+                            "height": "100%",
+                            "items": [
+                                {
+                                    "type": "AlexaHeader",
+                                    "id": "AlexaItemList_Header",
+                                    "theme": "${theme}",
+                                    "headerTitle": "${headerTitle}",
+                                    "headerSubtitle": "${headerSubtitle}",
+                                    "headerAttributionText": "${headerAttributionText}",
+                                    "headerAttributionImage": "${headerAttributionImage}",
+                                    "headerAttributionPrimacy": "${headerAttributionPrimacy}",
+                                    "headerDivider": "${headerDivider}",
+                                    "headerBackButton": "${headerBackButton}",
+                                    "headerBackButtonAccessibilityLabel": "${headerBackButtonAccessibilityLabel}",
+                                    "headerBackButtonCommand": "${headerBackButtonCommand}",
+                                    "headerBackgroundColor": "${headerBackgroundColor}",
+                                    "headerAttributionOpacity": "${headerAttributionOpacity}"
+                                },
+                                {
+                                    "type": "Container",
+                                    "id": "AlexaItemList_Separator",
+                                    "height": "@spacingMedium",
+                                    "width": "100%",
+                                    "display": "none"
+                                },
+                                {
+                                    "type": "Sequence",
+                                    "scrollDirection": "@textListScrollDirection",
+                                    "data": "${listItems}",
+                                    "width": "100%",
+                                    "paddingLeft": "@textListPaddingLeft",
+                                    "numbered": true,
+                                    "grow": 1,
+                                    "items": [
+                                        {
+                                            "type": "Container",
+                                            "paddingRight": "@textListGutter",
+                                            "items": [
+                                                {
+                                                    "type": "AlexaSwipeToAction",
+                                                    "hideDivider": "${hideDivider}",
+                                                    "hideOrdinal": "${hideOrdinal}",
+                                                    "hideHorizontalMargin": "${hideHorizontalMargin}",
+                                                    "theme": "${theme}",
+                                                    "primaryAction": "${data.primaryAction ? data.primaryAction : primaryAction}",
+                                                    "touchForward": "${touchForward}",
+                                                    "entities": "${data.entities ? data.entities : entities}",
+                                                    "primaryText": "${data.primaryText}",
+                                                    "secondaryText": "${data.secondaryText}",
+                                                    "tertiaryText": "${data.tertiaryText}",
+                                                    "secondaryTextPosition": "${data.secondaryTextPosition ? data.secondaryTextPosition : secondaryTextPosition}",
+                                                    "tertiaryTextPosition": "${data.tertiaryTextPosition ? data.tertiaryTextPosition : tertiaryTextPosition}",
+                                                    "ratingNumber": "${data.ratingNumber}",
+                                                    "ratingText": "${data.ratingText}",
+                                                    "ratingSlotMode": "${data.ratingSlotMode}",
+                                                    "ratingGraphicType": "${data.ratingGraphicType}",
+                                                    "singleRatingGraphicWidth": "${data.singleRatingGraphicWidth}",
+                                                    "singleRatingGraphic": "${data.singleRatingGraphic}",
+                                                    "fullRatingGraphic": "${data.fullRatingGraphic}",
+                                                    "halfRatingGraphic": "${data.halfRatingGraphic}",
+                                                    "emptyRatingGraphic": "${data.emptyRatingGraphic}",
+                                                    "imageThumbnailSource": "${data.imageThumbnailSource}",
+                                                    "imageThumbnailShadow": "${data.imageThumbnailShadow}",
+                                                    "direction": "${data.swipeDirection ? data.swipeDirection : swipeDirection}",
+                                                    "actionIcon": "${data.swipeActionIcon ? data.swipeActionIcon : swipeActionIcon}",
+                                                    "actionIconType": "${data.swipeActionIconType ? data.swipeActionIconType : swipeActionIconType}",
+                                                    "actionIconForeground": "${data.swipeActionIconForeground ? data.swipeActionIconType : swipeActionIconType}",
+                                                    "actionIconBackground": "${data.swipeActionIconBackground ? data.swipeActionIconBackground : swipeActionIconBackground}",
+                                                    "onSwipeMove": "${onSwipeMove}",
+                                                    "onSwipeDone": "${onSwipeDone}",
+                                                    "button1Text": "${data.optionsButton1Text ? data.optionsButton1Text : optionsButton1Text}",
+                                                    "button1Command": "${data.optionsButton1Command ? data.optionsButton1Command : optionsButton1Command}",
+                                                    "button2Text": "${data.optionsButton2Text ? data.optionsButton2Text : optionsButton2Text}",
+                                                    "button2Command": "${data.optionsButton2Command ? data.optionsButton2Command : optionsButton2Command}",
+                                                    "onButtonsShown": [
+                                                        {
+                                                            "type": "SetValue",
+                                                            "componentId": "AlexaItemList_Header",
+                                                            "property": "display",
+                                                            "value": "none"
+                                                        },
+                                                        {
+                                                            "type": "SetValue",
+                                                            "componentId": "AlexaItemList_Separator",
+                                                            "property": "display",
+                                                            "value": "normal"
+                                                        }
+                                                    ],
+                                                    "onButtonsHidden": [
+                                                        {
+                                                            "type": "SetValue",
+                                                            "componentId": "AlexaItemList_Header",
+                                                            "property": "display",
+                                                            "value": "normal"
+                                                        },
+                                                        {
+                                                            "type": "SetValue",
+                                                            "componentId": "AlexaItemList_Separator",
+                                                            "property": "display",
+                                                            "value": "none"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "onScroll": [
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "headerdivider",
+                                            "property": "opacity",
+                                            "value": "${event.source.position == 0 ? 0 : 1}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "when": "${@viewportProfileCategory == @hubRound}",
+                            "type": "Sequence",
+                            "scrollDirection": "@textListScrollDirection",
+                            "position": "absolute",
+                            "onScroll": [
+                                {
+                                    "type": "SetValue",
+                                    "componentId": "headerdivider",
+                                    "property": "opacity",
+                                    "value": "${event.source.position == 0 ? 0 : 1}"
+                                }
+                            ],
+                            "firstItem": [
+                                {
+                                    "type": "Container",
+                                    "items": [
+                                        {
+                                            "type": "AlexaHeader",
+                                            "id": "AlexaItemList_Header",
+                                            "theme": "${theme}",
+                                            "headerTitle": "${headerTitle}",
+                                            "headerSubtitle": "${headerSubtitle}",
+                                            "headerAttributionText": "${headerAttributionText}",
+                                            "headerAttributionImage": "${headerAttributionImage}",
+                                            "headerAttributionPrimacy": "${headerAttributionPrimacy}",
+                                            "headerDivider": "${headerDivider}",
+                                            "headerBackButton": "${headerBackButton}",
+                                            "headerBackButtonAccessibilityLabel": "${headerBackButtonAccessibilityLabel}",
+                                            "headerBackButtonCommand": "${headerBackButtonCommand}",
+                                            "headerBackgroundColor": "${headerBackgroundColor}",
+                                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                                        },
+                                        {
+                                            "type": "Container",
+                                            "id": "AlexaItemList_Separator",
+                                            "height": "@spacingMedium",
+                                            "width": "100%",
+                                            "display": "none"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "data": "${listItems}",
+                            "width": "100%",
+                            "numbered": true,
+                            "grow": 1,
+                            "height": "100%",
+                            "item": [
+                                {
+                                    "type": "Container",
+                                    "direction": "column",
+                                    "items": [
+                                        {
+                                            "type": "AlexaSwipeToAction",
+                                            "hideDivider": "${hideDivider}",
+                                            "hideOrdinal": "${hideOrdinal}",
+                                            "hideHorizontalMargin": "${hideHorizontalMargin}",
+                                            "theme": "${theme}",
+                                            "primaryAction": "${data.primaryAction ? data.primaryAction : primaryAction}",
+                                            "touchForward": "${touchForward}",
+                                            "entities": "${data.entities ? data.entities : entities}",
+                                            "primaryText": "${data.primaryText}",
+                                            "secondaryText": "${data.secondaryText}",
+                                            "tertiaryText": "${data.tertiaryText}",
+                                            "secondaryTextPosition": "${data.secondaryTextPosition ? data.secondaryTextPosition : secondaryTextPosition}",
+                                            "tertiaryTextPosition": "${data.tertiaryTextPosition ? data.tertiaryTextPosition : tertiaryTextPosition}",
+                                            "ratingNumber": "${data.ratingNumber}",
+                                            "ratingText": "${data.ratingText}",
+                                            "ratingSlotMode": "${data.ratingSlotMode}",
+                                            "ratingGraphicType": "${data.ratingGraphicType}",
+                                            "singleRatingGraphicWidth": "${data.singleRatingGraphicWidth}",
+                                            "singleRatingGraphic": "${data.singleRatingGraphic}",
+                                            "fullRatingGraphic": "${data.fullRatingGraphic}",
+                                            "halfRatingGraphic": "${data.halfRatingGraphic}",
+                                            "emptyRatingGraphic": "${data.emptyRatingGraphic}",
+                                            "imageThumbnailSource": "${data.imageThumbnailSource}",
+                                            "imageThumbnailShadow": "${data.imageThumbnailShadow}",
+                                            "direction": "${data.swipeDirection ? data.swipeDirection : swipeDirection}",
+                                            "actionIcon": "${data.swipeActionIcon ? data.swipeActionIcon : swipeActionIcon}",
+                                            "actionIconType": "${data.swipeActionIconType ? data.swipeActionIconType : swipeActionIconType}",
+                                            "actionIconForeground": "${data.swipeActionIconForeground ? data.swipeActionIconType : swipeActionIconType}",
+                                            "actionIconBackground": "${data.swipeActionIconBackground ? data.swipeActionIconBackground : swipeActionIconBackground}",
+                                            "onSwipeMove": "${onSwipeMove}",
+                                            "onSwipeDone": "${onSwipeDone}",
+                                            "button1Text": "${data.optionsButton1Text ? data.optionsButton1Text : optionsButton1Text}",
+                                            "button1Command": "${data.optionsButton1Command ? data.optionsButton1Command : optionsButton1Command}",
+                                            "button2Text": "${data.optionsButton2Text ? data.optionsButton2Text : optionsButton2Text}",
+                                            "button2Command": "${data.optionsButton2Command ? data.optionsButton2Command : optionsButton2Command}",
+                                            "onButtonsShown": [
+                                                {
+                                                    "type": "SetValue",
+                                                    "componentId": "AlexaItemList_Header",
+                                                    "property": "display",
+                                                    "value": "none"
+                                                },
+                                                {
+                                                    "type": "SetValue",
+                                                    "componentId": "AlexaItemList_Separator",
+                                                    "property": "display",
+                                                    "value": "normal"
+                                                }
+                                            ],
+                                            "onButtonsHidden": [
+                                                {
+                                                    "type": "SetValue",
+                                                    "componentId": "AlexaItemList_Header",
+                                                    "property": "display",
+                                                    "value": "normal"
+                                                },
+                                                {
+                                                    "type": "SetValue",
+                                                    "componentId": "AlexaItemList_Separator",
+                                                    "property": "display",
+                                                    "value": "none"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaTextList",
+                "headerTitle": "${payload.textListData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.textListData.logoUrl}",
+                "backgroundImageSource": "${payload.textListData.backgroundImage.sources[0].url}",
+                "listItems": "${payload.textListData.listItems}",
+                "touchForward": true,
+                "id": "plantList",
+                "theme": "light"
+            }
+        ]
+    }
+}

@@ -120,5 +120,9 @@
             "source": -2
         }
     ],
-    "height": "100vh"
+    "height": "100vh",
+    "padding": 10,
+    "paddingTop": "20dp",
+    "paddingBottom": 40,
+    "preserve": [ "checked", "Counter" ]
 }

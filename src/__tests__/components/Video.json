@@ -1,0 +1,42 @@
+{
+    "type": "Video",
+    "source": [ {
+        "url": "https://testingUrl",
+        "offset": 150,
+        "repeatCount": 2
+
+    } ],
+    "autoplay": true,
+    "audioTrack": "background",
+    "scale": "best-fill",
+    "onEnd": [{
+        "type": "SetValue",
+        "property": "opacity",
+        "value": 0
+    }],
+    "onPause": [{
+        "type": "SetValue",
+        "description": "Toggle the display of the controls",
+        "componentId": "videoControls",
+        "property": "opacity",
+        "value": 0.5
+    }],
+    "onPlay": [{
+        "type": "SetValue",
+        "description": "Toggle the display of the controls",
+        "componentId": "videoControls",
+        "property": "opacity",
+        "value": 1
+    }],
+    "onTimeUpdate": [{
+        "type": "SetValue",
+        "property": "opacity",
+        "value": 0
+    }],
+    "onTrackUpdate": [{
+        "type": "SetValue",
+        "property": "opacity",
+        "value": 0
+    }],
+    "preserve": [ "source","playingState" ]
+}

@@ -43,6 +43,7 @@ import * as SpeakItemCommandJSONSchema from './assets/commands/SpeakItemCommand'
 import * as SpeakListCommandJSONSchema from './assets/commands/SpeakListCommand';
 import * as FinishCommandJSONSchema from './assets/commands/FinishCommand';
 import * as SelectCommandJSONSchema from './assets/commands/SelectCommand';
+import * as ReinflateCommandJSONSchema from './assets/commands/ReinflateCommand';
 
 /**
  * Entrance to validate commands.
@@ -97,7 +98,8 @@ export class CommandSchemaValidator {
         ['SpeakItem', SpeakItemCommandJSONSchema.JSON_SCHEMA],
         ['SpeakList', SpeakListCommandJSONSchema.JSON_SCHEMA],
         ['Finish', FinishCommandJSONSchema.JSON_SCHEMA],
-        ['Select', SelectCommandJSONSchema.JSON_SCHEMA]
+        ['Select', SelectCommandJSONSchema.JSON_SCHEMA],
+        ['Reinflate', ReinflateCommandJSONSchema.JSON_SCHEMA]
     ]);
 
     /**

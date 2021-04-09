@@ -1,0 +1,32 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaGridList",
+                "id": "plantList",
+                "headerTitle": "${payload.gridListData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.gridListData.logoUrl}",
+                "backgroundImageSource": "${payload.gridListData.backgroundImage.sources[0].url}",
+                "backgroundBlur": false,
+                "backgroundColorOverlay": false,
+                "imageAspectRatio": "standard_landscape",
+                "imageScale": "best-fill",
+                "listItems": "${payload.gridListData.listItems}"
+            }
+        ]
+    }
+}

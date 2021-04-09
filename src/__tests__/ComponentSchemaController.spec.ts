@@ -101,7 +101,7 @@ describe('ComponentSchemaController.', () => {
     });
 
     it('should get custom component json schema correctly.', async () => {
-        const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
+        const apl = getSampleTemplate(SampleTemplateName.TEXT_LIST).apl;
         const result = await componentSchemaController.getComponentSchema(apl, 'AlexaHeader', undefined);
         expect(Object.keys(result.properties)).to.have.length(10);
         expect(result.properties.type.type).to.be.equal('string');
@@ -115,7 +115,7 @@ describe('ComponentSchemaController.', () => {
     });
 
     it('should return a list of supported components.', async () => {
-        const apl = getSampleTemplate(SampleTemplateName.TEXT_FORWARD_LIST_SAMPLE).apl;
+        const apl = getSampleTemplate(SampleTemplateName.TEXT_LIST).apl;
         let result = await componentSchemaController.getAvailableComponents(apl);
         expect(result.length).to.be.equal(14);
         expect(result.includes('Image')).to.be.equal(true);
@@ -150,11 +150,18 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('EditText.json', 'EditText');
     });
 
+    it('should validate Pager component.', async () => {
+        await verifyComponent('Pager.json', 'Pager');
+    });
+
+    it('should validate Video component.', async () => {
+        await verifyComponent('Video.json', 'Video');
+    });
+
     async function verifyComponent(fileName : string, componentType : string) {
         const data = fs.readFileSync(`src/__tests__/components/${fileName}`, 'utf8');
         const result =
-         await componentSchemaController.validateComponent
-         (aplTemplate, JSON.parse(data), componentType);
+         await componentSchemaController.validateComponent(aplTemplate, JSON.parse(data), componentType);
         expect(result.length).to.be.equal(0);
     }
 });

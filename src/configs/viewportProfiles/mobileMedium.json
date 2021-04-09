@@ -1,0 +1,28 @@
+{
+  "id": "mobileMedium",
+  "name": "Mobile Medium",
+  "mode": "mobile",
+  "shape": "rectangle",
+  "dpSizeRange": {
+    "minWidth": 960,
+    "maxWidth": 1279,
+    "minHeight": 320,
+    "maxHeight": 1920
+  },
+  "exampleDevices": [
+    {
+      "id": "fireTablet7Landscape",
+      "name": "Fire Tablet 7 landscape",
+      "width": 1024,
+      "height": 600,
+      "dpi": 160
+    },
+    {
+      "id": "fireTablet8Landscape",
+      "name": "Fire Tablet 8 landscape",
+      "width": 960,
+      "height": 600,
+      "dpi": 213
+    }
+  ]
+}

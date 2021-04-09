@@ -1,0 +1,63 @@
+{
+    "type": "Pager",
+    "height": "100vh",
+    "width": "100vw",
+    "paddingLeft": "@marginLeft",
+    "paddingRight": "@marginRight",
+    "handlePageMove": [
+        {
+            "when": "${event.direction == 'left' || event.direction == 'right'}",
+            "drawOrder": "higherAbove",
+            "commands": [
+                {
+                    "type": "SetValue",
+                    "componentId": "${event.currentChild.uid}",
+                    "property": "transform",
+                    "value": [
+                        {
+                            "translateX": "${100 * event.amount * (event.direction == 'left' ? -1 : 1)}%"
+                        }
+                    ]
+                },
+                {
+                    "type": "SetValue",
+                    "componentId": "${event.nextChild.uid}",
+                    "property": "transform",
+                    "value": [
+                        {
+                            "translateX": "${100 * (1.0 - event.amount) * (event.direction == 'left' ? 1 : -1)}%"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "initialPage": 1,
+    "navigation": "normal",
+    "onPageChanged": [
+        {
+            "type": "SetValue",
+            "componentId": "${event.child.uid}",
+            "property": "opacity",
+            "value": 0
+        }
+    ],
+    "pageDirection": "vertical",
+    "items": [
+        {
+            "type": "Text",
+            "text": "Text content shown on page #1"
+        },
+        {
+            "type": "Text",
+            "text": "Text content shown on page #2"
+        }
+    ],
+    "padding": [10, 20, 10, 40],
+    "preserve": [ "pageId", "pageIndex", "Counter" ],
+    "nextFocusDown": "componentId1",
+    "nextFocusForward": "componentId2",
+    "nextFocusLeft": "componentId3",
+    "nextFocusRight": "componentId4",
+    "nextFocusUp": "componentId5"
+}

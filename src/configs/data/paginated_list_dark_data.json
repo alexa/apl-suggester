@@ -1,0 +1,75 @@
+{
+    "imageListData": {
+        "type": "object",
+        "objectId": "paginatedListSample",
+        "title": "Gallery",
+        "listItems": [
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark1.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "paginatedList",
+                        "property": "headerTitle",
+                        "value": "Home Garden 1 is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark2.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "paginatedList",
+                        "property": "headerTitle",
+                        "value": "Home Garden 2 is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark3.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "paginatedList",
+                        "property": "headerTitle",
+                        "value": "Home Garden 3 is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark4.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "paginatedList",
+                        "property": "headerTitle",
+                        "value": "Home Garden 4 is selected"
+                    }
+                ]
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark5.png",
+                "primaryAction": [
+                    {
+                        "type": "SetValue",
+                        "componentId": "paginatedList",
+                        "property": "headerTitle",
+                        "value": "Home Garden 5 is selected"
+                    }
+                ]
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-white.png"
+    }
+}

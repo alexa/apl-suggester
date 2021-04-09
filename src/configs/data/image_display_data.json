@@ -1,0 +1,32 @@
+{
+    "imageTemplateData": {
+        "type": "object",
+        "objectId": "imageSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/gridlist/GridListBackground_Dark.png",
+                        "size": "large"
+                    }
+                ]
+            },
+            "image": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/image_display/ImageDisplay_Image1.png",
+                        "size": "large"
+                    }
+                ]
+            },
+            "title": "Plant of the day",
+            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-white.png"
+        }
+    }
+}

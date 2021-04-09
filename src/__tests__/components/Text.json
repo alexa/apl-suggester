@@ -64,5 +64,8 @@
         }
     ],
     "role": "text",
-    "color": "white"
+    "color": "white",
+    "padding": "20vw",
+    "paddingTop": "20dp",
+    "preserve": [ "checked", "Counter" ]
 }

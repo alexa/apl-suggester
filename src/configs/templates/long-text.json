@@ -1,0 +1,70 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "Container",
+                "height": "100vh",
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "backgroundImageSource": "${payload.longTextTemplateData.properties.backgroundImage.sources[0].url}",
+                        "backgroundBlur": false,
+                        "backgroundScale": "best-fill"
+                    },
+                    {
+                        "type": "Container",
+                        "height": "100vh",
+                        "width": "100vw",
+                        "items": [
+                            {
+                                "type": "AlexaHeader",
+                                "headerTitle": "${payload.longTextTemplateData.properties.title}",
+                                "headerAttributionImage": "${payload.longTextTemplateData.properties.logoUrl}",
+                                "headerDivider": false
+                            },
+                            {
+                                "type": "ScrollView",
+                                "grow": 1,
+                                "paddingTop": "@spacingMedium",
+                                "paddingBottom": "${@spacing3XLarge + @spacingXSmall}",
+                                "paddingLeft": "@marginHorizontal",
+                                "paddingRight": "@marginHorizontal",
+                                "items": [
+                                    {
+                                        "type": "Text",
+                                        "id": "plantContent",
+                                        "style": "textStyleDisplay4",
+                                        "text": "${payload.longTextTemplateData.properties.textContent.primaryText.text}",
+                                        "speech": "${payload.longTextTemplateData.properties.plantInfoSpeech}",
+                                        "textAlign": "left"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "onMount": [
+        {
+            "type": "SpeakItem",
+            "componentId": "plantContent",
+            "highlightMode": "line",
+            "align": "center"
+        }
+    ]
+}

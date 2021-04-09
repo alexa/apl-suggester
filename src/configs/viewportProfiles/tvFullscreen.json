@@ -1,8 +1,9 @@
 {
   "id": "tvFullscreen",
-  "name": "TV Fullscreen",
+  "name": "TV Landscape Extra Large",
   "mode": "tv",
   "shape" : "rectangle",
+  "type": "standard",
   "dpSizeRange" : {
     "minWidth": 960,
     "maxWidth": 960,

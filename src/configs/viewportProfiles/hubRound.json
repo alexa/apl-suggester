@@ -1,8 +1,9 @@
 {
   "id": "hubRound",
-  "name": "Hub Round",
+  "name": "Hub Round Small",
   "mode": "hub",
   "shape" : "round",
+  "type": "standard",
   "dpSizeRange" : {
     "minWidth": 100,
     "maxWidth": 599,

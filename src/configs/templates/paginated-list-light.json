@@ -1,0 +1,416 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Default dimensions for the PaginatedList.",
+            "dimensions": {
+                "textComponentMaxWidth": "100%",
+                "pageCounterPaddingBottom": "@spacingMedium",
+                "pagerPaddingBottom": "@spacingLarge",
+                "paginatedListItemHorizontalMargin": "@marginHorizontal",
+                "primaryTextBottomPadding": "@spacingXSmall",
+                "secondaryTextBottomPadding": "@spacing3XSmall",
+                "contentPaddingTop": "0",
+                "contentPaddingLeft": "@paginatedListItemHorizontalMargin",
+                "contentPaddingRight": "@paginatedListItemHorizontalMargin",
+                "contentMaxWidth": "100%"
+            },
+            "number": {
+                "primaryTextMaxLines": 2
+            },
+            "string": {
+                "textAlignment": "center",
+                "contentAlignment": "end",
+                "pageCounterAlignment": "center"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - tvLandscapeXLarge.",
+            "when": "${@viewportProfile == @tvLandscapeXLarge}",
+            "dimensions": {
+                "contentMaxWidth": "560dp",
+                "paginatedListItemHorizontalMargin": "auto"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - hubRound.",
+            "when": "${@viewportProfileCategory == @hubRound}",
+            "dimensions": {
+                "pagerPaddingBottom": "@spacingSmall",
+                "primaryTextBottomPadding": "@spacing3XSmall"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - hubLandscapeSmall.",
+            "when": "${@viewportProfile == @hubLandscapeSmall}",
+            "dimensions": {
+                "pagerPaddingBottom": "@spacingSmall"
+            }
+        }
+    ],
+    "layouts": {
+        "AlexaPaginatedListItem": {
+            "parameters": [
+                {
+                    "name": "primaryText",
+                    "description": "Title for fullscreen item.",
+                    "type": "string"
+                },
+                {
+                    "name": "secondaryText",
+                    "description": "Secondary text for fullscreen item.",
+                    "type": "string"
+                },
+                {
+                    "name": "tertiaryText",
+                    "description": "Tertiary text for fullscreen item.",
+                    "type": "string"
+                },
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "entities",
+                    "description": "Array of entity data bind to this layout",
+                    "type": "any"
+                }
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "height": "100%",
+                    "width": "100%",
+                    "alignItems": "@textAlignment",
+                    "justifyContent": "@contentAlignment",
+                    "entities": "${entities}",
+                    "items": [
+                        {
+                            "type": "AlexaBackground",
+                            "backgroundColor": "${backgroundColor}",
+                            "backgroundImageSource": "${backgroundImageSource}",
+                            "backgroundVideoSource": "${backgroundVideoSource}",
+                            "backgroundScale": "${backgroundScale}",
+                            "backgroundAlign": "${backgroundAlign}",
+                            "backgroundBlur": "${backgroundBlur}",
+                            "colorOverlay": "${backgroundColorOverlay}",
+                            "overlayGradient": "${backgroundOverlayGradient}",
+                            "videoAutoPlay": "${backgroundVideoAutoPlay}",
+                            "videoAudioTrack": "${backgroundVideoAudioTrack}"
+                        },
+                        {
+                            "type": "Container",
+                            "position": "${@viewportProfile == @tvLandscapeOverlay ? 'absolute': 'relative'}",
+                            "alignItems": "@textAlignment",
+                            "justifyContent": "@contentAlignment",
+                            "bottom": "${@viewportProfile != @tvLandscapeOverlay ? 0 : (@fontSizeMedium * @lineHeightXXLarge) + @pageCounterPaddingBottom}",
+                            "paddingLeft": "@contentPaddingLeft",
+                            "paddingRight": "@contentPaddingLeft",
+                            "paddingTop": "${@viewportProfile == @tvLandscapeOverlay ? 0 : @contentPaddingTop}",
+                            "maxWidth": "@contentMaxWidth",
+                            "items": [
+                                {
+                                    "type": "Text",
+                                    "text": "${primaryText}",
+                                    "style": "textStyleDisplay5",
+                                    "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
+                                    "paddingBottom": "@primaryTextBottomPadding",
+                                    "textAlign": "@textAlignment",
+                                    "maxLines": "@primaryTextMaxLines",
+                                    "inheritParentState": true
+                                },
+                                {
+                                    "type": "Text",
+                                    "text": "${secondaryText}",
+                                    "style": "textStyleBody",
+                                    "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
+                                    "fontWeight": "@fontWeightRegular",
+                                    "paddingBottom": "@secondaryTextBottomPadding",
+                                    "textAlign": "@textAlignment",
+                                    "maxLines": 1,
+                                    "inheritParentState": true
+                                },
+                                {
+                                    "type": "Text",
+                                    "text": "${tertiaryText}",
+                                    "style": "textStyleBody",
+                                    "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
+                                    "fontWeight": "@fontWeightRegular",
+                                    "maxLines": 1,
+                                    "paddingBottom": "${@viewportProfile == @tvLandscapeOverlay ? 0: (@fontSizeMedium * @lineHeightXXLarge) + @pageCounterPaddingBottom + @pagerPaddingBottom}",
+                                    "textAlign": "@textAlignment",
+                                    "inheritParentState": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "AlexaPaginatedList": {
+            "parameters": [
+                {
+                    "name": "theme",
+                    "description": "Colors will be switched depending on the specified theme (light/dark). Default to dark theme",
+                    "type": "string",
+                    "default": "dark"
+                },
+                {
+                    "name": "headerAttributionOpacity",
+                    "type": "number",
+                    "default": "${@viewportProfileCategory == @hubRound ? 1 : @opacitySecondary}"
+                },
+                {
+                    "name": "headerTitle",
+                    "description": "Primary text to render in header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerSubtitle",
+                    "description": "Secondary text to render in header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionText",
+                    "description": "Attribution text to render in header.  Only shown when no headerAttributionImage is provided, and when headerAttributionPrimacy is true, or on a device that shows Title/Subtitle and Attribution.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image source. Only shown when headerAttributionPrimacy is true, or on a device that shows Title/Subtitle and Attribution.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionPrimacy",
+                    "description": "On devices that can only display one element due to screen size, Attribution is prioritized. Setting False displays Title/Subtitle.  Defaults to true.",
+                    "type": "boolean",
+                    "default": true
+                },
+                {
+                    "name": "headerDivider",
+                    "description": "Toggle to display the divider that appears at the bottom of header to help separate it from the content below. Default to false",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "headerBackButton",
+                    "description": "Toggle to display back button in header.  Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "headerBackButtonAccessibilityLabel",
+                    "description": "An accessibility label to describe the back button to customers who use a screen reader.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerBackButtonCommand",
+                    "description": "Command that is issued when back button is pressed.",
+                    "type": "any",
+                    "default": {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "goBack"
+                        ]
+                    }
+                },
+                {
+                    "name": "headerBackgroundColor",
+                    "description": "Optional color value to use as background color for Header. Defaults to transparent.",
+                    "type": "color",
+                    "default": "transparent"
+                },
+                {
+                    "name": "backgroundColor",
+                    "description": "Color value to use as background color for layout.",
+                    "type": "color"
+                },
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "backgroundVideoSource",
+                    "description": "URL for background video source.",
+                    "type": "any"
+                },
+                {
+                    "name": "backgroundScale",
+                    "description": "Image/video scale to apply to background image/video. Defaults to best-fill.",
+                    "type": "string",
+                    "default": "best-fill"
+                },
+                {
+                    "name": "backgroundAlign",
+                    "description": "Image/video alignment to apply to background image/video. Defaults to center.",
+                    "type": "string",
+                    "align": "center"
+                },
+                {
+                    "name": "backgroundBlur",
+                    "description": "Toggle to apply background blur. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundColorOverlay",
+                    "description": "Toggle to apply overlay scrim to background image/video. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundOverlayGradient",
+                    "description": "Toggle to apply gradient to background image/video. Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundVideoAutoPlay",
+                    "description": "Toggle to autoplay background video(s). Defaults to false.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "backgroundVideoAudioTrack",
+                    "description": "Audio track to play on. Defaults to foreground. EM can select foreground | background | none.",
+                    "type": "string",
+                    "default": "foreground"
+                },
+                {
+                    "name": "primaryAction",
+                    "description": "The action that is triggered when the item is selected.",
+                    "type": "any"
+                },
+                {
+                    "name": "listItems",
+                    "description": "Array of list item datasources to present in list.  See documentation on list item datasources for required data signature.",
+                    "type": "any"
+                },
+                {
+                    "name": "entities",
+                    "description": "Array of entity data bind to this layout",
+                    "type": "any"
+                }
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "entities": "${entities}",
+                    "items": [
+                        {
+                            "type": "Container",
+                            "width": "100%",
+                            "height": "100%",
+                            "items": [
+                                {
+                                    "type": "Pager",
+                                    "id": "alexaPaginatedList",
+                                    "position": "absolute",
+                                    "navigation": "normal",
+                                    "data": "${listItems}",
+                                    "height": "100%",
+                                    "width": "100%",
+                                    "bottom": "0",
+                                    "item": [
+                                        {
+                                            "type": "TouchWrapper",
+                                            "width": "100%",
+                                            "height": "100%",
+                                            "onPress": "${data.primaryAction ? data.primaryAction : primaryAction}",
+                                            "item": [
+                                                {
+                                                    "type": "Container",
+                                                    "alignItems": "center",
+                                                    "width": "100%",
+                                                    "height": "100%",
+                                                    "item": [
+                                                        {
+                                                            "type": "AlexaPaginatedListItem",
+                                                            "maxWidth": "@textComponentMaxWidth",
+                                                            "primaryText": "${data.primaryText}",
+                                                            "secondaryText": "${data.secondaryText}",
+                                                            "tertiaryText": "${data.tertiaryText}",
+                                                            "backgroundImageSource": "${data.imageSource && data.imageSource != '' ? data.imageSource : backgroundImageSource}",
+                                                            "entities": "${data.entities ? data.entities : entities}"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "onPageChanged": [
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "PageCounterComponentId",
+                                            "property": "text",
+                                            "value": "${event.source.value + 1}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "currentPageComponentId": "PageCounterComponentId",
+                                    "totalPages": "${listItems.length}",
+                                    "type": "AlexaPageCounter",
+                                    "position": "absolute",
+                                    "justifyContent": "@pageCounterAlignment",
+                                    "paddingLeft": "@pageCounterPaddingLeft",
+                                    "theme": "${theme}",
+                                    "bottom": "@pageCounterPaddingBottom",
+                                    "width": "100%"
+                                },
+                                {
+                                    "type": "AlexaHeader",
+                                    "theme": "${theme}",
+                                    "headerTitle": "${headerTitle}",
+                                    "headerSubtitle": "${@viewportProfile == @tvLandscapeOverlay ? '' : headerSubtitle}",
+                                    "headerAttributionText": "${headerAttributionText}",
+                                    "headerAttributionImage": "${headerAttributionImage}",
+                                    "headerAttributionPrimacy": "${headerAttributionPrimacy}",
+                                    "headerDivider": "${headerDivider}",
+                                    "headerBackButton": "${headerBackButton}",
+                                    "headerBackButtonAccessibilityLabel": "${headerBackButtonAccessibilityLabel}",
+                                    "headerBackButtonCommand": "${headerBackButtonCommand}",
+                                    "headerBackgroundColor": "${headerBackgroundColor}",
+                                    "headerAttributionOpacity": "${headerAttributionOpacity}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaPaginatedList",
+                "id": "paginatedList",
+                "headerTitle": "${payload.imageListData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.imageListData.logoUrl}",
+                "backgroundBlur": false,
+                "backgroundColorOverlay": false,
+                "backgroundScale": "best-fill",
+                "backgroundAlign": "bottom",
+                "theme": "light",
+                "listItems": "${payload.imageListData.listItems}"
+            }
+        ]
+    }
+}

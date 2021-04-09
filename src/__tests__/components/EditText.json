@@ -61,5 +61,13 @@
             }
         }
     ],
-    "role": "adjustable"
+    "role": "adjustable",
+    "padding": [10, 20],
+    "paddingBottom": 40,
+    "preserve": "checked",
+    "nextFocusDown": "componentId1",
+    "nextFocusForward": "componentId2",
+    "nextFocusLeft": "componentId3",
+    "nextFocusRight": "componentId4",
+    "nextFocusUp": "componentId5"
 }

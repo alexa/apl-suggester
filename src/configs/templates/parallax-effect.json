@@ -1,0 +1,170 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "resources": [
+        {
+            "easing": {
+                "ease1": "spatial(3,1) scurve(240,640,252,0,0,13.500,0,0,-13.500,0,0.405,0,0.391,1) scurve(420,640,333,0,0,0,0,0,0,0,0.167,0.167,0.391,0.391) scurve(720,640,333,0,0,4.500,0,0,-4.500,0,0.607,0,0.39,1) send(840,640,360,0)",
+                "ease2": "spatial(3,1) scurve(240,0,-200,0,0,45.167,0,0,-45.167,0,0.405,0,0.391,1) scurve(420,0,71,0,0,0,0,0,0,0,0.167,0.167,0.391,0.391) scurve(720,0,71,0,0,14.833,0,0,-14.833,0,0.607,0,0.39,1) send(840,0,160,0)",
+                "ease3": "spatial(3,1) scurve(240,0,-40,0,0,10,0,0,-10,0,0.405,0,0.391,1) scurve(420,0,20,0,0,0,0,0,0,0,0.167,0.167,0.391,0.391) scurve(720,0,20,0,0,3.333,0,0,-3.333,0,0.607,0,0.39,1) send(840,0,40,0)",
+                "ease4": "spatial(3,1) scurve(240,0,0,0,0,-2.500,0,0,2.500,0,0.405,0,0.391,1) scurve(420,0,-15,0,0,0,0,0,0,0,0.167,0.167,0.391,0.391) scurve(720,0,-15,0,0,-0.833,0,0,0.833,0,0.607,0,0.39,1) send(840,0,-20,0)",
+                "ease5": "spatial(3,1) scurve(240,0,180,0,0,-17.667,0,0,17.667,0,0.405,0,0.391,1) scurve(420,0,74,0,0,0,0,0,0,0,0.167,0.167,0.391,0.391) scurve(720,0,74,0,0,-5.667,0,0,5.667,0,0.607,0,0.39,1) send(840,0,40,0)",
+                "ease6": "spatial(3,1) scurve(0,640,360,0,0,-1.404,0,0,3.275,0,0.463,0,0.445,1) send(180,640,252,0)",
+                "ease7": "spatial(3,1) scurve(0,0,160,0,0,-4.680,0,0,10.918,0,0.463,0,0.445,1) send(180,0,-200,0)",
+                "ease8": "spatial(3,1) scurve(0,0,40,0,0,-1.040,0,0,2.426,0,0.463,0,0.445,1) send(180,0,-40,0)",
+                "ease9": "spatial(3,1) scurve(0,0,-20,0,0,0.260,0,0,-0.606,0,0.463,0,0.445,1) send(180,0,0,0)",
+                "ease10": "spatial(3,1) scurve(0,0,40,0,0,1.820,0,0,-4.246,0,0.463,0,0.445,1) send(180,0,180,0)"
+            }
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": {
+            "type": "Container",
+            "width": "100%",
+            "height": "100%",
+            "bind": [
+                {
+                    "name": "frame",
+                    "value": "${(elapsedTime*0.06)%900}"
+                }
+            ],
+            "items": [
+                {
+                    "type": "AlexaBackground",
+                    "backgroundImageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/BG.png"
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 4 - slide up",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer4.png",
+                    "width": "100vw",
+                    "height": "100vh",
+                    "position": "absolute",
+                    "top": -150,
+                    "opacity": "${frame <= 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease10(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 4 - slide down",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer4.png",
+                    "width": "100vw",
+                    "height": "100vh",
+                    "position": "absolute",
+                    "top": -150,
+                    "opacity": "${frame > 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease5(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 3 - slide up",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer3.png",
+                    "width": "100vw",
+                    "height": "100vh",
+                    "position": "absolute",
+                    "top": "0",
+                    "opacity": "${frame <= 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease9(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 3 - slide down",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer3.png",
+                    "width": "100vw",
+                    "height": "100vh",
+                    "position": "absolute",
+                    "top": 0,
+                    "opacity": "${frame > 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease4(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 2 - slide up",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer2.png",
+                    "width": "${viewport.width}",
+                    "height": "${viewport.width * 1.17}",
+                    "position": "absolute",
+                    "top": -750,
+                    "opacity": "${frame <= 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease6(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 2 - slide down",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer2.png",
+                    "width": "${viewport.width}",
+                    "height": "${viewport.width * 1.17}",
+                    "position": "absolute",
+                    "top": -750,
+                    "opacity": "${frame > 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease1(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 1 - slide up",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer1.png",
+                    "width": "${viewport.width}",
+                    "height": "${viewport.width * 1.17}",
+                    "position": "absolute",
+                    "top": -400,
+                    "opacity": "${frame <= 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease7(frame)}"
+                        }
+                    ]
+                },
+                {
+                    "type": "Image",
+                    "description": "Layer 1 - slide down",
+                    "source": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/parallax/Layer1.png",
+                    "width": "${viewport.width}",
+                    "height": "${viewport.width * 1.17}",
+                    "id": "Layer1-2",
+                    "position": "absolute",
+                    "top": -400,
+                    "opacity": "${frame > 180 ? 1 : 0}",
+                    "transform": [
+                        {
+                            "translateY": "${@ease2(frame)}"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

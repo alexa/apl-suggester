@@ -141,5 +141,12 @@
     "height": 100,
     "scale": "best-fit",
     "fillColor": "#ffff00",
-    "role": "imagebutton"
+    "role": "imagebutton",
+    "padding": ["20dp", "10vh", "20px", "10%"],
+    "preserve": [ "checked", "Counter" ],
+    "nextFocusDown": "componentId1",
+    "nextFocusForward": "componentId2",
+    "nextFocusLeft": "componentId3",
+    "nextFocusRight": "componentId4",
+    "nextFocusUp": "componentId5"
 }

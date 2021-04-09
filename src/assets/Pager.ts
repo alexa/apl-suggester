@@ -27,6 +27,30 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
+    "dimension": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "paddingArray": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dimension",
+          }
+        },
+        {
+          "$ref": "#/definitions/dimension",
+        }
+      ]
+    },
     "EntityArray": {
       "type": "array",
       "items": {
@@ -142,17 +166,6 @@ export const JSON_SCHEMA : IJsonSchema = {
       "required": [
         "name",
         "value"
-      ]
-    },
-    "dimension": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
-        },
-        {
-          "type": "number"
-        }
       ]
     },
     "color": {
@@ -285,6 +298,39 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "array",
       "items": {
         "$ref": "#/definitions/KeyHandler"
+      }
+    },
+    "PageMoveHandler": {
+      "properties": {
+        "commands": {
+          "$ref": "#/definitions/CommandArray",
+          "description": "Commands to execute if this handler is invoked."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description"
+        },
+        "drawOrder": {
+          "type": "string",
+          "description": "Stacking order of pages",
+          "enum": [
+            "nextAbove",
+            "nextBelow",
+            "higherAbove",
+            "higherBelow"
+          ]
+        },
+        "when": {
+          "type": "boolean",
+          "description": "If true, invoke this handler"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PageMoveHandlerArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/PageMoveHandler"
       }
     },
     "Role": commonDefinition.Role,
@@ -444,6 +490,26 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.aboutComponent,
       "description": "Opacity of this component.  Also applies to children."
     },
+    "preserve": {
+      "category": Categories.aboutComponent,
+      "description": "Properties preserved through reinflation.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ],
+    },
+    "padding": {
+      "$ref": "#/definitions/paddingArray",
+      "category": Categories.padding,
+      "description": "Space to add on the sides of the component."
+    },
     "paddingLeft": {
       "$ref": "#/definitions/dimension",
       "category": Categories.padding,
@@ -499,6 +565,11 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.pager,
       "description": "The index of the starting page (0-based)"
     },
+    "handlePageMove": {
+      "$ref": "#/definitions/PageMoveHandlerArray",
+      "category": Categories.pager,
+      "description": "Commands to execute when the page changes"
+    },
     "onPageChanged": {
       "$ref": "#/definitions/CommandArray",
       "category": Categories.pager,
@@ -513,6 +584,15 @@ export const JSON_SCHEMA : IJsonSchema = {
         "none",
         "wrap",
         "forward-only"
+      ]
+    },
+    "pageDirection": {
+      "type": "string",
+      "category": Categories.pager,
+      "description": "The direction to move pages",
+      "enum": [
+        "horizontal",
+        "vertical"
       ]
     },
     "shadowColor": {
@@ -554,6 +634,31 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/KeyHandlerArray",
       "category": Categories.pager,
       "description": "Keyboard handler(s) to evaluate when the component receives a key up."
+    },
+    "nextFocusDown": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the down key is pressed."
+    },
+    "nextFocusForward": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the tab key is pressed."
+    },
+    "nextFocusLeft": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the left key is pressed."
+    },
+    "nextFocusRight": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the right key is pressed."
+    },
+    "nextFocusUp": {
+      "type": "string",
+      "category": Categories.aboutComponent,
+      "description": "The component to focus if the up key is pressed."
     },
     "item": {},
     "items": {}

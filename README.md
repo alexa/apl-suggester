@@ -25,4 +25,4 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 ## License
 
-This project is licensed under the Apache-2.0 License.
+This project is licensed under the Apache-2.0 license, except APL Templates are licensed under the Amazon Software License [hyperlink to:  https://aws.amazon.com/asl/ ].  For more detail,  please see the LICENSE file in the [src/configs/templates] sub-folder.

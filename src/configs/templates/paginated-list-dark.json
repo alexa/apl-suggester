@@ -1,0 +1,32 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.3.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "AlexaPaginatedList",
+                "id": "paginatedList",
+                "headerTitle": "${payload.imageListData.title}",
+                "headerBackButton": true,
+                "headerAttributionImage": "${payload.imageListData.logoUrl}",
+                "backgroundBlur": false,
+                "backgroundColorOverlay": false,
+                "backgroundScale": "best-fill",
+                "backgroundAlign": "bottom",
+                "theme": "dark",
+                "listItems": "${payload.imageListData.listItems}"
+            }
+        ]
+    }
+}

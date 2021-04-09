@@ -36,5 +36,7 @@
             ]
         }
     ],
-    "role": "image_"
+    "role": "image_",
+    "padding": [10, "20%"],
+    "paddingBottom": 40
 }
