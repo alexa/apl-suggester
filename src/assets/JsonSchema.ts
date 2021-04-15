@@ -1585,6 +1585,10 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.6"
       ]
     },
+    "license": {
+      "type": "string",
+      "description": "The sample templates are under Amazon Software License"
+    },
     "tests": {
       "$ref": "#/definitions/TestCaseArray",
       "description": "Internal test cases - not part of the official APML definition"
