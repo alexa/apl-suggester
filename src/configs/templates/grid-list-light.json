@@ -1,7 +1,7 @@
 {
     "type": "APL",
     "version": "1.6",
-    "__comment__": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "theme": "dark",
     "import": [
         {
@@ -88,6 +88,11 @@
                 {
                     "name": "headerTitle",
                     "description": "Primary text to render in header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerSubtitle",
+                    "description": "Secondary text to render in header.",
                     "type": "string"
                 },
                 {
@@ -362,7 +367,7 @@
                                         },
                                         {
                                             "name": "defaultGridHeight",
-                                            "value": "${itemImageHeight + @gridListMaxDataHeight + @imageListItemImageBottomPadding + (2 * @imageListItemInnerPadding)}"
+                                            "value": "${itemImageHeight + @gridListMaxDataHeight + @imageListItemInnerPaddingTop + (2 * @imageListItemInnerPadding)}"
                                         },
                                         {
                                             "name": "itemHeight",
