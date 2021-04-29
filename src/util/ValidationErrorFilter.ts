@@ -65,11 +65,15 @@ export class ValidationErrorFilter {
     public static filterErrors(errors : object[], singlePathFilter?) : object[] {
         errors = this.collapseOneOfSchemaProperties(errors);
 
+        // First filter out all Boolean type errors whose value is an valid variable expression
+        const processedErrorsWithoutBooleanType = this.processBooleanTypeErrors(errors);
+
         const errorPathSet = [];
-        errors.forEach((element) => {
+        processedErrorsWithoutBooleanType.forEach((element) => {
             errorPathSet.push(element['dataPath']);
         });
-        const noChildrenPathArray = errors.filter((element, index, array) => {
+
+        const onlyChildrenNodePathArray = processedErrorsWithoutBooleanType.filter((element, index, array) => {
             const dataPath = element['dataPath'];
             if (dataPath === '') { return true; }
             for (let eachPath of errorPathSet) {
@@ -80,9 +84,9 @@ export class ValidationErrorFilter {
             return true;
         });
         if (singlePathFilter) {
-            return this.processErrors(singlePathFilter(noChildrenPathArray));
+            return this.processErrors(singlePathFilter(onlyChildrenNodePathArray));
         }
-        return this.processErrors(noChildrenPathArray);
+        return this.processErrors(onlyChildrenNodePathArray);
     }
 
     /**
@@ -139,8 +143,28 @@ export class ValidationErrorFilter {
         });
     }
 
+    /**
+     * Filter the boolean type errors out if the value defined as a variable.
+     * @private
+     * @param {object[]} errors
+     * @returns {object[]}
+     * @memberof ValidationErrorFilter
+     */
+    private static processBooleanTypeErrors(errors : object[]) : object[] {
+        return errors.filter((eachError) => {
+            const schemaType = eachError['schema'];
+            const actualValue = eachError['data'];
+            if (schemaType === 'boolean' && actualValue && typeof(actualValue) === 'string') {
+                if (containsVariableString(actualValue)) {
+                    return false;
+                }
+            }
+            return true;
+        });
+    }
+
     private static isNodeOf(existingPath : string, pathToCheck : string) : boolean {
-        return pathToCheck.indexOf(existingPath) >= 0;
+        return pathToCheck.startsWith(existingPath);
     }
 
     public static userDefinedPropertyErrorFilter = (error : object) => {

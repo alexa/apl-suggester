@@ -1,0 +1,51 @@
+{
+  "type": "APL",
+  "version": "1.4",
+  "resources": [
+    {
+      "colors": {
+        "accent": "#00CAFF",
+        "myBlue": "#66DFFF"
+      },
+      "dimension": {
+        "leftRight": "72dp"
+      },
+      "strings": {
+        "logo": "images/logo200x200.png"
+      },
+      "easing": {
+        "ease1": "line(0,0) line(500,255) end(1000,0)",
+        "ease2": "line(0,255) line(500,255) line(700,0) end(800,255)"
+      }
+    },
+    {
+      "when": "${viewport.shape == 'round'}",
+      "dimension": {
+        "leftRight": "${viewport.width * 0.25}"
+      }
+    },
+    {
+      "when": "${viewport.theme == 'light'}",
+      "colors": {
+        "accent": "#0070BA",
+        "myBlue": "#005A95"
+      }
+    },
+    {
+      "description": "Use a larger logo on a large screen",
+      "when": "${viewport.width > 1200}",
+      "string": {
+        "logo": "images/logo300x300.png"
+      }
+    }
+  ],
+  "mainTemplate": {
+    "parameters": [
+      "payload"
+    ],
+    "item": {
+      "type": "Container",
+      "items": {}
+    }
+  }
+}
