@@ -47,6 +47,33 @@ const MOCK_ANYOF_ERRORS = [
     }
 ];
 
+const MOCK_PATH_ERRORS = [
+    {
+        dataPath: '/version',
+        keyword: 'required',
+        message: 'should have required property "item"',
+        params: { missingProperty: 'item' },
+        schema: ['type', 'item'],
+        schemaPath: 'enum'
+    },
+    {
+        dataPath: 'graphics/version',
+        keyword: 'required',
+        message: 'should have required property "items"',
+        params: { missingProperty: 'items' },
+        schema: ['type', 'items'],
+        schemaPath: 'enum'
+    },
+    {
+        dataPath: 'graphics',
+        keyword: 'required',
+        message: 'should have required property "items"',
+        params: { missingProperty: 'items' },
+        schema: ['type', 'items'],
+        schemaPath: 'enum'
+    }
+];
+
 const MOCK_ADDITIONAL_PROPERTIES_ERRORS = [
     {
         dataPath: '',
@@ -89,5 +116,17 @@ describe('ValidationErrorFilter', () => {
             actualResults.push(error);
         });
         expect(actualResults.length).to.equal(1);
+    });
+
+    it('should correctly collapse oneOf item/items schema errors.', () => {
+        const actualResults = [];
+        ValidationErrorFilter.filterErrors(
+            MOCK_PATH_ERRORS,
+            ValidationErrorFilter.singleDataPathFilter
+        ).forEach((error) => {
+            actualResults.push(error);
+        });
+        console.log(actualResults);
+        expect(actualResults.length).to.equal(2);
     });
 });

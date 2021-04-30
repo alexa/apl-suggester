@@ -213,6 +213,11 @@ export const JSON_SCHEMA : IJsonSchema = {
           "$ref": "#/definitions/CommandArray",
           "description": "Commands to execute if this handler is invoked."
         },
+        "description": {
+          "type": "string",
+          "description": "Optional description of this key handler.",
+          "default": ""
+        },
         "propagate": {
           "type": "boolean",
           "description": "If true, handled events are bubbled up.",

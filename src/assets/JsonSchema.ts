@@ -922,7 +922,9 @@ export const JSON_SCHEMA : IJsonSchema = {
           "type": "boolean",
           "description": "Conditional definition.  If true, this resource block will be inflated"
         },
-        "colors": {
+      },
+      "patternProperties": {
+        "^color(s?)$": {
           "patternProperties": {
             "^.*$": {
               "$ref": "#/definitions/color"
@@ -930,7 +932,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           },
           "description": "Map of color name to value"
         },
-        "dimensions": {
+        "^dimension(s?)$": {
           "patternProperties": {
             "^.*$": {
               "$ref": "#/definitions/dimension"
@@ -938,7 +940,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           },
           "description": "Map of dimension name to value"
         },
-        "numbers": {
+        "^number(s?)$": {
           "patternProperties": {
             "^.*$": {
               "type": "number"
@@ -946,7 +948,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           },
           "description": "Map of names to numbers"
         },
-        "booleans": {
+        "^boolean(s?)$": {
           "patternProperties": {
             "^.*$": {
               "type": "boolean"
@@ -954,14 +956,30 @@ export const JSON_SCHEMA : IJsonSchema = {
           },
           "description": "Map of names to booleans"
         },
-        "strings": {
+        "^string(s?)$": {
           "patternProperties": {
             "^.*$": {
               "type": "string"
             }
           },
           "description": "Map of names to strings"
-        }
+        },
+        "^easing(s?)$": {
+          "patternProperties": {
+            "^.*$": {
+              "$ref": "#/definitions/Easing"
+            }
+          },
+          "description": "Map from easing name to easing definition"
+        },
+        "^gradient(s?)$": {
+          "patternProperties": {
+            "^.*$": {
+              "$ref": "#/definitions/AVGGradient"
+            }
+          },
+          "description": "Map from gradient name to gradient definition"
+        },
       },
       "additionalProperties": false
     },

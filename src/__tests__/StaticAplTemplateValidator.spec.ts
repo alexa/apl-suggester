@@ -84,6 +84,15 @@ describe('Integration Test to verify the JSON schema.', () => {
         await readSchemaAndPassAllValidations('layoutAplTemplate.json');
     });
 
+    it('should compile with resource template.', async () => {
+        await readSchemaAndPassAllValidations('resourceAplTemplate.json');
+    });
+
+    it('should show correct validation errors with resource template.', async () => {
+        const result = await verifyTemplate('errorResourceAplTemplate.json');
+        expect(result).to.have.lengthOf(2);
+    });
+
     it('should validate DataSource', async () => {
         let result = await validator.validateDataSources({});
         expect(result).to.have.lengthOf(0);
