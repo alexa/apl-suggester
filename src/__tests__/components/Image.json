@@ -124,5 +124,8 @@
     "padding": 10,
     "paddingTop": "20dp",
     "paddingBottom": 40,
-    "preserve": [ "checked", "Counter" ]
+    "paddingStart": 10,
+    "paddingEnd": "20dp",
+    "preserve": [ "checked", "Counter" ],
+    "layoutDirection": "inherit"
 }

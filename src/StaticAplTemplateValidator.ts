@@ -18,6 +18,7 @@
 
 import * as ajv from 'ajv';
 import { JSON_SCHEMA } from './assets/JsonSchema';
+import * as AVGJSONSchema from './assets/graphics/AVG';
 import { IValidationInfo } from './validation/index.js';
 import { ValidationSeed, Seed } from './validation/ValidationSeed';
 import { ValidationErrorFilter } from './util/ValidationErrorFilter';
@@ -137,7 +138,9 @@ export class StaticAplTemplateValidator {
             jsonPointers : true,
             allErrors : true,
             verbose : true
-        }).compile(JSON_SCHEMA);
+        })
+            .addSchema(AVGJSONSchema.JSON_SCHEMA)
+            .compile(JSON_SCHEMA);
         this.aplComponentExtractor = AplComponentsExtractor.getInstance();
         this.componentSchemaController = ComponentSchemaController.getInstance();
         this.componentStructureValidator = ComponentStructureValidator.getInstance();

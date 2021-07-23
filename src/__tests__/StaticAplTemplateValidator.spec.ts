@@ -22,6 +22,7 @@ import { PackageLoader, ILoadedResult } from '../util/PackageLoader';
 import * as sinon from 'sinon';
 import { IMPORT_LAYOUT_TEMPLATE_13 } from '../util/__tests__/template_test_cases/importInternalTemplate';
 import { getSampleTemplate, SampleTemplateName } from '../configs';
+import { NotificationLevel } from '../IValidationInfo';
 
 describe('Integration Test to verify the JSON schema.', () => {
     let stub;
@@ -40,7 +41,6 @@ describe('Integration Test to verify the JSON schema.', () => {
     afterEach(() => {
         stub.restore();
     });
-
     it('should compile with sample templates.', async () => {
         const template = getSampleTemplate(SampleTemplateName.IMAGE_RIGHT_DETAIL);
         const result = await validator.validate(template.apl);
@@ -49,7 +49,7 @@ describe('Integration Test to verify the JSON schema.', () => {
 
     it('should received correct amount of validation errors.', async () => {
         const result = await verifyTemplate('errorTemplate.json');
-        expect(result.length).to.be.equal(9);
+        expect(result.length).to.be.equal(11);
     });
 
     it('should compile with video template when souce is array of string.', async () => {
@@ -91,6 +91,18 @@ describe('Integration Test to verify the JSON schema.', () => {
     it('should show correct validation errors with resource template.', async () => {
         const result = await verifyTemplate('errorResourceAplTemplate.json');
         expect(result).to.have.lengthOf(2);
+    });
+
+    it('should compile with graphic template and show errors', async () => {
+        const result = await verifyTemplate('errorGraphicAplTemplate.json');
+        expect(result).to.have.lengthOf(2);
+    });
+
+    it('should validate multiChildComponent and show warning', async () => {
+        const result = await verifyTemplate('liveDataWarningMultiChildAplTemplate.json');
+        expect(result.length).to.be.equal(1);
+        expect(result[0].path).to.be.equal('/mainTemplate/item/item/1');
+        expect(result[0].level).to.be.equal(NotificationLevel.WARN);
     });
 
     it('should validate DataSource', async () => {

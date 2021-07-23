@@ -166,6 +166,19 @@ export const JSON_SCHEMA : IJsonSchema = {
         "items": {
           "$ref": "#/definitions/GraphicItems"
         },
+        "lang": {
+          "type": "string",
+          "description": "The language specified for the AVG object."
+        },
+        "layoutDirection": {
+          "type": "string",
+          "description": "The layoutDirection specified for the AVG object.",
+          "default": "LTR",
+          "enum": [
+            "LTR",
+            "RTL"
+          ]
+        },
         "resources": {
           "$ref": "#/definitions/GraphicResourcesBlockArray",
           "description": "Local graphic-specific resources"
@@ -435,7 +448,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         "value": {
           "type": "array",
           "items": {
-              "$ref": "#/definitions/Value"
+            "$ref": "#/definitions/Value"
           }
         }
       },
@@ -998,19 +1011,6 @@ export const JSON_SCHEMA : IJsonSchema = {
     "Easing": {
       "type": "string"
     },
-    "AVGPathItemFillOrStroke": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/Color"
-        },
-        {
-          "$ref": "#/definitions/AVGGradient"
-        },
-        {
-          "$ref": "#/definitions/AVGPattern"
-        }
-      ]
-    },
     "AVGGradient": {
       "oneOf": [
           {
@@ -1138,36 +1138,6 @@ export const JSON_SCHEMA : IJsonSchema = {
               "colorRange"
           ],
           "additionalProperties": false
-    },
-    "AVGPattern": {
-      "type": "object",
-      "properties": {
-          "description": {
-              "type": "string",
-              "description": "Optional description of this pattern."
-          },
-          "height": {
-              "type": "number",
-              "description": "height"
-          },
-          "width": {
-              "type": "number",
-              "description": "Width of the pattern"
-          },
-          "item": {
-              "$ref": "#/definitions/AVGItemArray",
-              "description": "An array of drawing items"
-          },
-          "items": {
-              "$ref": "#/definitions/AVGItemArray",
-              "description": "An array of drawing items"
-          }
-      },
-      "required": [
-          "height",
-          "width"
-      ],
-      "additionalProperties": false
     },
     "dimension": {
       "oneOf": [
@@ -1362,62 +1332,6 @@ export const JSON_SCHEMA : IJsonSchema = {
         "$ref": "#/definitions/Entity"
       }
     },
-    "FilterBlur": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "The type of filter to apply"
-        },
-        "radius": {
-          "$ref": "#/definitions/dimension"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "radius"
-      ]
-    },
-    "FilterNoise": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "description": "The type of filter to apply"
-        },
-        "kind": {
-          "type": "string",
-          "description": "The probability distribution used to generate the noise."
-        },
-        "useColor": {
-          "type": "boolean",
-          "description": "If true, colored noise will be used. If false, monochromatic."
-        },
-        "sigma": {
-          "type": "number",
-          "description": "Standard deviation of the noise"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "type"
-      ]
-    },
-    "Filter": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/FilterBlur"
-        },
-        {
-          "$ref": "#/definitions/FilterNoise"
-        }
-      ]
-    },
-    "FilterArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Filter"
-      }
-    },
     "Gradient": {
       "properties": {
         "angle": {
@@ -1448,34 +1362,6 @@ export const JSON_SCHEMA : IJsonSchema = {
       "additionalProperties": false,
       "required": [
         "colorRange"
-      ]
-    },
-    "videoTrack": {
-      "properties": {
-        "description": {
-          "type": "string",
-          "description": "Optional description of this source"
-        },
-        "duration": {
-          "type": "integer",
-          "description": "Duration of the track in milliseconds"
-        },
-        "url": {
-          "$ref": "#/definitions/stringArray",
-          "description": "The actual URL to load the video from"
-        },
-        "repeatCount": {
-          "type": "integer",
-          "description": "Number of times to repeat. -1 is repeat forever"
-        },
-        "offset": {
-          "type": "integer",
-          "description": "Milliseconds from the start of the track to play from"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "url"
       ]
     },
     "ExtensionArray": {
@@ -1534,7 +1420,7 @@ export const JSON_SCHEMA : IJsonSchema = {
     "graphics": {
       "patternProperties": {
         "^.*$": {
-          "$ref": "#/definitions/Graphic"
+          "$ref": "Graphics.json#"
         }
       },
       "description": "A map of vector graphic."
@@ -1542,6 +1428,18 @@ export const JSON_SCHEMA : IJsonSchema = {
     "import": {
       "$ref": "#/definitions/ImportArray",
       "description": "A list of references to external packages."
+    },
+    "lang": {
+      "type": "string",
+      "description": "Document level language."
+    },
+    "layoutDirection": {
+      "type": "string",
+      "description": "Document level layout direction.",
+      "enum": [
+        "LTR",
+        "RTL"
+      ]
     },
     "mainTemplate": {
       "$ref": "#/definitions/Layout",
@@ -1600,7 +1498,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.3",
         "1.4",
         "1.5",
-        "1.6"
+        "1.6",
+        "1.7"
       ]
     },
     "license": {

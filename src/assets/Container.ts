@@ -324,6 +324,16 @@ export const JSON_SCHEMA : IJsonSchema = {
   },
   "type": "object",
   "properties": {
+    "layoutDirection": {
+      "type": "string",
+      "description": "The layoutDirection of this component and children.",
+      "default": "inherit",
+      "enum": [
+        "inherit",
+        "LTR",
+        "RTL"
+      ]
+    },
     "description": {
       "type": "string",
       "category": Categories.aboutComponent,
@@ -345,7 +355,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "Control if the component is displayed on the screen."
     },
     "handleTick": {
-      "$ref":"#/definitions/tickHandlerArray",
+      "$ref": "#/definitions/tickHandlerArray",
       "category": Categories.aboutComponent,
       "description": "An array of Tick Event Handlers to execute as time passes."
     },
@@ -473,6 +483,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/dimension",
       "category": Categories.padding,
       "description": "Space to add to the bottom of this object."
+    },
+    "paddingStart": {
+      "$ref": "#/definitions/dimension",
+      "category": Categories.padding,
+      "description": "Space to add to the start edge of this component."
+    },
+    "paddingEnd": {
+      "$ref": "#/definitions/dimension",
+      "category": Categories.padding,
+      "description": "Space to add to the end edge of this component."
     },
     "accessibilityLabel": {
       "type": "string",

@@ -47,5 +47,7 @@
     "wrap": "noWrap",
     "padding": 10,
     "paddingTop": "20dp",
-    "paddingBottom": 40
+    "paddingBottom": 40,
+    "paddingStart": 10,
+    "paddingEnd": "20dp"
 }

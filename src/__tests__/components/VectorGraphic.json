@@ -143,10 +143,13 @@
     "fillColor": "#ffff00",
     "role": "imagebutton",
     "padding": ["20dp", "10vh", "20px", "10%"],
+    "paddingStart": 10,
+    "paddingEnd": "20dp",
     "preserve": [ "checked", "Counter" ],
     "nextFocusDown": "componentId1",
     "nextFocusForward": "componentId2",
     "nextFocusLeft": "componentId3",
     "nextFocusRight": "componentId4",
-    "nextFocusUp": "componentId5"
+    "nextFocusUp": "componentId5",
+    "layoutDirection": "LTR"
 }

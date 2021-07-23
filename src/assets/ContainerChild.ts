@@ -78,7 +78,8 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "Relative or absolute layout positioning",
       "enum": [
         "relative",
-        "absolute"
+        "absolute",
+        "sticky"
       ]
     },
     "left": {
@@ -100,6 +101,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/dimension",
       "category": Categories.alignmentAndPosition,
       "description": "Distance to offset the bottom edge of this component in absolute positioning"
+    },
+    "start": {
+      "$ref": "#/definitions/dimension",
+      "category": Categories.alignmentAndPosition,
+      "description": "Position offset of the start edge."
+    },
+    "end": {
+      "$ref": "#/definitions/dimension",
+      "category": Categories.alignmentAndPosition,
+      "description": "Position offset of the end edge."
     }
   },
   "required": [],

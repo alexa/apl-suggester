@@ -1,0 +1,31 @@
+{
+  "type": "APL",
+  "version": "1.6",
+  "mainTemplate": {
+    "parameters": [
+      "payload"
+    ],
+    "item": {
+      "type": "Container",
+      "data": "${payload.ArrayData}",
+      "height": "200dp",
+      "width": "300dp",
+      "item": [
+        {
+          "type": "Text",
+          "id": "${data}",
+          "text": "${data}"
+        },
+        {
+          "type": "Text",
+          "text": "Type in the text for your layout...",
+          "fontSize": "16dp",
+          "paddingTop": "12dp",
+          "paddingBottom": "12dp",
+          "height": "32dp",
+          "width": "300dp"
+        }
+      ]
+    }
+  }
+}

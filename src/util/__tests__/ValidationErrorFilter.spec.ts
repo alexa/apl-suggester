@@ -109,7 +109,7 @@ describe('ValidationErrorFilter', () => {
         expect(actualResults.length).to.equal(1);
     });
 
-    it('should filter user defined property errors .', () => {
+    it('should filter user defined property errors.', () => {
         const actualResults = [];
         MOCK_ADDITIONAL_PROPERTIES_ERRORS.filter(ValidationErrorFilter.userDefinedPropertyErrorFilter)
         .forEach((error) => {
@@ -126,7 +126,6 @@ describe('ValidationErrorFilter', () => {
         ).forEach((error) => {
             actualResults.push(error);
         });
-        console.log(actualResults);
         expect(actualResults.length).to.equal(2);
     });
 });

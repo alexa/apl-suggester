@@ -1,0 +1,88 @@
+{
+    "type": "APL",
+    "version": "1.6",
+    "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": {
+            "type": "Frame",
+            "height": "100vh",
+            "width": "100vw",
+            "backgroundColor": "${viewport.theme == 'light' ? 'white' : 'black'}",
+            "item": {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "items": [
+                    {
+                        "type": "TouchWrapper",
+                        "paddingTop": "20dp",
+                        "item": {
+                            "type": "Frame",
+                            "inheritParentState": true,
+                            "item": [
+                                {
+                                    "type": "Text",
+                                    "text": "Read list"
+                                }
+                            ],
+                            "backgroundColor": "@colorGray700",
+                            "borderColor": "@colorGray400"
+                        },
+                        "alignSelf": "center",
+                        "onPress": [
+                            {
+                                "type": "SpeakList",
+                                "componentId": "alexaListView",
+                                "start": 0,
+                                "count": 10,
+                                "minimumDwellTime": 700,
+                                "align": "center"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Sequence",
+                        "id": "alexaListView",
+                        "width": "100%",
+                        "height": "auto",
+                        "paddingTop": "20dp",
+                        "data": "${payload.listTemplateData.listItems}",
+                        "numbered": true,
+                        "scrollDirection": "horizontal",
+                        "item": {
+                            "theme": "${viewport.theme}",
+                            "primaryText": "${data.primaryText}",
+                            "secondaryText": "${data.secondaryText}",
+                            "tertiaryText": "${data.tertiaryText}",
+                            "providerText": "${data.providerText}",
+                            "imageHideScrim": "${data.imageHideScrim ? data.imageHideScrim : payload.listTemplateData.imageHideScrim}",
+                            "imageProgressBarPercentage": "${data.imageProgressBarPercentage}",
+                            "imageShowProgressBar": "${data.imageShowProgressBar ? data.imageShowProgressBar : payload.listTemplateData.imageShowProgressBar}",
+                            "imageWidth": "${data.imageWidth ? data.imageWidth : payload.listTemplateData.imageWidth}",
+                            "imageHeight": "${data.imageHeight ? data.imageHeight : payload.listTemplateData.imageHeight}",
+                            "imageAspectRatio": "${data.imageAspectRatio ? data.imageAspectRatio : payload.listTemplateData.imageAspectRatio}",
+                            "imageScale": "${data.imageScale ? data.imageScale : payload.listTemplateData.imageScale}",
+                            "imageAlignment": "${data.imageAlignment ? data.imageAlignment : payload.listTemplateData.imageAlignment}",
+                            "imageRoundedCorner": "${data.imageRoundedCorner ? data.imageRoundedCorner : payload.listTemplateData.imageRoundedCorner}",
+                            "imageBlurredBackground": "${data.imageBlurredBackground ? data.imageBlurredBackground : payload.listTemplateData.imageBlurredBackground}",
+                            "imageSource": "${data.imageSource}",
+                            "defaultImageSource": "https://via.placeholder.com/300",
+                            "type": "AlexaImageListItem",
+                            "disabled": "${data.disabled}"
+                        },
+                        "alignSelf": "center"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -64,10 +64,14 @@
     "role": "adjustable",
     "padding": [10, 20],
     "paddingBottom": 40,
+    "paddingStart": 10,
+    "paddingEnd": "20dp",
     "preserve": "checked",
     "nextFocusDown": "componentId1",
     "nextFocusForward": "componentId2",
     "nextFocusLeft": "componentId3",
     "nextFocusRight": "componentId4",
-    "nextFocusUp": "componentId5"
+    "nextFocusUp": "componentId5",
+    "lang": "en-US",
+    "layoutDirection": "inherit"
 }

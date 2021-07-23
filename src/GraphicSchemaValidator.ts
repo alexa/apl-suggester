@@ -25,7 +25,7 @@ import { NotificationLevel } from './IValidationInfo';
 import * as AVGGroupItemJSONSchema from './assets/graphics/AVGGroupItem';
 import * as AVGPathItemJSONSchema from './assets/graphics/AVGPathItem';
 import * as AVGTextItemJSONSchema from './assets/graphics/AVGTextItem';
-import * as AVGBasedItemJSONSchema from './assets/graphics/AVGBaseItem';
+import * as AVGJSONSchema from './assets/graphics/AVG';
 
 /**
  * Entrance to validate graphics.
@@ -62,7 +62,8 @@ export class GraphicSchemaValidator {
     private static GRAPHIC_TYPE_TO_JSON_SCHEMA = new Map<string, IJsonSchema>([
         ['group', AVGGroupItemJSONSchema.JSON_SCHEMA],
         ['path', AVGPathItemJSONSchema.JSON_SCHEMA],
-        ['text', AVGTextItemJSONSchema.JSON_SCHEMA]
+        ['text', AVGTextItemJSONSchema.JSON_SCHEMA],
+        ['root', AVGJSONSchema.JSON_SCHEMA]
     ]);
 
     /**
@@ -88,9 +89,7 @@ export class GraphicSchemaValidator {
             jsonPointers : true,
             allErrors : true,
             verbose : true
-        })
-        .addSchema(AVGBasedItemJSONSchema.JSON_SCHEMA)
-        .compile(graphicJsonSchema);
+        }).compile(graphicJsonSchema);
         const succeed = validateFunction(jsonObject);
         if (succeed) {
             return [];
@@ -103,5 +102,19 @@ export class GraphicSchemaValidator {
                 results.push(StaticAplTemplateValidator.asValidationWarnInfo(eachError));
         });
         return results;
+    }
+
+    /**
+     * Get graphic schema
+     * @param {string} graphicType {'root', 'group', 'text', 'path'}
+     * @returns {IJsonSchema}
+     * @memberof GraphicSchemaValidator
+     */
+    public getGraphicSchema(graphicType : string) : IJsonSchema {
+        const graphicJsonSchema : IJsonSchema = GraphicSchemaValidator.GRAPHIC_TYPE_TO_JSON_SCHEMA.get(graphicType);
+        if (!graphicJsonSchema) {
+            return graphicJsonSchema;
+        }
+        return JSON.parse(JSON.stringify(graphicJsonSchema));
     }
 }

@@ -67,5 +67,10 @@
     "color": "white",
     "padding": "20vw",
     "paddingTop": "20dp",
-    "preserve": [ "checked", "Counter" ]
+    "paddingStart": 10,
+    "paddingEnd": "20dp",
+    "preserve": [ "checked", "Counter" ],
+    "lang": "en-US",
+    "textAlign": "start",
+    "layoutDirection": "RTL"
 }

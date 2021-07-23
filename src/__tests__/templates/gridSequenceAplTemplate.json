@@ -1,6 +1,8 @@
 {
   "type": "APL",
   "version": "1.4",
+  "lang": "ja-JP",
+  "layoutDirection": "LTR",
   "import": [
     {
       "name": "alexa-layouts",
@@ -24,7 +26,6 @@
             "scrollDirection": "horizontal",
             "childWidths": [ "20%", "30%", "auto" ],
             "childHeight": "50%",
-            "data": "${listData}",
             "numbered": true,
             "items": []
           }
