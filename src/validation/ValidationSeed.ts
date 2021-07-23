@@ -35,11 +35,11 @@ export class ValidationSeed {
      * Constructor.
      * @param seedComponent current component.
      * @param childComponents child components.
-     * @param parentCompnent parent component.
+     * @param parentComponent parent component.
      */
-    constructor(seedComponent : Seed, parentCompnent? : Seed) {
+    constructor(seedComponent : Seed, parentComponent? : Seed) {
         this.seedComponent = seedComponent;
-        this.parentComponent = parentCompnent;
+        this.parentComponent = parentComponent;
     }
     /**
      * Return current component.

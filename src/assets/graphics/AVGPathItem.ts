@@ -22,7 +22,7 @@ export const JSON_SCHEMA : IJsonSchema = {
     "AVGPathItemFillOrStroke": {
       "oneOf": [
         {
-          "$ref": "#/definitions/Color"
+          "$ref": "#/definitions/color"
         },
         {
           "$ref": "#/definitions/AVGGradient"
@@ -32,13 +32,137 @@ export const JSON_SCHEMA : IJsonSchema = {
         }
       ]
     },
-    "Color": {
+    "AVGItemArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AVGItem"
+      }
+    },
+    "AVGItem": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Indicates this item is a AVG item.",
+          "enum": [
+            "path",
+            "group",
+            "text"
+          ]
+        },
+        "when": {
+          "type": "boolean",
+          "description": "If it evaluates to false, this item does not inflate"
+        },
+        "filters": {
+          "$ref": "#/definitions/AVGFilterArray",
+          "description": "One or more filtering operations to apply to the vector graphic"
+        },
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "bindingArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/binding"
+      }
+    },
+    "binding": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name to add to data-binding"
+        },
+        "value": {
+          "type": "string",
+          "description": "The value to add to data-binding. May be a data-bound expression"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of value to add to data-binding.",
+          "enum": [
+            "any",
+            "string",
+            "number",
+            "color",
+            "array",
+            "boolean",
+            "map"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    "AVGFilterArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AVGFilter"
+      }
+    },
+    "AVGFilter": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/filterDropShadow"
+        }
+      ]
+    },
+    "filterDropShadow": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of filter to apply",
+          "enum": [
+            "DropShadow"
+          ]
+        },
+        "color": {
+          "$ref": "#/definitions/color",
+          "description": "Color of the shadow",
+          "default": "black"
+        },
+        "horizontalOffset": {
+          "type": "number",
+          "description": "Horizontal offset of the shadow",
+          "default": 0
+        },
+        "radius": {
+          "type": "number",
+          "description": "Blur radius of the shadow",
+          "default": 0
+        },
+        "verticalOffset": {
+          "type": "number",
+          "description": "Vertical offset of the shadow",
+          "default": 0
+        },
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
+    "color": {
       "type": "string"
+    },
+    "style": {
+      "type": "string",
+      "description": "Named style to apply"
+    },
+    "transform": {
+      "type": "string",
+      "description": "Transform applied to the contents of the group."
     },
     "ColorArray": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Color"
+        "$ref": "#/definitions/color"
       }
     },
     "AVGGradient": {
@@ -185,11 +309,11 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Width of the pattern"
         },
         "item": {
-          "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGItemArray",
+          "$ref": "#/definitions/AVGItemArray",
           "description": "An array of drawing items"
         },
         "items": {
-          "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGItemArray",
+          "$ref": "#/definitions/AVGItemArray",
           "description": "An array of drawing items"
         }
       },
@@ -203,10 +327,10 @@ export const JSON_SCHEMA : IJsonSchema = {
   "type": "object",
   "properties": {
     "bind": {
-      "$ref": "AVGBasedItemDefinitions.json#/definitions/BindingArray"
+      "$ref": "#/definitions/bindingArray"
     },
     "filters": {
-      "$ref": "AVGBasedItemDefinitions.json#/definitions/AVGFilterArray"
+      "$ref": "#/definitions/AVGFilterArray"
     },
     "when": {
       "type": "boolean",
@@ -228,7 +352,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "The opacity of the path fill."
     },
     "fillTransform": {
-      "$ref": "AVGBasedItemDefinitions.json#/definitions/Transform",
+      "$ref": "#/definitions/transform",
       "description": "Transformation applied against the fill gradient or pattern"
     },
     "pathData": {
@@ -281,7 +405,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "The opacity of the path stroke."
     },
     "strokeTransform": {
-      "$ref": "AVGBasedItemDefinitions.json#/definitions/Transform",
+      "$ref": "#/definitions/transform",
       "description": "Transform applied against the stroke gradient or pattern"
     },
     "strokeWidth": {
@@ -289,7 +413,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "The width of the path stroke."
     },
     "style": {
-      "$ref": "AVGBasedItemDefinitions.json#/definitions/Style"
+      "$ref": "#/definitions/style"
     }
   },
   "required": [

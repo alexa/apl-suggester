@@ -27,6 +27,8 @@ import { VideoComponentValidator } from './validation/validators/VideoComponentV
 import { SequenceComponentValidator } from './validation/validators/SequenceComponentValidator';
 import { ComponentValidator } from './validation/validators/ComponentValidator';
 import { ContainerComponentValidator } from './validation/validators/ContainerComponentValidator';
+import { MultiChildComponentValidator } from './validation/validators/MultiChildComponentValidator';
+
 /**
  * Entrance to validate component structure.
  * @export
@@ -56,6 +58,7 @@ export class ComponentStructureValidator {
         this.validators.push(new SequenceComponentValidator());
         this.validators.push(new TextComponentValidator());
         this.validators.push(new VideoComponentValidator());
+        this.validators.push(new MultiChildComponentValidator());
     }
 
     /**

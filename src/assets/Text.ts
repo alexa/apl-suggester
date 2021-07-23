@@ -286,6 +286,16 @@ export const JSON_SCHEMA : IJsonSchema = {
   },
   "type": "object",
   "properties": {
+    "layoutDirection": {
+      "type": "string",
+      "description": "The layoutDirection of this component and children.",
+      "default": "inherit",
+      "enum": [
+        "inherit",
+        "LTR",
+        "RTL"
+      ]
+    },
     "description": {
       "type": "string",
       "category": Categories.aboutComponent,
@@ -436,6 +446,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.padding,
       "description": "Space to add to the bottom of this object."
     },
+    "paddingStart": {
+      "$ref": "#/definitions/dimension",
+      "category": Categories.padding,
+      "description": "Space to add to the start edge of this component."
+    },
+    "paddingEnd": {
+      "$ref": "#/definitions/dimension",
+      "category": Categories.padding,
+      "description": "Space to add to the end edge of this component."
+    },
     "accessibilityLabel": {
       "type": "string",
       "category": Categories.aboutComponent,
@@ -479,7 +499,9 @@ export const JSON_SCHEMA : IJsonSchema = {
         "auto",
         "left",
         "center",
-        "right"
+        "right",
+        "start",
+        "end"
       ]
     },
     "textAlignVertical": {
@@ -544,6 +566,11 @@ export const JSON_SCHEMA : IJsonSchema = {
         "800",
         "900"
       ]
+    },
+    "lang": {
+      "type": "string",
+      "category": Categories.text,
+      "description": "The language of the text"
     },
     "letterSpacing": {
       "$ref": "#/definitions/dimension",

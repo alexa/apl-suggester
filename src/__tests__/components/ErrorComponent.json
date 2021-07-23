@@ -38,5 +38,8 @@
     ],
     "role": "image_",
     "padding": [10, "20%"],
-    "paddingBottom": 40
+    "paddingBottom": 40,
+    "paddingStart": 10,
+    "paddingEnd": "20dp",
+    "layoutDirection": "LTL"
 }

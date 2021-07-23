@@ -147,5 +147,6 @@
     "nextFocusLeft": "componentId3",
     "nextFocusRight": "componentId4",
     "nextFocusUp": "componentId5",
-    "snap": "none"
+    "snap": "none",
+    "layoutDirection": "RTL"
 }

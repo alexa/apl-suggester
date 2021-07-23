@@ -18,6 +18,8 @@ import { expect } from 'chai';
 import * as fs from 'fs';
 import { NotificationLevel } from '../IValidationInfo';
 import { GraphicSchemaValidator } from '../GraphicSchemaValidator';
+import * as AVGPathItemJSONSchema from '../assets/graphics/AVGPathItem';
+import * as AVGJSONSchema from '../assets/graphics/AVG';
 
 describe('GraphicSchemaValidator.', () => {
     const graphicSchemaValidator = GraphicSchemaValidator.getInstance();
@@ -56,6 +58,16 @@ describe('GraphicSchemaValidator.', () => {
         expect(result[8].level).to.be.equal(NotificationLevel.WARN);
         expect(result[9].path).to.be.equal('/stroke');
         expect(result[9].level).to.be.equal(NotificationLevel.WARN);
+    });
+
+    it('should return path graphic schema.', async () => {
+        const result = graphicSchemaValidator.getGraphicSchema('path');
+        expect(result).to.deep.equal(AVGPathItemJSONSchema.JSON_SCHEMA);
+    });
+
+    it('should return root graphics schema.', async () => {
+        const result = graphicSchemaValidator.getGraphicSchema('root');
+        expect(result).to.deep.equal(AVGJSONSchema.JSON_SCHEMA);
     });
 
     async function verifyGraphic(fileName : string, type : string) {

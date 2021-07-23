@@ -24,6 +24,13 @@
       "width": 960,
       "height": 600,
       "dpi": 213
+    },
+    {
+      "id": "echoShow8",
+      "name": "Echo Show 8",
+      "width": 960,
+      "height": 600,
+      "dpi": 213
     }
   ]
 }

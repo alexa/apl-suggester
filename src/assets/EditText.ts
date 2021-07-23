@@ -328,6 +328,16 @@ export const JSON_SCHEMA : IJsonSchema = {
   },
   "type": "object",
   "properties": {
+      "layoutDirection": {
+        "type": "string",
+        "description": "The layoutDirection of this component and children.",
+        "default": "inherit",
+        "enum": [
+          "inherit",
+          "LTR",
+          "RTL"
+        ]
+      },
       "accessibilityLabel": {
         "type": "string",
         "category": Categories.aboutComponent,
@@ -477,6 +487,16 @@ export const JSON_SCHEMA : IJsonSchema = {
         "$ref": "#/definitions/dimension",
         "category": Categories.padding,
         "description": "Space to add to the left of this component"
+      },
+      "paddingStart": {
+        "$ref": "#/definitions/dimension",
+        "category": Categories.padding,
+        "description": "Space to add to the start edge of this component."
+      },
+      "paddingEnd": {
+        "$ref": "#/definitions/dimension",
+        "category": Categories.padding,
+        "description": "Space to add to the end edge of this component."
       },
       "shadowColor": {
         "$ref": "#/definitions/color",
@@ -676,6 +696,11 @@ export const JSON_SCHEMA : IJsonSchema = {
         "$ref": "#/definitions/keyboardType",
         "category": Categories.aboutComponent,
         "description": "The type of keyboard to display"
+      },
+      "lang": {
+        "type": "string",
+        "category": Categories.text,
+        "description": "The language of the text"
       },
       "maxLength": {
         "type": "integer",

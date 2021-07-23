@@ -37,7 +37,7 @@ describe('TextComponentValidator', () => {
         expect(results.length).to.be.equal(2);
     });
 
-    it('should not report if all of fields are abosolute.', () => {
+    it('should not report if all of fields are absolute.', () => {
         const seedComponent = new ValidationSeed(new Seed({
             type : 'Text',
             fontSize : '100px',

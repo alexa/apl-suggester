@@ -26,3 +26,4 @@ export * from './ComponentSchemaController';
 export * from './util/VariableStringChecker';
 export * from './util/Utils';
 export * from './configs/index';
+export * from './GraphicSchemaValidator';

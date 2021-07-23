@@ -32,67 +32,71 @@
         "parameters": [
             "payload"
         ],
-        "item": {
-            "type": "Frame",
-            "width": "100%",
-            "height": "100%",
-            "backgroundColor": "white",
-            "item": {
-                "type": "Container",
+        "items": [
+            {
+                "type": "Frame",
                 "width": "100%",
                 "height": "100%",
+                "backgroundColor": "white",
                 "items": [
                     {
-                        "type": "VectorGraphic",
-                        "id": "bottomCircle",
-                        "position": "absolute",
-                        "bottom": "@bottomPadding",
-                        "left": "${viewport.width/2 - @bottomCircleWidth/2}",
-                        "source": "bottomCircle",
-                        "width": "@bottomCircleWidth",
-                        "height": "@bottomCircleWidth",
-                        "scale": "best-fit",
-                        "align": "center"
-                    },
-                    {
-                        "type": "VectorGraphic",
-                        "id": "bar",
-                        "position": "absolute",
-                        "bottom": "${@bottomPadding + @bottomCircleWidth - 11}",
-                        "left": "${viewport.width/2 - @barWidth/2}",
-                        "source": "bar",
-                        "width": "@barWidth",
-                        "height": "@barHeight",
-                        "scale": "best-fit",
-                        "align": "center"
-                    },
-                    {
-                        "type": "VectorGraphic",
-                        "id": "middleCircle",
-                        "position": "absolute",
-                        "bottom": "${@bottomPadding + @bottomCircleWidth + @barHeight - 11}",
-                        "left": "${viewport.width/2 - @middleCircleWidth/2}",
-                        "align": "center",
-                        "source": "middleCircle",
-                        "width": "@middleCircleWidth",
-                        "height": "@middleCircleWidth",
-                        "scale": "best-fit"
-                    },
-                    {
-                        "type": "VectorGraphic",
-                        "id": "square",
-                        "position": "absolute",
-                        "bottom": "${@bottomPadding + @bottomCircleWidth + @barHeight + @middleCircleWidth - 15}",
-                        "left": "${viewport.width/2 - @squareWidth/2}",
-                        "source": "square",
-                        "width": "@squareWidth",
-                        "height": "@squareWidth",
-                        "scale": "best-fit",
-                        "align": "center"
+                        "type": "Container",
+                        "width": "100%",
+                        "height": "100%",
+                        "items": [
+                            {
+                                "type": "VectorGraphic",
+                                "id": "bottomCircle",
+                                "position": "absolute",
+                                "bottom": "@bottomPadding",
+                                "left": "${viewport.width/2 - @bottomCircleWidth/2}",
+                                "source": "bottomCircle",
+                                "width": "@bottomCircleWidth",
+                                "height": "@bottomCircleWidth",
+                                "scale": "best-fit",
+                                "align": "center"
+                            },
+                            {
+                                "type": "VectorGraphic",
+                                "id": "bar",
+                                "position": "absolute",
+                                "bottom": "${@bottomPadding + @bottomCircleWidth - 11}",
+                                "left": "${viewport.width/2 - @barWidth/2}",
+                                "source": "bar",
+                                "width": "@barWidth",
+                                "height": "@barHeight",
+                                "scale": "best-fit",
+                                "align": "center"
+                            },
+                            {
+                                "type": "VectorGraphic",
+                                "id": "middleCircle",
+                                "position": "absolute",
+                                "bottom": "${@bottomPadding + @bottomCircleWidth + @barHeight - 11}",
+                                "left": "${viewport.width/2 - @middleCircleWidth/2}",
+                                "align": "center",
+                                "source": "middleCircle",
+                                "width": "@middleCircleWidth",
+                                "height": "@middleCircleWidth",
+                                "scale": "best-fit"
+                            },
+                            {
+                                "type": "VectorGraphic",
+                                "id": "square",
+                                "position": "absolute",
+                                "bottom": "${@bottomPadding + @bottomCircleWidth + @barHeight + @middleCircleWidth - 15}",
+                                "left": "${viewport.width/2 - @squareWidth/2}",
+                                "source": "square",
+                                "width": "@squareWidth",
+                                "height": "@squareWidth",
+                                "scale": "best-fit",
+                                "align": "center"
+                            }
+                        ]
                     }
                 ]
             }
-        }
+        ]
     },
     "onMount": [
         {

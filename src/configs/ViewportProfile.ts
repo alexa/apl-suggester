@@ -83,6 +83,8 @@ export interface IViewportProfile {
     dpSizeRange : IViewportProfileSizeRange;
     exampleDevices : IViewport[];
     isCustom? : boolean;
+    label? : string;
+    svgIcon? : string;
 }
 
 /**
@@ -107,6 +109,9 @@ export interface IViewport {
     fullscreenDeviceId? : string;
     fullscreenHeight? : number;
     fullscreenWidth? : number;
+    fullScreenViewportProfile? : string;
+    fullScreenViewportProfileLabel? : string;
+    svgIcon? : string;
 }
 
 /**

@@ -45,10 +45,15 @@ describe('ComponentSchemaController.', () => {
 
     it('should validate Container component.', async () => {
         const containerDefinitions = fs.readdirSync(`src/__tests__/components/`)
-            .filter((fileName) => fileName.startsWith('Container'));
+            .filter((fileName) => fileName.startsWith('Container') &&
+                !fileName.startsWith('ContainerChildWith'));
         for (const fileName of containerDefinitions) {
             await verifyComponent(fileName, 'Container');
         }
+    });
+
+    it('should validate ContainerChild component.', async () => {
+        await verifyComponent('ContainerChildWithFrame.json', 'Frame', 'Container');
     });
 
     it('should validate Frame component.', async () => {
@@ -75,23 +80,25 @@ describe('ComponentSchemaController.', () => {
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/components/ErrorComponent.json`, 'utf8');
         const result = await componentSchemaController.validateComponent({}, JSON.parse(data), 'Image');
-        expect(result.length).to.be.equal(6);
+        expect(result.length).to.be.equal(7);
         expect(result[0].path).to.be.equal('/');
         expect(result[0].level).to.be.equal(NotificationLevel.WARN);
         expect(result[0].errorMessage.indexOf('position') > 0).to.be.equal(true);
         expect(result[1].path).to.be.equal('/');
         expect(result[1].level).to.be.equal(NotificationLevel.WARN);
         expect(result[1].errorMessage.indexOf('scrim') > 0).to.be.equal(true);
-        expect(result[2].path).to.be.equal('/width');
+        expect(result[2].path).to.be.equal('/layoutDirection');
         expect(result[2].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[3].path).to.be.equal('/actions/0');
-        expect(result[3].errorMessage.indexOf('name') > 0).to.be.equal(true);
+        expect(result[3].path).to.be.equal('/width');
         expect(result[3].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[4].path).to.be.equal('/actions/1/enabled');
-        expect(result[4].errorMessage.indexOf('boolean') > 0).to.be.equal(true);
+        expect(result[4].path).to.be.equal('/actions/0');
+        expect(result[4].errorMessage.indexOf('name') > 0).to.be.equal(true);
         expect(result[4].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[5].path).to.be.equal('/role');
+        expect(result[5].path).to.be.equal('/actions/1/enabled');
+        expect(result[5].errorMessage.indexOf('boolean') > 0).to.be.equal(true);
         expect(result[5].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[6].path).to.be.equal('/role');
+        expect(result[6].level).to.be.equal(NotificationLevel.WARN);
     });
 
     it('should validate Image component correctly with mixin support.', async () => {
@@ -158,10 +165,10 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('Video.json', 'Video');
     });
 
-    async function verifyComponent(fileName : string, componentType : string) {
+    async function verifyComponent(fileName : string, componentType : string, parentComponent? : string) {
         const data = fs.readFileSync(`src/__tests__/components/${fileName}`, 'utf8');
-        const result =
-         await componentSchemaController.validateComponent(aplTemplate, JSON.parse(data), componentType);
+        const result = await componentSchemaController.validateComponent(aplTemplate, JSON.parse(data),
+                componentType, parentComponent);
         expect(result.length).to.be.equal(0);
     }
 });

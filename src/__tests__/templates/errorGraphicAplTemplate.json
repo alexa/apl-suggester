@@ -1,15 +1,11 @@
 {
   "type": "APL",
   "version": "1.4",
-  "lang": "en-US",
-  "layoutDirection": "LTR",
   "graphics": {
     "parameterizedCircle": {
       "type": "AVG",
       "version": "1.2",
-      "lang": "ar-AE",
-      "layoutDirection": "RTL",
-      "height": 100,
+      "height": "sss",
       "width": 100,
       "parameters": [
         { "name": "circleColor", "type": "color", "default": "black" },
@@ -17,7 +13,7 @@
       ],
       "items": [
         {
-          "type": "path",
+          "type": "pathh",
           "pathData": "M25,50 a25,25 0 1 1 50,0 a25,25 0 1 1 -50,0",
           "stroke": "${circleColor}",
           "strokeWidth": "${circleBorderWidth}",
@@ -38,9 +34,14 @@
         "source": "parameterizedCircle",
         "width": 100,
         "height": 100,
-        "circleColor": "red",
-        "circleBorderWidth": 5
-      }
+        "circleColor": "${data.color}",
+        "circleBorderWidth": "${data.width}"
+      },
+      "data": [
+        { "color": "red", "width": 5 },
+        { "color": "green", "width": 10 },
+        { "color": "blue", "width": 15 }
+      ]
     }
   }
 }

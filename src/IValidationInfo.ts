@@ -31,12 +31,26 @@ export interface IValidationInfo {
      */
     errorMessage : string;
     /**
-     * error message.
+     * notification level.
      */
     level? : NotificationLevel;
+    /**
+     * message with link.
+     */
+    errorMessageWithLink? : string;
+    /**
+     * message link values.
+     */
+    errorMessageLinkValues? : IMessageLinkValue[];
 }
 
 export enum NotificationLevel {
     ERROR = 'ERROR',
     WARN = 'WARNING'
+}
+
+export interface IMessageLinkValue {
+    linkId : string;
+    linkText : string;
+    linkUrl : string;
 }
