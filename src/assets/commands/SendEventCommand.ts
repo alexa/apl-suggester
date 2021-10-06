@@ -25,6 +25,22 @@ export const JSON_SCHEMA : IJsonSchema = {
         "type": "string"
       }
     },
+    "any": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    }
   },
   "type": "object",
   "properties": {
@@ -59,6 +75,15 @@ export const JSON_SCHEMA : IJsonSchema = {
     "components": {
       "$ref": "#/definitions/stringArray",
       "description": "An array of components to extract value data from and provide to Alexa."
+    },
+    "flags": {
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/definitions/any",
+          "description": "Flag that may be used by the runtime."
+        }
+      },
+      "description": "Optional map of flags that may be used by the runtime."
     }
   },
   "required": [

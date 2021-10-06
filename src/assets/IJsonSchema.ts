@@ -68,7 +68,7 @@ export interface IJsonSchema extends Object {
     type? : string | string[] | object;
 
     /**
-     * Indicate whether addtional properties is allowed.
+     * Indicate whether additional properties is allowed.
      */
     additionalProperties? : boolean;
 
@@ -130,5 +130,6 @@ export enum Categories {
     padding = 'Padding',
     alignmentAndPosition = 'Alignment and Position',
     gridSequence = 'GridSequence',
-    editText = 'EditText'
+    editText = 'EditText',
+    extension = 'ExtensionComponent'
 }

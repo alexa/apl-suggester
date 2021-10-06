@@ -1,8 +1,10 @@
 {
     "type": "APL",
     "version": "1.5",
-    "lang": "zh-CN",
-    "layoutDirection": "LTR",
+    "environment": {
+        "lang": "zh-CN",
+        "layoutDirection": "LTR"
+    },
     "layouts": {
         "MyLayout": {
             "description": "A basic layout for testing",

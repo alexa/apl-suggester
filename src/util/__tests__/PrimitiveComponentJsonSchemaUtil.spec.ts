@@ -22,9 +22,9 @@ import { IJsonSchema } from '../../assets/IJsonSchema';
 
 describe('PrimitiveComponentJsonSchemaUtil', () => {
     it('should primitive component types correctly.', () => {
-        expect(PrimitiveComponentJsonSchemaUtil.getPrimitiveComponentTypes().length).to.be.equal(12);
+        expect(PrimitiveComponentJsonSchemaUtil.getPrimitiveComponentTypes().length).to.be.equal(13);
         expect(PrimitiveComponentJsonSchemaUtil.getPrimitiveComponentTypes('1.0').length).to.be.equal(9);
-        expect(PrimitiveComponentJsonSchemaUtil.getPrimitiveComponentTypes('1.3').length).to.be.equal(12);
+        expect(PrimitiveComponentJsonSchemaUtil.getPrimitiveComponentTypes('1.3').length).to.be.equal(13);
     });
 
     it('should get primitive component schema correctly if apl version is 1.3.', () => {
@@ -57,7 +57,7 @@ describe('PrimitiveComponentJsonSchemaUtil', () => {
         expect(jsonschema.properties['type']['type']).to.be.equal('string'); // Component
         expect(jsonschema.properties['checked']).to.be.equal(undefined); // not defined in APL 1.0
         expect(jsonschema.properties['id']['type']).to.be.equal('string'); // Component
-        expect(jsonschema.properties['source']['$ref']).to.be.equal('#/definitions/url'); // Image
+        expect(jsonschema.properties['source']['$ref']).to.be.equal('#/definitions/Source'); // Image
         expect(jsonschema.properties['grow']['type']).to.be.equal('number'); // ContainerChild
         expect(jsonschema.properties['numbering']['type']).to.be.equal('string'); // ContainerChild
     });

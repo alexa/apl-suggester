@@ -17,14 +17,12 @@
 /* tslint:disable */
 'use strict';
 import * as commonDefinition from "./CommonDefinition";
-import { IJsonSchema, Categories } from './IJsonSchema';
+import {Categories, IJsonSchema} from './IJsonSchema';
 
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "url": {
-      "type": "string"
-    },
+    "url": commonDefinition.Url,
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
     "dimension": {
@@ -562,6 +560,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       },
       "additionalProperties": false
     },
+    "Source": commonDefinition.Source
   },
   "type": "object",
   "properties": {
@@ -751,7 +750,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "Role or purpose of the component."
     },
     "source": {
-      "$ref": "#/definitions/url",
+      "$ref": "#/definitions/Source",
       "category": Categories.image,
       "description": "The URL to download the image from"
     },
@@ -825,6 +824,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/dimension",
       "category": Categories.container,
       "description": "Vertical offset of the shadow"
+    },
+    "onLoad": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.aboutComponent,
+      "description": "Command(s) to execute when all sources have loaded"
+    },
+    "onFail": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.aboutComponent,
+      "description": "Command(s) to execute if any source fails to load"
     }
   },
   "required": [

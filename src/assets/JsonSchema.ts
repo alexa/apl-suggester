@@ -1386,6 +1386,22 @@ export const JSON_SCHEMA : IJsonSchema = {
         "name",
         "uri"
       ]
+    },
+    "Environment": {
+      "properties": {
+        "lang": {
+          "type": "string",
+          "description": "Document level language."
+        },
+        "layoutDirection": {
+          "type": "string",
+          "description": "Document level layout direction.",
+          "enum": [
+            "LTR",
+            "RTL"
+          ]
+        }
+      }
     }
   },
   "type": "object",
@@ -1429,17 +1445,9 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/ImportArray",
       "description": "A list of references to external packages."
     },
-    "lang": {
-      "type": "string",
-      "description": "Document level language."
-    },
-    "layoutDirection": {
-      "type": "string",
-      "description": "Document level layout direction.",
-      "enum": [
-        "LTR",
-        "RTL"
-      ]
+    "environment": {
+      "$ref": "#/definitions/Environment",
+      "description": "The environment property is used to override system default environment settings."
     },
     "mainTemplate": {
       "$ref": "#/definitions/Layout",
@@ -1448,6 +1456,10 @@ export const JSON_SCHEMA : IJsonSchema = {
     "onConfigChange": {
       "$ref": "#/definitions/CommandArray",
       "description": "A list of commands to execute when the document configuration changes."
+    },
+    "onDisplayStateChange": {
+      "$ref": "#/definitions/CommandArray",
+      "description": "A list of the commands to execute whenever the display state of the document changes"
     },
     "onMount": {
       "$ref": "#/definitions/CommandArray",
@@ -1499,7 +1511,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.4",
         "1.5",
         "1.6",
-        "1.7"
+        "1.7",
+        "1.8"
       ]
     },
     "license": {

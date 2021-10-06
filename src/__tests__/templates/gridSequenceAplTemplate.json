@@ -1,8 +1,10 @@
 {
   "type": "APL",
   "version": "1.4",
-  "lang": "ja-JP",
-  "layoutDirection": "LTR",
+  "environment": {
+    "lang": "ja-JP",
+    "layoutDirection": "LTR"
+  },
   "import": [
     {
       "name": "alexa-layouts",

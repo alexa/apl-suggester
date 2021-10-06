@@ -88,3 +88,33 @@ export const Action = {
         "name"
     ]
 };
+// only do very relax validation on url string by default
+export const Url = {
+    "type": "string"
+};
+export const UrlWithHeaders = {
+    "type": "object",
+    "properties": {
+        "url": Url,
+        "headers": {
+            "$ref": "#/definitions/stringArray"
+        },
+        "description": {
+            "type": "string"
+        },
+    },
+    "required": ["url"],
+    "additionalProperty": false
+};
+export const Source = {
+    "oneOf": [
+        Url,
+        UrlWithHeaders,
+        {
+            "type": "array",
+            "items": {
+                "oneOf": [Url, UrlWithHeaders]
+            }
+        }
+    ]
+}

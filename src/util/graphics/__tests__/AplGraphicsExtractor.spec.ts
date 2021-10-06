@@ -23,6 +23,7 @@ describe('AplGraphicsExtractor tests', () => {
         graphics: {
             shape1: {
                 type: 'AVG',
+                JSON_PATH: '/graphics/shape1/',
                 items: [
                     {
                         type: 'path'
@@ -71,5 +72,11 @@ describe('AplGraphicsExtractor tests', () => {
         expect(graphics.length).to.be.equal(9);
         // all graphics should contain jsonPath
         expect(graphics.filter((g) => g.jsonPath === undefined)).to.have.lengthOf(0);
+    });
+
+    it('should be able to remove JSON_PATH property from graphics', async () => {
+        await aplGraphicsExtractor.clearJsonPath(APL_DOC);
+        // the graphic shape1 shouldn't have 'JSON_PATH'
+        expect(APL_DOC['graphics']['shape1']['JSON_PATH']).to.be.an('undefined');
     });
 });

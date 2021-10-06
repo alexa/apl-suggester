@@ -552,6 +552,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.sequence,
       "description": "A child component to put at the end of the layout"
     },
+    "animateChildAdded": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.sequence,
+      "description": "Animation commands to execute when a child component is added"
+    },
+    "animateChildRemoved": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.sequence,
+      "description": "Animation commands to execute when a child component is removed"
+    },
     "numbered": {
       "type": "boolean",
       "category": Categories.sequence,

@@ -22,9 +22,7 @@ import { IJsonSchema, Categories } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "url": {
-      "type": "string"
-    },
+    "url": commonDefinition.Url,
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
     "dimension": {
@@ -203,6 +201,9 @@ export const JSON_SCHEMA : IJsonSchema = {
           "type": "integer",
           "description": "Duration of the track in milliseconds"
         },
+        "headers": {
+          "$ref": "#/definitions/stringArray"
+        },
         "url": {
           "$ref": "#/definitions/urlDefinition",
           "description": "The actual URL to load the video from"
@@ -222,37 +223,32 @@ export const JSON_SCHEMA : IJsonSchema = {
       ],
       "type": "object"
     },
-    "string,videoTrackArray": {
+    "videoTrackArray": {
       "type": "array",
       "items": {
         "oneOf": [
           {
             "$ref": "#/definitions/videoTrack"
           },
-          {
-            "type": "string"
-          }
+          commonDefinition.Url,
         ]
       }
     },
     "urlDefinition": {
       "oneOf": [
         {
-          "$ref": "#/definitions/stringArray"
+          "type": "array",
+          "items": commonDefinition.Url
         },
-        {
-          "type": "string"
-        }
+        commonDefinition.Url
       ]
     },
     "sourceDefinition": {
       "oneOf": [
         {
-          "$ref": "#/definitions/string,videoTrackArray"
+          "$ref": "#/definitions/videoTrackArray"
         },
-        {
-          "type": "string"
-        },
+        commonDefinition.Url,
         {
           "$ref": "#/definitions/videoTrack"
         }
@@ -616,6 +612,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/CommandArray",
       "category": Categories.video,
       "description": "Commands to execute when the current video track changes."
+    },
+    "onTrackReady": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.video,
+      "description": "Commands to execute when the current track state changes to ready."
+    },
+    "onTrackFail": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.video,
+      "description": "Commands to execute when an error occurs and media cannot be played."
     }
   },
   "required": [

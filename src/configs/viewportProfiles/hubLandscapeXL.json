@@ -1,0 +1,22 @@
+{
+  "id": "hubLandscapeExtraLarge",
+  "name": "Hub Landscape Extra Large",
+  "mode": "hub",
+  "shape": "rectangle",
+  "type": "standard",
+  "dpSizeRange": {
+    "minWidth": 1920,
+    "maxWidth": 2560,
+    "minHeight": 960,
+    "maxHeight": 1279
+  },
+  "exampleDevices": [
+    {
+      "id": "hoyaLandscape",
+      "name": "Echo Show 15 (Landscape)",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 160
+    }
+  ]
+}

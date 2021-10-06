@@ -1,0 +1,31 @@
+{
+  "type": "Fish:HealthMonitor",
+  "id": "TankMonitor",
+  "screenMode": "${environment.screenMode}",
+  "width": "50vw",
+  "height": "100vh",
+  "onMount": {
+    "type": "Fish:AutoCycleHealthMonitors",
+    "seconds": 30
+  },
+  "monitors": {
+    "Temperature": {
+      "low": 78,
+      "high": 82
+    },
+    "ph": {
+      "low": 8.0,
+      "high": 8.4
+    },
+    "Ammonia": {
+      "low": 0,
+      "high": 0
+    }
+  },
+  "monitorId": "Temperature",
+  "OnHealthAlarm": {
+    "type": "Fish:SendTextMessage",
+    "phone": "${tankOwner.mobile}",
+    "text": "Tank alarm ${event.monitorName} current value is ${event.monitorValue}"
+  }
+}

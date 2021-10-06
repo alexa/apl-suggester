@@ -1,60 +1,105 @@
 {
     "type": "APL",
-    "version": "1.6",
+    "version": "1.8",
     "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "theme": "dark",
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.3.0"
+            "version": "1.4.0"
         }
     ],
     "resources": [
         {
             "description": "Default dimensions for the PaginatedList.",
             "dimensions": {
-                "textComponentMaxWidth": "100%",
-                "pageCounterHeight": "${@fontSizeMedium * @lineHeightMedium}",
-                "pageCounterPaddingBottom": "@spacingMedium",
-                "pagerPaddingBottom": "@spacingLarge",
-                "paginatedListItemHorizontalMargin": "@marginHorizontal",
-                "primaryTextBottomPadding": "@spacingXSmall",
-                "secondaryTextBottomPadding": "@spacing3XSmall",
-                "contentPaddingTop": "0",
-                "contentPaddingLeft": "@paginatedListItemHorizontalMargin",
-                "contentPaddingRight": "@paginatedListItemHorizontalMargin",
-                "contentMaxWidth": "100%"
+                "paginatedListTextComponentMaxWidth": "100%",
+                "paginatedListPageCounterHeight": "${@fontSizeMedium * @lineHeightNormal}",
+                "paginatedListPageCounterPaddingBottom": "@spacingMedium",
+                "paginatedListPageCounterPaddingTop": "@spacingXSmall",
+                "paginatedListHorizontalMargin": "@marginHorizontal",
+                "paginatedListPrimaryTextPaddingBottom": "@spacing3XSmall",
+                "paginatedListSecondaryTextPaddingBottom": "@spacing3XSmall",
+                "paginatedListTertiaryTextPaddingBottom": "${@paginatedListPageCounterHeight + @paginatedListPageCounterPaddingBottom + @paginatedListPageCounterPaddingTop}",
+                "paginatedListPrimaryTextMaxWidth": "100%",
+                "paginatedListContentPaddingTop": "0",
+                "paginatedListContentPaddingLeft": "@paginatedListHorizontalMargin",
+                "paginatedListContentPaddingRight": "@paginatedListHorizontalMargin",
+                "paginatedListContentMaxWidth": "100%"
             },
             "number": {
-                "primaryTextMaxLines": 2
+                "paginatedListPrimaryTextMaxLines": 2
             },
             "string": {
-                "textAlignment": "center",
-                "contentAlignment": "end",
-                "pageCounterAlignment": "center"
+                "paginatedListTextAlignment": "center",
+                "paginatedListContentAlignment": "end",
+                "paginatedListPageCounterAlignment": "center",
+                "paginatedListPrimaryTextStyle": "textStyleDisplay5",
+                "paginatedListSecondaryTextStyle": "textStyleBody",
+                "paginatedListTertiaryTextStyle": "textStyleBody"
             }
         },
         {
             "description": "Dimensions for the PaginatedList - tvLandscapeXLarge.",
             "when": "${@viewportProfile == @tvLandscapeXLarge}",
             "dimensions": {
-                "contentMaxWidth": "560dp",
-                "paginatedListItemHorizontalMargin": "auto"
+                "paginatedListContentMaxWidth": "560dp",
+                "paginatedListHorizontalMargin": "auto"
             }
         },
         {
             "description": "Dimensions for the PaginatedList - hubRound.",
             "when": "${@viewportProfileCategory == @hubRound}",
             "dimensions": {
-                "pagerPaddingBottom": "@spacingSmall",
-                "primaryTextBottomPadding": "@spacing3XSmall"
+                "paginatedListPageCounterPaddingTop": "@spacingSmall",
+                "paginatedListPrimaryTextPaddingBottom": "@spacing3XSmall"
             }
         },
         {
             "description": "Dimensions for the PaginatedList - hubLandscapeSmall.",
             "when": "${@viewportProfile == @hubLandscapeSmall}",
             "dimensions": {
-                "pagerPaddingBottom": "@spacingSmall"
+                "paginatedListPageCounterPaddingTop": "@spacingSmall"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - tvLandscapeOverlay.",
+            "when": "${@viewportProfile == @tvLandscapeOverlay}",
+            "dimensions": {
+                "paginatedListPageCounterPaddingBottom": "@spacingXLarge",
+                "paginatedListPageCounterPaddingTop": "0",
+                "paginatedListContentPaddingTop": "64dp",
+                "paginatedListContentMaxWidth": "560dp",
+                "paginatedListPrimaryTextPaddingBottom": "0",
+                "paginatedListSecondaryTextPaddingBottom": "0"
+            },
+            "string": {
+                "paginatedListContentAlignment": "start"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - mobile.",
+            "when": "${@viewportProfileGroup == @mobile}",
+            "dimensions": {
+                "paginatedListPageCounterPaddingTop": "@spacingLarge"
+            },
+            "string": {
+                "paginatedListSecondaryTextStyle": "textStyleCallout",
+                "paginatedListTertiaryTextStyle": "textStyleCallout"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - mobileMedium",
+            "when": "${@viewportProfile == @mobileMedium}",
+            "dimensions": {
+                "paginatedListPrimaryTextMaxWidth": "758dp"
+            }
+        },
+        {
+            "description": "Dimensions for the PaginatedList - mobileLarge",
+            "when": "${@viewportProfile == @mobileLarge}",
+            "dimensions": {
+                "paginatedListPrimaryTextMaxWidth": "1025dp"
             }
         }
     ],
@@ -82,9 +127,20 @@
                     "type": "string"
                 },
                 {
+                    "name": "speech",
+                    "description": "The command that is triggered when the list item is selected.",
+                    "type": "any"
+                },
+                {
                     "name": "entities",
                     "description": "Array of entity data bind to this layout",
                     "type": "any"
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection of AlexaPaginatedListItem. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string",
+                    "default": "${environment.layoutDirection}"
                 }
             ],
             "items": [
@@ -92,8 +148,10 @@
                     "type": "Container",
                     "height": "100%",
                     "width": "100%",
-                    "alignItems": "@textAlignment",
-                    "justifyContent": "@contentAlignment",
+                    "layoutDirection": "${layoutDirection}",
+                    "alignItems": "@paginatedListTextAlignment",
+                    "justifyContent": "@paginatedListContentAlignment",
+                    "speech": "${speech}",
                     "entities": "${entities}",
                     "items": [
                         {
@@ -111,44 +169,48 @@
                         },
                         {
                             "type": "Container",
-                            "position": "relative",
-                            "alignItems": "@textAlignment",
-                            "justifyContent": "@contentAlignment",
-                            "bottom": "${@pageCounterHeight + @pageCounterPaddingBottom}",
-                            "paddingLeft": "@contentPaddingLeft",
-                            "paddingRight": "@contentPaddingLeft",
-                            "paddingTop": "${@contentPaddingTop}",
-                            "maxWidth": "@contentMaxWidth",
+                            "position": "${@viewportProfile == @tvLandscapeOverlay ? 'absolute': 'relative'}",
+                            "alignItems": "@paginatedListTextAlignment",
+                            "justifyContent": "@paginatedListContentAlignment",
+                            "bottom": "${@viewportProfile != @tvLandscapeOverlay ? 0 : @paginatedListPageCounterHeight + @paginatedListPageCounterPaddingBottom}",
+                            "paddingLeft": "@paginatedListContentPaddingLeft",
+                            "paddingRight": "@paginatedListContentPaddingLeft",
+                            "paddingTop": "${@viewportProfile == @tvLandscapeOverlay ? 0 : @paginatedListContentPaddingTop}",
+                            "maxWidth": "@paginatedListContentMaxWidth",
                             "items":[
                                 {
                                     "type": "Text",
                                     "text": "${primaryText}",
-                                    "style": "textStyleDisplay5",
-                                    "fontWeight": "@fontWeightBold",
+                                    "style": "@paginatedListPrimaryTextStyle",
+                                    "fontWeight": "@fontWeightMedium",
                                     "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
-                                    "paddingBottom": "@primaryTextBottomPadding",
-                                    "textAlign": "@textAlignment",
-                                    "maxLines": "@primaryTextMaxLines",
+                                    "paddingBottom": "@paginatedListPrimaryTextPaddingBottom",
+                                    "textAlign": "@paginatedListTextAlignment",
+                                    "maxLines": "@paginatedListPrimaryTextMaxLines",
+                                    "opacity": 1,
+                                    "maxWidth": "@paginatedListPrimaryTextMaxWidth",
                                     "inheritParentState": true
                                 },
                                 {
                                     "type": "Text",
                                     "text": "${secondaryText}",
-                                    "style": "textStyleBody",
+                                    "style": "@paginatedListSecondaryTextStyle",
                                     "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
-                                    "paddingBottom": "@secondaryTextBottomPadding",
-                                    "textAlign": "@textAlignment",
+                                    "paddingBottom": "@paginatedListSecondaryTextPaddingBottom",
+                                    "textAlign": "@paginatedListTextAlignment",
                                     "maxLines": 1,
+                                    "opacity": "@opacitySecondary",
                                     "inheritParentState": true
                                 },
                                 {
                                     "type": "Text",
                                     "text": "${tertiaryText}",
-                                    "style": "textStyleBody",
+                                    "style": "@paginatedListTertiaryTextStyle",
                                     "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
                                     "maxLines": 1,
-                                    "paddingBottom": "${@pageCounterHeight + @pageCounterPaddingBottom + @pagerPaddingBottom}",
-                                    "textAlign": "@textAlignment",
+                                    "paddingBottom": "${@viewportProfile == @tvLandscapeOverlay ? 0: @paginatedListTertiaryTextPaddingBottom}",
+                                    "textAlign": "@paginatedListTextAlignment",
+                                    "opacity": "@opacitySecondary",
                                     "inheritParentState": true
                                 }
                             ]
@@ -298,9 +360,26 @@
                     "type": "any"
                 },
                 {
+                    "name": "listId",
+                    "type": "string",
+                    "default": "alexaPaginatedList",
+                    "description": "The component id for the scrolling list in this layout"
+                },
+                {
+                    "name": "speechItems",
+                    "description": "Array of speech items",
+                    "type": "any"
+                },
+                {
                     "name": "entities",
                     "description": "Array of entity data bind to this layout",
                     "type": "any"
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection of AlexaPaginatedList. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string",
+                    "default": "${environment.layoutDirection}"
                 }
             ],
             "items": [
@@ -308,6 +387,8 @@
                     "type": "Container",
                     "width": "100%",
                     "height": "100%",
+                    "layoutDirection": "${layoutDirection}",
+                    "speech": "${speechItems[index].speech}",
                     "entities": "${entities}",
                     "items": [
                         {
@@ -317,7 +398,7 @@
                             "items": [
                                 {
                                     "type": "Pager",
-                                    "id": "alexaPaginatedList",
+                                    "id": "${listId}",
                                     "position": "absolute",
                                     "navigation": "normal",
                                     "data": "${listItems}",
@@ -327,6 +408,7 @@
                                     "item": [
                                         {
                                             "type": "TouchWrapper",
+                                            "speech": "${speechItems[index].speech}",
                                             "width": "100%",
                                             "height": "100%",
                                             "onPress": "${data.primaryAction ? data.primaryAction : primaryAction}",
@@ -339,11 +421,13 @@
                                                     "item": [
                                                         {
                                                             "type": "AlexaPaginatedListItem",
-                                                            "maxWidth": "@textComponentMaxWidth",
+                                                            "layoutDirection": "${layoutDirection}",
+                                                            "maxWidth": "@paginatedListTextComponentMaxWidth",
                                                             "primaryText": "${data.primaryText}",
                                                             "secondaryText": "${data.secondaryText}",
                                                             "tertiaryText": "${data.tertiaryText}",
                                                             "backgroundImageSource": "${data.imageSource && data.imageSource != '' ? data.imageSource : backgroundImageSource}",
+                                                            "speech": "${speechItems[index].speech}",
                                                             "entities": "${data.entities ? data.entities : entities}"
                                                         }
                                                     ]
@@ -365,17 +449,18 @@
                                     "totalPages": "${listItems.length}",
                                     "type": "AlexaPageCounter",
                                     "position": "absolute",
-                                    "justifyContent": "@pageCounterAlignment",
+                                    "justifyContent": "@paginatedListPageCounterAlignment",
                                     "paddingLeft": "@pageCounterPaddingLeft",
                                     "theme":"${theme}",
-                                    "bottom": "@pageCounterPaddingBottom",
+                                    "bottom": "@paginatedListPageCounterPaddingBottom",
                                     "width": "100%"
                                 },
                                 {
                                     "type": "AlexaHeader",
                                     "theme": "${theme}",
+                                    "layoutDirection": "${layoutDirection}",
                                     "headerTitle": "${headerTitle}",
-                                    "headerSubtitle": "${headerSubtitle}",
+                                    "headerSubtitle": "${@viewportProfile == @tvLandscapeOverlay ? '' : headerSubtitle}",
                                     "headerAttributionText": "${headerAttributionText}",
                                     "headerAttributionImage": "${headerAttributionImage}",
                                     "headerAttributionPrimacy": "${headerAttributionPrimacy}",

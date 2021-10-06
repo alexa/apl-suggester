@@ -137,10 +137,17 @@ export class AplComponentsExtractor {
         return {
             jsonObject: rawComponent,
             jsonPath,
-            componentType: rawComponent['type'],
-            parentComponentType: parentComponent['type'],
+            componentType: this.isExtensionComponent(rawComponent['type'])
+                ? 'ExtensionComponent' : rawComponent['type'],
+            parentComponentType: this.isExtensionComponent(parentComponent['type'])
+                ? 'ExtensionComponent' : parentComponent['type'],
             parentComponent
         };
+    }
+
+    private isExtensionComponent(type : string) : boolean {
+        const regex = new RegExp('^\\w+:\\w+$');
+        return regex.test(type);
     }
 
     private generateMixinParent(components : IAplComponent[], aplComponentTypes : string[]) {

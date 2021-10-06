@@ -1,5 +1,10 @@
 {
   "type": "SendEvent",
   "arguments": [ "he bought it" ],
-  "sequencer": "MAIN"
+  "sequencer": "MAIN",
+  "flags": {
+    "flag1": true,
+    "flag2": "string value",
+    "flag3": 3
+  }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "Image",
+  "source": [
+    {
+      "url": "https://hello.com"
+    },
+    "https://hello.com",
+    "${some_expression}",
+    {
+      "url": "https://hello.com",
+      "description": "test",
+      "headers": ["key1: value1", "key2: value2"]
+    }
+  ],
+  "scale": "best-fill",
+  "width": "100vw"
+}

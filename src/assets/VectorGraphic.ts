@@ -21,9 +21,7 @@ import { IJsonSchema, Categories } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "url": {
-      "type": "string"
-    },
+    "url": commonDefinition.Url,
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
     "dimension": {
@@ -406,6 +404,9 @@ export const JSON_SCHEMA : IJsonSchema = {
       },
       "additionalProperties": false
     },
+    "Source": {
+      "oneOf": [ commonDefinition.UrlWithHeaders, { "type": "string" } ],
+    },
   },
   "type": "object",
   "properties": {
@@ -632,7 +633,7 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "source": {
       "category": Categories.vectorGraphic,
-      "$ref": "#/definitions/url",
+      "$ref": "#/definitions/Source",
       "description": "The URL or direct reference to a vector graphic."
     },
     "scale": {
@@ -720,6 +721,16 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/CommandArray",
       "category": Categories.aboutComponent,
       "description": "Commands to execute when releasing the pointer."
+    },
+    "onLoad": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.aboutComponent,
+      "description": "Command(s) to execute when all sources have loaded"
+    },
+    "onFail": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.aboutComponent,
+      "description": "Command(s) to execute if any source fails to load"
     }
   },
   "required": [

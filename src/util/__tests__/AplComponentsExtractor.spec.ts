@@ -35,6 +35,9 @@ describe('AplComponentsExtractor tests', () => {
                                 type : 'VerticalListItem'
                             }
                         ]
+                    },
+                    {
+                        type : 'Extension:Component'
                     }
                 ]
             },
@@ -86,7 +89,7 @@ describe('AplComponentsExtractor tests', () => {
     it('should be able to extract all components from requested APL template', () => {
         const components : IAplComponent[] = aplComponentsExtractor.extractComponents(APL_DOC);
         // the component count should be expected
-        expect(components.length).to.be.equal(10);
+        expect(components.length).to.be.equal(11);
         // all components should contain jsonPath
         expect(components.filter((c) => c.jsonPath === undefined)).to.have.lengthOf(0);
         // the component parent should be expected.
@@ -96,13 +99,15 @@ describe('AplComponentsExtractor tests', () => {
         .to.be.equal('mainTemplate');
         expect(components.filter((c) => c.componentType === 'Container')[0].parentComponentType)
         .to.be.equal('Sequence');
+        expect(components.filter((c) => c.componentType === 'ExtensionComponent')[0].parentComponentType)
+            .to.be.equal('mainTemplate');
     });
 
     it('should still success for undefined layout or mainTemplate', () => {
         const aplWithoutMainTemplate = JSON.parse(JSON.stringify(APL_DOC));
         delete aplWithoutMainTemplate.mainTemplate;
         const componentsWithoutMainTemplate = aplComponentsExtractor.extractComponents(aplWithoutMainTemplate);
-        expect(componentsWithoutMainTemplate.length).to.be.equal(8);
+        expect(componentsWithoutMainTemplate.length).to.be.equal(9);
 
         const aplWithoutLayout = JSON.parse(JSON.stringify(APL_DOC));
         delete aplWithoutLayout.layouts;

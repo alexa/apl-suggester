@@ -2,8 +2,10 @@
     "type": "APL",
     "version": "1.0",
     "theme": "dark",
-    "lang": 1,
-    "layoutDirection": "LTL",
+    "environment" : {
+        "lang": 1,
+        "layoutDirection": "LTL"
+    },
     "import": [
         {
             "name": "alexa-layouts",
@@ -229,5 +231,6 @@
     },
     "onConfigChange": [{
         "type": "Reinflate"
-    }]
+    }],
+    "onDisplayStateChange": ["hello"]
 }

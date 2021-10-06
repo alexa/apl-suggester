@@ -1,12 +1,12 @@
 {
     "type": "APL",
-    "version": "1.6",
+    "version": "1.8",
     "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "theme": "dark",
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.3.0"
+            "version": "1.4.0"
         }
     ],
     "resources": [
@@ -15,10 +15,28 @@
             "dimensions": {
                 "primaryTextMaxWidth": "100%",
                 "secondaryTextMaxWidth": "100%",
+                "secondaryTextTopPadding": "@spacingXSmall",
                 "contentPaddingLeft": "@marginHorizontal"
+            },
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 2
             },
             "strings": {
                 "textComponentAlign": "center"
+            }
+        },
+        {
+            "description": "Dimensions for the AlexaHeadline - hubLandscapeLarge.",
+            "when": "${@viewportProfile == @hubLandscapeLarge}",
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
+            }
+        },
+        {
+            "description": "Dimensions for the AlexaHeadline - hubRound.",
+            "when": "${@viewportProfileCategory == @hubRound}",
+            "dimensions": {
+                "secondaryTextTopPadding": "@spacing3XSmall"
             }
         },
         {
@@ -26,7 +44,15 @@
             "when": "${@viewportProfile == @tvLandscapeXLarge || @viewportProfile == @tvLandscapeOverlay}",
             "dimensions": {
                 "primaryTextMaxWidth": "560dp",
-                "secondaryTextMaxWidth": "560dp"
+                "secondaryTextMaxWidth": "560dp",
+                "secondaryTextTopPadding": "@spacing3XSmall"
+            }
+        },
+        {
+            "description": "Dimensions for the AlexaHeadline - tvLandscapeXLarge.",
+            "when": "${@viewportProfile == @tvLandscapeXLarge}",
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
             }
         },
         {
@@ -39,6 +65,50 @@
             },
             "strings": {
                 "textComponentAlign": "left"
+            }
+        },
+        {
+            "description": "Dimensions, numbers and strings for the AlexaHeadline - mobileSmall portrait.",
+            "when": "${@viewportProfile == @mobileSmall && @viewportOrientation == @viewportOrientationPortrait}",
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
+            }
+        },
+        {
+            "description": "Dimensions, numbers and strings for the AlexaHeadline - mobileMedium.",
+            "when": "${@viewportProfile == @mobileMedium}",
+            "dimensions": {
+                "primaryTextMaxWidth": "758dp"
+            },
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
+            }
+        },
+        {
+            "description": "Dimensions, numbers and strings for the AlexaHeadline - mobileLarge.",
+            "when": "${@viewportProfile == @mobileLarge}",
+            "dimensions": {
+                "primaryTextMaxWidth": "1025dp"
+            },
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
+            }
+        },
+        {
+            "description": "Dimensions, numbers and strings for the AlexaHeadline - hubPortraitMedium.",
+            "when": "${@viewportProfile == @hubPortraitMedium}",
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
+            }
+        },
+        {
+            "description": "Dimensions, numbers and strings for the AlexaHeadline - hubLandscapeXLarge.",
+            "when": "${@viewportProfile == @hubLandscapeXLarge}",
+            "dimensions": {
+                "primaryTextMaxWidth": "1440dp"
+            },
+            "numbers": {
+                "headlinePrimaryTextMaxLines": 4
             }
         }
     ],
@@ -210,11 +280,24 @@
                     "name": "entities",
                     "description": "Array of entity data bind to this layout",
                     "type": "any"
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection of AlexaHeadline. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string",
+                    "default": "${environment.layoutDirection}"
+                },
+                {
+                    "name": "lang",
+                    "description": "The lang property of AlexaHeadline. Set the lang property to a BCP-47 string (e.g., en-US). By default, it uses environment lang.",
+                    "type": "string",
+                    "default": "${environment.lang}"
                 }
             ],
             "items": [
                 {
                     "type": "Container",
+                    "layoutDirection": "${layoutDirection}",
                     "height": "100vh",
                     "entities": "${entities}",
                     "items": [
@@ -252,7 +335,8 @@
                                             "text": "${primaryText}",
                                             "opacity": 1,
                                             "textAlign": "@textComponentAlign",
-                                            "maxWidth": "@primaryTextMaxWidth"
+                                            "maxWidth": "@primaryTextMaxWidth",
+                                            "maxLines": "@headlinePrimaryTextMaxLines"
                                         },
                                         {
                                             "when": "${secondaryText && secondaryText != ''}",
@@ -263,7 +347,7 @@
                                             "opacity": "@opacitySecondary",
                                             "textAlign": "@textComponentAlign",
                                             "maxWidth": "@secondaryTextMaxWidth",
-                                            "paddingTop": "@spacingXSmall"
+                                            "paddingTop": "@secondaryTextTopPadding"
                                         }
                                     ]
                                 },
@@ -271,6 +355,7 @@
                                     "type": "AlexaHeader",
                                     "theme": "${theme}",
                                     "headerTitle": "${headerTitle}",
+                                    "layoutDirection": "${layoutDirection}",
                                     "headerSubtitle": "${@viewportProfile != @tvLandscapeOverlay ? headerSubtitle : ''}",
                                     "headerAttributionText": "${headerAttributionText}",
                                     "headerAttributionImage": "${headerAttributionImage}",
@@ -290,6 +375,7 @@
                                     "type": "AlexaFooter",
                                     "hintText": "${footerHintText}",
                                     "theme": "${theme}",
+                                    "lang": "${lang}",
                                     "position": "absolute",
                                     "width": "100%",
                                     "bottom": "0"

@@ -1,11 +1,21 @@
 {
     "type": "Video",
-    "source": [ {
-        "url": "https://testingUrl",
-        "offset": 150,
-        "repeatCount": 2
+    "source": [
+        {
+            "url": "https://testingUrl",
+            "offset": 150,
+            "repeatCount": 2
 
-    } ],
+        },
+        {
+            "url": "${some-expression}",
+            "headers": ["key1: value", "key2: value"]
+        },
+        {
+            "url": ["https://test", "${expr}"],
+            "offset": 150
+        }
+    ],
     "autoplay": true,
     "audioTrack": "background",
     "scale": "best-fill",
