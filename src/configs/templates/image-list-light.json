@@ -1,12 +1,12 @@
 {
     "type": "APL",
-    "version": "1.6",
+    "version": "1.8",
     "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "theme": "dark",
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.3.0"
+            "version": "1.4.0"
         }
     ],
     "layouts": {
@@ -222,6 +222,7 @@
                 {
                     "name": "listId",
                     "type": "string",
+                    "default": "AlexaImageListSequence",
                     "description": "The component id for the scrolling list in this layout"
                 },
                 {
@@ -234,6 +235,18 @@
                     "description": "Boolean to turn the drop shadow on or off on the image",
                     "type": "boolean",
                     "default": true
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection of AlexaImageList. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string",
+                    "default": "${environment.layoutDirection}"
+                },
+                {
+                    "name": "lang",
+                    "description": "The lang property of AlexaImageList. Set the lang property to a BCP-47 string (e.g., en-US). By default, it uses environment lang.",
+                    "type": "string",
+                    "default": "${environment.lang}"
                 }
             ],
             "items": [
@@ -242,6 +255,7 @@
                     "width": "100%",
                     "height": "100%",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -270,13 +284,14 @@
                             "headerBackButton": "${headerBackButton}",
                             "headerBackButtonCommand": "${headerBackButtonCommand}",
                             "headerBackgroundColor": "${headerBackgroundColor}",
-                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                            "headerAttributionOpacity": "${headerAttributionOpacity}",
+                            "layoutDirection": "${layoutDirection}"
                         },
                         {
                             "type": "Container",
                             "height": "100vh",
-                            "justifyContent": "${(@viewportProfile == @hubRoundSmall || @viewportProfile == @hubLandscapeSmall || @viewportProfile == @tvLandscapeOverlay) ? 'start' : 'center'}",
-                            "top": "${@viewportProfile == @tvLandscapeOverlay ? '50dp' : 'auto'}",
+                            "justifyContent": "@imageListJustifyContent",
+                            "top": "${@viewportProfile == @tvLandscapeOverlay ? '42dp' : 'auto'}",
                             "width": "100%",
                             "shrink": "1",
                             "paddingBottom": "0",
@@ -286,9 +301,10 @@
                                     "alignSelf": "center",
                                     "data": "${listItems}",
                                     "id": "${listId}",
-                                    "scrollDirection": "horizontal",
-                                    "paddingLeft": "${@marginHorizontal - @spacingXSmall}",
-                                    "paddingRight": "${@marginHorizontal - @spacingXSmall}",
+                                    "scrollDirection": "@imageListScrollDirection",
+                                    "paddingLeft": "@imageListPaddingLeft",
+                                    "paddingRight": "@imageListPaddingRight",
+                                    "paddingTop": "@imageListPaddingTop",
                                     "width": "100%",
                                     "height": "auto",
                                     "shrink": "1",
@@ -297,6 +313,8 @@
                                         {
                                             "type": "AlexaImageListItem",
                                             "theme": "${theme}",
+                                            "accessibilityLabel": "${data.accessibilityLabel}",
+                                            "imageAltText": "${data.imageAltText}",
                                             "hideOrdinal": "${hideOrdinal}",
                                             "primaryText": "${data.primaryText}",
                                             "secondaryText": "${data.secondaryText}",
@@ -320,23 +338,27 @@
                                             "imageScale": "${data.imageScale ? data.imageScale : imageScale}",
                                             "imageAlignment": "${data.imageAlignment ? data.imageAlignment : imageAlignment}",
                                             "imageAspectRatio": "${imageAspectRatio}",
+                                            "imageHeight": "${imageHeight}",
                                             "imageBlurredBackground": "${data.imageBlurredBackground ? data.imageBlurredBackground : imageBlurredBackground}",
                                             "disabled": "${data.disabled}",
                                             "imageMetadataPrimacy": "${imageMetadataPrimacy}",
                                             "imageShadow": "${data.imageShadow ? data.imageShadow : imageShadow}",
                                             "primaryAction": "${data.primaryAction ? data.primaryAction : primaryAction}",
                                             "speech": "${speechItems[index].speech}",
-                                            "entities": "${data.entities ? data.entities : entities}"
+                                            "entities": "${data.entities ? data.entities : entities}",
+                                            "contentDirection": "${@viewportProfile == @tvLandscapeOverlay || @viewportProfile == @hubPortraitMedium || (@viewportProfileGroup == @mobile && @viewportOrientation == @viewportOrientationPortrait) ? 'row' : 'column'}",
+                                            "layoutDirection": "${layoutDirection}"
                                         }
                                     ]
                                 }
                             ]
                         },
                         {
-                            "when": "${!(@viewportProfile == @hubRoundSmall || (@viewportProfile == @hubLandscapeSmall && imageMetadataPrimacy == true) || @viewportProfile == @tvLandscapeOverlay)}",
+                            "when": "${hintText && (@viewportProfile == @hubLandscapeMedium || @viewportProfile == @hubLandscapeLarge || @viewportProfile == @tvLandscapeXLarge || (!imageMetadataPrimacy && @viewportProfile == @hubLandscapeSmall))}",
                             "theme": "${theme}",
                             "type": "AlexaFooter",
-                            "hintText": "${hintText}"
+                            "hintText": "${hintText}",
+                            "lang": "${lang}"
                         }
                     ]
                 }

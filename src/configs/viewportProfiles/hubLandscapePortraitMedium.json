@@ -1,0 +1,22 @@
+{
+  "id": "hubPortraitMedium",
+  "name": "Hub Portrait Medium",
+  "mode": "hub",
+  "shape": "rectangle",
+  "type": "standard",
+  "dpSizeRange": {
+    "minWidth": 960,
+    "maxWidth": 1279,
+    "minHeight": 1920,
+    "maxHeight": 2560
+  },
+  "exampleDevices": [
+    {
+      "id": "hoyaPortrait",
+      "name": "Echo Show 15 (Portrait)",
+      "width": 1080,
+      "height": 1920,
+      "dpi": 160
+    }
+  ]
+}

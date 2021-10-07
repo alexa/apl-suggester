@@ -6,6 +6,53 @@
     "paddingRight": "@marginRight",
     "-fastScrollScale": 0.5,
     "data": "${listData}",
+    "animateChildAdded": [
+        {
+            "type": "SetValue",
+            "componentId": "${event.child.uid}",
+            "property": "opacity",
+            "value": 0
+        },
+        {
+            "type": "AnimateItem",
+            "easing": "ease-in-out",
+            "duration": 300,
+            "componentId": "${event.child.uid}",
+            "value": [
+                {
+                    "property": "opacity",
+                    "from": 0,
+                    "to": 1
+                }
+            ]
+        }
+    ],
+    "animateChildRemoved": [
+        {
+            "type": "SetValue",
+            "componentId": "${event.child.uid}",
+            "property": "opacity",
+            "value": 1
+        },
+        {
+            "type": "AnimateItem",
+            "duration": 300,
+            "componentId": "${event.child.uid}",
+            "value": [
+                {
+                    "property": "opacity",
+                    "from": 1,
+                    "to": 0
+                },
+                {
+                    "property": "transform",
+                    "to": {
+                        "scaleY": 0
+                    }
+                }
+            ]
+        }
+    ],
     "numbered": true,
     "bind": [
         {
@@ -139,6 +186,10 @@
         {
             "type": "Sequence",
             "scaling": 1
+        },
+        {
+            "type": "Text",
+            "scaling": 1.2
         }
     ],
     "preserve": [ "centerId", "centerIndex", "firstId", "firstIndex", "scrollOffset", "scrollPercent", "Counter" ],

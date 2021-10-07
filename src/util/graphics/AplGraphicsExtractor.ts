@@ -54,6 +54,25 @@ export class AplGraphicsExtractor {
     }
 
     /**
+     * Remove the JSON_PATH from the graphic
+     * @param {object} aplTemplate
+     * @returns {Promise<void>}
+     * @memberOf AplGraphicsExtractor
+     */
+    public async clearJsonPath(aplTemplate : object) : Promise<void> {
+        if (aplTemplate[this.ROOT_GRAPHICS_PATH]) {
+            await Promise.all(
+                Object.values(aplTemplate[this.ROOT_GRAPHICS_PATH])
+                    .map((value : object) => {
+                        if (typeof(value) === 'object' && value['type'] === 'AVG') {
+                            delete value['JSON_PATH'];
+                        }
+                })
+            );
+        }
+    }
+
+    /**
      * Extract Graphic from current APL template without parsing all Graphics defined in import.
      * @param {object} aplTemplate
      * @returns {IAplGraphic[]}

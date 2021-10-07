@@ -49,7 +49,7 @@ describe('Integration Test to verify the JSON schema.', () => {
 
     it('should received correct amount of validation errors.', async () => {
         const result = await verifyTemplate('errorTemplate.json');
-        expect(result.length).to.be.equal(11);
+        expect(result.length).to.be.equal(12);
     });
 
     it('should compile with video template when souce is array of string.', async () => {

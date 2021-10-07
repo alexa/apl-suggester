@@ -65,6 +65,10 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('Image.json', 'Image');
     });
 
+    it('should validate Image component with sources.', async () => {
+        await verifyComponent('ImageWithSources.json', 'Image');
+    });
+
     it('should validate ScrollView component.', async () => {
         await verifyComponent('ScrollView.json', 'ScrollView');
     });
@@ -124,11 +128,11 @@ describe('ComponentSchemaController.', () => {
     it('should return a list of supported components.', async () => {
         const apl = getSampleTemplate(SampleTemplateName.TEXT_LIST).apl;
         let result = await componentSchemaController.getAvailableComponents(apl);
-        expect(result.length).to.be.equal(14);
+        expect(result.length).to.be.equal(15);
         expect(result.includes('Image')).to.be.equal(true);
         expect(result.includes('AlexaHeader')).to.be.equal(true);
         result = await componentSchemaController.getAvailableComponents();
-        expect(result.length).to.be.equal(12);
+        expect(result.length).to.be.equal(13);
     });
 
     it('should check whether component can contain other components correctly.', async () => {
@@ -149,6 +153,10 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('VectorGraphic.json', 'VectorGraphic');
     });
 
+    it('should validate VectorGraphic component with Url Headers.', async () => {
+        await verifyComponent('VectorGraphicWithUrlHeaders.json', 'VectorGraphic');
+    });
+
     it('should validate GridSequence component.', async () => {
         await verifyComponent('GridSequence.json', 'GridSequence');
     });
@@ -163,6 +171,10 @@ describe('ComponentSchemaController.', () => {
 
     it('should validate Video component.', async () => {
         await verifyComponent('Video.json', 'Video');
+    });
+
+    it('should validate Extension component', async () => {
+        await verifyComponent('ExtensionComponent.json', 'ExtensionComponent');
     });
 
     async function verifyComponent(fileName : string, componentType : string, parentComponent? : string) {

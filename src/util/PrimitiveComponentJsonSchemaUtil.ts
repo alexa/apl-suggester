@@ -32,6 +32,7 @@ import * as SequenceChildJSONSchema from '../assets/SequenceChild';
 import * as GridSequenceJSONSchema from '../assets/GridSequence';
 import * as GridSequenceChildJSONSchema from '../assets/GridSequenceChild';
 import * as EditTextJSONSchema from '../assets/EditText';
+import * as ExtensionComponentJSONSchema from '../assets/ExtensionComponent';
 
 /**
  * PrimitiveComponentJsonSchemaUtil.
@@ -80,7 +81,8 @@ export class PrimitiveComponentJsonSchemaUtil {
         ['Pager', PagerJSONSchema.JSON_SCHEMA],
         ['VectorGraphic', VectorGraphicJSONSchema.JSON_SCHEMA],
         ['GridSequence', GridSequenceJSONSchema.JSON_SCHEMA],
-        ['EditText', EditTextJSONSchema.JSON_SCHEMA]
+        ['EditText', EditTextJSONSchema.JSON_SCHEMA],
+        ['ExtensionComponent', ExtensionComponentJSONSchema.JSON_SCHEMA]
     ]);
 
     /**

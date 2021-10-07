@@ -225,6 +225,7 @@ export class StaticAplTemplateValidator {
      */
     public async validate(aplTemplate : object) : Promise<IValidationInfo[]> {
         const componentErrors = await this.validateAllComponents(aplTemplate);
+        await this.aplGraphicsExtractor.clearJsonPath(aplTemplate);
         if (this.validateFunction(aplTemplate)) {
             return componentErrors
             .concat(this.validateGraphics(aplTemplate))

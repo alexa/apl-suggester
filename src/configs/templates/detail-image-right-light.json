@@ -1,11 +1,11 @@
 {
     "type": "APL",
-    "version": "1.6",
+    "version": "1.8",
     "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.3.0"
+            "version": "1.4.0"
         }
     ],
     "resources": [
@@ -21,7 +21,7 @@
                 "detailWideScreenWidth": "448dp",
                 "detailImageBottomPadding": "@spacing3XSmall",
                 "detailButtonTopBottomPadding": "@spacingSmall",
-                "detailContentBlockMaxWidth": "720dp",
+                "detailContentBlockMaxWidth": "100%",
                 "detailPaddingBelowPrimaryText": "@spacingSmall",
                 "detailPaddingBelowLocationText": "@spacingSmall",
                 "detailPaddingAboveSecondaryText": "@spacingSmall",
@@ -30,23 +30,27 @@
                 "detailHeaderSpacingAttributionImage": "0",
                 "headerAttributionImageMaxWidth": "86dp",
                 "headerAttributionImageHeight": "24dp",
-                "headerTitleTextHeight": "${@fontSizeSmall * @lineHeightMedium}",
+                "headerTitleTextHeight": "${@fontSizeSmall * @lineHeightNormal}",
                 "detailPaddingBetweenImageAndContentBlock": "@spacingMedium",
-                "detailBottomPadding": "@spacing3XLarge"
+                "detailBottomPadding": "@spacing3XLarge",
+                "detailImageBlockTopPadding": 0,
+                "detailContentBlockIngredientTopPadding": 0,
+                "detailContentBlockRatingPaddingTop": 0,
+                "detailImageBlockBottomPadding": 0
             },
             "strings": {
                 "detailPrimaryTextStyle": "textStyleDisplay4",
-                "detailPrimaryTextAlignment": "left",
+                "detailPrimaryTextAlignment": "start",
                 "detailSecondaryTextStyle": "textStyleMetadata",
-                "detailSecondaryTextAlignment": "left",
-                "detailBodyTextAlignment": "left",
+                "detailSecondaryTextAlignment": "start",
+                "detailBodyTextAlignment": "start",
                 "detailBodyTextStyle": "textStyleBody",
                 "detailIngredientsTextStyle": "textStyleBody",
                 "detailLocationTextStyle": "textStyleBody",
                 "detailButtonArrayAlignment": "start",
                 "detailTertiaryTextAlignment": "start",
-                "detailQuaternaryTextAlignment": "left",
-                "detailLocationTextAlignment": "left",
+                "detailQuaternaryTextAlignment": "start",
+                "detailLocationTextAlignment": "start",
                 "detailButtonArrayAlignmentDirection": "row"
             },
             "numbers": {
@@ -69,7 +73,7 @@
                 "detailPosterPortraitWidth": "184dp",
                 "detailWideScreenWidth": "256dp",
                 "detailButtonTopBottomPadding": "@spacingXSmall",
-                "detailContentBlockMaxWidth": "616dp",
+                "detailContentBlockMaxWidth": "100%",
                 "detailPaddingBelowPrimaryText": "@spacingXSmall",
                 "detailPaddingBelowLocationText": "@spacingXSmall",
                 "detailPaddingAboveSecondaryText": "@spacingXSmall",
@@ -93,7 +97,7 @@
                 "detailPosterLandscapeWidth": "308dp",
                 "detailPosterPortraitWidth": "232dp",
                 "detailWideScreenWidth": "308dp",
-                "detailContentBlockMaxWidth": "632dp",
+                "detailContentBlockMaxWidth": "100%",
                 "detailPaddingBelowPrimaryText": "@spacingXSmall",
                 "detailPaddingBelowLocationText": "@spacingXSmall",
                 "detailPaddingAboveSecondaryText": "@spacingXSmall",
@@ -103,6 +107,104 @@
                 "detailBodyTextStyle": "textStyleCallout",
                 "detailLocationTextStyle": "textStyleCallout",
                 "detailIngredientsTextStyle": "textStyleCallout"
+            }
+        },
+        {
+            "description": "Public resource definitions for button spacings and dimensions - Hub Landscape Extra Large",
+            "when": "${@viewportProfile == @hubLandscapeXLarge}",
+            "dimensions": {
+                "detailImageSquareWidth": "702dp",
+                "detailImageRoundWidth": "702dp",
+                "detailStandardLandscapeWidth": "702dp",
+                "detailStandardPortraitWidth": "550dp",
+                "detailPosterLandscapeWidth": "702dp",
+                "detailPosterPortraitWidth": "550dp",
+                "detailWideScreenWidth": "702dp",
+                "detailContentBlockMaxWidth": "780dp",
+                "detailButtonTopBottomPadding": "@spacingSmall",
+                "detailPaddingBelowPrimaryText": "@spacing3XSmall",
+                "detailPaddingBelowLocationText": "@spacingSmall",
+                "detailContentBlockIngredientTopPadding": "@spacingXLarge",
+                "detailContentBlockRatingPaddingTop": "@spacing3XSmall",
+                "detailPaddingBetweenImageAndContentBlock": "0"
+            }
+        },
+        {
+            "description": "Public resource definitions for button spacings and dimensions - Hub Portrait Medium",
+            "when": "${@viewportProfile == @hubPortraitMedium}",
+            "dimensions": {
+                "detailImageSquareWidth": "702dp",
+                "detailImageRoundWidth": "702dp",
+                "detailStandardLandscapeWidth": "702dp",
+                "detailStandardPortraitWidth": "550dp",
+                "detailPosterLandscapeWidth": "702dp",
+                "detailPosterPortraitWidth": "550dp",
+                "detailWideScreenWidth": "702dp",
+                "detailContentBlockMaxWidth": "843dp",
+                "detailButtonTopBottomPadding": "@spacingSmall",
+                "detailPaddingBelowPrimaryText": "@spacing3XSmall",
+                "detailPaddingBelowLocationText": "@spacingSmall",
+                "detailImageBlockTopPadding": "@spacingMedium",
+                "detailContentBlockIngredientTopPadding": "@spacingXLarge",
+                "detailContentBlockRatingPaddingTop": "@spacing3XSmall",
+                "detailPaddingBetweenImageAndContentBlock": "@spacingMedium"
+            }
+        },
+        {
+            "description": "Public resource definitions for button spacings and dimensions - Mobile Small",
+            "when": "${@viewportProfile == @mobileSmall}",
+            "dimensions": {
+                "detailImageSquareWidth": "52vw",
+                "detailImageRoundWidth": "52vw",
+                "detailStandardLandscapeWidth": "52vw",
+                "detailStandardPortraitWidth": "40vw",
+                "detailPosterLandscapeWidth": "52vw",
+                "detailPosterPortraitWidth": "40vw",
+                "detailWideScreenWidth": "52vw",
+                "detailContentBlockMaxWidth": "80vw",
+                "detailPaddingBelowPrimaryText": "@spacingXSmall",
+                "detailButtonTopBottomPadding": "@spacingXSmall",
+                "detailPaddingBelowLocationText": "@spacingXSmall",
+                "detailContentBlockRatingPaddingTop": "@spacing3XSmall",
+                "detailPaddingBetweenImageAndContentBlock": "@spacingMedium"
+            }
+        },
+        {
+            "description": "Public resource definitions for button spacings and dimensions - Mobile Medium",
+            "when": "${@viewportProfile == @mobileMedium}",
+            "dimensions": {
+                "detailImageSquareWidth": "312dp",
+                "detailImageRoundWidth": "312dp",
+                "detailStandardLandscapeWidth": "312dp",
+                "detailStandardPortraitWidth": "232dp",
+                "detailPosterLandscapeWidth": "312dp",
+                "detailPosterPortraitWidth": "232dp",
+                "detailWideScreenWidth": "312dp",
+                "detailContentBlockMaxWidth": "50vw",
+                "detailPaddingBelowPrimaryText": "@spacingXSmall",
+                "detailButtonTopBottomPadding": "@spacingXSmall",
+                "detailPaddingBelowLocationText": "@spacingXSmall",
+                "detailContentBlockRatingPaddingTop": "@spacing3XSmall",
+                "detailPaddingBetweenImageAndContentBlock": "@spacingLarge"
+            }
+        },
+        {
+            "description": "Public resource definitions for button spacings and dimensions - Mobile Large",
+            "when": "${@viewportProfile == @mobileLarge}",
+            "dimensions": {
+                "detailImageSquareWidth": "416dp",
+                "detailImageRoundWidth": "416dp",
+                "detailStandardLandscapeWidth": "416dp",
+                "detailStandardPortraitWidth": "326dp",
+                "detailPosterLandscapeWidth": "416dp",
+                "detailPosterPortraitWidth": "326dp",
+                "detailWideScreenWidth": "416dp",
+                "detailContentBlockMaxWidth": "50vw",
+                "detailPaddingBelowPrimaryText": "@spacingXSmall",
+                "detailButtonTopBottomPadding": "@spacingXSmall",
+                "detailPaddingBelowLocationText": "@spacingXSmall",
+                "detailContentBlockRatingPaddingTop": "@spacing3XSmall",
+                "detailPaddingBetweenImageAndContentBlock": "@spacingLarge"
             }
         },
         {
@@ -116,8 +218,9 @@
                 "detailPosterLandscapeWidth": "256dp",
                 "detailPosterPortraitWidth": "184dp",
                 "detailWideScreenWidth": "256dp",
-                "detailContentBlockMaxWidth": "352dp",
+                "detailContentBlockMaxWidth": "100%",
                 "detailPaddingBelowPrimaryText": "@spacing3XSmall",
+                "detailPaddingAboveSecondaryText": "0",
                 "detailBottomPadding": "@spacing2XLarge"
             },
             "strings": {
@@ -170,18 +273,11 @@
                 "detailHeaderVerticalPaddingTop": "@spacingLarge",
                 "detailHeaderVerticalPaddingBottom": "@spacingXSmall",
                 "detailHeaderSpacingAttributionImage": "100dp",
-                "detailBottomPadding": "@spacingXLarge"
+                "detailBottomPadding": "@spacingXLarge",
+                "detailImageBlockTopPadding": "@spacingXLarge"
             },
             "strings": {
-                "detailPrimaryTextStyle": "textStyleDisplay5",
-                "detailPrimaryTextAlignment": "left",
-                "detailSecondaryTextAlignment": "left",
-                "detailBodyTextAlignment": "left",
-                "detailButtonArrayAlignment": "start",
-                "detailTertiaryTextAlignment": "start",
-                "detailQuaternaryTextAlignment": "left",
-                "detailLocationTextAlignment": "left",
-                "detailButtonArrayAlignmentDirection": "row"
+                "detailPrimaryTextStyle": "textStyleDisplay5"
             },
             "numbers": {
                 "detailImageCaptionOpacity": "@opacitySecondary",
@@ -585,6 +681,16 @@
                     "description": "Boolean to turn the drop shadow on or off on the image",
                     "type": "boolean",
                     "default": true
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection property of AlexaDetail. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string"
+                },
+                {
+                    "name": "lang",
+                    "description": "The lang property of AlexaDetail. Set the lang property to a BCP-47 string (e.g., en-US). By default, it uses environment lang.",
+                    "type": "string"
                 }
             ],
             "items": [
@@ -592,6 +698,7 @@
                     "type": "Container",
                     "height": "100%",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -620,7 +727,8 @@
                             "headerBackButtonAccessibilityLabel": "${headerBackButtonAccessibilityLabel}",
                             "headerBackButtonCommand": "${headerBackButtonCommand}",
                             "headerBackgroundColor": "${headerBackgroundColor}",
-                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                            "headerAttributionOpacity": "${headerAttributionOpacity}",
+                            "layoutDirection": "${layoutDirection}"
                         },
                         {
                             "type": "ScrollView",
@@ -638,14 +746,19 @@
                             "items": [
                                 {
                                     "type": "Container",
+                                    "paddingStart": "@marginHorizontal",
+                                    "paddingEnd": "@marginHorizontal",
                                     "paddingLeft": "@marginHorizontal",
                                     "paddingRight": "@marginHorizontal",
-                                    "direction": "row",
+                                    "direction": "${((@viewportProfileGroup == @mobile && @viewportOrientation == @viewportOrientationPortrait) || @viewportProfile == @hubPortraitMedium)? 'column' : 'row'}",
                                     "justifyContent": "spaceBetween",
                                     "items": [
                                         {
                                             "type": "Container",
+                                            "paddingEnd": "@detailPaddingBetweenImageAndContentBlock",
+                                            "paddingStart": "0",
                                             "paddingRight": "@detailPaddingBetweenImageAndContentBlock",
+                                            "paddingBottom": "@detailPaddingBetweenImageAndContentBlock",
                                             "items": [
                                                 {
                                                     "type": "AlexaDetailImageBlock",
@@ -692,7 +805,9 @@
                                             "bodyText": "${bodyText}",
                                             "ingredientsText": "${ingredientsText}",
                                             "ingredientListItems": "${ingredientListItems}",
-                                            "ingredientsHideDivider": "${ingredientsHideDivider}"
+                                            "ingredientsHideDivider": "${ingredientsHideDivider}",
+                                            "layoutDirection": "${layoutDirection}",
+                                            "lang": "${lang}"
                                         }
                                     ]
                                 }
@@ -1041,6 +1156,16 @@
                     "description": "Boolean to turn the drop shadow on or off on the image",
                     "type": "boolean",
                     "default": true
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection property of AlexaDetail. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string"
+                },
+                {
+                    "name": "lang",
+                    "description": "The lang property of AlexaDetail. Set the lang property to a BCP-47 string (e.g., en-US). By default, it uses environment lang.",
+                    "type": "string"
                 }
             ],
             "items": [
@@ -1048,6 +1173,7 @@
                     "type": "Container",
                     "height": "100%",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -1076,7 +1202,8 @@
                             "headerBackButtonAccessibilityLabel": "${headerBackButtonAccessibilityLabel}",
                             "headerBackButtonCommand": "${headerBackButtonCommand}",
                             "headerBackgroundColor": "${headerBackgroundColor}",
-                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                            "headerAttributionOpacity": "${headerAttributionOpacity}",
+                            "layoutDirection": "${layoutDirection}"
                         },
                         {
                             "type": "ScrollView",
@@ -1091,12 +1218,20 @@
                                     "value": "${event.source.position == 0 ? 0 : 1}"
                                 }
                             ],
+                            "bind": [
+                                {
+                                    "name": "isPortraitOrientation",
+                                    "value": "${(@viewportProfileGroup == @mobile && @viewportOrientation == @viewportOrientationPortrait) || @viewportProfile == @hubPortraitMedium}"
+                                }
+                            ],
                             "items": [
                                 {
                                     "type": "Container",
+                                    "paddingStart": "@marginHorizontal",
+                                    "paddingEnd": "@marginHorizontal",
                                     "paddingLeft": "@marginHorizontal",
                                     "paddingRight": "@marginHorizontal",
-                                    "direction": "row",
+                                    "direction": "${isPortraitOrientation ? 'columnReverse' : 'row'}",
                                     "justifyContent": "spaceBetween",
                                     "items": [
                                         {
@@ -1141,11 +1276,16 @@
                                             "bodyText": "${bodyText}",
                                             "ingredientsText": "${ingredientsText}",
                                             "ingredientListItems": "${ingredientListItems}",
-                                            "ingredientsHideDivider": "${ingredientsHideDivider}"
+                                            "ingredientsHideDivider": "${ingredientsHideDivider}",
+                                            "layoutDirection": "${layoutDirection}",
+                                            "lang": "${lang}"
                                         },
                                         {
                                             "type": "Container",
-                                            "paddingLeft": "@detailPaddingBetweenImageAndContentBlock",
+                                            "paddingStart": "${isPortraitOrientation ? 0 : @detailPaddingBetweenImageAndContentBlock}",
+                                            "paddingEnd": "0",
+                                            "paddingLeft": "${isPortraitOrientation ? 0 : @detailPaddingBetweenImageAndContentBlock}",
+                                            "paddingBottom": "@detailPaddingBetweenImageAndContentBlock",
                                             "items": [
                                                 {
                                                     "type": "AlexaDetailImageBlock",
@@ -1345,23 +1485,55 @@
                     "name": "ingredientsHideDivider",
                     "type": "boolean",
                     "description": "Toggle to hide the divider that appears at the bottom of each item to help separate it from the content below. Default to false."
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection property of AlexaDetail. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string"
+                },
+                {
+                    "name": "lang",
+                    "description": "The lang property of AlexaDetail. Set the lang property to a BCP-47 string (e.g., en-US). By default, it uses environment lang.",
+                    "type": "string"
                 }
             ],
             "items": [
                 {
                     "type": "Container",
                     "direction": "row",
+                    "shrink": 1,
+                    "bind": [
+                        {
+                            "name": "aplVersion",
+                            "value": "${environment.aplVersion}",
+                            "type": "number"
+                        },
+                        {
+                            "name": "textAlignStart",
+                            "type": "string",
+                            "value": "${aplVersion >= 1.7 ? 'start' : (layoutDirection == 'RTL' ? 'right' : 'left')}"
+                        }
+                    ],
                     "items": [
                         {
                             "type": "Container",
                             "maxWidth": "@detailContentBlockMaxWidth",
                             "paddingBottom": "@detailBottomPadding",
-                            "paddingRight": "${@viewportProfile == @tvLandscapeOverlay ? '@spacing3XLarge' : '0dp'}",
+                            "bind": [
+                                {
+                                    "name": "detailContentPaddingEnd",
+                                    "value": "${@viewportProfile == @tvLandscapeOverlay ? @spacing3XLarge : '0dp'}"
+                                }
+                            ],
+                            "paddingEnd": "${detailContentPaddingEnd}",
+                            "paddingStart": "0",
+                            "paddingRight": "${detailContentPaddingEnd}",
                             "shrink": 1,
                             "items": [
                                 {
                                     "when": "${@viewportProfile == @tvLandscapeOverlay}",
                                     "paddingTop": "@spacingLarge",
+                                    "paddingBottom": "@spacingXSmall",
                                     "type": "Container",
                                     "direction": "column",
                                     "items": [
@@ -1388,6 +1560,7 @@
                                 },
                                 {
                                     "type": "Container",
+                                    "paddingTop": "@detailContentBlockRatingPaddingTop",
                                     "alignSelf": "@detailQuaternaryTextAlignment",
                                     "items": [
                                         {
@@ -1403,7 +1576,8 @@
                                             "fullRatingGraphic": "${fullRatingGraphic}",
                                             "halfRatingGraphic": "${halfRatingGraphic}",
                                             "emptyRatingGraphic": "${emptyRatingGraphic}",
-                                            "ratingText": "${ratingText}"
+                                            "ratingText": "${ratingText}",
+                                            "layoutDirection": "${layoutDirection}"
                                         }
                                     ]
                                 },
@@ -1422,7 +1596,7 @@
                                     "when": "${detailType == 'generic' && secondaryText && secondaryText != ''}",
                                     "type": "Text",
                                     "opacity": "@opacitySecondary",
-                                    "style": "${ (@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubLandscapeMedium) ? 'textStyleDisplay4' : '@detailSecondaryTextStyle'}",
+                                    "style": "@detailSecondaryTextStyle",
                                     "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
                                     "textAlign": "@detailSecondaryTextAlignment",
                                     "maxLines": "@detailSecondaryTextMaxLinesGeneric",
@@ -1463,7 +1637,7 @@
                                     "when": "${detailType == 'moviesTV'}",
                                     "type": "Container",
                                     "direction": "row",
-                                    "maxHeight": "${@fontSizeXSmall * @lineHeightXSmall}",
+                                    "maxHeight": "${@fontSizeXSmall * @lineHeightNormal}",
                                     "justifyContent": "@detailTertiaryTextAlignment",
                                     "items": [
                                         {
@@ -1479,7 +1653,8 @@
                                             "fullRatingGraphic": "${fullRatingGraphic}",
                                             "halfRatingGraphic": "${halfRatingGraphic}",
                                             "emptyRatingGraphic": "${emptyRatingGraphic}",
-                                            "ratingText": "${ratingText}"
+                                            "ratingText": "${ratingText}",
+                                            "layoutDirection": "${layoutDirection}"
                                         },
                                         {
                                             "when": "${tertiaryText && tertiaryText != ''}",
@@ -1514,7 +1689,7 @@
                                             "type": "Text",
                                             "style": "textStyleCaption",
                                             "opacity": "@opacitySecondary",
-                                            "textAlign": "left",
+                                            "textAlign": "${textAlignStart}",
                                             "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
                                             "maxLines": 1,
                                             "text": "${imageCaption}"
@@ -1525,8 +1700,7 @@
                                     "when": "${(button1Text && button1Text != '') || (button2Text && button2Text != '')}",
                                     "type": "Container",
                                     "paddingTop": "@detailButtonTopBottomPadding",
-                                    "paddingBottom": "@detailButtonTopBottomPadding",
-                                    "alignSelf": "@detailButtonArrayAlignment",
+                                    "paddingBottom": "${(detailType == 'recipe' && (@viewportProfile == @hubLandscapeXLarge || @viewportProfile == @hubPortraitMedium)) ? 0 : @detailButtonTopBottomPadding}",
                                     "direction": "@detailButtonArrayAlignmentDirection",
                                     "width": "100%",
                                     "data": [
@@ -1556,7 +1730,9 @@
                                             "buttonStyle": "${data.buttonStyle}",
                                             "primaryAction": "${data.primaryAction}",
                                             "accessibilityLabel": "${data.accessibilityLabel}",
-                                            "maxWidth": "${data.maxWidth}"
+                                            "maxWidth": "${data.maxWidth}",
+                                            "alignSelf": "@detailButtonArrayAlignment",
+                                            "lang": "${lang}"
                                         }
                                     ]
                                 },
@@ -1565,8 +1741,9 @@
                                     "type": "Text",
                                     "style": "@detailIngredientsTextStyle",
                                     "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
-                                    "textAlign": "left",
+                                    "textAlign": "${textAlignStart}",
                                     "text": "${ingredientsText}",
+                                    "paddingTop": "@detailContentBlockIngredientTopPadding",
                                     "maxLines": 1
                                 },
                                 {
@@ -1582,7 +1759,8 @@
                                             "primaryText": "${data.ingredientsContentText}",
                                             "primaryAction": "${data.ingredientsPrimaryAction}",
                                             "touchForward": true,
-                                            "hideHorizontalMargin": true
+                                            "hideHorizontalMargin": true,
+                                            "layoutDirection": "${layoutDirection}"
                                         }
                                     ]
                                 },
@@ -1592,7 +1770,8 @@
                                     "style": "@detailBodyTextStyle",
                                     "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
                                     "textAlign": "@detailBodyTextAlignment",
-                                    "text": "${bodyText}"
+                                    "text": "${bodyText}",
+                                    "paddingTop": "${detailType == 'location' ? @detailButtonTopBottomPadding : 0}"
                                 }
                             ]
                         },
@@ -1611,7 +1790,7 @@
                                             "when": "${!headerAttributionImage}",
                                             "type": "Text",
                                             "text": "${headerAttributionText}",
-                                            "textAlign": "right",
+                                            "textAlign": "${aplVersion >= 1.7 ? 'end' : (layoutDirection == 'RTL' ? 'left' : 'right')}",
                                             "maxLines": 1,
                                             "opacity": "${headerAttributionOpacity}",
                                             "style": "textStyleCallout",
@@ -1690,10 +1869,17 @@
                     "default": true
                 }
             ],
+            "bind": [
+                {
+                    "name": "aplVersion",
+                    "value": "${environment.aplVersion}",
+                    "type": "number"
+                }
+            ],
             "items": [
                 {
                     "type": "Container",
-                    "paddingTop": "${@viewportProfile == @tvLandscapeOverlay? @spacingXLarge : 0}",
+                    "paddingTop": "@detailImageBlockTopPadding",
                     "alignItems": "start",
                     "direction": "column",
                     "justifyContent": "start",
@@ -1715,7 +1901,7 @@
                             "when": "${@viewportProfile != @tvLandscapeOverlay}",
                             "type": "Text",
                             "style": "textStyleCaption",
-                            "textAlign": "left",
+                            "textAlign": "${textAlignStart}",
                             "color": "${theme == 'light' ? '@colorTextReversed' : '@colorText'}",
                             "maxLines": 1,
                             "text": "${imageCaption}",
@@ -1739,8 +1925,8 @@
                 {
                     "name": "detailImageAlignment",
                     "type": "string",
-                    "description": "Image alignment on the layout, can be left or right. Default to left.",
-                    "default": "left"
+                    "description": "Image alignment on the layout, can be start or end. Default to start.",
+                    "default": "start"
                 },
                 {
                     "name": "backgroundColor",
@@ -2001,12 +2187,12 @@
                 {
                     "name": "button1Theme",
                     "type": "string",
-                    "description": "Colors of button 1 will be swiched depend on the specified theme (light/dark). Default to dark theme"
+                    "description": "Colors of button 1 will be switched depend on the specified theme (light/dark). Default to dark theme"
                 },
                 {
                     "name": "button2Theme",
                     "type": "string",
-                    "description": "Colors of button 2 will be swiched depend on the specified theme (light/dark). Default to dark theme"
+                    "description": "Colors of button 2 will be switched depend on the specified theme (light/dark). Default to dark theme"
                 },
                 {
                     "name": "button1Text",
@@ -2083,16 +2269,29 @@
                     "description": "Boolean to turn the drop shadow on or off on the image",
                     "type": "boolean",
                     "default": true
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection property of AlexaDetail. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string",
+                    "default": "${environment.layoutDirection}"
+                },
+                {
+                    "name": "lang",
+                    "description": "The lang property of AlexaDetail. Set the lang property to a BCP-47 string (e.g., en-US). By default, it uses environment lang.",
+                    "type": "string",
+                    "default": "${environment.lang}"
                 }
             ],
             "items": [
                 {
-                    "when": "${@viewportProfile == @tvLandscapeOverlay && detailImageAlignment == 'left'}",
+                    "when": "${@viewportProfile == @tvLandscapeOverlay && (detailImageAlignment == 'left' || detailImageAlignment == 'start')}",
                     "type": "Container",
                     "height": "100%",
                     "width": "100%",
                     "direction": "row",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -2110,6 +2309,8 @@
                         },
                         {
                             "type": "Container",
+                            "paddingStart": "@marginHorizontal",
+                            "paddingEnd": "0",
                             "paddingLeft": "@marginHorizontal",
                             "items": [
                                 {
@@ -2132,8 +2333,10 @@
                             "height": "100%",
                             "width": "100%",
                             "shrink": 1,
-                            "paddingRight": "@marginHorizontal",
+                            "paddingEnd": "@marginHorizontal",
+                            "paddingStart": "@spacingXLarge",
                             "paddingLeft": "@spacingXLarge",
+                            "paddingRight": "@marginHorizontal",
                             "onScroll": [
                                 {
                                     "type": "SetValue",
@@ -2187,7 +2390,9 @@
                                             "bodyText": "${bodyText}",
                                             "ingredientsText": "${ingredientsText}",
                                             "ingredientListItems": "${ingredientListItems}",
-                                            "ingredientsHideDivider": "${ingredientsHideDivider}"
+                                            "ingredientsHideDivider": "${ingredientsHideDivider}",
+                                            "layoutDirection": "${layoutDirection}",
+                                            "lang": "${lang}"
                                         }
                                     ]
                                 }
@@ -2196,11 +2401,12 @@
                     ]
                 },
                 {
-                    "when": "${@viewportProfile == @tvLandscapeOverlay && detailImageAlignment == 'right'}",
+                    "when": "${@viewportProfile == @tvLandscapeOverlay && (detailImageAlignment == 'right' || detailImageAlignment == 'end')}",
                     "type": "Container",
                     "height": "100%",
                     "direction": "row",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -2222,6 +2428,8 @@
                             "height": "100%",
                             "shrink": 1,
                             "width": "${@detailContentBlockMaxWidth + (2 * @headerHorizontalMarginRight) + @marginHorizontal}",
+                            "paddingStart": "@marginHorizontal",
+                            "paddingEnd": "0",
                             "paddingLeft": "@marginHorizontal",
                             "onScroll": [
                                 {
@@ -2271,7 +2479,9 @@
                                             "ingredientsText": "${ingredientsText}",
                                             "ingredientListItems": "${ingredientListItems}",
                                             "ingredientsHideDivider": "${ingredientsHideDivider}",
-                                            "bodyText": "${bodyText}"
+                                            "bodyText": "${bodyText}",
+                                            "layoutDirection": "${layoutDirection}",
+                                            "lang": "${lang}"
                                         }
                                     ]
                                 }
@@ -2279,6 +2489,8 @@
                         },
                         {
                             "type": "Container",
+                            "paddingStart": "@spacingXLarge",
+                            "paddingEnd": "0",
                             "paddingLeft": "@spacingXLarge",
                             "items": [
                                 {
@@ -2298,7 +2510,7 @@
                     ]
                 },
                 {
-                    "when": "${(@viewportProfileCategory == @hubLandscape || @viewportProfileGroup == @tv) && detailImageAlignment == 'left'}",
+                    "when": "${(@viewportProfileCategory == @hubLandscape || @viewportProfileGroup == @tv || @viewportProfileGroup == @mobile) && (detailImageAlignment == 'left' || detailImageAlignment == 'start')}",
                     "type": "AlexaDetailImageLeftVersion",
                     "theme": "${theme}",
                     "headerTitle": "${headerTitle}",
@@ -2361,10 +2573,12 @@
                     "ingredientListItems": "${ingredientListItems}",
                     "ingredientsHideDivider": "${ingredientsHideDivider}",
                     "imageCaption": "${imageCaption}",
-                    "entities": "${entities}"
+                    "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
+                    "lang": "${lang}"
                 },
                 {
-                    "when": "${(@viewportProfileCategory == @hubLandscape || @viewportProfileGroup == @tv) && detailImageAlignment == 'right'}",
+                    "when": "${(@viewportProfileCategory == @hubLandscape || @viewportProfileGroup == @tv || @viewportProfileGroup == @mobile) && (detailImageAlignment == 'right' || detailImageAlignment == 'end')}",
                     "type": "AlexaDetailImageRightVersion",
                     "theme": "${theme}",
                     "headerTitle": "${headerTitle}",
@@ -2427,13 +2641,16 @@
                     "ingredientListItems": "${ingredientListItems}",
                     "ingredientsHideDivider": "${ingredientsHideDivider}",
                     "imageCaption": "${imageCaption}",
-                    "entities": "${entities}"
+                    "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
+                    "lang": "${lang}"
                 },
                 {
                     "when": "${@viewportProfileCategory == @hubRound}",
                     "type": "Container",
                     "height": "100%",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -2462,13 +2679,16 @@
                             "headerBackButtonAccessibilityLabel": "${headerBackButtonAccessibilityLabel}",
                             "headerBackButtonCommand": "${headerBackButtonCommand}",
                             "headerBackgroundColor": "${headerBackgroundColor}",
-                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                            "headerAttributionOpacity": "${headerAttributionOpacity}",
+                            "layoutDirection": "${layoutDirection}"
                         },
                         {
                             "type": "ScrollView",
                             "id": "${scrollViewId}",
                             "height": "100%",
                             "shrink": 1,
+                            "paddingStart": "@marginHorizontal",
+                            "paddingEnd": "@marginHorizontal",
                             "paddingLeft": "@marginHorizontal",
                             "paddingRight": "@marginHorizontal",
                             "onScroll": [
@@ -2525,7 +2745,9 @@
                                             "bodyText": "${bodyText}",
                                             "ingredientsText": "${ingredientsText}",
                                             "ingredientListItems": "${ingredientListItems}",
-                                            "ingredientsHideDivider": "${ingredientsHideDivider}"
+                                            "ingredientsHideDivider": "${ingredientsHideDivider}",
+                                            "layoutDirection": "${layoutDirection}",
+                                            "lang": "${lang}"
                                         }
                                     ]
                                 }

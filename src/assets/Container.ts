@@ -595,6 +595,16 @@ export const JSON_SCHEMA : IJsonSchema = {
         "wrapReverse"
       ]
     },
+    "animateChildAdded": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.container,
+      "description": "Animation commands to execute when a child component is added"
+    },
+    "animateChildRemoved": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.container,
+      "description": "Animation commands to execute when a child component is removed"
+    },
     "item": {},
     "items": {}
   },

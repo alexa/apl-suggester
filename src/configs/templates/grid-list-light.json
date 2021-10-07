@@ -1,12 +1,12 @@
 {
     "type": "APL",
-    "version": "1.6",
+    "version": "1.8",
     "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "theme": "dark",
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.3.0"
+            "version": "1.4.0"
         }
     ],
     "resources": [
@@ -19,10 +19,12 @@
                 "imageStandardPortraitHorizontalCount": 4,
                 "imagePosterLandscapeHorizontalCount": 3,
                 "imagePosterPortraitHorizontalCount": 4,
-                "imageWidescreenHorizontalCount": 3
+                "imageWidescreenHorizontalCount": 3,
+                "imageUnivisiumHorizontalCount": 3
             },
             "dimensions": {
-                "gridListMaxDataHeight": "140dp"
+                "gridListMaxDataHeight": "140dp",
+                "gridListIdealHeightPadding": "@spacingXSmall"
             }
         },
         {
@@ -35,7 +37,8 @@
                 "imageStandardPortraitHorizontalCount": 2,
                 "imagePosterLandscapeHorizontalCount": 1,
                 "imagePosterPortraitHorizontalCount": 2,
-                "imageWidescreenHorizontalCount": 1
+                "imageWidescreenHorizontalCount": 1,
+                "imageUnivisiumHorizontalCount": 1
             },
             "dimensions": {
                 "gridListMaxDataHeight": "108dp"
@@ -51,11 +54,19 @@
                 "imageStandardPortraitHorizontalCount": 4,
                 "imagePosterLandscapeHorizontalCount": 3,
                 "imagePosterPortraitHorizontalCount": 4,
-                "imageWidescreenHorizontalCount": 2
+                "imageWidescreenHorizontalCount": 2,
+                "imageUnivisiumHorizontalCount": 2
             }
         },
         {
-            "description": "Image Size Definition for tvLandscapeXLarge",
+            "description": "grid List Ideal Height Padding for hubLandscapeSmall",
+            "when": "${@viewportProfile == @hubLandscapeSmall}",
+            "dimensions": {
+                "gridListIdealHeightPadding": "@spacing3XSmall"
+            }
+        },
+        {
+            "description": "default horizontal count for tvLandscapeXLarge",
             "when": "${@viewportProfile == @tvLandscapeXLarge}",
             "numbers": {
                 "imageSquareHorizontalCount": 4,
@@ -64,10 +75,99 @@
                 "imageStandardPortraitHorizontalCount": 5,
                 "imagePosterLandscapeHorizontalCount": 4,
                 "imagePosterPortraitHorizontalCount": 5,
-                "imageWidescreenHorizontalCount": 4
+                "imageWidescreenHorizontalCount": 4,
+                "imageUnivisiumHorizontalCount": 4
             },
             "dimensions": {
                 "gridListMaxDataHeight": "70dp"
+            }
+        },
+        {
+            "description": "default horizontal count for hubLandscapeXLarge",
+            "when": "${@viewportProfile == @hubLandscapeXLarge}",
+            "numbers": {
+                "imageSquareHorizontalCount": 5,
+                "imageRoundHorizontalCount": 5,
+                "imageStandardLandscapeHorizontalCount": 5,
+                "imageStandardPortraitHorizontalCount": 6,
+                "imagePosterLandscapeHorizontalCount": 5,
+                "imagePosterPortraitHorizontalCount": 6,
+                "imageWidescreenHorizontalCount": 5,
+                "imageUnivisiumHorizontalCount": 5
+            }
+        },
+        {
+            "description": "default horizontal count for hubPortraitMedium",
+            "when": "${@viewportProfile == @hubPortraitMedium}",
+            "numbers": {
+                "imageSquareHorizontalCount": 3,
+                "imageRoundHorizontalCount": 3,
+                "imageStandardLandscapeHorizontalCount": 3,
+                "imageStandardPortraitHorizontalCount": 4,
+                "imagePosterLandscapeHorizontalCount": 3,
+                "imagePosterPortraitHorizontalCount": 4,
+                "imageWidescreenHorizontalCount": 3,
+                "imageUnivisiumHorizontalCount": 3
+            }
+        },
+        {
+            "description": "default horizontal count for mobile group",
+            "when": "${@viewportProfileGroup == @mobile}",
+            "numbers": {
+                "imageSquareHorizontalCount": 2,
+                "imageRoundHorizontalCount": 2,
+                "imageStandardLandscapeHorizontalCount": 2,
+                "imageStandardPortraitHorizontalCount": 3,
+                "imagePosterLandscapeHorizontalCount": 2,
+                "imagePosterPortraitHorizontalCount": 3,
+                "imageWidescreenHorizontalCount": 1,
+                "imageUnivisiumHorizontalCount": 1
+            },
+            "dimensions": {
+                "gridListMaxDataHeight": "80dp",
+                "gridListIdealHeightPadding": "@spacing2XSmall"
+            }
+        },
+        {
+            "description": "default horizontal count for mobileSmall",
+            "when": "${@viewportProfileGroup == @mobile && viewport.width > 320}",
+            "numbers": {
+                "imageSquareHorizontalCount": 3,
+                "imageRoundHorizontalCount": 3,
+                "imageStandardLandscapeHorizontalCount": 3,
+                "imageStandardPortraitHorizontalCount": 4,
+                "imagePosterLandscapeHorizontalCount": 3,
+                "imagePosterPortraitHorizontalCount": 4,
+                "imageWidescreenHorizontalCount": 2,
+                "imageUnivisiumHorizontalCount": 2
+            }
+        },
+        {
+            "description": "default horizontal count for mobileMedium",
+            "when": "${@viewportProfileGroup == @mobile && viewport.width > 680}",
+            "numbers": {
+                "imageSquareHorizontalCount": 4,
+                "imageRoundHorizontalCount": 4,
+                "imageStandardLandscapeHorizontalCount": 4,
+                "imageStandardPortraitHorizontalCount": 5,
+                "imagePosterLandscapeHorizontalCount": 4,
+                "imagePosterPortraitHorizontalCount": 5,
+                "imageWidescreenHorizontalCount": 3,
+                "imageUnivisiumHorizontalCount": 3
+            }
+        },
+        {
+            "description": "default horizontal count for mobileLarge",
+            "when": "${@viewportProfileGroup == @mobile && viewport.width > 900}",
+            "numbers": {
+                "imageSquareHorizontalCount": 5,
+                "imageRoundHorizontalCount": 5,
+                "imageStandardLandscapeHorizontalCount": 5,
+                "imageStandardPortraitHorizontalCount": 6,
+                "imagePosterLandscapeHorizontalCount": 5,
+                "imagePosterPortraitHorizontalCount": 6,
+                "imageWidescreenHorizontalCount": 4,
+                "imageUnivisiumHorizontalCount": 4
             }
         }
     ],
@@ -291,6 +391,23 @@
                     "description": "Boolean to turn the drop shadow on or off on the image",
                     "type": "boolean",
                     "default": true
+                },
+                {
+                    "name": "listId",
+                    "type": "string",
+                    "default": "AlexaGridListSequence",
+                    "description": "The component id for the scrolling list in this layout"
+                },
+                {
+                    "name": "speechItems",
+                    "description": "Array of speech items",
+                    "type": "any"
+                },
+                {
+                    "name": "layoutDirection",
+                    "description": "The layoutDirection of AlexaGridList. It can be LTR or RTL. By default, it uses environment layoutDirection.",
+                    "type": "string",
+                    "default": "${environment.layoutDirection}"
                 }
             ],
             "items": [
@@ -299,6 +416,7 @@
                     "width": "100%",
                     "height": "100%",
                     "entities": "${entities}",
+                    "layoutDirection": "${layoutDirection}",
                     "items": [
                         {
                             "type": "AlexaBackground",
@@ -325,7 +443,8 @@
                             "headerBackButton": "${headerBackButton}",
                             "headerBackButtonCommand": "${headerBackButtonCommand}",
                             "headerBackgroundColor": "${headerBackgroundColor}",
-                            "headerAttributionOpacity": "${headerAttributionOpacity}"
+                            "headerAttributionOpacity": "${headerAttributionOpacity}",
+                            "layoutDirection": "${layoutDirection}"
                         },
                         {
                             "type": "Container",
@@ -335,7 +454,7 @@
                             "bind": [
                                 {
                                     "name": "defaultHorizontalCount",
-                                    "value": "${imageAspectRatio == 'square' ? @imageSquareHorizontalCount : (imageAspectRatio == 'round' ? @imageRoundHorizontalCount : (imageAspectRatio == 'standard_landscape' ? @imageStandardLandscapeHorizontalCount : (imageAspectRatio == 'standard_portrait' ? @imageStandardPortraitHorizontalCount : (imageAspectRatio == 'poster_landscape' ? @imagePosterLandscapeHorizontalCount : (imageAspectRatio == 'poster_portrait' ? @imagePosterPortraitHorizontalCount : @imageWidescreenHorizontalCount)))))}"
+                                    "value": "${imageAspectRatio == 'square' ? @imageSquareHorizontalCount : (imageAspectRatio == 'round' ? @imageRoundHorizontalCount : (imageAspectRatio == 'standard_landscape' ? @imageStandardLandscapeHorizontalCount : (imageAspectRatio == 'standard_portrait' ? @imageStandardPortraitHorizontalCount : (imageAspectRatio == 'poster_landscape' ? @imagePosterLandscapeHorizontalCount : (imageAspectRatio == 'poster_portrait' ? @imagePosterPortraitHorizontalCount : (imageAspectRatio == 'widescreen' ? @imageWidescreenHorizontalCount : @imageUnivisiumHorizontalCount))))))}"
                                 }
                             ],
                             "shrink": 1,
@@ -343,7 +462,7 @@
                             "items": [
                                 {
                                     "type": "GridSequence",
-                                    "id": "AlexaGridListSequence",
+                                    "id": "${listId}",
                                     "bind": [
                                         {
                                             "name": "horizontalCount",
@@ -359,7 +478,7 @@
                                         },
                                         {
                                             "name": "imageRatioPortraitX",
-                                            "value": "${imageAspectRatio == 'square' ? @squareRatioPortraitX : (imageAspectRatio == 'round' ? @roundRatioPortraitX : (imageAspectRatio == 'standard_landscape' ? @standardLandscapeRatioPortraitX : (imageAspectRatio == 'standard_portrait' ? @standardPortraitRatioPortraitX : (imageAspectRatio == 'poster_landscape' ? @posterLandscapeRatioPortraitX : (imageAspectRatio == 'poster_portrait' ? @posterPortraitRatioPortraitX : @widescreenRatioPortraitX)))))}"
+                                            "value": "${imageAspectRatio == 'square' ? @squareRatioPortraitX : (imageAspectRatio == 'round' ? @roundRatioPortraitX : (imageAspectRatio == 'standard_landscape' ? @standardLandscapeRatioPortraitX : (imageAspectRatio == 'standard_portrait' ? @standardPortraitRatioPortraitX : (imageAspectRatio == 'poster_landscape' ? @posterLandscapeRatioPortraitX : (imageAspectRatio == 'poster_portrait' ? @posterPortraitRatioPortraitX : (imageAspectRatio == 'widescreen' ? @widescreenRatioPortraitX : @univisiumRatioPortraitX))))))}"
                                         },
                                         {
                                             "name": "itemImageHeight",
@@ -367,7 +486,7 @@
                                         },
                                         {
                                             "name": "defaultGridHeight",
-                                            "value": "${itemImageHeight + @gridListMaxDataHeight + @imageListItemInnerPaddingTop + (2 * @imageListItemInnerPadding)}"
+                                            "value": "${itemImageHeight + @gridListMaxDataHeight + @gridListIdealHeightPadding + (2 * @imageListItemInnerPadding)}"
                                         },
                                         {
                                             "name": "itemHeight",
@@ -428,7 +547,9 @@
                                             "disabled": "${data.disabled}",
                                             "imageMetadataPrimacy": "${imageMetadataPrimacy}",
                                             "primaryAction": "${data.primaryAction ? data.primaryAction : primaryAction}",
-                                            "entities": "${data.entities ? data.entities : entities}"
+                                            "speech": "${speechItems[index].speech}",
+                                            "entities": "${data.entities ? data.entities : entities}",
+                                            "layoutDirection": "${layoutDirection}"
                                         },
                                         {
                                             "when": "${customLayoutName && customLayoutName != ''}",
