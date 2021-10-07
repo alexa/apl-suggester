@@ -21,7 +21,7 @@ import * as hubLandscapeSmall from './viewportProfiles/hubLandscapeSmall.json';
 import * as hubLandscapeMedium from './viewportProfiles/hubLandscapeMedium.json';
 import * as hubLandscape from './viewportProfiles/hubLandscape.json';
 import * as hubLandscapeExtraLarge from './viewportProfiles/hubLandscapeXL.json';
-import * as hubLandscapePortraitMedium from './viewportProfiles/hubLandscapePortraitMedium.json';
+import * as hubPortraitMedium from './viewportProfiles/hubLandscapePortraitMedium.json';
 import * as tvFullscreen from './viewportProfiles/tvFullscreen.json';
 import * as mobileSmall from './viewportProfiles/mobileSmall.json';
 import * as mobileMedium from './viewportProfiles/mobileMedium.json';
@@ -144,7 +144,7 @@ const VIEWPORT_PROFILE_METADATA : OrderedMap<string, IViewportProfile> = Ordered
     hubLandscapeMedium : hubLandscapeMedium as IViewportProfile,
     hubLandscape : HUB_LANDSCAPE,
     hubLandscapeExtraLarge : hubLandscapeExtraLarge as IViewportProfile,
-    hubLandscapePortraitMedium : hubLandscapePortraitMedium as IViewportProfile,
+    hubPortraitMedium : hubPortraitMedium as IViewportProfile,
     tvFullscreen : tvFullscreen as IViewportProfile,
     mobileSmall : mobileSmall as IViewportProfile,
     mobileMedium : mobileMedium as IViewportProfile,
