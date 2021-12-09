@@ -1166,6 +1166,16 @@ export const JSON_SCHEMA : IJsonSchema = {
             }
           ]
         },
+        "extends": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/stringArray"
+            }
+          ]
+        },
         "values": {
           "anyOf": [
             {
