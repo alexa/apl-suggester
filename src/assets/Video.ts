@@ -22,7 +22,7 @@ import { IJsonSchema, Categories } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "url": commonDefinition.Url,
+    "url": commonDefinition.SimpleUrl,
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
     "dimension": {
@@ -201,9 +201,6 @@ export const JSON_SCHEMA : IJsonSchema = {
           "type": "integer",
           "description": "Duration of the track in milliseconds"
         },
-        "headers": {
-          "$ref": "#/definitions/stringArray"
-        },
         "url": {
           "$ref": "#/definitions/urlDefinition",
           "description": "The actual URL to load the video from"
@@ -230,7 +227,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           {
             "$ref": "#/definitions/videoTrack"
           },
-          commonDefinition.Url,
+          commonDefinition.SimpleUrl,
         ]
       }
     },
@@ -238,9 +235,9 @@ export const JSON_SCHEMA : IJsonSchema = {
       "oneOf": [
         {
           "type": "array",
-          "items": commonDefinition.Url
+          "items": commonDefinition.SimpleUrl
         },
-        commonDefinition.Url
+        commonDefinition.SimpleUrl
       ]
     },
     "sourceDefinition": {
@@ -248,7 +245,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         {
           "$ref": "#/definitions/videoTrackArray"
         },
-        commonDefinition.Url,
+        commonDefinition.SimpleUrl,
         {
           "$ref": "#/definitions/videoTrack"
         }

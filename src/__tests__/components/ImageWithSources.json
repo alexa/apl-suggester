@@ -8,8 +8,7 @@
     "${some_expression}",
     {
       "url": "https://hello.com",
-      "description": "test",
-      "headers": ["key1: value1", "key2: value2"]
+      "description": "test"
     }
   ],
   "scale": "best-fill",

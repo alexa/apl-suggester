@@ -5,7 +5,7 @@
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.4.0"
+            "version": "1.5.0"
         }
     ],
     "mainTemplate": {
@@ -103,7 +103,7 @@
                                                         "checked": "${data.checked}",
                                                         "position": "absolute",
                                                         "right": "@marginHorizontal",
-                                                        "top": "15dp",
+                                                        "top": "${@viewportProfileGroup == @mobile ? 0dp : 15dp}",
                                                         "primaryAction": [
                                                             {
                                                                 "when": "${!event.source.check}",

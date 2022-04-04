@@ -85,10 +85,10 @@ describe('PackageLoader', () => {
 
     it('should import from predefined apl package, depth-first, following the package import order', (done) => {
         const LAYOUT_URL : string =
-            'https://d2na8397m465mh.cloudfront.net/packages/alexa-layouts/1.0.0/document.json';
-        const STYLES_URL : string = 'https://d2na8397m465mh.cloudfront.net/packages/alexa-styles/1.0.0/document.json';
+            'https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/document.json';
+        const STYLES_URL : string = 'https://arl.assets.apl-alexa.com/packages/alexa-styles/1.0.0/document.json';
         const VIEWPORT_PROFILES_URL : string =
-            'https://d2na8397m465mh.cloudfront.net/packages/alexa-viewport-profiles/1.0.0/document.json';
+            'https://arl.assets.apl-alexa.com/packages/alexa-viewport-profiles/1.0.0/document.json';
         let importPackages = [{
             name: 'alexa-layouts',
             version: '1.0.0'

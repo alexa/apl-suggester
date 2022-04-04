@@ -372,7 +372,7 @@ export const IMPORT_LAYOUT_TEMPLATE_10 = {
           },
           "item": {
             "type": "Image",
-            "source": "https://d2na8397m465mh.cloudfront.net/packages/alexa-layouts/1.0.0/images/back_button.png",
+            "source": "https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/images/back_button.png",
             "width": "@headerBackAsset",
             "height": "@headerBackAsset",
             "scale": "best-fit",
@@ -385,7 +385,7 @@ export const IMPORT_LAYOUT_TEMPLATE_10 = {
           "onPress": "${headerBackButtonCommand}",
           "item": {
             "type": "Image",
-            "source": "https://d2na8397m465mh.cloudfront.net/packages/alexa-layouts/1.0.0/images/back_button.png",
+            "source": "https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/images/back_button.png",
             "width": "@headerBackAsset",
             "height": "@headerBackAsset",
             "scale": "best-fit",
@@ -797,7 +797,7 @@ export const IMPORT_LAYOUT_TEMPLATE_13 = {
           },
           "item": {
             "type": "Image",
-            "source": "https://d2na8397m465mh.cloudfront.net/packages/alexa-layouts/1.0.0/images/back_button.png",
+            "source": "https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/images/back_button.png",
             "width": "@headerBackAsset",
             "height": "@headerBackAsset",
             "scale": "best-fit",
@@ -810,7 +810,7 @@ export const IMPORT_LAYOUT_TEMPLATE_13 = {
           "onPress": "${headerBackButtonCommand}",
           "item": {
             "type": "Image",
-            "source": "https://d2na8397m465mh.cloudfront.net/packages/alexa-layouts/1.0.0/images/back_button.png",
+            "source": "https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/images/back_button.png",
             "width": "@headerBackAsset",
             "height": "@headerBackAsset",
             "scale": "best-fit",

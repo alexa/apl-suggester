@@ -49,7 +49,8 @@ export enum ViewportShape {
 export enum ViewportMode {
     HUB = 'hub',
     TV = 'tv',
-    MOBILE = 'mobile'
+    MOBILE = 'mobile',
+    AUTO = 'auto'
 }
 
 /**

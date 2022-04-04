@@ -8,6 +8,16 @@
         {
             "type": "SwipeAway",
             "direction": "forward"
+        },
+        {
+            "type": "Tap",
+            "onTap": [
+                {
+                    "type": "SetValue",
+                    "property": "booleanValue",
+                    "value": true
+                }
+            ]
         }
     ],
     "onCancel": [],
