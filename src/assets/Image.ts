@@ -22,7 +22,7 @@ import {Categories, IJsonSchema} from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "url": commonDefinition.Url,
+    "url": commonDefinition.SimpleUrl,
     "ActionArray": commonDefinition.ActionArray,
     "Action": commonDefinition.Action,
     "dimension": {

@@ -153,8 +153,8 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('VectorGraphic.json', 'VectorGraphic');
     });
 
-    it('should validate VectorGraphic component with Url Headers.', async () => {
-        await verifyComponent('VectorGraphicWithUrlHeaders.json', 'VectorGraphic');
+    it('should validate VectorGraphic component with sources.', async () => {
+        await verifyComponent('VectorGraphicWithSources.json', 'VectorGraphic');
     });
 
     it('should validate GridSequence component.', async () => {

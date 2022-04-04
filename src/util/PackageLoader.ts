@@ -17,7 +17,7 @@
 'use strict';
 import axios from 'axios';
 
-const PREDEFINED_HOST : string = 'https://d2na8397m465mh.cloudfront.net/packages';
+const PREDEFINED_HOST : string = 'https://arl.assets.apl-alexa.com/packages';
 const PREDEFINED_FILE_NAME : string = 'document.json';
 /**
  *
@@ -162,7 +162,7 @@ export class PackageLoader {
             if (url) {
                 return axios.get(url).then((response) => {
                     return response.data;
-                }).then(async (jsonResponse) => {
+                }).then(async (jsonResponse : object) => {
                     pkg.json = this.deepFreeze(jsonResponse);
                     pkg.state = LoadState.loadChildren;
                     await this.ensureLoaded(pkg.json['import']);

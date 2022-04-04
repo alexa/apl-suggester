@@ -2,7 +2,6 @@
   "type": "VectorGraphic",
   "source": {
     "url": "https://hello.com",
-    "headers": ["key: value", "key2: value"],
     "description": "test source"
   },
   "width": 100,

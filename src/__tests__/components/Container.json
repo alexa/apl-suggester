@@ -45,46 +45,5 @@
     "paddingStart": 10,
     "paddingEnd": "20dp",
     "preserve": [ "checked" ],
-    "layoutDirection": "inherit",
-    "animateChildAdded": [
-        {
-            "type": "AnimateItem",
-            "easing": "ease-in-out",
-            "duration": 300,
-            "componentId": "${event.child.uid}",
-            "value": [
-                {
-                    "property": "opacity",
-                    "from": 0,
-                    "to": 1
-                }
-            ]
-        }
-    ],
-    "animateChildRemoved": [
-        {
-            "type": "SetValue",
-            "componentId": "${event.child.uid}",
-            "property": "opacity",
-            "value": 1
-        },
-        {
-            "type": "AnimateItem",
-            "duration": 300,
-            "componentId": "${event.child.uid}",
-            "value": [
-                {
-                    "property": "opacity",
-                    "from": 1,
-                    "to": 0
-                },
-                {
-                    "property": "transform",
-                    "to": {
-                        "scaleY": 0
-                    }
-                }
-            ]
-        }
-    ]
+    "layoutDirection": "inherit"
 }

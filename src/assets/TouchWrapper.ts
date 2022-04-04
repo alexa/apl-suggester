@@ -243,6 +243,9 @@ export const JSON_SCHEMA : IJsonSchema = {
         },
         {
           "$ref": "#/definitions/SwipeAway"
+        },
+        {
+          "$ref": "#/definitions/Tap"
         }
       ]
     },
@@ -352,6 +355,25 @@ export const JSON_SCHEMA : IJsonSchema = {
       "required": [
         "type",
         "direction"
+      ]
+    },
+    "Tap": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Describes the type of gesture"
+        },
+        "onTap": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Command"
+          },
+          "description": "Commands to execute when a tap occurs"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
       ]
     },
     "Component": {

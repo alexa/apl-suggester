@@ -8,8 +8,7 @@
 
         },
         {
-            "url": "${some-expression}",
-            "headers": ["key1: value", "key2: value"]
+            "url": "${some-expression}"
         },
         {
             "url": ["https://test", "${expr}"],
