@@ -96,6 +96,9 @@ export const ExtendedUrl = {
     "type": "object",
     "properties": {
         "url": SimpleUrl,
+        "headers": {
+            "$ref": "#/definitions/stringArray"
+        },
         "description": {
             "type": "string"
         },

@@ -33,7 +33,8 @@
               "source": [
                 {
                   "url": "https://delivery.vidible.tv/video/redirect/5b634e2dbf488517fc64fbb4.mp4?bcid=5593271909eab110d8f43789&w=852&h=480&enc=mp4&domain=cdn.vidible.tv"
-                }
+                },
+                "URL2"
               ],
               "onPause": [
                 {

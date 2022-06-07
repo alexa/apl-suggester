@@ -8,7 +8,12 @@ For more information of how to build APL templates, please visit https://develop
 ## Installation and usage
 The easiest way to use apl-suggester is to install it from npm and build it into your app with webpack.
 ```
-npm install apl-suggester
+npm install apl-suggester --save
+```
+
+Since June 7 2022, we have changed our versioning strategy. Existing users please make sure to pull the latest and update your `package.json`:
+```
+npm install apl-suggester@2022 --save
 ```
 
 Then use it in your app:

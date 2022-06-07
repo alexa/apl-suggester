@@ -9,6 +9,14 @@
     {
       "url": "https://hello.com",
       "description": "test"
+    },
+    {
+      "url": "URL1",
+      "headers": [
+        "key1: value1",
+        "key2: value2",
+        "keynovalue"
+      ]
     }
   ],
   "scale": "best-fill",
