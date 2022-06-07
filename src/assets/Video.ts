@@ -18,6 +18,7 @@
 'use strict';
 import * as commonDefinition from "./CommonDefinition";
 import { IJsonSchema, Categories } from './IJsonSchema';
+import { SimpleUrl } from './CommonDefinition';
 
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -479,6 +480,11 @@ export const JSON_SCHEMA : IJsonSchema = {
           "type": "string"
         }
       ],
+    },
+    "muted": {
+      "type": "boolean",
+      "category": Categories.video,
+      "description": "If true, mute the video."
     },
     "padding": {
       "$ref": "#/definitions/paddingArray",

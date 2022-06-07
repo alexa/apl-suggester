@@ -1523,7 +1523,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.6",
         "1.7",
         "1.8",
-        "1.9"
+        "1.9",
+        "2022.1"
       ]
     },
     "license": {

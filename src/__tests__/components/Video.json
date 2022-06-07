@@ -47,5 +47,6 @@
         "property": "opacity",
         "value": 0
     }],
-    "preserve": [ "source","playingState" ]
+    "preserve": [ "source","playingState" ],
+    "muted": false
 }

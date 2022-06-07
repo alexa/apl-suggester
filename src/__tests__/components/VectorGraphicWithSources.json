@@ -1,8 +1,13 @@
 {
   "type": "VectorGraphic",
   "source": {
-    "url": "https://hello.com",
-    "description": "test source"
+    "url": "URL1",
+    "description": "Vector graphic description",
+    "headers": [
+      "key1: value1",
+      "key2: value2",
+      "keynovalue"
+    ]
   },
   "width": 100,
   "height": 100,
