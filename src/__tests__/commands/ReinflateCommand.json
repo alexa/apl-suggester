@@ -2,5 +2,6 @@
   "type": "Reinflate",
   "delay": 30000,
   "screenLock": true,
-  "sequencer": "MAIN"
+  "sequencer": "MAIN",
+  "preservedSequencers": [ "SpeakListSequencer" ]
 }

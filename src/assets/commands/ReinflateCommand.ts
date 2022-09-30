@@ -43,6 +43,10 @@ export const JSON_SCHEMA : IJsonSchema = {
         "when": {
             "type": "boolean",
             "description": "If this evaluates to false, the command is skipped"
+        },
+        "preservedSequencers": {
+            "type": "array",
+            "description": "An array of named sequencers to preserve"
         }
     },
     "required": [
