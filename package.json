@@ -1,6 +1,6 @@
 {
   "name": "apl-suggester",
-  "version": "2022.1.0",
+  "version": "2022.2.0",
   "description": "This Package is developed for providing suggestions and validations on APL templates.",
   "engines": {
     "node": ">=8.0.0"
