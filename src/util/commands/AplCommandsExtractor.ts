@@ -36,6 +36,8 @@ export class AplCommandsExtractor {
         ['Select', ['commands', 'otherwise']]
     ]);
 
+    private static ARRAY_OF_COMMAND_PROPERTIES = ['onConfigChange', 'onDisplayStateChange', 'onMount'];
+
     /**
      * Instance of AplCommandsExtractor.
      *
@@ -82,10 +84,9 @@ export class AplCommandsExtractor {
             });
         }
 
-        // add Commands under onMount
-        if (aplTemplateWithPath['onMount']) {
-            this.addChildCommands(aplTemplateWithPath['onMount'], commands);
-        }
+        AplCommandsExtractor.ARRAY_OF_COMMAND_PROPERTIES.forEach((property) => {
+            this.addChildCommands(aplTemplateWithPath[property], commands);
+        });
         return commands;
     }
 
@@ -143,7 +144,6 @@ export class AplCommandsExtractor {
     private getCommandsProperties(commandType : string) : string[] {
         // command property in ControlMedia is enumerated value,
         // which is the operation that should be performed on the media player.
-        // Ref: https://aplspec.aka.corp.amazon.com/release-1.1/html/standard_commands.html#controlmedia-command
         if (commandType === 'ControlMedia') {
             return [];
         }
@@ -164,9 +164,12 @@ export class AplCommandsExtractor {
             }
         }
 
-        if (copiedDoc['onMount']) {
-            this.processChildCommand(copiedDoc, '', 'onMount');
-        }
+        AplCommandsExtractor.ARRAY_OF_COMMAND_PROPERTIES.forEach((property) => {
+            if (copiedDoc[property]) {
+                this.processChildCommand(copiedDoc, '', property);
+            }
+        });
+
         return copiedDoc;
     }
 

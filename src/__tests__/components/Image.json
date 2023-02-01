@@ -72,12 +72,17 @@
         },
         {
             "type": "Noise",
-            "sigma": 20
+            "sigma": 20,
+            "kind": "gaussian"
         },
         {
             "type": "Blend",
             "destination": -2,
             "mode": "normal"
+        },
+        {
+            "type": "Blend",
+            "mode": "source-atop"
         },
         {
             "type": "Color",

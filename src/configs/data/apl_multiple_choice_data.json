@@ -1,0 +1,19 @@
+{
+    "multipleChoiceTemplateData": {
+        "type": "object",
+        "properties": {
+            "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-green.png",
+            "titleText": "Plant Question",
+            "primaryText": "Here is a fun plant question of the day. Which plant family does Asparagus belong to? Please choose one from the following.",
+            "choices": [
+                "Lily",
+                "Sunflower",
+                "Mustard",
+                "Mint"
+            ],
+            "choiceListType": "alphabet",
+            "headerAttributionImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/logo-world-of-plants-2.png",
+            "footerHintText": "Try, \"Alexa, what is the plant fact of the day?\""
+        }
+    }
+}

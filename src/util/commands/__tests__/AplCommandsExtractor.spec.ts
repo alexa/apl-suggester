@@ -80,15 +80,26 @@ describe('AplCommandsExtractor tests', () => {
                 ],
                 finally: '<DOCUMENT_ON_MOUNT_COMMAND>'
             }
+        ],
+        onConfigChange: [
+            {
+              type: 'SendEvent',
+              sequencer: 'ConfigSendEvent',
+              arguments: ['reinflating the APL document']
+            },
+            {
+              type: 'Reinflate',
+              preservedSequencers: [ 'SpeakListSequencer' ]
+            }
         ]
     };
 
-    const aplGraphicsExtractor = AplCommandsExtractor.getInstance();
+    const aplCommandsExtractor = AplCommandsExtractor.getInstance();
 
     it('should be able to extract all commands from requested APL template', () => {
-        const commands : IAplCommand[] = aplGraphicsExtractor.extractCommands(APL_DOC);
+        const commands : IAplCommand[] = aplCommandsExtractor.extractCommands(APL_DOC);
         // the commands count should be expected
-        expect(commands.length).to.be.equal(6);
+        expect(commands.length).to.be.equal(8);
         // all commands should contain jsonPath
         expect(commands.filter((c) => c.jsonPath === undefined)).to.have.lengthOf(0);
     });

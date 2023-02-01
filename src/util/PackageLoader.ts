@@ -19,6 +19,9 @@ import axios from 'axios';
 
 const PREDEFINED_HOST : string = 'https://arl.assets.apl-alexa.com/packages';
 const PREDEFINED_FILE_NAME : string = 'document.json';
+const PREDEFINED_ARL_FILE_NAME : string = 'document-w-desc.json';
+const ARL_PACKAGE_NAMES = ['alexa-layouts', 'alexa-styles', 'alexa-viewport-profiles'];
+const STAGING_VERSION_REGEX = /^(?:\d+\.?)+-\w+$/;
 /**
  *
  * Package loading theory.
@@ -133,6 +136,14 @@ export class PackageLoader {
     }
 
     /**
+     * Check if version is a prod version
+     * Version string shouldn't match staging version pattern: eg. 1.4.0-sadhsagfydavchgah
+     */
+    private isProdVersion(version : string) : boolean {
+        return version.match(STAGING_VERSION_REGEX) == null;
+    }
+
+    /**
      * Execute a package load.  For now we ignore version
      */
     private async loadPackage(name : string, version : string, url : string, idx : number) : Promise<any> {
@@ -156,7 +167,10 @@ export class PackageLoader {
 
             // Pre-defined packages can be override by customer provided package json file
             if (!url && !this.embeddedPackages[name]) {
-                url = `${PREDEFINED_HOST}/${name}/${version}/${PREDEFINED_FILE_NAME}`;
+                const fileName = ARL_PACKAGE_NAMES.includes(name) && this.isProdVersion(version)
+                ? PREDEFINED_ARL_FILE_NAME
+                : PREDEFINED_FILE_NAME;
+                url = `${PREDEFINED_HOST}/${name}/${version}/${fileName}`;
             }
 
             if (url) {

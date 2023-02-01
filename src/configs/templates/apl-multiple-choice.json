@@ -1,0 +1,359 @@
+{
+    "type": "APL",
+    "version": "2022.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.5.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Public resource definitions Multiple Choice",
+            "colors": {
+                "colorText": "@colorText",
+                "choiceBorderColor": "rgba(${@colorWhite}, 40%)",
+                "choiceBackgroundColor": "rgba(${@colorBlack}, 80%)",
+                "choicePrimaryBackgroundColor": "rgba(${@colorBlack}, 60%)"
+            },
+            "dimensions": {
+                "choiceBorderRadius": "${((@fontSizeLarge * @lineHeightNormal) + (@spacing2XSmall * 2)) / 2}",
+                "choiceColumnWidth": "70%"
+            },
+            "number": {
+                "choiceQuestionTextMaxLines": 3
+            }
+        },
+        {
+            "when": "${@viewportProfileCategory == @hubRound}",
+            "dimensions": {
+                "choiceColumnWidth": "100%"
+            },
+            "number": {
+                "choiceQuestionTextMaxLines": 0
+            }
+        },
+        {
+            "when": "${viewport.theme == 'light'}",
+            "colors": {
+                "colorText": "@colorTextReversed",
+                "choiceBorderColor": "rgba(${@colorBlack}, 40%)",
+                "choiceBackgroundColor": "rgba(${@colorWhite}, 80%)",
+                "choicePrimaryBackgroundColor": "rgba(${@colorWhite}, 60%)"
+            }
+        }
+    ],
+    "layouts": {
+        "MultipleChoiceItem": {
+            "parameters": [
+                "choiceListType",
+                "choiceListDirection",
+                "ordinal",
+                "text"
+            ],
+            "item": {
+                "description": "Choice item",
+                "type": "Container",
+                "paddingTop": "@spacing2XSmall",
+                "width": "${choiceListDirection == 'row' ? '48%' : @choiceColumnWidth}",
+                "item": {
+                    "type": "Frame",
+                    "padding": "@spacing3XSmall",
+                    "paddingEnd": "@spacingSmall",
+                    "borderRadius": "@choiceBorderRadius",
+                    "borderColor": "@choiceBorderColor",
+                    "borderWidth": "2dp",
+                    "backgroundColor": "@choiceBackgroundColor",
+                    "width": "100%",
+                    "item": {
+                        "type": "Container",
+                        "direction": "row",
+                        "width": "100%",
+                        "bind": [
+                            {
+                                "name": "ordinalText",
+                                "type": "string",
+                                "value": "${choiceListType == 'alphabet' ? (ordinal == 1 ? 'A' : (ordinal == 2 ? 'B' : (ordinal == 3 ? 'C' : 'D'))) : ordinal}"
+                            }
+                        ],
+                        "items": [
+                            {
+                                "type": "AlexaOrdinal",
+                                "theme": "${viewport.theme}",
+                                "ordinalText": "${ordinalText}"
+                            },
+                            {
+                                "type": "Container",
+                                "width": "${choiceListDirection == 'row' ? '80%' : '90%'}",
+                                "spacing": "@spacingSmall",
+                                "item": {
+                                    "type": "Text",
+                                    "style": "textStyleDisplay6",
+                                    "width": "auto",
+                                    "text": "${text}",
+                                    "textAlign": "start",
+                                    "maxLines": 1
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "MultipleChoice": {
+            "parameters": [
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for the background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "choices",
+                    "description": "An array of choice for up to 4 choices.",
+                    "type": "any"
+                },
+                {
+                    "name": "choiceListType",
+                    "description": "Select between number (1 - 4) or alphabet (A - D) listing type.",
+                    "type": "string",
+                    "default": "alphabet"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image or logo source (PNG/vector).",
+                    "type": "string"
+                },
+                {
+                    "name": "footerHintText",
+                    "description": "Hint text to display in the footer.",
+                    "type": "string"
+                },
+                {
+                    "name": "primaryText",
+                    "description": "Text for the question.",
+                    "type": "string"
+                },
+                {
+                    "name": "titleText",
+                    "description": "Title text to display above the primary text box.",
+                    "type": "string"
+                }
+            ],
+            "item": {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "id": "AlexaBackground",
+                        "backgroundColor": "${backgroundColor}",
+                        "backgroundImageSource": "${backgroundImageSource}"
+                    },
+                    {
+                        "type": "${@viewportProfileCategory != @hubRound ? 'Container' : 'ScrollView'}",
+                        "height": "100vh",
+                        "width": "100vw",
+                        "shrink": 1,
+                        "position": "${@viewportProfileCategory != @hubRound ? 'absolute' : 'relative'}",
+                        "items": [
+                            {
+                                "type": "Container",
+                                "width": "100%",
+                                "grow": 1,
+                                "padding": [
+                                    "@marginHorizontal",
+                                    0
+                                ],
+                                "paddingBottom": "${@viewportProfileCategory != @hubRound ? '0dp' : @spacing3XLarge}",
+                                "justifyContent": "center",
+                                "alignItems": "center",
+                                "items": [
+                                    {
+                                        "when": "${@viewportProfileCategory == @hubRound}",
+                                        "type": "AlexaHeader",
+                                        "id": "AlexaHeader",
+                                        "layoutDirection": "${environment.layoutDirection}",
+                                        "headerAttributionImage": "${headerAttributionImage}",
+                                        "headerAttributionPrimacy": true,
+                                        "width": "100%"
+                                    },
+                                    {
+                                        "description": "Primary Text and Title Text block",
+                                        "when": "${primaryText || titleText}",
+                                        "type": "Container",
+                                        "width": "100%",
+                                        "alignItems": "center",
+                                        "paddingTop": "@spacingMedium",
+                                        "items": [
+                                            {
+                                                "description": "Primary Text block",
+                                                "when": "${primaryText}",
+                                                "type": "Frame",
+                                                "id": "MultipleChoice_PrimaryText",
+                                                "padding": "@spacingSmall",
+                                                "paddingTop": "@spacingMedium",
+                                                "borderRadius": "@shapeRoundedRect",
+                                                "backgroundColor": "@choicePrimaryBackgroundColor",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "style": "textStyleDisplay6",
+                                                    "fontWeight": "@fontWeightLight",
+                                                    "text": "${primaryText}",
+                                                    "textAlign": "center",
+                                                    "maxLines": "@choiceQuestionTextMaxLines"
+                                                }
+                                            },
+                                            {
+                                                "description": "Title Text block",
+                                                "when": "${titleText}",
+                                                "type": "Container",
+                                                "id": "MultipleChoice_TitleText",
+                                                "position": "${primaryText ? 'absolute' : 'relative'}",
+                                                "top": "0dp",
+                                                "items": [
+                                                    {
+                                                        "type": "Frame",
+                                                        "padding": [
+                                                            "@spacingMedium",
+                                                            "@spacing3XSmall"
+                                                        ],
+                                                        "borderColor": "@choiceBorderColor",
+                                                        "borderRadius": "@shapeRoundedRect",
+                                                        "borderWidth": "2dp",
+                                                        "backgroundColor": "@choiceBackgroundColor",
+                                                        "item": {
+                                                            "style": "textStyleCallout",
+                                                            "type": "Text",
+                                                            "text": "${String.toUpperCase(titleText)}",
+                                                            "maxLines": 1
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "description": "Choices - horizontal layout for smaller screen",
+                                        "when": "${(viewport.height < 800 && @viewportProfile != @hubRoundSmall) && choices.length > 1}",
+                                        "type": "Container",
+                                        "id": "MultipleChoice_Choices",
+                                        "width": "100%",
+                                        "direction": "column",
+                                        "items": [
+                                            {
+                                                "type": "Container",
+                                                "direction": "row",
+                                                "justifyContent": "spaceBetween",
+                                                "width": "100%",
+                                                "data": [
+                                                    0,
+                                                    1
+                                                ],
+                                                "items": [
+                                                    {
+                                                        "when": "${choices[data]}",
+                                                        "type": "MultipleChoiceItem",
+                                                        "choiceListDirection": "row",
+                                                        "text": "${choices[data]}",
+                                                        "ordinal": "${data + 1}",
+                                                        "choiceListType": "${choiceListType}"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Container",
+                                                "direction": "row",
+                                                "justifyContent": "spaceBetween",
+                                                "width": "100%",
+                                                "data": [
+                                                    2,
+                                                    3
+                                                ],
+                                                "items": [
+                                                    {
+                                                        "when": "${choices[data]}",
+                                                        "type": "MultipleChoiceItem",
+                                                        "choiceListDirection": "row",
+                                                        "text": "${choices[data]}",
+                                                        "ordinal": "${data + 1}",
+                                                        "choiceListType": "${choiceListType}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "description": "Choices - vertical layout for larger screen and Hub Round Small",
+                                        "when": "${(viewport.height >= 800 || @viewportProfile == @hubRoundSmall) || choices.length == 1}",
+                                        "type": "Container",
+                                        "id": "MultipleChoice_Choices",
+                                        "width": "100%",
+                                        "direction": "column",
+                                        "alignItems": "center",
+                                        "data": [
+                                            0,
+                                            1,
+                                            2,
+                                            3
+                                        ],
+                                        "items": [
+                                            {
+                                                "when": "${choices[data]}",
+                                                "type": "MultipleChoiceItem",
+                                                "choiceListDirection": "column",
+                                                "text": "${choices[data]}",
+                                                "ordinal": "${data + 1}",
+                                                "choiceListType": "${choiceListType}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "when": "${@viewportProfileCategory != @hubRound}",
+                        "type": "AlexaHeader",
+                        "id": "AlexaHeader",
+                        "layoutDirection": "${environment.layoutDirection}",
+                        "headerAttributionImage": "${headerAttributionImage}",
+                        "headerAttributionPrimacy": true,
+                        "width": "100%"
+                    },
+                    {
+                        "description": "Footer Hint Text - not displaying on small hubs",
+                        "when": "${@viewportProfileCategory != @hubRound && @viewportProfile != @hubLandscapeSmall && footerHintText}",
+                        "type": "AlexaFooter",
+                        "id": "AlexaFooter",
+                        "hintText": "${footerHintText}",
+                        "theme": "${viewport.theme}",
+                        "lang": "${lang}",
+                        "width": "100%",
+                        "position": "absolute",
+                        "bottom": "0"
+                    }
+                ]
+            }
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "MultipleChoice",
+                "primaryText": "${payload.multipleChoiceTemplateData.properties.primaryText}",
+                "choices": "${payload.multipleChoiceTemplateData.properties.choices}",
+                "choiceListType": "${payload.multipleChoiceTemplateData.properties.choiceListType}",
+                "titleText": "${payload.multipleChoiceTemplateData.properties.titleText}",
+                "headerAttributionImage": "${payload.multipleChoiceTemplateData.properties.headerAttributionImage}",
+                "footerHintText": "${payload.multipleChoiceTemplateData.properties.footerHintText}",
+                "backgroundImageSource": "${payload.multipleChoiceTemplateData.properties.backgroundImage}"
+            }
+        ]
+    }
+}

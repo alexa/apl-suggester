@@ -38,6 +38,13 @@ import * as parallaxEffectApl from './templates/parallax-effect.json';
 import * as animationApl from './templates/animation.json';
 import * as defaultApl from './templates/default_apl.json';
 
+import * as fullscreenVideoPlayerApl from './templates/apl-video.json';
+import * as cardsLayoutApl from './templates/apl-cards-layout.json';
+import * as audioPlayerApl from './templates/apl-audio.json';
+import * as multipleChoiceApl from './templates/apl-multiple-choice.json';
+import * as simpleTextApl from './templates/apl-simple-text.json';
+import * as mrbHeadlineApl from './templates/mrb-headline.json';
+
 import * as detailImageRightData from './data/detail_image_right_data.json';
 import * as detailImageLeftData from './data/detail_image_left_data.json';
 import * as gridListDarkData from './data/grid_list_dark_data.json';
@@ -60,6 +67,17 @@ import * as aplEqualizerData from './data/apl_equalizer_data.json';
 import * as aplAnimateLeafsBgData from './data/apl_animate_leafs_bg_data.json';
 import * as parallaxEffectData from './data/parallax_effect_data.json';
 import * as animationData from './data/animation_data.json';
+
+import * as fullscreenVideoPlayerData from './data/apl_video_data.json';
+import * as cardsLayoutData from './data/apl_cards_layout_data.json';
+import * as audioPlayerData from './data/apl_audio_data.json';
+import * as multipleChoiceData from './data/apl_multiple_choice_data.json';
+import * as simpleTextData from './data/apl_simple_text_data.json';
+import * as mrbGridListData from './data/mrb_grid_list_data.json';
+import * as mrbHeadlineData from './data/mrb_headline_data.json';
+import * as mrbImageListData from './data/mrb_image_list_data.json';
+import * as mrbPaginatedListData from './data/mrb_paginated_list_data.json';
+import * as mrbTextListData from './data/mrb_text_list_data.json';
 
 import * as defaultData from './data/default_data.json';
 
@@ -128,7 +146,17 @@ export enum SampleTemplateName {
     SHORT_TEXT_SAMPLE = 'SHORT_TEXT_SAMPLE',
     IMAGE_DISPLAY_SAMPLE = 'IMAGE_DISPLAY_SAMPLE',
     TEXT_FORWARD_LIST_SAMPLE = 'TEXT_FORWARD_LIST_SAMPLE',
-    IMAGE_FORWARD_LIST_SAMPLE = 'IMAGE_FORWARD_LIST_SAMPLE'
+    IMAGE_FORWARD_LIST_SAMPLE = 'IMAGE_FORWARD_LIST_SAMPLE',
+    CARDS_LAYOUT = 'CARDS_LAYOUT',
+    SIMPLE_TEXT_AND_IMAGE = 'SIMPLE_TEXT_AND_IMAGE',
+    MULTIPLE_CHOICE = 'MULTIPLE_CHOICE',
+    FULLSCREEN_VIDEO_PLAYER = 'FULLSCREEN_VIDEO_PLAYER',
+    AUDIO_PLAYER = 'AUDIO_PLAYER',
+    MRB_GRID_LIST = 'MRB_GRID_LIST',
+    MRB_HEADLINE = 'MRB_HEADLINE',
+    MRB_IMAGE_LIST = 'MRB_IMAGE_LIST',
+    MRB_PAGINATED_LIST = 'MRB_PAGINATED_LIST',
+    MRB_TEXT_LIST = 'MRB_TEXT_LIST'
 }
 
 /**
@@ -254,6 +282,46 @@ const SAMPLE_TEMPLATE_METADATA : Map<string, ISampleTemplate> = Map({
     IMAGE_FORWARD_LIST_SAMPLE : {
         apl: imageForwardlistApl,
         data: imageForwardListData
+    },
+    CARDS_LAYOUT: {
+        apl: cardsLayoutApl,
+        data: cardsLayoutData
+    },
+    SIMPLE_TEXT_AND_IMAGE: {
+        apl: simpleTextApl,
+        data: simpleTextData
+    },
+    MULTIPLE_CHOICE: {
+        apl: multipleChoiceApl,
+        data: multipleChoiceData
+    },
+    FULLSCREEN_VIDEO_PLAYER: {
+        apl: fullscreenVideoPlayerApl,
+        data: fullscreenVideoPlayerData
+    },
+    AUDIO_PLAYER: {
+        apl: audioPlayerApl,
+        data: audioPlayerData
+    },
+    MRB_GRID_LIST: {
+        apl: gridListDarkApl,
+        data: mrbGridListData
+    },
+    MRB_HEADLINE: {
+        apl: mrbHeadlineApl,
+        data: mrbHeadlineData
+    },
+    MRB_IMAGE_LIST: {
+        apl: imageListDarkApl,
+        data: mrbImageListData
+    },
+    MRB_PAGINATED_LIST : {
+        apl: paginatedListDarkApl,
+        data: mrbPaginatedListData
+    },
+    MRB_TEXT_LIST : {
+        apl: textListDarkApl,
+        data: mrbTextListData
     }
 });
 

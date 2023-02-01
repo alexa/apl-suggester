@@ -1,0 +1,29 @@
+{
+    "type": "APL",
+    "version": "2023.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "settings": {},
+    "theme": "dark",
+    "import": [],
+    "resources": [],
+    "styles": {},
+    "onSpeechMark": [{
+        "type": "SetValue",
+        "componentId": "component1",
+        "property": "opacity",
+        "value": 0.5
+    }],
+    "onNonExistHandler": [{
+        "type": "whatever"
+    }],
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+        ]
+    }
+}

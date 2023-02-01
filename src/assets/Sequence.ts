@@ -605,11 +605,6 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.container,
       "description": "Vertical offset of the shadow"
     },
-    "-fastScrollScale": {
-      "type": "number",
-      "category": Categories.sequence,
-      "description": "Scaling factor for content when fast scrolling."
-    },
     "onFocus": {
       "$ref": "#/definitions/CommandArray",
       "category": Categories.sequence,

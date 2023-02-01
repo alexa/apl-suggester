@@ -18,6 +18,53 @@
 'use strict'
 import { IJsonSchema } from '../IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
+  "definitions": {
+    "CommandArray": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+              "$ref": "#/definitions/Command"
+          }
+        },
+        {
+          "$ref": "#/definitions/Command"
+        }
+      ]
+    },
+    "Command": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the command."
+        },
+        "description": {
+          "type": "string",
+          "description": "An optional description for this command"
+        },
+        "delay": {
+          "type": "number",
+          "description": "Delay time in milliseconds before this event fires"
+        },
+        "screenLock": {
+          "type": "boolean",
+          "description": "If true, disable the Interaction Timer"
+        },
+        "sequencer": {
+          "type": "string",
+          "description": "Specify the sequencer that should execute this command."
+        },
+        "when": {
+          "type": "boolean",
+          "description": "If this evaluates to false, the command is skipped"
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "type"
+      ]
+    }
+  },
   "type": "object",
   "properties": {
     "type": {
@@ -45,12 +92,15 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "If this evaluates to false, the command is skipped"
     },
     "catch": {
+      "$ref": "#/definitions/CommandArray",
       "description": "An ordered list of commands to execute if this sequence is prematurely terminated."
     },
     "commands": {
+      "$ref": "#/definitions/CommandArray",
       "description": "An ordered list of commands to execute in series."
     },
     "finally": {
+      "$ref": "#/definitions/CommandArray",
       "description": "An ordered list of commands to execute after the normal commands and the catch commands."
     },
     "repeatCount": {

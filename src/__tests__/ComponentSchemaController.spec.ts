@@ -24,9 +24,21 @@ import { IMPORT_LAYOUT_TEMPLATE_13 } from '../util/__tests__/template_test_cases
 import { getSampleTemplate, SampleTemplateName } from '../configs';
 import * as aplTemplate from '../configs/templates/default_apl.json';
 
+let stub = null;
+let componentSchemaController = null;
+
+const validate = async (fileName : string, componentType : string, parentComponent? : string) => {
+    const data = fs.readFileSync(`src/__tests__/components/${fileName}`, 'utf8');
+    return await componentSchemaController.validateComponent(aplTemplate, JSON.parse(data),
+            componentType, parentComponent);
+};
+
+const verifyComponent = async (fileName : string, componentType : string, parentComponent? : string) => {
+    const result = await validate(fileName, componentType, parentComponent);
+    expect(result.length).to.equal(0);
+};
+
 describe('ComponentSchemaController.', () => {
-    let stub;
-    let componentSchemaController;
 
     beforeEach(() => {
         componentSchemaController = ComponentSchemaController.getInstance();
@@ -84,7 +96,7 @@ describe('ComponentSchemaController.', () => {
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/components/ErrorComponent.json`, 'utf8');
         const result = await componentSchemaController.validateComponent({}, JSON.parse(data), 'Image');
-        expect(result.length).to.be.equal(7);
+        expect(result.length).to.be.equal(8);
         expect(result[0].path).to.be.equal('/');
         expect(result[0].level).to.be.equal(NotificationLevel.WARN);
         expect(result[0].errorMessage.indexOf('position') > 0).to.be.equal(true);
@@ -103,6 +115,8 @@ describe('ComponentSchemaController.', () => {
         expect(result[5].level).to.be.equal(NotificationLevel.WARN);
         expect(result[6].path).to.be.equal('/role');
         expect(result[6].level).to.be.equal(NotificationLevel.WARN);
+        expect(result[7].path).to.be.equal('/filters/0/kind');
+        expect(result[7].level).to.be.equal(NotificationLevel.WARN);
     });
 
     it('should validate Image component correctly with mixin support.', async () => {
@@ -165,22 +179,23 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('EditText.json', 'EditText');
     });
 
-    it('should validate Pager component.', async () => {
+    it('should validate Pager component with onSpeechMark.', async () => {
         await verifyComponent('Pager.json', 'Pager');
     });
 
     it('should validate Video component.', async () => {
         await verifyComponent('Video.json', 'Video');
     });
-
+    it('should NOT allow textTrack and textTracks in Video component.', async () => {
+        const result = await validate('VideoTextTracksError.json', 'Video');
+        expect(result.length).to.equal(3);
+        expect(result[0].errorMessage).to.equal('should have required property \'type\'');
+        // In coming 2023.2, "type" enum expects to include "subtitle" and maybe more
+        expect(result[1].errorMessage).to.equal('should be equal to one of the allowed values : caption');
+        expect(result[2].errorMessage).to.equal('should NOT be valid');
+    });
     it('should validate Extension component', async () => {
         await verifyComponent('ExtensionComponent.json', 'ExtensionComponent');
     });
 
-    async function verifyComponent(fileName : string, componentType : string, parentComponent? : string) {
-        const data = fs.readFileSync(`src/__tests__/components/${fileName}`, 'utf8');
-        const result = await componentSchemaController.validateComponent(aplTemplate, JSON.parse(data),
-                componentType, parentComponent);
-        expect(result.length).to.be.equal(0);
-    }
 });

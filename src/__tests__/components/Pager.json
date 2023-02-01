@@ -42,6 +42,14 @@
             "value": 0
         }
     ],
+    "onSpeechMark": [
+        {
+            "type": "SetValue",
+            "componentId": "test",
+            "property": "test",
+            "value": 0.5
+        }
+    ],
     "pageDirection": "vertical",
     "items": [
         {

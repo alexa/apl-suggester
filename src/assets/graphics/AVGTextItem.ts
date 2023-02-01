@@ -22,7 +22,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         "AVGTextItemFill": {
             "oneOf": [
                 {
-                    "$ref": "#/definitions/Color"
+                    "$ref": "#/definitions/color"
                 },
                 {
                     "$ref": "#/definitions/AVGGradient"

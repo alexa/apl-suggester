@@ -1,0 +1,44 @@
+{
+    "cardsLayoutTemplateData": {
+        "type": "object",
+        "properties": {
+            "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-leaf-2.png",
+            "headerTitle": "",
+            "headerSubtitle": "",
+            "headerAttributionImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/logo-world-of-plants-2.png",
+            "primaryText": "Which plant family would you like to learn more about?",
+            "listItems": [
+                {
+                    "primaryText": "Mustard",
+                    "secondaryText": "Edible crops",
+                    "thumbnailImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-mustard.jpeg"
+                },
+                {
+                    "primaryText": "Lily",
+                    "secondaryText": "Elaborate blooms",
+                    "thumbnailImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-lily.jpeg"
+                },
+                {
+                    "primaryText": "Buttercup",
+                    "secondaryText": "Garden plants",
+                    "thumbnailImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-buttercup.jpeg"
+                },
+                {
+                    "primaryText": "Mint",
+                    "secondaryText": "Garden herbs",
+                    "thumbnailImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-mint.jpeg"
+                },
+                {
+                    "primaryText": "Stonecrop",
+                    "secondaryText": "Drought-tolerant",
+                    "thumbnailImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-stonecrop.jpeg"
+                },
+                {
+                    "primaryText": "Rose",
+                    "secondaryText": "Garden favorites",
+                    "thumbnailImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-rose.jpeg"
+                }
+            ]
+        }
+    }
+}

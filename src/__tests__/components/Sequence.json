@@ -4,7 +4,6 @@
     "scrollDirection": "vertical",
     "paddingLeft": "@marginLeft",
     "paddingRight": "@marginRight",
-    "-fastScrollScale": 0.5,
     "data": "${listData}",
     "numbered": true,
     "bind": [

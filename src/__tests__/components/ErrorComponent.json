@@ -41,5 +41,12 @@
     "paddingBottom": 40,
     "paddingStart": 10,
     "paddingEnd": "20dp",
-    "layoutDirection": "LTL"
+    "layoutDirection": "LTL",
+    "filters": [
+        {
+            "type": "Noise",
+            "sigma": 20,
+            "kind": "invalid_value"
+        }
+    ]
 }

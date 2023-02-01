@@ -18,7 +18,7 @@ export * from './StaticAplTemplateValidator';
 export * from './validation/index';
 export * from './errors/index';
 export * from './IValidationInfo';
-export * from './assets/IJsonSchema';
+export * from './assets/index';
 export * from './util/JsonPathCompletor';
 export * from './util/AplComponentsExtractor';
 export * from './util/IAplComponent';

@@ -938,6 +938,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       },
       "patternProperties": {
         "^color(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "$ref": "#/definitions/color"
@@ -946,6 +947,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Map of color name to value"
         },
         "^dimension(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "$ref": "#/definitions/dimension"
@@ -954,6 +956,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Map of dimension name to value"
         },
         "^number(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "type": "number"
@@ -962,6 +965,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Map of names to numbers"
         },
         "^boolean(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "type": "boolean"
@@ -970,6 +974,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Map of names to booleans"
         },
         "^string(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "type": "string"
@@ -978,6 +983,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Map of names to strings"
         },
         "^easing(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "$ref": "#/definitions/Easing"
@@ -986,6 +992,7 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Map from easing name to easing definition"
         },
         "^gradient(s?)$": {
+          "type": "object",
           "patternProperties": {
             "^.*$": {
               "$ref": "#/definitions/AVGGradient"
@@ -1140,15 +1147,13 @@ export const JSON_SCHEMA : IJsonSchema = {
           "additionalProperties": false
     },
     "dimension": {
-      "oneOf": [
-        {
-          "type": "string",
-          "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
-        },
-        {
-          "type": "number"
-        }
-      ]
+      "type": ["string", "number"],
+      "if": {
+        "type": "string"
+      },
+      "then": {
+        "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
+      }
     },
     "Style": {
       "properties": {
@@ -1475,6 +1480,10 @@ export const JSON_SCHEMA : IJsonSchema = {
       "$ref": "#/definitions/CommandArray",
       "description": "A list of commands to execute when the document is first displayed."
     },
+    "onSpeechMark": {
+      "$ref": "#/definitions/CommandArray",
+      "description": "A list of commands to execute when speech specified audio reaches the position defined by a SpeechMark."
+    },
     "resources": {
       "$ref": "#/definitions/ResourceBlockArray",
       "description": "A list of one or more resource groups"
@@ -1525,7 +1534,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.8",
         "1.9",
         "2022.1",
-        "2022.2"
+        "2022.2",
+        "2023.1"
       ]
     },
     "license": {

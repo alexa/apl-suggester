@@ -50,30 +50,6 @@ describe('CommandSchemaValidator.', () => {
         await verifyCommand('SetFocusCommand.json', 'SetFocus');
     });
 
-    it('should validate Sequential command.', async () => {
-        await verifyCommand('SequentialCommand.json', 'Sequential');
-    });
-
-    it('should validate Parallel command.', async () => {
-        await verifyCommand('ParallelCommand.json', 'Parallel');
-    });
-
-    it('should validate SendEvent command.', async () => {
-        await verifyCommand('SendEventCommand.json', 'SendEvent');
-    });
-
-    it('should validate SetValue command.', async () => {
-        await verifyCommand('SetValueCommand.json', 'SetValue');
-    });
-
-    it('should validate SetState command.', async () => {
-        await verifyCommand('SetStateCommand.json', 'SetState');
-    });
-
-    it('should validate SetFocus command.', async () => {
-        await verifyCommand('SetFocusCommand.json', 'SetFocus');
-    });
-
     it('should validate ClearFocus command.', async () => {
         await verifyCommand('ClearFocusCommand.json', 'ClearFocus');
     });
@@ -102,10 +78,6 @@ describe('CommandSchemaValidator.', () => {
         await verifyCommand('SetPageCommand.json', 'SetPage');
     });
 
-    it('should validate SetFocus command.', async () => {
-        await verifyCommand('SetFocusCommand.json', 'SetFocus');
-    });
-
     it('should validate AutoPage command.', async () => {
         await verifyCommand('AutoPageCommand.json', 'AutoPage');
     });
@@ -116,10 +88,6 @@ describe('CommandSchemaValidator.', () => {
 
     it('should validate ControlMedia command.', async () => {
         await verifyCommand('ControlMediaCommand.json', 'ControlMedia');
-    });
-
-    it('should validate PlayMedia command.', async () => {
-        await verifyCommand('PlayMediaCommand.json', 'PlayMedia');
     });
 
     it('should validate AnimateItem command.', async () => {

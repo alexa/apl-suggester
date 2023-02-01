@@ -1,0 +1,523 @@
+{
+    "type": "APL",
+    "version": "2022.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.5.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Default resource definitions for Video template",
+            "dimensions": {
+                "videoHeight": "50%",
+                "videoPaddingTop": "20%",
+                "videoWidth": "70vw",
+                "videoControlPaddingBottom": "0dp",
+                "videoSliderPaddingBottom": "70dp"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeLarge}",
+            "dimensions": {
+                "videoHeight": "60%",
+                "videoPaddingTop": "17%",
+                "videoControlPaddingBottom": "10dp",
+                "videoSliderPaddingBottom": "90dp"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeXLarge}",
+            "dimensions": {
+                "videoHeight": "65%",
+                "videoPaddingTop": "15%",
+                "videoControlPaddingBottom": "10dp",
+                "videoSliderPaddingBottom": "90dp"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubRoundSmall}",
+            "dimensions": {
+                "videoHeight": "50%",
+                "videoPaddingTop": "70dp",
+                "videoControlPaddingBottom": "0dp"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubPortraitMedium}",
+            "dimensions": {
+                "videoHeight": "600dp",
+                "videoWidth": "${viewport.width - (2 * @marginHorizontal)}",
+                "videoPaddingTop": "200dp",
+                "videoSliderPaddingBottom": "${viewport.height - @videoHeight - @videoPaddingTop - 160}",
+                "videoControlPaddingBottom": "${@videoSliderPaddingBottom - 100}"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @mobileSmall}",
+            "dimensions": {
+                "videoHeight": "300dp",
+                "videoWidth": "${viewport.width - (2 * @marginHorizontal)}",
+                "videoPaddingTop": "100dp",
+                "videoSliderPaddingBottom": "${viewport.height - @videoHeight - @videoPaddingTop - 80}",
+                "videoControlPaddingBottom": "${@videoSliderPaddingBottom - 100}"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @mobileMedium || @viewportProfile == @mobileLarge}",
+            "dimensions": {
+                "videoSliderPaddingBottom": "90dp",
+                "videoControlPaddingBottom": "10dp"
+            }
+        }
+    ],
+    "commands": {
+        "ToggleVideoOverlay": {
+            "parameters": [
+                "componentId",
+                "show"
+            ],
+            "commands": [
+                {
+                    "type": "Sequential",
+                    "commands": [
+                        {
+                            "when": "${show}",
+                            "type": "SetValue",
+                            "componentId": "${componentId}",
+                            "property": "display",
+                            "value": "normal"
+                        },
+                        {
+                            "type": "AnimateItem",
+                            "easing": "ease-in-out",
+                            "duration": 1000,
+                            "componentId": "${componentId}",
+                            "value": [
+                                {
+                                    "property": "opacity",
+                                    "from": "${show ? 0 : 0.5}",
+                                    "to": "${show ? 0.5 : 0}"
+                                }
+                            ]
+                        },
+                        {
+                            "when": "${!show}",
+                            "type": "SetValue",
+                            "componentId": "${componentId}",
+                            "property": "display",
+                            "value": "none"
+                        }
+                    ]
+                }
+            ]
+        },
+        "ToggleVideoControls": {
+            "parameters": [
+                "componentId",
+                "direction",
+                "show"
+            ],
+            "commands": [
+                {
+                    "type": "Sequential",
+                    "commands": [
+                        {
+                            "type": "AnimateItem",
+                            "easing": "ease-in-out",
+                            "duration": 1000,
+                            "componentId": "${componentId}",
+                            "value": [
+                                {
+                                    "property": "opacity",
+                                    "from": "${show ? 0 : 1}",
+                                    "to": "${show ? 1 : 0}"
+                                },
+                                {
+                                    "property": "transform",
+                                    "from": [
+                                        {
+                                            "translateY": "${!show ? 0 : (direction == 'down' ? -50 : 50)}"
+                                        }
+                                    ],
+                                    "to": [
+                                        {
+                                            "translateY": "${show ? 0 : (direction == 'down' ? 50 : -50)}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "SetValue",
+                            "property": "videoControlsDisplay",
+                            "value": "${show ? true : false}"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "layouts": {
+        "VideoPlayer": {
+            "parameters": [
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for the background image source in fullscreen.",
+                    "type": "string"
+                },
+                {
+                    "name": "displayFullscreen",
+                    "description": "Select to display video in fullscreen. Video controls will be displayed on tap.",
+                    "type": "boolean",
+                    "default": false
+                },
+                {
+                    "name": "headerTitle",
+                    "description": "Title text to render in the header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerSubtitle",
+                    "description": "Subtitle Text to render in the header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image or logo source (PNG/vector).",
+                    "type": "string"
+                },
+                {
+                    "name": "videoControlType",
+                    "description": "The type of video control to use. Default is skip (foward and backwards).",
+                    "type": "string",
+                    "default": "skip"
+                },
+                {
+                    "name": "videoSources",
+                    "description": "Video single source or an array of sources. Videos will be in a playlist if multiple sources are provided.",
+                    "type": "any"
+                },
+                {
+                    "name": "sliderType",
+                    "description": "Determinate for full control of the slider with transport control. Indeterminate is an ambient progress bar with animation.",
+                    "type": "string",
+                    "default": "determinate"
+                }
+            ],
+            "item": {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "bind": [
+                    {
+                        "name": "sliderThumbPosition",
+                        "type": "number",
+                        "value": 0
+                    },
+                    {
+                        "name": "sliderActive",
+                        "type": "boolean",
+                        "value": false
+                    },
+                    {
+                        "name": "videoProgressValue",
+                        "type": "number",
+                        "value": 0
+                    },
+                    {
+                        "name": "videoTotalValue",
+                        "type": "number",
+                        "value": 0
+                    },
+                    {
+                        "name": "videoControlsDisplay",
+                        "type": "boolean",
+                        "value": false
+                    }
+                ],
+                "handleTick": [
+                    {
+                        "when": "${!sliderActive && displayFullscreen && videoControlsDisplay}",
+                        "minimumDelay": 5000,
+                        "description": "For video fullscreen view, hide video controls after 5 seconds of inactivity",
+                        "commands": [
+                            {
+                                "type": "Parallel",
+                                "sequencer": "ToggleVideoControlsSequencer",
+                                "commands": [
+                                    {
+                                        "type": "ToggleVideoOverlay",
+                                        "componentId": "videoOverlay",
+                                        "show": false
+                                    },
+                                    {
+                                        "type": "ToggleVideoControls",
+                                        "componentId": "videoHeader",
+                                        "direction": "up",
+                                        "show": false
+                                    },
+                                    {
+                                        "type": "ToggleVideoControls",
+                                        "componentId": "videoControls",
+                                        "direction": "down",
+                                        "show": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "backgroundColor": "${backgroundColor}",
+                        "backgroundImageSource": "${backgroundImageSource}"
+                    },
+                    {
+                        "description": "Video container",
+                        "type": "Container",
+                        "height": "100%",
+                        "width": "100%",
+                        "position": "absolute",
+                        "item": {
+                            "type": "TouchWrapper",
+                            "height": "100%",
+                            "width": "100%",
+                            "description": "Outer touch wrapper that brings up the controls",
+                            "onPress": [
+                                {
+                                    "when": "${displayFullscreen}",
+                                    "type": "Parallel",
+                                    "sequencer": "ToggleVideoControlsSequencer",
+                                    "commands": [
+                                        {
+                                            "type": "ToggleVideoOverlay",
+                                            "componentId": "videoOverlay",
+                                            "show": true
+                                        },
+                                        {
+                                            "type": "ToggleVideoControls",
+                                            "componentId": "videoHeader",
+                                            "direction": "down",
+                                            "show": true
+                                        },
+                                        {
+                                            "type": "ToggleVideoControls",
+                                            "componentId": "videoControls",
+                                            "direction": "up",
+                                            "show": true
+                                        }
+                                    ]
+                                }
+                            ],
+                            "item": {
+                                "type": "Container",
+                                "height": "100%",
+                                "width": "100%",
+                                "alignItems": "center",
+                                "item": {
+                                    "type": "Video",
+                                    "height": "${displayFullscreen ? '100%' : @videoHeight}",
+                                    "width": "${displayFullscreen ? '100%' : @videoWidth}",
+                                    "scale": "best-fill",
+                                    "autoplay": true,
+                                    "audioTrack": "foreground",
+                                    "id": "videoPlayerId",
+                                    "source": "${videoSources}",
+                                    "position": "absolute",
+                                    "top": "${displayFullscreen ? '0' : @videoPaddingTop}",
+                                    "onPlay": [
+                                        {
+                                            "type": "SetValue",
+                                            "property": "videoTotalValue",
+                                            "value": "${event.duration}"
+                                        }
+                                    ],
+                                    "onTrackUpdate": [
+                                        {
+                                            "type": "SetValue",
+                                            "property": "videoTotalValue",
+                                            "value": "${event.duration}"
+                                        }
+                                    ],
+                                    "onTimeUpdate": [
+                                        {
+                                            "type": "SetValue",
+                                            "property": "videoProgressValue",
+                                            "value": "${event.currentTime}"
+                                        },
+                                        {
+                                            "type": "SetValue",
+                                            "componentId": "slider",
+                                            "property": "progressValue",
+                                            "value": "${videoProgressValue}"
+                                        },
+                                        {
+                                            "type": "SetValue",
+                                            "property": "videoTotalValue",
+                                            "value": "${event.duration}"
+                                        }
+                                    ],
+                                    "onTrackReady": [
+                                        {
+                                            "type": "SetValue",
+                                            "property": "videoTotalValue",
+                                            "value": "${event.duration}"
+                                        }
+                                    ],
+                                    "onTrackFail": [
+                                        {
+                                            "type": "SetValue",
+                                            "property": "videoTotalValue",
+                                            "value": "0"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "description": "Header, slider, and controls container",
+                        "type": "Container",
+                        "height": "100%",
+                        "width": "100%",
+                        "items": [
+                            {
+                                "description": "Oveylay background for Video Controls",
+                                "when": "${displayFullscreen}",
+                                "type": "Frame",
+                                "id": "videoOverlay",
+                                "height": "100%",
+                                "width": "100%",
+                                "backgroundColor": "${viewport.theme == 'light' ? '@colorWhite' : '@colorBlack'}",
+                                "position": "absolute",
+                                "display": "none",
+                                "opacity": 0
+                            },
+                            {
+                                "when": "${@viewportProfileCategory != @hubRound}",
+                                "type": "AlexaHeader",
+                                "id": "videoHeader",
+                                "opacity": "${displayFullscreen ? 0 : 1}",
+                                "layoutDirection": "${environment.layoutDirection}",
+                                "headerAttributionImage": "${headerAttributionImage}",
+                                "headerTitle": "${headerTitle} ",
+                                "headerSubtitle": "${@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubRoundSmall ? '' : headerSubtitle}",
+                                "headerAttributionPrimacy": true,
+                                "width": "100%",
+                                "theme": "${viewport.theme}"
+                            },
+                            {
+                                "description": "Slider and controls",
+                                "type": "Container",
+                                "id": "videoControls",
+                                "opacity": "${displayFullscreen ? 0 : 1}",
+                                "width": "100%",
+                                "position": "absolute",
+                                "bottom": 0,
+                                "items": [
+                                    {
+                                        "when": "${sliderType != 'indeterminate'}",
+                                        "type": "Container",
+                                        "alignItems": "center",
+                                        "item": [
+                                            {
+                                                "type": "AlexaSlider",
+                                                "id": "slider",
+                                                "progressValue": "${videoProgressValue}",
+                                                "totalValue": "${videoTotalValue}",
+                                                "positionPropertyName": "sliderThumbPosition",
+                                                "metadataDisplayed": true,
+                                                "metadataPosition": "above_right",
+                                                "width": "${@videoWidth + 5vw}",
+                                                "paddingBottom": "@videoSliderPaddingBottom",
+                                                "theme": "${viewport.theme}",
+                                                "onUpCommand": [
+                                                    {
+                                                        "type": "ControlMedia",
+                                                        "componentId": "videoPlayerId",
+                                                        "command": "seek",
+                                                        "value": "${sliderThumbPosition - videoProgressValue}"
+                                                    },
+                                                    {
+                                                        "delay": "1000",
+                                                        "type": "SetValue",
+                                                        "sequencer": "ToggleVideoControlsSequencer",
+                                                        "property": "sliderActive",
+                                                        "value": false
+                                                    }
+                                                ],
+                                                "onMoveCommand": [
+                                                    {
+                                                        "type": "SetValue",
+                                                        "property": "sliderActive",
+                                                        "value": true
+                                                    }
+                                                ],
+                                                "onDownCommand": [
+                                                    {
+                                                        "type": "SetValue",
+                                                        "property": "sliderActive",
+                                                        "value": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "AlexaTransportControls",
+                                                "mediaComponentId": "videoPlayerId",
+                                                "playPauseToggleButtonId": "playPauseToggleButtonId",
+                                                "primaryControlSize": "70dp",
+                                                "secondaryControls": "${videoControlType}",
+                                                "secondaryControlSize": "60dp",
+                                                "autoplay": true,
+                                                "position": "absolute",
+                                                "bottom": "@videoControlPaddingBottom",
+                                                "theme": "${viewport.theme}"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "when": "${sliderType == 'indeterminate'}",
+                                        "type": "Container",
+                                        "alignItems": "center",
+                                        "item": [
+                                            {
+                                                "type": "AlexaProgressBar",
+                                                "progressBarType": "indeterminate",
+                                                "width": "@videoWidth",
+                                                "paddingBottom": "@videoSliderPaddingBottom",
+                                                "theme": "${viewport.theme}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "VideoPlayer",
+                "backgroundImageSource": "${payload.videoPlayerTemplateData.properties.backgroundImage}",
+                "displayFullscreen": "${payload.videoPlayerTemplateData.properties.displayFullscreen}",
+                "headerAttributionImage": "${payload.videoPlayerTemplateData.properties.logoUrl}",
+                "headerTitle": "${payload.videoPlayerTemplateData.properties.headerTitle}",
+                "headerSubtitle": "${payload.videoPlayerTemplateData.properties.headerSubtitle}",
+                "videoControlType": "${payload.videoPlayerTemplateData.properties.videoControlType}",
+                "videoSources": "${payload.videoPlayerTemplateData.properties.videoSources}",
+                "sliderType": "${payload.videoPlayerTemplateData.properties.sliderType}"
+            }
+        ]
+    }
+}
