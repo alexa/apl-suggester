@@ -1,0 +1,19 @@
+{
+    "audioPlayerTemplateData": {
+        "type": "object",
+        "properties": {
+            "audioControlType": "jump30",
+            "audioSources": [
+                "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/Summer-Flower.wav",
+                "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/Wall-Flowers-and-Roses.wav"
+            ],
+            "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-rose.png",
+            "coverImageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/card-rose.jpeg",
+            "headerTitle": "My favorite flower songs",
+            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/logo-world-of-plants-2.png",
+            "primaryText": "Roses",
+            "secondaryText": "My favourite album",
+            "sliderType": "determinate"
+        }
+    }
+}

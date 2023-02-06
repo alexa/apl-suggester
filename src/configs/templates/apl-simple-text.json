@@ -1,0 +1,262 @@
+{
+    "type": "APL",
+    "version": "2022.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.5.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Public resource definitions Simple Text",
+            "colors": {
+                "colorText": "@colorText"
+            },
+            "dimensions": {
+                "headerHeight": "${@headerAttributionIconMaxHeight + (2 * @spacingLarge)}",
+                "simpleTextScrollHeightWithFooter": "${viewport.height - @headerHeight - @footerPaddingTop - @footerPaddingBottom}",
+                "simpleTextScrollHeightNoFooter": "100%",
+                "simpleTextImageHorizontalSpacing": "@spacingLarge",
+                "simpleTextImageVerticalSpacing": "@spacingMedium",
+                "simpleTextPaddingBottom": "@spacingLarge"
+            }
+        },
+        {
+            "when": "${@viewportProfileCategory == @hubRound}",
+            "dimensions": {
+                "simpleTextPaddingBottom": "@spacing3XLarge"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeSmall}",
+            "dimensions": {
+                "simpleTextScrollHeightWithFooter": "100%"
+            }
+        },
+        {
+            "when": "${viewport.theme == 'light'}",
+            "colors": {
+                "colorText": "@colorTextReversed"
+            }
+        }
+    ],
+    "layouts": {
+        "SimpleText": {
+            "parameters": [
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for the background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "footerHintText",
+                    "description": "Hint text to display in the footer.",
+                    "type": "string"
+                },
+                {
+                    "name": "foregroundImageLocation",
+                    "description": "Location of the forground image. Options are top, bottom, left, and right. Default is top.",
+                    "type": "string",
+                    "default": "top"
+                },
+                {
+                    "name": "foregroundImageSource",
+                    "description": "URL for the foreground image source. If blank, the template will be full text layout.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image or logo source (PNG/vector).",
+                    "type": "string"
+                },
+                {
+                    "name": "headerTitle",
+                    "description": "Title text to render in the header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerSubtitle",
+                    "description": "Subtitle Text to render in the header.",
+                    "type": "string"
+                },
+                {
+                    "name": "primaryText",
+                    "description": "Text for to render below to tile text in the body.",
+                    "type": "string"
+                },
+                {
+                    "name": "titleText",
+                    "description": "Title text to render in the body.",
+                    "type": "string"
+                },
+                {
+                    "name": "textAlignment",
+                    "description": "Alignment of text content. Options are start, and center. Default is start.",
+                    "type": "string",
+                    "default": "start"
+                }
+            ],
+            "item": {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "bind": [
+                    {
+                        "name": "imageCenterAlign",
+                        "type": "boolean",
+                        "value": "${@viewportProfileCategory == @hubRound || foregroundImageLocation == 'top' || foregroundImageLocation == 'bottom'}"
+                    },
+                    {
+                        "description": "imageLocation to override foregroundImageLocation of hubRound to always have imageLocation on top when left or right is selected.",
+                        "name": "imageLocation",
+                        "type": "string",
+                        "value": "${@viewportProfileCategory == @hubRound && foregroundImageLocation != 'bottom' ? 'top' : foregroundImageLocation}"
+                    },
+                    {
+                        "name": "hasFooter",
+                        "type": "boolean",
+                        "value": "${@viewportProfileCategory != @hubRound && @viewportProfile != @hubLandscapeSmall && footerHintText}"
+                    }
+                ],
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "id": "AlexaBackground",
+                        "backgroundColor": "${backgroundColor}",
+                        "backgroundImageSource": "${backgroundImageSource}"
+                    },
+                    {
+                        "when": "${@viewportProfileCategory != @hubRound}",
+                        "type": "AlexaHeader",
+                        "id": "AlexaHeader",
+                        "layoutDirection": "${environment.layoutDirection}",
+                        "headerAttributionImage": "${headerAttributionImage}",
+                        "headerTitle": "${headerTitle}",
+                        "headerSubtitle": "${headerSubtitle}",
+                        "headerAttributionPrimacy": true,
+                        "width": "100%"
+                    },
+                    {
+                        "description": "Footer Hint Text - not displaying on small hubs",
+                        "when": "${@viewportProfileCategory != @hubRound && @viewportProfile != @hubLandscapeSmall && footerHintText}",
+                        "type": "AlexaFooter",
+                        "id": "AlexaFooter",
+                        "hintText": "${footerHintText}",
+                        "theme": "${viewport.theme}",
+                        "lang": "${lang}",
+                        "width": "100%",
+                        "position": "absolute",
+                        "bottom": "0"
+                    },
+                    {
+                        "type": "ScrollView",
+                        "height": "${hasFooter ? @simpleTextScrollHeightWithFooter : @simpleTextScrollHeightNoFooter}",
+                        "width": "100vw",
+                        "shrink": 1,
+                        "items": [
+                            {
+                                "type": "Container",
+                                "width": "100%",
+                                "padding": [
+                                    "@marginHorizontal",
+                                    0
+                                ],
+                                "paddingBottom": "@simpleTextPaddingBottom",
+                                "justifyContent": "center",
+                                "alignItems": "center",
+                                "items": [
+                                    {
+                                        "when": "${@viewportProfileCategory == @hubRound}",
+                                        "type": "AlexaHeader",
+                                        "id": "AlexaHeader",
+                                        "layoutDirection": "${environment.layoutDirection}",
+                                        "headerAttributionImage": "${headerAttributionImage}",
+                                        "headerAttributionPrimacy": true,
+                                        "width": "100%"
+                                    },
+                                    {
+                                        "description": "Image and text content block",
+                                        "type": "Container",
+                                        "width": "100%",
+                                        "alignItems": "${imageCenterAlign ? 'center' : 'start'}",
+                                        "direction": "${imageLocation == 'left' ? 'row' : (imageLocation == 'right' ? 'rowReverse' : (imageLocation == 'bottom' ? 'columnReverse' : 'column'))}",
+                                        "shrink": 1,
+                                        "items": [
+                                            {
+                                                "description": "Image block",
+                                                "when": "${foregroundImageSource}",
+                                                "type": "AlexaImage",
+                                                "id": "SimpleText_ForegroundImage",
+                                                "imageSource": "${foregroundImageSource}",
+                                                "imageBlurredBackground": true,
+                                                "imageAspectRatio": "${imageCenterAlign ? 'poster_landscape' : 'standard_portrait'}",
+                                                "imageScale": "best-fit"
+                                            },
+                                            {
+                                                "description": "Primary Text and Title Text block",
+                                                "when": "${primaryText || titleText}",
+                                                "id": "SimpleText_Title",
+                                                "type": "Container",
+                                                "width": "100%",
+                                                "shrink": 1,
+                                                "alignItems": "${imageCenterAlign || textAlignment == 'center' ? 'center' : 'start'}",
+                                                "paddingTop": "${imageLocation == 'top' ? @simpleTextImageVerticalSpacing : '0dp'}",
+                                                "paddingBottom": "${imageLocation == 'bottom' ? @simpleTextImageVerticalSpacing : '0dp'}",
+                                                "paddingStart": "${imageLocation == 'left' && foregroundImageSource ? @simpleTextImageHorizontalSpacing : '0dp'}",
+                                                "paddingEnd": "${imageLocation == 'right' && foregroundImageSource ? @simpleTextImageHorizontalSpacing : '0dp'}",
+                                                "items": [
+                                                    {
+                                                        "description": "Title Text",
+                                                        "when": "${titleText}",
+                                                        "type": "Text",
+                                                        "width": "100%",
+                                                        "style": "textStyleDisplay6",
+                                                        "text": "${titleText}",
+                                                        "textAlign": "${@viewportProfileCategory == @hubRound ? 'center' : textAlignment}"
+                                                    },
+                                                    {
+                                                        "description": "Primary Text",
+                                                        "when": "${primaryText}",
+                                                        "type": "Text",
+                                                        "spacing": "@spacing2XSmall",
+                                                        "style": "textStyleBody",
+                                                        "fontWeight": "@fontWeightLight",
+                                                        "text": "${primaryText}",
+                                                        "textAlign": "${@viewportProfileCategory == @hubRound ? 'center' : textAlignment}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "SimpleText",
+                "backgroundImageSource": "${payload.simpleTextTemplateData.properties.backgroundImage}",
+                "footerHintText": "${payload.simpleTextTemplateData.properties.hintText}",
+                "foregroundImageLocation": "${payload.simpleTextTemplateData.properties.foregroundImageLocation}",
+                "foregroundImageSource": "${payload.simpleTextTemplateData.properties.foregroundImageSource}",
+                "headerAttributionImage": "${payload.simpleTextTemplateData.properties.headerAttributionImage}",
+                "headerTitle": "${payload.simpleTextTemplateData.properties.headerTitle}",
+                "headerSubtitle": "${payload.simpleTextTemplateData.properties.headerSubtitle}",
+                "primaryText": "${payload.simpleTextTemplateData.properties.primaryText}",
+                "textAlignment": "${payload.simpleTextTemplateData.properties.textAlignment}",
+                "titleText": "${payload.simpleTextTemplateData.properties.titleText}"
+            }
+        ]
+    }
+}

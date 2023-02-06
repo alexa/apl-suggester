@@ -1,0 +1,230 @@
+{
+    "type": "APL",
+    "version": "2023.1",
+    "theme": "light",
+    "description": "This is a sample APL document",
+    "extensions": [
+        {
+            "name": "Back",
+            "uri": "aplext:backstack:10"
+        }
+    ],
+    "settings": {
+        "Back": {
+            "backstackId": "launch"
+        }
+    },
+    "tests": [
+        {
+            "label": "Set Focus Green",
+            "command": [
+                {
+                    "type": "SetFocus",
+                    "componentId": "greenComp"
+                }
+            ]
+        },
+        {
+            "label": "Set Focus Pink",
+            "command": [
+                {
+                    "type": "SetFocus",
+                    "componentId": "pinkComp"
+                }
+            ]
+        }
+    ],
+    "styles": {
+        "blueFrame": {
+            "values": [
+                {
+                    "when": "${state.hover}",
+                    "backgroundColor": "blue",
+                    "opacity": "1"
+                },
+                {
+                    "when": "${!state.hover}",
+                    "backgroundColor": "blue",
+                    "opacity": "0.2"
+                }
+            ]
+        },
+        "yellowFrame": {
+            "values": [
+                {
+                    "when": "${state.hover}",
+                    "backgroundColor": "yellow",
+                    "opacity": "1"
+                },
+                {
+                    "when": "${!state.hover}",
+                    "backgroundColor": "yellow",
+                    "opacity": "0.2"
+                }
+            ]
+        },
+        "pinkFrame": {
+            "values": [
+                {
+                    "when": "${state.hover}",
+                    "backgroundColor": "pink",
+                    "opacity": "1"
+                },
+                {
+                    "when": "${!state.hover}",
+                    "backgroundColor": "pink",
+                    "opacity": "0.2"
+                }
+            ]
+        },
+        "purpleFrame": {
+            "values": [
+                {
+                    "when": "${state.hover}",
+                    "backgroundColor": "purple",
+                    "opacity": "1"
+                },
+                {
+                    "when": "${!state.hover}",
+                    "backgroundColor": "purple",
+                    "opacity": "0.2"
+                }
+            ]
+        },
+        "greenFrame": {
+            "values": [
+                {
+                    "when": "${state.hover}",
+                    "backgroundColor": "green",
+                    "opacity": "1"
+                },
+                {
+                    "when": "${!state.hover}",
+                    "backgroundColor": "green",
+                    "opacity": "0.2"
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": {
+            "type": "Container",
+            "id": "APLSpecCoverage_Hover_TemplateRendered",
+            "height": "100vh",
+            "width": "100vw",
+            "items": [
+                {
+                    "type": "TouchWrapper",
+                    "id": "blueComp",
+                    "position": "absolute",
+                    "left": 310,
+                    "top": 50,
+                    "items": [
+                        {
+                            "type": "Frame",
+                            "style": "blueFrame",
+                            "inheritParentState": true,
+                            "width": "10vw",
+                            "height": "10vh"
+                        }
+                    ]
+                },
+                {
+                    "type": "TouchWrapper",
+                    "id": "yellowComp",
+                    "position": "absolute",
+                    "left": 180,
+                    "top": 150,
+                    "item": {
+                        "type": "Frame",
+                        "style": "yellowFrame",
+                        "inheritParentState": true,
+                        "width": "10vw",
+                        "height": "10vh"
+                    }
+                },
+                {
+                    "type": "TouchWrapper",
+                    "id": "pinkComp",
+                    "position": "absolute",
+                    "left": 450,
+                    "top": 150,
+                    "item": {
+                        "type": "Frame",
+                        "style": "pinkFrame",
+                        "inheritParentState": true,
+                        "width": "10vw",
+                        "height": "10vh"
+                    }
+                },
+                {
+                    "type": "TouchWrapper",
+                    "id": "greenComp",
+                    "position": "absolute",
+                    "left": 310,
+                    "top": 150,
+                    "onCursorEnter": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "textComp",
+                            "property": "text",
+                            "value": "Enter"
+                        }
+                    ],
+                    "onSpeechMark": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "test",
+                            "property": "test",
+                            "value": 0.5
+                        }
+                    ],
+                    "onCursorExit": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "textComp",
+                            "property": "text",
+                            "value": "Exit"
+                        }
+                    ],
+                    "item": [
+                        {
+                            "type": "Frame",
+                            "style": "greenFrame",
+                            "inheritParentState": true,
+                            "width": "10vw",
+                            "height": "10vh",
+                            "item": {
+                                "type": "Text",
+                                "fontFamily": "sans-serif",
+                                "color": "white",
+                                "inheritParentState": true,
+                                "width": 200,
+                                "id": "textComp",
+                                "text": "My text",
+                                "style": "textStyle"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "TouchWrapper",
+                    "id": "purpleComp",
+                    "position": "absolute",
+                    "left": 310,
+                    "top": 250,
+                    "item": {
+                        "type": "Frame",
+                        "style": "purpleFrame",
+                        "inheritParentState": true,
+                        "width": "10vw",
+                        "height": "10vh"
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -18,7 +18,6 @@
 'use strict';
 import * as commonDefinition from "./CommonDefinition";
 import { IJsonSchema, Categories } from './IJsonSchema';
-import { SimpleUrl } from './CommonDefinition';
 
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -206,6 +205,8 @@ export const JSON_SCHEMA : IJsonSchema = {
           "$ref": "#/definitions/urlDefinition",
           "description": "The actual URL to load the video from"
         },
+        "textTrack": {"$ref": "#/definitions/textTrack"},
+        "textTracks": {"$ref": "#/definitions/textTrack"},
         "repeatCount": {
           "type": "integer",
           "description": "Number of times to repeat. -1 is repeat forever"
@@ -215,11 +216,32 @@ export const JSON_SCHEMA : IJsonSchema = {
           "description": "Milliseconds from the start of the track to play from"
         }
       },
+      "not": {
+        "allOf": [
+          { "required": ["textTrack"] },
+          { "required": ["textTracks"] }
+      ]},
       "additionalProperties": false,
       "required": [
         "url"
       ],
       "type": "object"
+    },
+    "textTrack": {
+      "type": "array",
+      "description": "Holds data about the text track. \"url\" and \"type\" are required",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "url": commonDefinition.SimpleUrl,
+          "type": {
+            "enum": [
+              "caption"
+          ]}
+        },
+        "required": ["url", "type"]
+      }
     },
     "videoTrackArray": {
       "type": "array",
@@ -581,15 +603,10 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.video,
       "description": "How the image should be scaled to fill the current box.",
       "enum": [
-        "fill",
         "best-fill",
-        "best-fit",
-        "best-fit-down",
-        "none",
-        "contain",
-        "cover",
-        "scale-down"
-      ]
+        "best-fit"
+      ],
+      "default": "best-fit"
     },
     "onEnd": {
       "$ref": "#/definitions/CommandArray",

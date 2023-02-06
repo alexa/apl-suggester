@@ -82,6 +82,8 @@ export interface IJsonSchema extends Object {
      */
     anyOf? : IJsonSchema[];
     oneOf? : IJsonSchema[];
+    allOf? : IJsonSchema[];
+    not? : IJsonSchema;
 
     /**
      * Enumerates the values that this schema can be
@@ -106,11 +108,20 @@ export interface IJsonSchema extends Object {
      * minimum value that should be exclusive
      */
     exclusiveMinimum? : number;
+    minimum? : number;
 
     /**
      * Categorization support for formUI.
      */
     category? : Categories;
+
+    /**
+     * If-Then in JSON Schema
+     */
+    if? : IJsonSchema;
+
+    then? : IJsonSchema;
+    else? : IJsonSchema;
 }
 
 export enum Categories {

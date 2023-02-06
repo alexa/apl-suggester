@@ -1,0 +1,39 @@
+{
+    "textListData": {
+        "type": "object",
+        "objectId": "textListSample",
+        "backgroundImage": {
+            "contentDescription": null,
+            "smallSourceUrl": null,
+            "largeSourceUrl": null,
+            "sources": [
+                {
+                    "url": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/textlist/AlexaTextListBackground_Dark.png",
+                    "size": "large"
+                }
+            ]
+        },
+        "title": "Plant Stores Near Me",
+        "listItems": [
+            {
+                "primaryText": "Peonies & Petals Nursery"
+            },
+            {
+                "primaryText": "Ivy Lane Nursery and Tree Farm"
+            },
+            {
+                "primaryText": "House of Hyacinth"
+            },
+            {
+                "primaryText": "Swan Nursery"
+            },
+            {
+                "primaryText": "House of Peonies"
+            },
+            {
+                "primaryText": "Spruce Nursery"
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-white.png"
+    }
+}

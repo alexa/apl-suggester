@@ -1,0 +1,17 @@
+{
+    "simpleTextTemplateData": {
+        "type": "object",
+        "properties": {
+            "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-green.png",
+            "foregroundImageLocation": "left",
+            "foregroundImageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/asparagus.jpeg",
+            "headerTitle": "Asparagus",
+            "headerSubtitle": "",
+            "hintText": "Try, \"Alexa, next question\"",
+            "headerAttributionImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/logo-world-of-plants-2.png",
+            "primaryText": "Asparagus is a member of the Lily family. Plants in the lily family have evolved a close relationship with pollinators. Therefore, they typically have elaborate blooms. Asparagus is a member of the Lily family. Plants in the lily family have evolved a close relationship with pollinators. Therefore, they typically have elaborate blooms. Asparagus is a member of the Lily family. Plants in the lily family have evolved a close relationship with pollinators. Therefore, they typically have elaborate blooms. Asparagus is a member of the Lily family. Plants in the lily family have evolved a close relationship with pollinators. Therefore, they typically have elaborate blooms. ",
+            "textAlignment": "start",
+            "titleText": "That's correct!"
+        }
+    }
+}

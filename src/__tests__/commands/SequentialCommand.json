@@ -3,5 +3,7 @@
   "delay": 1000,
   "repeatCount": 2,
   "commands": [],
+  "catch": [],
+  "finally": [],
   "sequencer": "MAIN"
 }

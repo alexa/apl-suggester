@@ -41,15 +41,33 @@ describe('Integration Test to verify the JSON schema.', () => {
     afterEach(() => {
         stub.restore();
     });
+
     it('should compile with sample templates.', async () => {
         const template = getSampleTemplate(SampleTemplateName.IMAGE_RIGHT_DETAIL);
         const result = await validator.validate(template.apl);
         expect(result.length).to.be.equal(0);
     });
 
-    it('should received correct amount of validation errors.', async () => {
+    it('should receive error for unspecified handler', async () => {
+        const result = await verifyTemplate('allowedRootHandlerTemplate.json');
+        expect(result.length).to.equal(1);
+        expect(result[0].errorMessage).to.equal('should NOT have additional properties : onNonExistHandler');
+    });
+    it('should allow onSpeechMark handler in touchwrapper component', async () => {
+        await readSchemaAndPassAllValidations('allowedComponentHandlerTemplate.json');
+    });
+
+    it('should receive correct amount of validation errors.', async () => {
         const result = await verifyTemplate('errorTemplate.json');
         expect(result.length).to.be.equal(12);
+    });
+
+    it('should receive correct amount of Command validation errors.', async () => {
+        const result = await verifyTemplate('errorCommandTemplate.json');
+        expect(result.length).to.equal(3);
+        expect(result[0].path).to.equal('/onConfigChange/1/preservedSequencers');
+        expect(result[1].path).to.equal('/onMount/0/state');
+        expect(result[2].path).to.equal('/onMount/0');
     });
 
     it('should compile with video template when souce is array of string.', async () => {
@@ -90,7 +108,7 @@ describe('Integration Test to verify the JSON schema.', () => {
 
     it('should show correct validation errors with resource template.', async () => {
         const result = await verifyTemplate('errorResourceAplTemplate.json');
-        expect(result).to.have.lengthOf(2);
+        expect(result).to.have.lengthOf(6);
     });
 
     it('should compile with graphic template and show errors', async () => {

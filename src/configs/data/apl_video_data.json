@@ -1,0 +1,18 @@
+{
+    "videoPlayerTemplateData": {
+        "type": "object",
+        "properties": {
+            "backgroundImage": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/background-green.png",
+            "displayFullscreen": false,
+            "headerTitle": "How to care for potted plants",
+            "headerSubtitle": "",
+            "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/response_builder/logo-world-of-plants-2.png",
+            "videoControlType": "skip",
+            "videoSources": [
+                "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_277864451.mov",
+                "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_292807382.mov"
+            ],
+            "sliderType": "determinate"
+        }
+    }
+}

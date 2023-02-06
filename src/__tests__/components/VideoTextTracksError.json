@@ -1,0 +1,21 @@
+{
+    "type": "Video",
+    "source": [
+        {
+            "url": "https://testingUrl",
+            "textTracks": [{ "url": "https://test1", "description":"no type" }]
+
+
+        },
+        {
+            "url": "${some-expression}",
+            "textTrack": [{ "url": "https://test2", "type": "subtitle" }]
+        },
+        {
+            "url": ["https://test", "${expr}"],
+            "offset": 150,
+            "textTrack": [{ "url": "https://test3", "type": "caption" }],
+            "textTracks": [{ "url": "https://test4", "type": "caption", "description":"someDesc" }]
+        }
+    ]
+}

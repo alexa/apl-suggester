@@ -85,13 +85,41 @@ describe('PackageLoader', () => {
 
     it('should import from predefined apl package, depth-first, following the package import order', (done) => {
         const LAYOUT_URL : string =
-            'https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/document.json';
-        const STYLES_URL : string = 'https://arl.assets.apl-alexa.com/packages/alexa-styles/1.0.0/document.json';
+            'https://arl.assets.apl-alexa.com/packages/alexa-layouts/1.0.0/document-w-desc.json';
+        const STYLES_URL : string = 'https://arl.assets.apl-alexa.com/packages/alexa-styles/1.0.0/document-w-desc.json';
         const VIEWPORT_PROFILES_URL : string =
-            'https://arl.assets.apl-alexa.com/packages/alexa-viewport-profiles/1.0.0/document.json';
+            'https://arl.assets.apl-alexa.com/packages/alexa-viewport-profiles/1.0.0/document-w-desc.json';
         let importPackages = [{
             name: 'alexa-layouts',
             version: '1.0.0'
+        }];
+
+        let mock = new MockAdapter(axios);
+        mock.onGet(LAYOUT_URL).reply(200, IMPORT_LAYOUT_TEMPLATE_10);
+        mock.onGet(STYLES_URL).reply(200, IMPORT_STYLES_TEMPLATE);
+        mock.onGet(VIEWPORT_PROFILES_URL).reply(200, IMPORT_ALEXA_VIEWPORT_PROFILES);
+        packageLoader = new PackageLoader({});
+        packageLoader.load(importPackages)
+            .then((result) => {
+                let packageName = result.map((pkg) => {
+                    return pkg.name;
+                });
+                expect(packageName).to.eql(['alexa-viewport-profiles', 'alexa-styles', 'alexa-layouts']);
+                done();
+            }).catch((error) => {
+                done(`load should have been successful. test failing with error ${error}`);
+            });
+    });
+
+    it('should import from predefined apl package staging version', (done) => {
+        const LAYOUT_URL : string = 'https://arl.assets.apl-alexa.com/packages/alexa-layouts/'
+            + '1.5.0-eifjccgidjvrhnurcfvkdhdbdjfejddeighgfhvhhtrj/document.json';
+        const STYLES_URL : string = 'https://arl.assets.apl-alexa.com/packages/alexa-styles/1.0.0/document-w-desc.json';
+        const VIEWPORT_PROFILES_URL : string =
+                'https://arl.assets.apl-alexa.com/packages/alexa-viewport-profiles/1.0.0/document-w-desc.json';
+        let importPackages = [{
+            name: 'alexa-layouts',
+            version: '1.5.0-eifjccgidjvrhnurcfvkdhdbdjfejddeighgfhvhhtrj'
         }];
 
         let mock = new MockAdapter(axios);

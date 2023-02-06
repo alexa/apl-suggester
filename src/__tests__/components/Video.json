@@ -12,7 +12,12 @@
         },
         {
             "url": ["https://test", "${expr}"],
-            "offset": 150
+            "offset": 150,
+            "textTrack": [{ "url": "https://test1", "type": "caption" }]
+        },
+        {
+            "url": "${some-expression1}",
+            "textTracks": [{ "url": "https://test2", "type": "caption", "description":"someDesc" }]
         }
     ],
     "autoplay": true,

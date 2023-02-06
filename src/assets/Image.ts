@@ -222,7 +222,10 @@ export const JSON_SCHEMA : IJsonSchema = {
             "hue",
             "saturation",
             "color",
-            "luminosity"
+            "luminosity",
+            "source-atop",
+            "source-in",
+            "source-out"
           ]
         },
         "source": {
@@ -247,7 +250,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         },
         "source": {
           "type": "integer",
-          "description": "Index of the source image"
+          "description": "Index of the source image",
+          "default": -1
         }
       },
       "additionalProperties": false,
@@ -319,19 +323,27 @@ export const JSON_SCHEMA : IJsonSchema = {
         },
         "kind": {
           "type": "string",
-          "description": "The probability distribution used to generate the noise."
+          "description": "The probability distribution used to generate the noise.",
+          "enum": [
+            "gaussian",
+            "uniform"
+          ],
+          "default": "gaussian"
         },
         "useColor": {
           "type": "boolean",
-          "description": "If true, colored noise will be used. If false, monochromatic."
+          "description": "If true, colored noise will be used. If false, monochromatic.",
+          "default": false
         },
         "sigma": {
           "type": "number",
-          "description": "Standard deviation of the noise"
+          "description": "Standard deviation of the noise",
+          "default": 10
         },
         "source": {
           "type": "integer",
-          "description": "Index of the source image"
+          "description": "Index of the source image",
+          "default": -1
         }
       },
       "additionalProperties": false,
@@ -764,10 +776,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "best-fit",
         "best-fit-down",
         "none",
-        "contain",
-        "cover",
-        "scale-down"
-      ]
+      ],
+      "default": "best-fit"
     },
     "align": {
       "type": "string",

@@ -1,0 +1,314 @@
+{
+    "type": "APL",
+    "version": "2022.1",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.5.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Public resource definitions Card layouts",
+            "colors": {
+                "colorText": "@colorText"
+            },
+            "dimensions": {
+                "cardHeight_5": "${viewport.height/3}",
+                "cardWidth_5": "33%",
+                "cardHeight_3": "${viewport.height/3}",
+                "cardWidth_3": "45%",
+                "cardHeight_2": "${viewport.height/2}",
+                "cardWidth_2": "45%",
+                "cardSpacing": "@spacing3XSmall",
+                "headerHeight": "${@headerAttributionIconMaxHeight + @spacingLarge}",
+                "contentHeight": "${viewport.height - @headerHeight}"
+            },
+            "strings": {
+                "primaryTextStyle": "textStyleDisplay5"
+            },
+            "numbers": {
+                "primaryTextMaxLines": 2
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeXLarge}",
+            "dimensions": {
+                "cardSpacing": "@spacingXSmall"
+            },
+            "strings": {
+                "primaryTextStyle": "textStyleDisplay4"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeMedium}",
+            "strings": {
+                "primaryTextStyle": "textStyleDisplay6"
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubLandscapeSmall}",
+            "strings": {
+                "primaryTextStyle": "textStyleDisplay6"
+            },
+            "numbers": {
+                "primaryTextMaxLines": 1
+            }
+        },
+        {
+            "when": "${@viewportProfile == @hubRoundSmall}",
+            "dimensions": {
+                "cardHeight_5": "240dp",
+                "cardWidth_5": "240dp",
+                "cardHeight_3": "240dp",
+                "cardWidth_3": "240dp",
+                "cardHeight_2": "240dp",
+                "cardWidth_2": "240dp",
+                "cardSpacing": "@spacingXSmall",
+                "contentHeight": "100%"
+            },
+            "numbers": {
+                "primaryTextMaxLines": 0
+            }
+        },
+        {
+            "when": "${viewport.theme == 'light'}",
+            "colors": {
+                "colorText": "@colorTextReversed"
+            }
+        }
+    ],
+    "layouts": {
+        "Card": {
+            "parameters": [
+                "cardHeight",
+                "cardWidth",
+                "primaryText",
+                "secondaryText",
+                "thumbnailImage"
+            ],
+            "item": {
+                "type": "Container",
+                "height": "${cardHeight}",
+                "width": "${cardWidth}",
+                "padding": "@cardSpacing",
+                "items": [
+                    {
+                        "description": "Card image with overlay gradient at the bottom",
+                        "type": "Image",
+                        "borderRadius": "@shapeRoundedRect",
+                        "position": "absolute",
+                        "height": "100%",
+                        "width": "100%",
+                        "top": "@cardSpacing",
+                        "left": "@cardSpacing",
+                        "scale": "best-fill",
+                        "source": "${thumbnailImage}",
+                        "overlayGradient": {
+                            "type": "linear",
+                            "colorRange": [
+                                "@colorGray700",
+                                "transparent"
+                            ],
+                            "inputRange": [
+                                0,
+                                0.4
+                            ]
+                        }
+                    },
+                    {
+                        "description": "Card text content",
+                        "type": "Container",
+                        "position": "absolute",
+                        "left": "@cardSpacing",
+                        "bottom": "@cardSpacing",
+                        "justifyContent": "end",
+                        "width": "100%",
+                        "padding": "@spacing2XSmall",
+                        "items": [
+                            {
+                                "type": "Text",
+                                "style": "textStyleMetadata",
+                                "maxLines": 1,
+                                "text": "${primaryText}"
+                            },
+                            {
+                                "type": "Text",
+                                "style": "textStyleCaption",
+                                "maxLines": 1,
+                                "text": "${secondaryText}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "CardsLayout": {
+            "parameters": [
+                {
+                    "name": "backgroundImageSource",
+                    "description": "URL for the background image source.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerAttributionImage",
+                    "description": "URL for attribution image or logo source (PNG/vector).",
+                    "type": "string"
+                },
+                {
+                    "name": "headerTitle",
+                    "description": "Title text to render in the header.",
+                    "type": "string"
+                },
+                {
+                    "name": "headerSubtitle",
+                    "description": "Subtitle Text to render in the header.",
+                    "type": "string"
+                },
+                {
+                    "name": "listItems",
+                    "description": "An array of card for up to 6 choices. Each card contains primaryText, secondaryText, and thumbnail image.",
+                    "type": "any"
+                },
+                {
+                    "name": "primaryText",
+                    "description": "Text for the body content.",
+                    "type": "string"
+                }
+            ],
+            "item": {
+                "type": "Container",
+                "height": "100vh",
+                "width": "100vw",
+                "items": [
+                    {
+                        "type": "AlexaBackground",
+                        "id": "AlexaBackground",
+                        "backgroundColor": "${backgroundColor}",
+                        "backgroundImageSource": "${backgroundImageSource}"
+                    },
+                    {
+                        "when": "${@viewportProfile != @hubRoundSmall}",
+                        "type": "AlexaHeader",
+                        "id": "AlexaHeader",
+                        "layoutDirection": "${environment.layoutDirection}",
+                        "headerAttributionImage": "${headerAttributionImage}",
+                        "headerTitle": "${headerTitle}",
+                        "headerSubtitle": "${headerSubtitle}",
+                        "headerAttributionPrimacy": true,
+                        "width": "100%"
+                    },
+                    {
+                        "type": "${@viewportProfile != @hubRoundSmall ? 'Container' : 'ScrollView'}",
+                        "width": "100%",
+                        "height": "@contentHeight",
+                        "justifyContent": "${@viewportProfile != @hubRoundSmall ? 'center' : 'start'}",
+                        "padding": [
+                            "@marginHorizontal",
+                            0
+                        ],
+                        "item": {
+                            "type": "Container",
+                            "width": "100%",
+                            "paddingBottom": "${@viewportProfile == @hubRoundSmall ? '@spacingLarge' : 0}",
+                            "items": [
+                                {
+                                    "when": "${@viewportProfile == @hubRoundSmall}",
+                                    "type": "AlexaHeader",
+                                    "id": "AlexaHeader",
+                                    "layoutDirection": "${environment.layoutDirection}",
+                                    "headerAttributionImage": "${headerAttributionImage}",
+                                    "headerAttributionPrimacy": true,
+                                    "width": "100%"
+                                },
+                                {
+                                    "description": "Primary Text and cards",
+                                    "type": "Container",
+                                    "width": "100%",
+                                    "items": [
+                                        {
+                                            "description": "Primary Text block",
+                                            "when": "${primaryText}",
+                                            "id": "CardsLayout_primaryText",
+                                            "type": "Container",
+                                            "width": "100%",
+                                            "items": [
+                                                {
+                                                    "description": "Primary Text",
+                                                    "when": "${primaryText}",
+                                                    "type": "Text",
+                                                    "spacing": "@spacing2XSmall",
+                                                    "style": "@primaryTextStyle",
+                                                    "fontWeight": "@fontWeightLight",
+                                                    "maxLines": "@primaryTextMaxLines",
+                                                    "text": "${primaryText}",
+                                                    "textAlign": "center"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "description": "Cards layout",
+                                    "type": "Container",
+                                    "width": "100%",
+                                    "direction": "column",
+                                    "bind": [
+                                        {
+                                            "name": "cardWidth",
+                                            "type": "dimension",
+                                            "value": "${listItems.length >= 5 ? @cardWidth_5 : (listItems.length >= 3 ? @cardWidth_3 : @cardWidth_2)}"
+                                        },
+                                        {
+                                            "name": "cardHeight",
+                                            "type": "dimension",
+                                            "value": "${listItems.length >= 5 ? @cardHeight_5 : (listItems.length >= 3 ? @cardHeight_3 : @cardHeight_2)}"
+                                        }
+                                    ],
+                                    "items": [
+                                        {
+                                            "type": "Container",
+                                            "id": "CardsLayout_Cards",
+                                            "width": "100%",
+                                            "direction": "row",
+                                            "justifyContent": "center",
+                                            "data": "${listItems}",
+                                            "wrap": "wrap",
+                                            "item": {
+                                                "when": "${index < 6}",
+                                                "type": "Card",
+                                                "cardHeight": "${cardHeight}",
+                                                "cardWidth": "${cardWidth}",
+                                                "primaryText": "${data.primaryText}",
+                                                "secondaryText": "${data.secondaryText}",
+                                                "thumbnailImage": "${data.thumbnailImage}"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": [
+            {
+                "type": "CardsLayout",
+                "backgroundImageSource": "${payload.cardsLayoutTemplateData.properties.backgroundImage}",
+                "headerAttributionImage": "${payload.cardsLayoutTemplateData.properties.headerAttributionImage}",
+                "headerTitle": "${payload.cardsLayoutTemplateData.properties.headerTitle}",
+                "headerSubtitle": "${payload.cardsLayoutTemplateData.properties.headerSubtitle}",
+                "primaryText": "${payload.cardsLayoutTemplateData.properties.primaryText}",
+                "listItems": "${payload.cardsLayoutTemplateData.properties.listItems}"
+            }
+        ]
+    }
+}

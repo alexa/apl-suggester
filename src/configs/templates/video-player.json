@@ -1,6 +1,6 @@
 {
     "type": "APL",
-    "version": "1.8",
+    "version": "2022.1",
     "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "import": [
         {
@@ -49,8 +49,7 @@
                         "id": "videoPlayerId",
                         "source": [
                             "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_277864451.mov",
-                            "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_292807382.mov",
-                            "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_320293418.mov"
+                            "https://d2o906d8ln7ui1.cloudfront.net/videos/AdobeStock_292807382.mov"
                         ],
                         "onPlay": [
                             {

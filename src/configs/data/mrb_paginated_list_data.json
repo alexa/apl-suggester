@@ -1,0 +1,35 @@
+{
+    "imageListData": {
+        "type": "object",
+        "objectId": "paginatedListSample",
+        "title": "Gallery",
+        "listItems": [
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark1.png"
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark2.png"
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark3.png"
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark4.png"
+            },
+            {
+                "primaryText": "Home Garden",
+                "secondaryText": "5 items",
+                "imageSource": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/paginatedlist/PaginatedList_Dark5.png"
+            }
+        ],
+        "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/templates_v3/logo/logo-modern-botanical-white.png"
+    }
+}

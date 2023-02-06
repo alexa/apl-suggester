@@ -1,6 +1,6 @@
 {
   "type": "APL",
-  "version": "1.4",
+  "version": "2022.2",
   "resources": [
     {
       "colors": {
@@ -32,6 +32,17 @@
       "when": "${viewport.width > 1200}",
       "strings": {
         "logo": "images/logo300x300.png"
+      }
+    },
+    {
+      "when": "${viewport.width > 1300}",
+      "number": 123,
+      "color": 123,
+      "dimension": {
+        "length": "1p"
+      },
+      "strings": {
+        "logo": 0
       }
     }
   ],
