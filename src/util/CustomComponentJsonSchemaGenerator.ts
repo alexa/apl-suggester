@@ -68,7 +68,7 @@ export class CustomComponentJsonSchemaGenerator {
  */
 export function CUSTOM_COMPONENT_SCHEMA_TEMPLATE() : IJsonSchema {
     return JSON.parse(JSON.stringify({
-        $schema: 'http://json-schema.org/draft-07/schema#',
+        $schema: 'https://json-schema.org/draft/2019-09/schema',
         definitions: {
         },
         type: 'object',

@@ -109,12 +109,14 @@ describe('CommandSchemaValidator.', () => {
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/commands/ErrorCommand.json`, 'utf8');
         const result =  commandSchemaValidator.validateCommand(JSON.parse(data), 'SetState');
-        expect(result.length).to.be.equal(2);
-        expect(result[0].path).to.be.equal('/state');
-        expect(result[0].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[1].path).to.be.equal('/');
-        expect(result[1].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[1].errorMessage.indexOf('value') > 0).to.be.equal(true);
+        expect(result.length).to.equal(2);
+
+        expect(result[0].path).to.equal('/');
+        expect(result[0].level).to.equal(NotificationLevel.WARN);
+        expect(result[0].errorMessage.indexOf('\'value\'') > 0).to.equal(true);
+
+        expect(result[1].path).to.equal('/state');
+        expect(result[1].level).to.equal(NotificationLevel.WARN);
     });
 
     async function verifyCommand(fileName : string, type : string) {

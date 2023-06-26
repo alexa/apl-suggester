@@ -1,6 +1,6 @@
 {
   "name": "apl-suggester",
-  "version": "2023.1.0",
+  "version": "2023.2.0",
   "description": "This Package is developed for providing suggestions and validations on APL templates.",
   "engines": {
     "node": ">=8.0.0"
@@ -19,9 +19,7 @@
     "compile": "tsc",
     "unittest-watch": "mocha --watch src/**/__tests__/*.spec.{ts,tsx} --watch-extensions ts,tsx --config ./.mocharc.json",
     "unittest": "mocha --config ./.mocharc.json 'src/**/__tests__/*.spec.{ts,tsx}'",
-    "lintsrc": "tslint --type-check --project tsconfig.json -c tslint.json 'src/**/*.ts'",
-    "linttst": "tslint --type-check --project tsconfig.json -c tslint.json 'tst/**/*.ts'",
-    "lint": "npm run lintsrc && npm run linttst",
+    "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts'",
     "test": "nyc npm run unittest",
     "test-watch": "nyc npm run unittest-watch",
     "cleanup": "rm -rf dist",
@@ -58,7 +56,7 @@
   "devDependencies": {
     "@types/mocha": "^2.2.48",
     "awesome-typescript-loader": "5.x",
-    "axios-mock-adapter": "^1.16.0",
+    "axios-mock-adapter": "1.16.0",
     "chai": "^3.5.0",
     "istanbul": "^0.4.x",
     "jsdom": "^16.5.0",
@@ -74,11 +72,11 @@
     "@types/core-js": "2.5.x",
     "@types/node": "12.0.x",
     "@types/sinon": "2.2.x",
-    "ajv": "6.12.3",
+    "ajv": "^7.2.4",
     "axios": "0.27.2",
     "immutable": "4.1.0",
     "jsdom-global": "3.0.x",
     "ts-node": "3.3.x",
-    "typescript": "3.x"
+    "typescript": "^4.9.4"
   }
 }

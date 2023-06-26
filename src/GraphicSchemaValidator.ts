@@ -18,7 +18,7 @@
 
 import { IJsonSchema } from './assets/IJsonSchema';
 import { IValidationInfo } from './validation';
-import * as ajv from 'ajv';
+import ajv from './util/Ajv';
 import { StaticAplTemplateValidator } from './StaticAplTemplateValidator';
 import { ValidationErrorFilter } from './util/ValidationErrorFilter';
 import { NotificationLevel } from './IValidationInfo';
@@ -74,22 +74,24 @@ export class GraphicSchemaValidator {
      * @memberof GraphicSchemaValidator
      */
     public validateGraphic(jsonObject : object, graphicType : string) : IValidationInfo[] {
-        const graphicJsonSchema : IJsonSchema = GraphicSchemaValidator.GRAPHIC_TYPE_TO_JSON_SCHEMA
-        .get(graphicType);
+        const schemaId = 'avg_' + graphicType;
         const results = [];
-        if (!graphicJsonSchema) {
-            results.push({
-                errorMessage : 'Failed to find JSON schema for graphic: ' + graphicType,
-                path : '/',
-                level : NotificationLevel.WARN
-            } as IValidationInfo);
-            return results;
+        let validateFunction = ajv.getSchema(schemaId);
+
+        if (!validateFunction) {
+            const graphicJsonSchema : IJsonSchema = GraphicSchemaValidator.GRAPHIC_TYPE_TO_JSON_SCHEMA
+            .get(graphicType);
+            if (!graphicJsonSchema) {
+                results.push({
+                    errorMessage : 'Failed to find JSON schema for graphic: ' + graphicType,
+                    path : '/',
+                    level : NotificationLevel.WARN
+                } as IValidationInfo);
+                return results;
+            }
+            validateFunction = ajv.addSchema(graphicJsonSchema, schemaId).getSchema(schemaId);
         }
-        const validateFunction = ajv({
-            jsonPointers : true,
-            allErrors : true,
-            verbose : true
-        }).compile(graphicJsonSchema);
+
         const succeed = validateFunction(jsonObject);
         if (succeed) {
             return [];

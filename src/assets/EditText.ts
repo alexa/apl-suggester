@@ -17,10 +17,10 @@
 /* tslint:disable */
 'use strict';
 import * as commonDefinition from "./CommonDefinition";
-import { IJsonSchema, Categories } from './IJsonSchema';
+import { IJsonSchema, Categories, SCHEMA_URI } from './IJsonSchema';
 
 export const JSON_SCHEMA : IJsonSchema = {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": SCHEMA_URI,
   "definitions": {
       "BindingArray": {
         "type": "array",
@@ -110,46 +110,13 @@ export const JSON_SCHEMA : IJsonSchema = {
           ]
       },
       "EntityArray": {
-        "type": "array",
-        "items": {
-          "$ref": "#/definitions/Entity"
-        }
+        "type": "array"
       },
       "stringArray": {
         "type": "array",
         "items": {
           "type": "string"
         }
-      },
-      "Entity": {
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The id of this entity"
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of this entity"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of this entity"
-          },
-          "nameSynonyms": {
-            "$ref": "#/definitions/stringArray",
-            "description": "Array of synonyms of this entity"
-          },
-          "targetSlotName": {
-            "type": "string",
-            "description": "The target slot name of this entity"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "type",
-          "name"
-        ]
       },
       "TickHandlerArray": {
         "type": "array",
@@ -391,7 +358,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       "handleTick": {
         "$ref": "#/definitions/TickHandlerArray",
         "category": Categories.aboutComponent,
-        "description": "An Array of entities associated with the component"
+        "description": "An array of Tick Event Handlers to execute as time passes."
       },
       "height": {
         "$ref": "#/definitions/dimension",

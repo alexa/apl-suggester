@@ -162,4 +162,21 @@ describe('PackageLoader', () => {
                 done(`load should have been successful. test failing with error ${error}`);
             });
     });
+
+    it('should return error if arl package version is missing', async () => {
+        let importPackages = [
+          {
+            name: 'alexa-layouts'
+          },
+          {
+            name: 'alexa-styles',
+            version: ''
+          }
+        ];
+        packageLoader = new PackageLoader({});
+        const result = await packageLoader.load(importPackages);
+        expect(result.length).to.be.equal(2);
+        expect(result[0].json).to.deep.equal({});
+        expect(result[1].json).to.deep.equal({});
+      });
 });

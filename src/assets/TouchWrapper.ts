@@ -16,10 +16,10 @@
 
 /* tslint:disable */
 'use strict';
-import { IJsonSchema, Categories } from './IJsonSchema';
+import { IJsonSchema, Categories, SCHEMA_URI } from './IJsonSchema';
 import { JSON_SCHEMA as baseSchema } from "./BaseComponent";
 export const JSON_SCHEMA : IJsonSchema = {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": SCHEMA_URI,
   "definitions": baseSchema.definitions,
   "type": "object",
   "properties": {

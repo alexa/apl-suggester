@@ -16,9 +16,9 @@
 
 /* tslint:disable */
 'use strict'
-import { IJsonSchema, Categories } from './IJsonSchema';
+import { IJsonSchema, Categories, SCHEMA_URI } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": SCHEMA_URI,
   "definitions": {
     "dimension": {
       "oneOf": [

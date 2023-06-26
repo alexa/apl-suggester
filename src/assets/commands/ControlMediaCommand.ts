@@ -54,6 +54,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         "previous",
         "rewind",
         "seek",
+        "seekTo",
         "setTrack"
       ]
     },

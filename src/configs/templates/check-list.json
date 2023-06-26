@@ -1,11 +1,11 @@
 {
     "type": "APL",
-    "version": "2022.1",
-    "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "version": "2023.2",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "import": [
         {
             "name": "alexa-layouts",
-            "version": "1.5.0"
+            "version": "1.7.0"
         }
     ],
     "mainTemplate": {
@@ -95,7 +95,8 @@
                                                         "type": "AlexaTextListItem",
                                                         "primaryText": "${data.name}",
                                                         "touchForward": true,
-                                                        "hideOrdinal": true
+                                                        "hideOrdinal": true,
+                                                        "primaryAction": []
                                                     },
                                                     {
                                                         "type": "AlexaCheckbox",

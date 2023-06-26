@@ -16,9 +16,10 @@
 
 /* tslint:disable */
 'use strict';
-import { IJsonSchema } from './IJsonSchema';
+import { IJsonSchema, SCHEMA_URI } from './IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": SCHEMA_URI,
+  "$id": "JsonSchema",
   "definitions": {
     "UserDefinedCommand": {
       "properties": {
@@ -754,9 +755,6 @@ export const JSON_SCHEMA : IJsonSchema = {
             },
             {
               "$ref": "#/definitions/ComponentArray"
-            },
-            {
-              "type": "string"
             }
           ]
         },
@@ -767,9 +765,6 @@ export const JSON_SCHEMA : IJsonSchema = {
             },
             {
               "$ref": "#/definitions/ComponentArray"
-            },
-            {
-              "type": "string"
             }
           ]
         },
@@ -1147,14 +1142,14 @@ export const JSON_SCHEMA : IJsonSchema = {
           "additionalProperties": false
     },
     "dimension": {
-      "type": ["string", "number"],
+      "type": ["string","number"],
       "if": {
         "type": "string"
       },
       "then": {
         "pattern": "^(auto)$|^[+]?[0-9]\\d*(\\.\\d+)?(px|vh|%|dp|vw)?$"
       }
-    },
+  },
     "Style": {
       "properties": {
         "description": {
@@ -1311,41 +1306,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "$ref": "#/definitions/Binding"
       }
     },
-    "Entity": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "The id of this entity"
-        },
-        "type": {
-          "type": "string",
-          "description": "The type of this entity"
-        },
-        "name": {
-          "type": "string",
-          "description": "The name of this entity"
-        },
-        "nameSynonyms": {
-          "$ref": "#/definitions/stringArray",
-          "description": "Array of synonyms of this entity"
-        },
-        "targetSlotName": {
-          "type": "string",
-          "description": "The target slot name of this entity"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "type",
-        "name"
-      ]
-    },
     "EntityArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Entity"
-      }
+      "type": "array"
     },
     "Gradient": {
       "properties": {
@@ -1535,7 +1497,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "1.9",
         "2022.1",
         "2022.2",
-        "2023.1"
+        "2023.1",
+        "2023.2"
       ]
     },
     "license": {

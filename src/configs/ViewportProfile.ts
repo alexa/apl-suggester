@@ -115,6 +115,7 @@ export interface IViewport {
     fullScreenViewportProfile? : string;
     fullScreenViewportProfileLabel? : string;
     svgIcon? : string;
+    mode? : string;
 }
 
 /**

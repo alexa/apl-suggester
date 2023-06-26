@@ -114,7 +114,7 @@ export class PackageLoader {
      * Walk a list of packages until all of them have been loaded.
      */
     private async ensureLoaded(packageList : any[]) : Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             if (!Array.isArray(packageList)) {
                 resolve();
                 return;
@@ -167,7 +167,7 @@ export class PackageLoader {
 
             // Pre-defined packages can be override by customer provided package json file
             if (!url && !this.embeddedPackages[name]) {
-                const fileName = ARL_PACKAGE_NAMES.includes(name) && this.isProdVersion(version)
+                const fileName = ARL_PACKAGE_NAMES.includes(name) && version && this.isProdVersion(version)
                 ? PREDEFINED_ARL_FILE_NAME
                 : PREDEFINED_FILE_NAME;
                 url = `${PREDEFINED_HOST}/${name}/${version}/${fileName}`;
