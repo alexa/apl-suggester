@@ -13,7 +13,7 @@ npm install apl-suggester --save
 
 Since June 7 2022, we have changed our versioning strategy. Existing users please make sure to pull the latest and update your `package.json`:
 ```
-npm install apl-suggester@2022 --save
+npm install apl-suggester@2023 --save
 ```
 
 Then use it in your app:

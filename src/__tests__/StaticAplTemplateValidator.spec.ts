@@ -66,8 +66,8 @@ describe('Integration Test to verify the JSON schema.', () => {
         const result = await verifyTemplate('errorCommandTemplate.json');
         expect(result.length).to.equal(3);
         expect(result[0].path).to.equal('/onConfigChange/1/preservedSequencers');
-        expect(result[1].path).to.equal('/onMount/0/state');
-        expect(result[2].path).to.equal('/onMount/0');
+        expect(result[1].path).to.equal('/onMount/0');
+        expect(result[2].path).to.equal('/onMount/0/state');
     });
 
     it('should compile with video template when souce is array of string.', async () => {

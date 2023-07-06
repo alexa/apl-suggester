@@ -16,9 +16,9 @@
 
 /* tslint:disable */
 'use strict';
-import { IJsonSchema } from '../IJsonSchema';
+import { IJsonSchema, SCHEMA_URI } from '../IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": SCHEMA_URI,
     "$id": "Graphics.json",
     "definitions": {
         "any": {

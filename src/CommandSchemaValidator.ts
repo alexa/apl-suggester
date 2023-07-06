@@ -18,7 +18,7 @@
 
 import { IJsonSchema } from './assets/IJsonSchema';
 import { IValidationInfo } from './validation';
-import * as ajv from 'ajv';
+import ajv from './util/Ajv';
 import { StaticAplTemplateValidator } from './StaticAplTemplateValidator';
 import { ValidationErrorFilter } from './util/ValidationErrorFilter';
 import { NotificationLevel } from './IValidationInfo';
@@ -110,22 +110,23 @@ export class CommandSchemaValidator {
      * @memberof CommandSchemaValidator
      */
     public validateCommand(jsonObject : object, commandType : string) : IValidationInfo[] {
-        const commandJsonSchema : IJsonSchema = CommandSchemaValidator.COMMAND_TYPE_TO_JSON_SCHEMA
-        .get(commandType);
+        let validateFunction = ajv.getSchema(commandType);
         const results = [];
-        if (!commandJsonSchema) {
-            results.push({
-                errorMessage : 'Failed to find JSON schema for command: ' + commandType,
-                path : '/',
-                level : NotificationLevel.WARN
-            } as IValidationInfo);
-            return results;
+
+        if (!validateFunction) {
+            const commandJsonSchema : IJsonSchema = CommandSchemaValidator.COMMAND_TYPE_TO_JSON_SCHEMA
+            .get(commandType);
+            if (!commandJsonSchema) {
+                results.push({
+                    errorMessage : 'Failed to find JSON schema for command: ' + commandType,
+                    path : '/',
+                    level : NotificationLevel.WARN
+                } as IValidationInfo);
+                return results;
+            }
+            validateFunction = ajv.addSchema(commandJsonSchema, commandType).getSchema(commandType);
         }
-        const validateFunction = ajv({
-            jsonPointers : true,
-            allErrors : true,
-            verbose : true
-        }).compile(commandJsonSchema);
+
         const succeed = validateFunction(jsonObject);
         if (succeed) {
             return [];

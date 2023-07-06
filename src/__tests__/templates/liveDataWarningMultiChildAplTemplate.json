@@ -1,6 +1,6 @@
 {
   "type": "APL",
-  "version": "2022.1",
+  "version": "2023.2",
   "mainTemplate": {
     "parameters": [
       "payload"

@@ -17,10 +17,10 @@
 /* tslint:disable */
 'use strict';
 import * as commonDefinition from "./CommonDefinition";
-import {Categories, IJsonSchema} from './IJsonSchema';
+import {Categories, IJsonSchema, SCHEMA_URI} from './IJsonSchema';
 
 export const JSON_SCHEMA : IJsonSchema = {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": SCHEMA_URI,
     "definitions": {
         "url": {
             "type": "string"
@@ -52,40 +52,7 @@ export const JSON_SCHEMA : IJsonSchema = {
             ]
         },
         "EntityArray": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Entity"
-            }
-        },
-        "Entity": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The id of this entity"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "The type of this entity"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of this entity"
-                },
-                "nameSynonyms": {
-                    "$ref": "#/definitions/stringArray",
-                    "description": "Array of synonyms of this entity"
-                },
-                "targetSlotName": {
-                    "type": "string",
-                    "description": "The target slot name of this entity"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "id",
-                "type",
-                "name"
-            ]
+            "type": "array"
         },
         "stringArray": {
             "type": "array",
@@ -200,6 +167,10 @@ export const JSON_SCHEMA : IJsonSchema = {
                 "entity": {
                     "$ref": "#/definitions/EntityArray",
                     "description": "An Array of entities associated with the component"
+                },
+                "entities": {
+                  "$ref": "#/definitions/EntityArray",
+                  "description": "An Array of entities associated with the component"
                 }
             },
             "additionalProperties": false,
@@ -422,6 +393,11 @@ export const JSON_SCHEMA : IJsonSchema = {
             "$ref": "#/definitions/EntityArray",
             "category": Categories.aboutComponent,
             "description": "An Array of entities associated with the component"
+        },
+        "entities": {
+          "$ref": "#/definitions/EntityArray",
+          "category": Categories.aboutComponent,
+          "description": "An Array of entities associated with the component"
         },
         "id": {
             "type": "string",

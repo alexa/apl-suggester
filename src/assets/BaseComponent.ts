@@ -70,40 +70,7 @@ export const JSON_SCHEMA : IJsonSchema = {
       ]
     },
     "EntityArray": {
-      "type": "array",
-      "items": {
-      "$ref": "#/definitions/Entity"
-      }
-    },
-    "Entity": {
-      "properties": {
-      "id": {
-        "type": "string",
-        "description": "The id of this entity"
-      },
-      "type": {
-        "type": "string",
-        "description": "The type of this entity"
-      },
-      "name": {
-        "type": "string",
-        "description": "The name of this entity"
-      },
-      "nameSynonyms": {
-        "$ref": "#/definitions/stringArray",
-        "description": "Array of synonyms of this entity"
-      },
-      "targetSlotName": {
-        "type": "string",
-        "description": "The target slot name of this entity"
-      }
-      },
-      "additionalProperties": false,
-      "required": [
-      "id",
-      "type",
-      "name"
-      ]
+      "type": "array"
     },
     "tickHandler": {
       "properties": {
@@ -412,6 +379,10 @@ export const JSON_SCHEMA : IJsonSchema = {
       "entity": {
         "$ref": "#/definitions/EntityArray",
         "description": "An Array of entities associated with the component"
+      },
+      "entities": {
+          "$ref": "#/definitions/EntityArray",
+          "description": "An Array of entities associated with the component"
       }
       },
       "additionalProperties": false,

@@ -16,7 +16,7 @@
 
 'use strict';
 
-import * as ajv from 'ajv';
+import ajv from './util/Ajv';
 import { JSON_SCHEMA } from './assets/JsonSchema';
 import * as AVGJSONSchema from './assets/graphics/AVG';
 import { IValidationInfo } from './validation/index.js';
@@ -134,13 +134,10 @@ export class StaticAplTemplateValidator {
      * @memberof StaticAplTemplateValidator
      */
     constructor() {
-        this.validateFunction = ajv({
-            jsonPointers : true,
-            allErrors : true,
-            verbose : true
-        })
-            .addSchema(AVGJSONSchema.JSON_SCHEMA)
-            .compile(JSON_SCHEMA);
+        if (!ajv.getSchema(AVGJSONSchema.JSON_SCHEMA.$id)) {
+            ajv.addSchema(AVGJSONSchema.JSON_SCHEMA);
+        }
+        this.validateFunction = ajv.getSchema(JSON_SCHEMA.$id) || ajv.compile(JSON_SCHEMA);
         this.aplComponentExtractor = AplComponentsExtractor.getInstance();
         this.componentSchemaController = ComponentSchemaController.getInstance();
         this.componentStructureValidator = ComponentStructureValidator.getInstance();
@@ -193,28 +190,32 @@ export class StaticAplTemplateValidator {
         const customComponentTypes = await this.customComponentsExtractor
         .getCustomComponentTypesAndValidate(aplTemplate);
         const availableComponentTypes = primitiveComponentTypes.concat(customComponentTypes);
-        const structureErrors = components
+
+        const nonCustomComponents = components
         .filter((c) => !this.componentSchemaController.isCustomComponent(c.jsonPath)
-        && this.isComponentTypeValid(c, availableComponentTypes))
-        .map((c) => {
+        && this.isComponentTypeValid(c, availableComponentTypes));
+        let structureErrors : IValidationInfo[] = [];
+        let componentErrors : IValidationInfo[];
+        nonCustomComponents.forEach((c) => {
             const validationSeed = new ValidationSeed(
                 new Seed(c.jsonObject, c.jsonPath), new Seed(c.parentComponent));
-            return this.componentStructureValidator.validate(validationSeed);
+            componentErrors = this.componentStructureValidator.validate(validationSeed);
+            structureErrors = structureErrors.concat(componentErrors);
         });
 
         // run schema validation against all supported APL Component types.
-        const schemaErrors = await Promise.all(components
-        .filter((c) => primitiveComponentTypes.includes(c.componentType))
-        .map(async (c) : Promise<IValidationInfo[]> => {
-            const errs : IValidationInfo[] =
-                await this.componentSchemaController.validateComponent(
-                    aplTemplate, c.jsonObject, c.componentType, c.parentComponentType);
-            return errs.map((e) => this.getComponentErrorWithFullPath(e, c.jsonPath));
-        }));
-
-        return structureErrors
-        .concat(schemaErrors)
-        .reduce((result, nextItem) => result.concat(nextItem), []);
+        const primitiveComponents = components
+        .filter((item) => primitiveComponentTypes.includes(item.componentType));
+        let schemaErrors = [];
+        for (let c of primitiveComponents) {
+            // validation must be sequential for Ajv singleton to cache properly!
+            componentErrors = await this.componentSchemaController.validateComponent(
+                aplTemplate, c.jsonObject, c.componentType, c.parentComponentType
+            );
+            componentErrors = componentErrors.map((e) => this.getComponentErrorWithFullPath(e, c.jsonPath));
+            schemaErrors = schemaErrors.concat(componentErrors);
+        }
+        return structureErrors.concat(schemaErrors);
     }
 
     /**

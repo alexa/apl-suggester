@@ -18,7 +18,7 @@
 
 import { IJsonSchema } from './assets/IJsonSchema';
 import { IValidationInfo } from './validation';
-import * as ajv from 'ajv';
+import ajv from './util/Ajv';
 import { StaticAplTemplateValidator } from './StaticAplTemplateValidator';
 import { ValidationErrorFilter } from './util/ValidationErrorFilter';
 import { getRootComponentName } from './util/Utils';
@@ -149,23 +149,30 @@ export class ComponentSchemaController {
         aplTemplate : object,
         jsonObject : object,
         componentType : string,
-        parentComponentType? : string) : Promise<IValidationInfo[]> {
-        const componentJsonSchema : IJsonSchema =
-            await this.getComponentSchema(aplTemplate, componentType, parentComponentType);
+        parentComponentType? : string
+    ) : Promise<IValidationInfo[]> {
+        const schemaId = (parentComponentType || '') + componentType;
+        let validateFunction = ajv.getSchema(schemaId);
         const results = [];
-        if (!componentJsonSchema) {
-            results.push({
-                errorMessage : 'Failed to find JSON schema for component: ' + componentType,
-                path : '/',
-                level : NotificationLevel.WARN
-            } as IValidationInfo);
-            return results;
+
+        // not a compiled and cached schema
+        if (!validateFunction) {
+            const componentJsonSchema : IJsonSchema =
+                await this.getComponentSchema(aplTemplate, componentType, parentComponentType);
+
+            if (!componentJsonSchema) {
+                results.push({
+                    errorMessage : 'Failed to find JSON schema for component: ' + componentType,
+                    path : '/',
+                    level : NotificationLevel.WARN
+                } as IValidationInfo);
+                return results;
+            }
+            // Please refer to Ajv documentation on the method chaining
+            // https://ajv.js.org/guide/managing-schemas.html#using-ajv-instance-cache
+            validateFunction = ajv.addSchema(componentJsonSchema, schemaId).getSchema(schemaId);
         }
-        const validateFunction = ajv({
-            jsonPointers : true,
-            allErrors : true,
-            verbose : true
-        }).compile(componentJsonSchema);
+
         const succeed = validateFunction(jsonObject);
         if (succeed) {
             return [];
