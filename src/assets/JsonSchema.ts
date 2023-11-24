@@ -17,6 +17,8 @@
 /* tslint:disable */
 'use strict';
 import { IJsonSchema, SCHEMA_URI } from './IJsonSchema';
+import * as commonDefinition from "./CommonDefinition";
+
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": SCHEMA_URI,
   "$id": "JsonSchema",
@@ -718,25 +720,126 @@ export const JSON_SCHEMA : IJsonSchema = {
       }
     },
     "Import": {
+      "type": "object",
+      "properties": {
+        "loadAfter": {
+          "type": [
+            "array",
+            "string"
+          ],
+          "description": "The list of the import names this import should load after.",
+            "items": {
+              "type": "string"
+            }
+        },
+        "when": {
+            "type": "boolean",
+            "description": "If it evaluates to false, this import is not included."
+        },
+        "type": {
+          "type": "string",
+          "description": "Import type. “package” by default.",
+          "enum": [
+            "allOf", "oneOf", "package"
+          ]
+        },
+      },
+      "unevaluatedProperties": false,
+      "if": {
+            "properties": {
+              "type": {
+                "const": "package"
+                }
+            }
+      },
+      "then": {
+        "$ref": "#/definitions/ImportPackage",
+          "required": [
+            "name",
+            "version"
+          ],
+      },
+      "else": {
+        "if": {
+          "properties": {
+            "type": {
+              "const": "allOf"
+            }
+          }
+        },
+        "then": {
+          "$ref": "#/definitions/ImportAllOf",
+        },
+        "else": {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "oneOf"
+                }
+            }
+          },
+          "then": {
+            "$ref": "#/definitions/ImportOneOf"
+          },
+          else: {
+            "$ref": "#/definitions/ImportPackage",
+            "required": [
+              "name",
+              "version"
+            ],
+          }
+          
+        }
+      }
+    },
+    "ImportAllOf": {
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "items": {
+          "description": "An ordered array of imports to select from.",
+          "$ref": "#/definitions/ImportArray"
+        }
+      }
+    },
+    "ImportPackage": {
       "properties": {
         "name": {
           "type": "string",
-          "description": "Name of the package"
-        },
-        "version": {
-          "type": "string",
-          "description": "The semantic version of the package that will be loaded"
+          "description": "The name of the import."
         },
         "source": {
           "type": "string",
-          "description": "A downloadable URL containing the contents of the package"
+          "description": "A downloadable URL containing the contents of the package."
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the import."
         }
-      },
-      "additionalProperties": false,
+      }
+    },
+    "ImportOneOf": {
       "required": [
-        "name",
-        "version"
-      ]
+        "items"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "description": "Array of imports to process if none were selected from items array."
+        },
+        "otherwise": {
+          "description": "Array of imports to process if none were selected from items array.",
+          "type": "array"
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the import."
+        }
+      }
     },
     "Layout": {
       "properties": {
@@ -1239,12 +1342,7 @@ export const JSON_SCHEMA : IJsonSchema = {
         "command"
       ]
     },
-    "ColorArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/color"
-      }
-    },
+    "ColorArray": commonDefinition.ColorArray,
     "dimensions": {
       "patternProperties": {
         "^.*$": {
@@ -1261,12 +1359,7 @@ export const JSON_SCHEMA : IJsonSchema = {
     "number": {
       "type": "number"
     },
-    "numberArray": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/number"
-      }
-    },
+    "numberArray": commonDefinition.numberArray,
     "Binding": {
       "properties": {
         "name": {
@@ -1309,38 +1402,7 @@ export const JSON_SCHEMA : IJsonSchema = {
     "EntityArray": {
       "type": "array"
     },
-    "Gradient": {
-      "properties": {
-        "angle": {
-          "type": "number",
-          "description": "Angle of a linear gradient, in degrees. 0 is up, 90 is to the right"
-        },
-        "colorRange": {
-          "$ref": "#/definitions/ColorArray",
-          "description": "The color to assign at each gradient step"
-        },
-        "description": {
-          "type": "string",
-          "description": "Description of this gradient"
-        },
-        "inputRange": {
-          "$ref": "#/definitions/numberArray",
-          "description": "The input stops of the gradient. Must be in ascending order with values between 0 and 1"
-        },
-        "type": {
-          "type": "string",
-          "description": "The type of the gradient",
-          "enum": [
-            "linear",
-            "radial"
-          ]
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "colorRange"
-      ]
-    },
+    "Gradient": commonDefinition.Gradient,
     "ExtensionArray": {
       "type": "array",
       "items": {
@@ -1356,6 +1418,11 @@ export const JSON_SCHEMA : IJsonSchema = {
         "uri": {
           "type": "string",
           "description": "The URI of the requested extension"
+        },
+        "required": {
+          "type": "boolean",
+          "description":
+            "Fail the document if the extension fails to register, default to false"
         }
       },
       "additionalProperties": false,
@@ -1498,7 +1565,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "2022.1",
         "2022.2",
         "2023.1",
-        "2023.2"
+        "2023.2",
+        "2023.3"
       ]
     },
     "license": {

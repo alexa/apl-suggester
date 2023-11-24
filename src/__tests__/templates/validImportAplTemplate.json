@@ -1,0 +1,63 @@
+{
+    "type": "APL",
+    "version": "2023.3",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "type": "allOf",
+            "when": "${viewport.mode == 'hub'}",
+            "items": [
+              {
+                "name": "hub-styles",
+                "version": "1.0"
+              },
+              {
+                "name": "hub-overrides",
+                "version": "1.0",
+                "loadAfter": [ "hub-styles" ]
+              }
+            ]
+        },
+        {
+            "type": "oneOf",
+            "name": "styles",
+            "items": [
+              {
+                "when": "${viewport.mode == 'hub'}",
+                "type": "oneOf",
+                "version": "1.0",
+                "items": [
+                  {
+                    "when": "${viewport.width > viewport.height}",
+                    "source": "https://styles.com/hub-landscape.json"
+                  },
+                  {
+                    "source": "https://styles.com/hub-portrait.json"
+                  }
+                ]
+              },
+              {
+                "when": "${viewport.mode == 'tv'}",
+                "version": "1.0",
+                "source": "https://styles.com/tv.json"
+              }
+            ],
+            "otherwise": [
+              {
+                "source": "https://styles.com/generic.json"
+              }
+            ]
+        },
+        {
+            "name": "overrides",
+            "version": "1.0"
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": []
+    }
+}

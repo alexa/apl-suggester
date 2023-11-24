@@ -17,7 +17,7 @@
 /* tslint:disable */
 'use strict'
 import { IJsonSchema } from '../IJsonSchema';
-export const JSON_SCHEMA : IJsonSchema = {
+export const JSON_SCHEMA: IJsonSchema = {
   "type": "object",
   "properties": {
     "type": {
@@ -55,6 +55,11 @@ export const JSON_SCHEMA : IJsonSchema = {
     "duration": {
       "type": "integer",
       "description": "Time to wait between pages (in milliseconds)."
+    },
+    transitionDuration: {
+      type: "integer",
+      description:
+        "Duration of the page transition animation (in milliseconds).",
     },
   },
   "required": [

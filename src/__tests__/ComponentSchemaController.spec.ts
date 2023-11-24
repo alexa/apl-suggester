@@ -179,7 +179,7 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('EditText.json', 'EditText');
     });
 
-    it('should validate Pager component with onSpeechMark.', async () => {
+    it('should validate Pager component with onSpeechMark and onChildrenChanged.', async () => {
         await verifyComponent('Pager.json', 'Pager');
     });
 
@@ -190,7 +190,7 @@ describe('ComponentSchemaController.', () => {
         const result = await validate('VideoTextTracksError.json', 'Video');
         expect(result.length).to.equal(3);
         expect(result[0].errorMessage).to.equal('should have required property \'type\'');
-        // In coming 2023.2, "type" enum expects to include "subtitle" and maybe more
+        // From 2023.2, "type" enum expects to include "subtitle" and maybe more
         expect(result[1].errorMessage).to.equal('should be equal to one of the allowed values : caption');
         expect(result[2].errorMessage).to.equal('should NOT be valid');
     });

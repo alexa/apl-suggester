@@ -120,6 +120,11 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.pager,
       "description": "Command to execute when the component loses focus."
     },
+    "onChildrenChanged": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.pager,
+      "description": "Command to execute when the children were inserted or removed from the component."
+    },
     "handleKeyDown": {
       "$ref": "#/definitions/KeyHandlerArray",
       "category": Categories.pager,

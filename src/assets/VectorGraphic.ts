@@ -623,6 +623,16 @@ export const JSON_SCHEMA : IJsonSchema = {
         "best-fit"
       ]
     },
+    "parameter": {
+      "type": "object",
+      "category": Categories.vectorGraphic,
+      "description": "Optional map of parameters to pass to the vector graphic.",
+    },
+    "parameters": {
+      "type": "object",
+      "category": Categories.vectorGraphic,
+      "description": "Optional map of parameters to pass to the vector graphic.",
+    },
     "onFocus": {
       "$ref": "#/definitions/CommandArray",
       "category": Categories.aboutComponent,

@@ -500,6 +500,11 @@ export const JSON_SCHEMA : IJsonSchema = {
       "category": Categories.container,
       "description": "A child component to put at the end of the layout"
     },
+    "onChildrenChanged": {
+      "$ref": "#/definitions/CommandArray",
+      "category": Categories.container,
+      "description": "Command to execute when the children were inserted or removed from the component."
+    },
     "numbered": {
       "type": "boolean",
       "category": Categories.container,

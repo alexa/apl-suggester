@@ -65,10 +65,12 @@ export class ThirdPartyComponentLoader {
             return [];
         }
 
-        const result = await Promise.all(importPackages.map((eachPackage) => {
-            return this.loadSinglePackage(eachPackage);
-        }));
-        return [].concat(...result);
+        const results = await Promise.all(importPackages.map((eachPackage) => {
+            if (!eachPackage['type'] || eachPackage['type'] === 'package') {
+                return this.loadSinglePackage(eachPackage);
+            }
+        }).filter((result) => !!result));
+        return [].concat(...results);
     }
 
     private loadSinglePackage(singlePackage : object) : Promise<ILoadedResult[]> {

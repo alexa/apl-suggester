@@ -118,3 +118,46 @@ export const Source = {
         }
     ]
 }
+export const Gradient = {
+    properties: {
+        angle: {
+        type: "number",
+        description:
+            "Angle of a linear gradient, in degrees. 0 is up, 90 is to the right",
+        },
+        colorRange: {
+        $ref: "#/definitions/ColorArray",
+        description: "The color to assign at each gradient step",
+        },
+        description: {
+        type: "string",
+        description: "Description of this gradient",
+        },
+        inputRange: {
+        $ref: "#/definitions/numberArray",
+        description:
+            "The input stops of the gradient. Must be in ascending order with values between 0 and 1",
+        },
+        type: {
+        type: "string",
+        description: "The type of the gradient",
+        enum: ["linear", "radial"],
+        },
+    },
+    additionalProperties: false,
+    required: ["colorRange"],
+}
+
+export const ColorArray = {
+    type: "array",
+    items: {
+        $ref: "#/definitions/color"
+    }
+}
+
+export const numberArray = {
+    type: "array",
+    items: {
+        $ref: "#/definitions/number"
+    }
+}

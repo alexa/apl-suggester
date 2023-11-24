@@ -63,6 +63,25 @@ export const JSON_SCHEMA : IJsonSchema = {
       "required": [
         "type"
       ]
+    },
+    dataArray: {
+      type: "array",
+      items: {
+        $ref: "#/definitions/data"
+      }
+    },
+    data: {
+      oneOf: [
+        {
+          type: "string"
+        },
+        {
+          type: "number"
+        },
+        {
+          type: "object"
+        }
+      ]
     }
   },
   "type": "object",
@@ -106,6 +125,10 @@ export const JSON_SCHEMA : IJsonSchema = {
     "repeatCount": {
       "type": "number",
       "description": "Additional number of times to execute these commands."
+    },
+    data: {
+      $ref: "#/definitions/dataArray",
+      description: "A list of data to map against the commands"
     }
   },
   "required": [

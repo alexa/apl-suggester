@@ -73,6 +73,11 @@ export interface IJsonSchema extends Object {
     additionalProperties? : boolean;
 
     /**
+     * Indicate whether unevaluated properties is not allowed.
+     */
+    unevaluatedProperties? : boolean;
+
+    /**
      * Optional items fields containing all children items.
      */
     items? : IJsonSchema;
@@ -92,6 +97,8 @@ export interface IJsonSchema extends Object {
      *  "enum": ["red", "green", "blue"]}
      */
     enum? : any[];
+
+    const? : any;
 
     /**
      * The key of this object is a regex for which
@@ -122,6 +129,9 @@ export interface IJsonSchema extends Object {
 
     then? : IJsonSchema;
     else? : IJsonSchema;
+
+    deprecated? : boolean;
+    deprecationMessage? : string;
 }
 
 export enum Categories {

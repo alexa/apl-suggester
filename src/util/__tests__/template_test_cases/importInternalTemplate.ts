@@ -198,7 +198,7 @@ export const IMPORT_LAYOUT_TEMPLATE_10 = {
         {
           "when": "${@viewportProfile == @hubRoundSmall}",
           "type": "Frame",
-          "backgroundColor": "${headerBackgroundColor}",
+          "background": "${headerBackgroundColor}",
           "item": {
             "type": "Container",
             "direction": "column",
@@ -227,7 +227,7 @@ export const IMPORT_LAYOUT_TEMPLATE_10 = {
         },
         {
           "type": "Frame",
-          "backgroundColor": "${headerBackgroundColor}",
+          "background": "${headerBackgroundColor}",
           "item": {
             "type": "Container",
             "width": "100%",
@@ -623,7 +623,7 @@ export const IMPORT_LAYOUT_TEMPLATE_13 = {
         {
           "when": "${@viewportProfile == @hubRoundSmall}",
           "type": "Frame",
-          "backgroundColor": "${headerBackgroundColor}",
+          "background": "${headerBackgroundColor}",
           "item": {
             "type": "Container",
             "direction": "column",
@@ -652,7 +652,7 @@ export const IMPORT_LAYOUT_TEMPLATE_13 = {
         },
         {
           "type": "Frame",
-          "backgroundColor": "${headerBackgroundColor}",
+          "background": "${headerBackgroundColor}",
           "item": {
             "type": "Container",
             "width": "100%",
@@ -858,6 +858,66 @@ export const IMPORT_LAYOUT_TEMPLATE_13 = {
     }
   }
 }
+
+export const IMPORT_ALLOF_ONEOF_PACKAGE_IMPORT = [
+  {
+    "name": "alexa-layouts",
+    "version": "1.6.0"
+  },
+  {
+    "name": "alexa-layouts",
+    "version": "1.5.0"
+  },
+  {
+    "type": "allOf",
+    "items": [
+      {
+        "name": "hub-styles",
+        "version": "1.0"
+      },
+      {
+        "name": "hub-overrides",
+        "version": "1.0",
+        "loadAfter": [ "hub-styles" ]
+      }
+    ]
+  },
+  {
+    "type": "oneOf",
+    "name": "styles",
+    "items": [
+      {
+        "when": "${viewport.mode == 'hub'}",
+        "type": "oneOf",
+        "version": "1.0",
+        "items": [
+          {
+            "source": "https://styles.com/hub-landscape.json"
+          },
+          {
+            "source": "https://styles.com/hub-portrait.json"
+          }
+        ]
+      },
+      {
+        "version": "1.0",
+        "source": "https://styles.com/tv.json"
+      }
+    ],
+    "otherwise": [
+      {
+        "source": "https://styles.com/generic.json"
+      }
+    ]
+  },
+  {
+    "type": "package",
+    "name": "overrides",
+    "version": "1.0",
+    "loadAfter": "styles",
+    "source": "https://URL1"
+  }
+]
 
 export const IMPORT_STYLES_TEMPLATE = {
     "type": "APL",

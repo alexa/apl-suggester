@@ -1,0 +1,8 @@
+{
+    "type": "InsertItem",
+    "componentId": "main",
+    "item": {
+        "type": "Text",
+        "id": "bye"
+    }
+}

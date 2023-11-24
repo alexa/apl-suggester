@@ -1,6 +1,6 @@
 {
     "type": "APL",
-    "version": "2023.2",
+    "version": "2023.3",
     "import": [
         {
             "name": "alexa-layouts",
@@ -15,7 +15,7 @@
             "type": "Frame",
             "height": "100vh",
             "width": "100vw",
-            "backgroundColor": "${viewport.theme == 'light' ? 'white' : 'black'}",
+            "background": "${viewport.theme == 'light' ? 'white' : 'black'}",
             "item": {
                 "type": "Container",
                 "height": "100vh",
@@ -33,7 +33,7 @@
                                     "text": "Read list"
                                 }
                             ],
-                            "backgroundColor": "@colorGray700",
+                            "background": "@colorGray700",
                             "borderColor": "@colorGray400"
                         },
                         "alignSelf": "center",

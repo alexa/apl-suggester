@@ -20,7 +20,10 @@ import { expect } from 'chai';
 import { ThirdPartyComponentLoader } from '../ThirdPartyComponentsLoader';
 import * as sinon from 'sinon';
 import { PackageLoader, ILoadedResult } from '../PackageLoader';
-import { IMPORT_LAYOUT_TEMPLATE_13 } from './template_test_cases/importInternalTemplate';
+import {
+    IMPORT_LAYOUT_TEMPLATE_13,
+    IMPORT_ALLOF_ONEOF_PACKAGE_IMPORT
+} from './template_test_cases/importInternalTemplate';
 
 describe('ThirdPartyComponentLoader', () => {
     const thirdPartyComponentLoader = new ThirdPartyComponentLoader();
@@ -61,6 +64,13 @@ describe('ThirdPartyComponentLoader', () => {
         }];
         const differentVersionResult = await thirdPartyComponentLoader.load(reloadPackages);
         expect(differentVersionResult.length).to.be.equal(1);
+        expect(stub.called).to.be.true;
+    });
+
+    it('should only load root level "package" type import', async () => {
+        let importPackages = IMPORT_ALLOF_ONEOF_PACKAGE_IMPORT;
+        const result = await thirdPartyComponentLoader.load(importPackages);
+        expect(result.length).to.be.equal(3);
         expect(stub.called).to.be.true;
     });
 });

@@ -60,6 +60,11 @@ export const JSON_SCHEMA : IJsonSchema = {
       "type": "integer",
       "description": "The distance to move. May be an absolute or relative value."
     },
+    transitionDuration: {
+      type: "integer",
+      description:
+        "Duration of the page transition animation (in milliseconds).",
+    },
   },
   "required": [
     "value"

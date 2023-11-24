@@ -57,7 +57,12 @@ export const JSON_SCHEMA : IJsonSchema = {
     "componentId": {
       "type": "string",
       "description": "The id of the component."
-    }
+    },
+    targetDuration: {
+      type: "integer",
+      description:
+        "Target duration of the scrolling animation (in milliseconds).",
+    },
   },
   "required": [
     "type"

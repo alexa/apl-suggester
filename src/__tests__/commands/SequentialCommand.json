@@ -5,5 +5,11 @@
   "commands": [],
   "catch": [],
   "finally": [],
-  "sequencer": "MAIN"
+  "sequencer": "MAIN",
+  "data":[
+    "something",
+    "anything",
+    "nothing",
+    "everything"
+  ]
 }

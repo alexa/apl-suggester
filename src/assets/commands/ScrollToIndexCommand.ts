@@ -61,7 +61,12 @@ export const JSON_SCHEMA : IJsonSchema = {
     "index": {
       "type": "integer",
       "description": "The 0-based index of the child to display."
-    }
+    },
+    targetDuration: {
+      type: "integer",
+      description:
+        "Target duration of the scrolling animation (in milliseconds).",
+    },
   },
   "required": [
     "type",
