@@ -1,6 +1,6 @@
 {
     "type": "APL",
-    "version": "2023.2",
+    "version": "2023.3",
     "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "mainTemplate": {
         "parameters": [
@@ -14,7 +14,7 @@
                 "type": "Frame",
                 "width": "100%",
                 "height": "100%",
-                "backgroundColor": "white",
+                "background": "white",
                 "items": [
                     {
                         "type": "VectorGraphic",
@@ -23,7 +23,9 @@
                         "height": "100%",
                         "scale": "best-fit",
                         "align": "center",
-                        "frame": "${(elapsedTime*0.06)%120}"
+                        "parameters": {
+                            "frame": "${(elapsedTime*0.06)%120}"
+                        }
                     }
                 ]
             }

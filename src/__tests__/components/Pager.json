@@ -50,6 +50,16 @@
             "value": 0.5
         }
     ],
+    "onChildrenChanged": [{
+        "type": "Select",
+        "data": "${event.changes}",
+        "commands": {
+            "when": "${data.action == 'insert' && data.index < event.source.firstVisibleChild}",
+            "type": "ScrollToIndex",
+            "sequencer": "SCROLLER",
+            "index": 0
+        }
+    }],
     "pageDirection": "vertical",
     "items": [
         {

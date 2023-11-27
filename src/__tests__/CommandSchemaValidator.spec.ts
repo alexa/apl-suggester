@@ -106,6 +106,10 @@ describe('CommandSchemaValidator.', () => {
         await verifyCommand('ReinflateCommand.json', 'Reinflate');
     });
 
+    it('should validate Insert Item command.', async () => {
+        await verifyCommand('InsertItemCommand.json', 'InsertItem');
+    });
+
     it('should received correct amount of validation errors.', async () => {
         const data = fs.readFileSync(`src/__tests__/commands/ErrorCommand.json`, 'utf8');
         const result =  commandSchemaValidator.validateCommand(JSON.parse(data), 'SetState');
@@ -117,6 +121,13 @@ describe('CommandSchemaValidator.', () => {
 
         expect(result[1].path).to.equal('/state');
         expect(result[1].level).to.equal(NotificationLevel.WARN);
+    });
+
+    it('should received correct amount of validation errors for Remove Item Commands.', async() => {
+        const data = fs.readFileSync(`src/__tests__/commands/RemoveItemCommand.json`, 'utf8');
+        const result =  commandSchemaValidator.validateCommand(JSON.parse(data), 'RemoveItem');
+        expect(result[0].path).to.equal('/componentId');
+        expect(result[0].level).to.equal(NotificationLevel.WARN);
     });
 
     async function verifyCommand(fileName : string, type : string) {

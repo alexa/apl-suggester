@@ -1,6 +1,6 @@
 {
     "type": "APL",
-    "version": "2023.2",
+    "version": "2023.3",
     "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
     "theme": "dark",
     "import": [
@@ -65,7 +65,7 @@
                     "borderRadius": "@choiceBorderRadius",
                     "borderColor": "@choiceBorderColor",
                     "borderWidth": "2dp",
-                    "backgroundColor": "@choiceBackgroundColor",
+                    "background": "@choiceBackgroundColor",
                     "width": "100%",
                     "item": {
                         "type": "Container",
@@ -196,7 +196,7 @@
                                                 "padding": "@spacingSmall",
                                                 "paddingTop": "@spacingMedium",
                                                 "borderRadius": "@shapeRoundedRect",
-                                                "backgroundColor": "@choicePrimaryBackgroundColor",
+                                                "background": "@choicePrimaryBackgroundColor",
                                                 "item": {
                                                     "type": "Text",
                                                     "style": "textStyleDisplay6",
@@ -223,7 +223,7 @@
                                                         "borderColor": "@choiceBorderColor",
                                                         "borderRadius": "@shapeRoundedRect",
                                                         "borderWidth": "2dp",
-                                                        "backgroundColor": "@choiceBackgroundColor",
+                                                        "background": "@choiceBackgroundColor",
                                                         "item": {
                                                             "style": "textStyleCallout",
                                                             "type": "Text",

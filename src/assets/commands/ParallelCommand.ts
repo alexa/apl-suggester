@@ -18,6 +18,27 @@
 'use strict'
 import { IJsonSchema } from '../IJsonSchema';
 export const JSON_SCHEMA : IJsonSchema = {
+  definitions: {
+    dataArray: {
+      type: "array",
+      items: {
+        $ref: "#/definitions/data"
+      }
+    },
+    data: {
+      oneOf: [
+        {
+          type: "string"
+        },
+        {
+          type: "number"
+        },
+        {
+          type: "object"
+        }
+      ]
+    }
+  },
   "type": "object",
   "properties": {
     "type": {
@@ -46,6 +67,10 @@ export const JSON_SCHEMA : IJsonSchema = {
     },
     "commands": {
       "description": "An unordered list of commands to execute in parallel."
+    },
+    data: {
+      $ref: "#/definitions/dataArray",
+      description: "A list of data to map against the commands"
     }
   },
   "required": [

@@ -64,7 +64,12 @@ export const JSON_SCHEMA : IJsonSchema = {
     "distance": {
       "$ref": "#/definitions/distance",
       "description": "The number of pages to scroll."
-    }
+    },
+    targetDuration: {
+      type: "integer",
+      description:
+        "Target duration of the scrolling animation (in milliseconds).",
+    },
   },
   "required": [
     "type"

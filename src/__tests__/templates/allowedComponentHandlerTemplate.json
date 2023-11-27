@@ -1,6 +1,6 @@
 {
     "type": "APL",
-    "version": "2023.2",
+    "version": "2023.3",
     "theme": "light",
     "description": "This is a sample APL document",
     "extensions": [
@@ -39,12 +39,12 @@
             "values": [
                 {
                     "when": "${state.hover}",
-                    "backgroundColor": "blue",
+                    "background": "blue",
                     "opacity": "1"
                 },
                 {
                     "when": "${!state.hover}",
-                    "backgroundColor": "blue",
+                    "background": "blue",
                     "opacity": "0.2"
                 }
             ]
@@ -53,12 +53,12 @@
             "values": [
                 {
                     "when": "${state.hover}",
-                    "backgroundColor": "yellow",
+                    "background": "yellow",
                     "opacity": "1"
                 },
                 {
                     "when": "${!state.hover}",
-                    "backgroundColor": "yellow",
+                    "background": "yellow",
                     "opacity": "0.2"
                 }
             ]
@@ -67,12 +67,12 @@
             "values": [
                 {
                     "when": "${state.hover}",
-                    "backgroundColor": "pink",
+                    "background": "pink",
                     "opacity": "1"
                 },
                 {
                     "when": "${!state.hover}",
-                    "backgroundColor": "pink",
+                    "background": "pink",
                     "opacity": "0.2"
                 }
             ]
@@ -81,12 +81,12 @@
             "values": [
                 {
                     "when": "${state.hover}",
-                    "backgroundColor": "purple",
+                    "background": "purple",
                     "opacity": "1"
                 },
                 {
                     "when": "${!state.hover}",
-                    "backgroundColor": "purple",
+                    "background": "purple",
                     "opacity": "0.2"
                 }
             ]
@@ -95,12 +95,12 @@
             "values": [
                 {
                     "when": "${state.hover}",
-                    "backgroundColor": "green",
+                    "background": "green",
                     "opacity": "1"
                 },
                 {
                     "when": "${!state.hover}",
-                    "backgroundColor": "green",
+                    "background": "green",
                     "opacity": "0.2"
                 }
             ]

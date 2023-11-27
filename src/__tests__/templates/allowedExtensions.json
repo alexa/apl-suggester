@@ -1,0 +1,16 @@
+{
+    "type": "APL",
+    "version": "2023.3",
+    "mainTemplate": {
+        "items": []
+    },
+    "extensions": [{
+        "name": "Button",
+        "uri": "aplext:remotebutton:13"
+    },
+    {
+        "name": "Fish",
+        "uri": "aplext:fishfeeder:10",
+        "required": true
+    }]
+}

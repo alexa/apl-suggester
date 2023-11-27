@@ -1,9 +1,9 @@
 {
   "name": "apl-suggester",
-  "version": "2023.2.0",
+  "version": "2023.3.0",
   "description": "This Package is developed for providing suggestions and validations on APL templates.",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=12.0.0"
   },
   "license": "Apache 2.0",
   "bugs": {

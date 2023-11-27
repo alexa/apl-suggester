@@ -195,6 +195,12 @@ export const JSON_SCHEMA: IJsonSchema = {
     "color": {
       "type": "string"
     },
+    "ColorArray": commonDefinition.ColorArray,
+    "Gradient": commonDefinition.Gradient,
+    "number": {
+      "type": "number"
+    },
+    "numberArray": commonDefinition.numberArray,
     "Display": {
       "type": "string",
       "description": "The type of value to add to data-binding.",
@@ -501,10 +507,23 @@ export const JSON_SCHEMA: IJsonSchema = {
     },
     "item": {},
     "items": {},
+    "background": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/color"
+        },
+        {
+          "$ref": "#/definitions/Gradient"
+        }
+      ],
+      "category": Categories.frame,
+      "description": "Background color or gradient of the shape"
+    },
     "backgroundColor": {
       "$ref": "#/definitions/color",
       "category": Categories.frame,
-      "description": "Background color of the shape"
+      "deprecated": true,
+      "deprecationMessage": "Deprecated from APL 2023.3. Please use background instead."
     },
     "borderColor": {
       "$ref": "#/definitions/color",

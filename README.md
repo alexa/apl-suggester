@@ -11,7 +11,7 @@ The easiest way to use apl-suggester is to install it from npm and build it into
 npm install apl-suggester --save
 ```
 
-Since June 7 2022, we have changed our versioning strategy. Existing users please make sure to pull the latest and update your `package.json`:
+Since November 27 2023, APL Suggester's latest version is `2023.3.0`, following APL 2023.3 release.  Existing users please make sure to pull the latest and update your `package.json`:
 ```
 npm install apl-suggester@2023 --save
 ```

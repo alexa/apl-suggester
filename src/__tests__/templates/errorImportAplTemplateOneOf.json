@@ -1,0 +1,59 @@
+{
+    "type": "APL",
+    "version": "2023.3",
+    "license": "Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+    "theme": "dark",
+    "import": [
+        {
+            "type": "oneOf",
+            "name": "invalidValue",
+            "items": [],
+            "otherwise": "shouldBeArray"
+        },
+        {
+            "type": "invalidType",
+            "name": "invalidType",
+            "items": [
+                {
+                    "type": "oneOf",
+                    "version": "1.0",
+                    "items": [
+                        {
+                            "source": "https://styles.com/hub-landscape.json"
+                        },
+                        {
+                            "source": "https://styles.com/hub-portrait.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "oneOf",
+            "items": [
+                {
+                    "type": "invalidType",
+                    "version": "1.0",
+                    "items": []
+                }
+            ]
+        },
+        {
+            "type": "oneOf",
+            "name": "noItems"
+        },
+        {
+            "type": "oneOf",
+            "name": "invalidAdditionalProperty",
+            "version": "1.2",
+            "invalidProperty": "value",
+            "items": []
+        }
+    ],
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "item": []
+    }
+}

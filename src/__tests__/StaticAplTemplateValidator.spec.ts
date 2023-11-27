@@ -48,6 +48,53 @@ describe('Integration Test to verify the JSON schema.', () => {
         expect(result.length).to.be.equal(0);
     });
 
+    it('should compile valid Import syntax', async () => {
+       await readSchemaAndPassAllValidations('validImportAplTemplate.json');
+    });
+
+    it('should receive correct amount of "package" Import validation errors.', async () => {
+        const result = await verifyTemplate('errorImportAplTemplatePackage.json');
+        expect(result[0].path).to.equal('/import/0');
+        expect(result[1].path).to.equal('/import/1/version');
+        expect(result[2].path).to.equal('/import/2');
+        expect(result[3].path).to.equal('/import/3');
+        expect(result[4].path).to.equal('/import/4');
+        expect(result[0].errorMessage).to.equal('should have required property \'name\'');
+        expect(result[1].errorMessage).to.equal('should be string');
+        expect(result[2].errorMessage).to.equal('should have required property \'version\'');
+        expect(result[3].errorMessage).to.equal('should have required property \'name\'');
+        expect(result[4].errorMessage).to.equal('should NOT have unevaluated properties');
+        expect(result.length).to.equal(5);
+    });
+
+    it('should receive correct amount of "oneOf" Import validation errors.', async () => {
+        const result = await verifyTemplate('errorImportAplTemplateOneOf.json');
+        expect(result[0].path).to.equal('/import/0/otherwise');
+        expect(result[1].path).to.equal('/import/1/type');
+        expect(result[2].path).to.equal('/import/3');
+        expect(result[3].path).to.equal('/import/4');
+        expect(result[0].errorMessage).to.equal('should be array');
+        expect(result[1].errorMessage).to.equal('should be equal to one of the allowed values : allOf,oneOf,package');
+        expect(result[2].errorMessage).to.equal('should have required property \'items\'');
+        expect(result[3].errorMessage).to.equal('should NOT have unevaluated properties');
+        expect(result.length).to.equal(4);
+    });
+
+    it('should receive correct amount of "allOf" Import validation errors.', async () => {
+        const result = await verifyTemplate('errorImportAplTemplateAllOf.json');
+        expect(result[0].path).to.equal('/import/0/items/0/version');
+        expect(result[1].path).to.equal('/import/1/items/0');
+        expect(result[2].path).to.equal('/import/2');
+        expect(result[3].path).to.equal('/import/3/type');
+        expect(result[4].path).to.equal('/import/4');
+        expect(result[0].errorMessage).to.equal('should be string');
+        expect(result[1].errorMessage).to.equal('should NOT have unevaluated properties');
+        expect(result[2].errorMessage).to.equal('should NOT have unevaluated properties');
+        expect(result[3].errorMessage).to.equal('should be equal to one of the allowed values : allOf,oneOf,package');
+        expect(result[4].errorMessage).to.equal('should have required property \'items\'');
+        expect(result.length).to.equal(5);
+    });
+
     it('should receive error for unspecified handler', async () => {
         const result = await verifyTemplate('allowedRootHandlerTemplate.json');
         expect(result.length).to.equal(1);
@@ -163,6 +210,20 @@ describe('Integration Test to verify the JSON schema.', () => {
         expect(result).to.have.lengthOf(0);
         result = await validator.validateSources([{A: 'a'}]);
         expect(result).to.have.lengthOf(1);
+    });
+
+    it('should allow valid extensions section', async () => {
+        await readSchemaAndPassAllValidations('allowedExtensions.json');
+    });
+
+    it('should validate extensions section and yield 3 errors', async () => {
+        const result = await verifyTemplate('errorExtensions.json');
+        expect(result.length).to.be.equal(3);
+        expect(result[0].path).to.equal('/extensions/0');
+        expect(result[0].errorMessage).to.include('\'name\'');
+        expect(result[1].path).to.equal('/extensions/1');
+        expect(result[1].errorMessage).to.include('\'uri\'');
+        expect(result[2].path).to.equal('/extensions/2/required');
     });
 
     async function readSchemaAndPassAllValidations(fileName : string) {

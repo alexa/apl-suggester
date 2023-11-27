@@ -28,6 +28,16 @@
       "value": null
     }
   ],
+  "onChildrenChanged": [{
+      "type": "Select",
+      "data": "${event.changes}",
+      "commands": {
+          "when": "${data.action == 'insert' && data.index < event.source.firstVisibleChild}",
+          "type": "ScrollToIndex",
+          "sequencer": "SCROLLER",
+          "index": 0
+      }
+  }],
   "handleTick": [
     {
       "minimumDelay": 15000,
