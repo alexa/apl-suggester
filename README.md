@@ -1,7 +1,7 @@
 # Alexa APL Suggester
 
 ## Overview
-This package is developed for providing suggestions and validations on APL (Alexa Presentation Language) templates. Currently it performs static instead of runtime checks. The output warnings are aimed for suggesting best practice of writing APL templates but don't indicate that the template can't be rendered.
+This package aims at enhancing APL (Alexa Presentation Language) authoring experience with accurate linting results. With the suggestions and validations provided by APL Suggester, developers can write quality APL templates more easily. The output warnings are suggestions on syntactical validity and best practices, but they don't necessarily indicate that the template can't be rendered.
 
 For more information of how to build APL templates, please visit https://developer.amazon.com/en-US/docs/alexa/alexa-presentation-language/understand-apl.html
 
@@ -11,9 +11,9 @@ The easiest way to use apl-suggester is to install it from npm and build it into
 npm install apl-suggester --save
 ```
 
-Since November 27 2023, APL Suggester's latest version is `2023.3.0`, following APL 2023.3 release.  Existing users please make sure to pull the latest and update your `package.json`:
+Since March 11 2024, APL Suggester's latest version is `2024.1.0`, following APL 2024.1 release.  Existing users please make sure to pull the latest and update your `package.json`:
 ```
-npm install apl-suggester@2023 --save
+npm install apl-suggester@2024 --save
 ```
 
 Then use it in your app:

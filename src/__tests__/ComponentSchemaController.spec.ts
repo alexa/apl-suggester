@@ -72,6 +72,10 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('Frame.json', 'Frame');
     });
 
+    it('should validate Frame component.', async () => {
+        await verifyComponent('FrameWithGradient.json', 'Frame');
+    });
+
     it('should validate Image component.', async () => {
         // TODO add it back to Image.json when mixin is implemented. "position": "absolute",
         await verifyComponent('Image.json', 'Image');
@@ -99,21 +103,21 @@ describe('ComponentSchemaController.', () => {
         expect(result.length).to.be.equal(8);
         expect(result[0].path).to.be.equal('/');
         expect(result[0].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[0].errorMessage.indexOf('position') > 0).to.be.equal(true);
+        expect(result[0].errorMessage).to.include('position');
         expect(result[1].path).to.be.equal('/');
         expect(result[1].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[1].errorMessage.indexOf('scrim') > 0).to.be.equal(true);
-        expect(result[2].path).to.be.equal('/layoutDirection');
+        expect(result[1].errorMessage).to.include('scrim');
+        expect(result[2].path).to.be.equal('/actions/0');
+        expect(result[2].errorMessage).to.include('name');
         expect(result[2].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[3].path).to.be.equal('/width');
+        expect(result[3].path).to.be.equal('/actions/1/enabled');
+        expect(result[3].errorMessage).to.include('boolean');
         expect(result[3].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[4].path).to.be.equal('/actions/0');
-        expect(result[4].errorMessage.indexOf('name') > 0).to.be.equal(true);
+        expect(result[4].path).to.be.equal('/layoutDirection');
         expect(result[4].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[5].path).to.be.equal('/actions/1/enabled');
-        expect(result[5].errorMessage.indexOf('boolean') > 0).to.be.equal(true);
+        expect(result[5].path).to.be.equal('/role');
         expect(result[5].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[6].path).to.be.equal('/role');
+        expect(result[6].path).to.be.equal('/width');
         expect(result[6].level).to.be.equal(NotificationLevel.WARN);
         expect(result[7].path).to.be.equal('/filters/0/kind');
         expect(result[7].level).to.be.equal(NotificationLevel.WARN);
@@ -190,7 +194,6 @@ describe('ComponentSchemaController.', () => {
         const result = await validate('VideoTextTracksError.json', 'Video');
         expect(result.length).to.equal(3);
         expect(result[0].errorMessage).to.equal('should have required property \'type\'');
-        // From 2023.2, "type" enum expects to include "subtitle" and maybe more
         expect(result[1].errorMessage).to.equal('should be equal to one of the allowed values : caption');
         expect(result[2].errorMessage).to.equal('should NOT be valid');
     });
@@ -198,4 +201,9 @@ describe('ComponentSchemaController.', () => {
         await verifyComponent('ExtensionComponent.json', 'ExtensionComponent');
     });
 
+    it('should find 1 error in handleVisibilityChange.', async () => {
+        const result = await validate('VisibilityChangeHandler.json', 'Text');
+        expect(result.length).to.be.equal(1);
+        expect(result[0].path).to.be.equal('/handleVisibilityChange/0/when');
+    });
 });

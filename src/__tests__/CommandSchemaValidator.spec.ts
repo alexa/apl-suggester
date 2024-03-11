@@ -130,6 +130,44 @@ describe('CommandSchemaValidator.', () => {
         expect(result[0].level).to.equal(NotificationLevel.WARN);
     });
 
+    it('should allow all levels in Log command.', async () => {
+        const data = fs.readFileSync(`src/__tests__/commands/Log_allLevels.json`, 'utf8');
+        const testCases = JSON.parse(data);
+        let result;
+        let total = 0;
+        testCases.forEach((obj) => {
+            result = commandSchemaValidator.validateCommand(obj, 'Log');
+            total += result.length;
+        });
+        expect(total).to.be.equal(0);
+    });
+
+    it('should allow array of anything in Log command.', async () => {
+        const data = fs.readFileSync(`src/__tests__/commands/Log_differentArguments.json`, 'utf8');
+        const testCases = JSON.parse(data);
+        let result;
+        let total = 0;
+        testCases.forEach((obj) => {
+            result = commandSchemaValidator.validateCommand(obj, 'Log');
+            total += result.length;
+        });
+        expect(total).to.be.equal(0);
+    });
+
+    it('should see 3 errors in Log command.', async () => {
+        const data = fs.readFileSync(`src/__tests__/commands/Log_errorCases.json`, 'utf8');
+        const testCases = JSON.parse(data);
+        let result = [];
+        testCases.forEach((obj) => {
+            result = result.concat(commandSchemaValidator.validateCommand(obj, 'Log'));
+        });
+        expect(result.length).to.be.equal(4);
+        expect(result[0].path).to.equal('/type');
+        expect(result[1].path).to.equal('/arguments');
+        expect(result[2].path).to.equal('/level');
+        expect(result[3].path).to.equal('/level');
+    });
+
     async function verifyCommand(fileName : string, type : string) {
         const data = fs.readFileSync(`src/__tests__/commands/${fileName}`, 'utf8');
         const result = commandSchemaValidator.validateCommand(JSON.parse(data), type);

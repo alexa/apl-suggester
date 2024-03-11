@@ -1,0 +1,14 @@
+{
+    "type": "APL",
+    "version": "2024.1",
+    "mainTemplate": {
+        "items": []
+    },
+    "settings": {
+      "idleTimeout": 120000,
+      "pseudoLocalization": {
+        "enabled": true,
+        "expansionPercentage": 40
+      }
+    }
+}

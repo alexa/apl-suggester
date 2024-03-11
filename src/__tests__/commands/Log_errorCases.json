@@ -1,0 +1,32 @@
+[
+  {
+    "type":"LOG",
+    "level":"critical",
+    "message":"type is a const: Log",
+    "arguments":[]
+  },
+  {
+    "type":"Log",
+    "level":"warn",
+    "message":"",
+    "arguments":"cannot be string"
+  },
+  {
+    "type":"Log",
+    "level":1,
+    "message":"NULL log level",
+    "arguments":[
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"karthik",
+    "message":"incorrect log level",
+    "arguments":[
+      [1, "array1", 2, "array2"]
+    ]
+  }          
+]

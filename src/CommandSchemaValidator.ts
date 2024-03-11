@@ -46,6 +46,7 @@ import * as SelectCommandJSONSchema from './assets/commands/SelectCommand';
 import * as ReinflateCommandJSONSchema from './assets/commands/ReinflateCommand';
 import * as InsertItemCommandJSONSchema from './assets/commands/InsertItemCommand';
 import * as RemoveItemCommandJSONSchema from './assets/commands/RemoveItemCommand';
+import * as LogCommandJSONSchema from './assets/commands/LogCommand';
 
 /**
  * Entrance to validate commands.
@@ -103,7 +104,8 @@ export class CommandSchemaValidator {
         ['Select', SelectCommandJSONSchema.JSON_SCHEMA],
         ['Reinflate', ReinflateCommandJSONSchema.JSON_SCHEMA],
         ['InsertItem', InsertItemCommandJSONSchema.JSON_SCHEMA],
-        ['RemoveItem', RemoveItemCommandJSONSchema.JSON_SCHEMA]
+        ['RemoveItem', RemoveItemCommandJSONSchema.JSON_SCHEMA],
+        ['Log', LogCommandJSONSchema.JSON_SCHEMA]
     ]);
 
     /**

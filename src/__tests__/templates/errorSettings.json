@@ -1,0 +1,14 @@
+{
+    "type": "APL",
+    "version": "2024.1",
+    "mainTemplate": {
+        "items": []
+    },
+    "settings": {
+        "supportsResizing": "cannot be string",
+        "pseudoLocalization": {
+          "enabled": true,
+          "other": "not allowed"
+        }
+    }
+}

@@ -226,6 +226,19 @@ describe('Integration Test to verify the JSON schema.', () => {
         expect(result[2].path).to.equal('/extensions/2/required');
     });
 
+    it('should allow valid settings section', async () => {
+        await readSchemaAndPassAllValidations('allowedSettings.json');
+    });
+
+    it('should validate settings section and yield 2 errors', async () => {
+        const result = await verifyTemplate('errorSettings.json');
+        expect(result.length).to.be.equal(2);
+        expect(result[0].path).to.equal('/settings/supportsResizing');
+        expect(result[0].errorMessage).to.equal('should be boolean');
+        expect(result[1].path).to.equal('/settings/pseudoLocalization');
+        expect(result[1].errorMessage).to.equal('should NOT have unevaluated properties');
+    });
+
     async function readSchemaAndPassAllValidations(fileName : string) {
         const result = await verifyTemplate(fileName);
         expect(result).to.have.lengthOf(0);

@@ -22,8 +22,8 @@ export const JSON_SCHEMA: IJsonSchema = {
   type: "object",
   properties: {
     type: {
-      type: "string",
-      description: "The type of the command.",
+      const: "InsertItem",
+      description: "The InsertItem command.",
     },
     at: {
       type: "number",

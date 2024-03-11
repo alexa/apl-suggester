@@ -1,0 +1,36 @@
+[
+  {
+    "type":"Log",
+    "level":"info",
+    "message":"printing info log",
+    "arguments":[ "this is info log for you"
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"warn",
+    "message":"printing warning log",
+    "arguments":["this is info warning for you"
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"error",
+    "message":"printing error log",
+    "arguments":["this is error log for you"
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"critical",
+    "message":"printing critical log",
+    "arguments":["this is critical log for you"]
+  },
+  {
+    "type":"Log",
+    "level":"debug",
+    "message":"printing debug log",
+    "arguments":["this is debug log for you"
+    ]
+  }          
+]
