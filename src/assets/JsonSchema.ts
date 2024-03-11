@@ -962,42 +962,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         }
       ]
     },
-    "tickHandler": {
-      "properties": {
-        "commands": {
-          "type": "array",
-          "description": "Handlers to check on tick events.",
-          "items": {
-            "$ref": "#/definitions/Command"
-          }
-        },
-        "description": {
-          "type": "string",
-          "description": "Optional description of this tick handler.",
-          "default": ""
-        },
-        "minimumDelay": {
-          "type": "number",
-          "description": "Minimum duration in milliseconds that must pass before this handler is invoked again.",
-          "default": 1000
-        },
-        "when": {
-          "type": "boolean",
-          "description": "If true, invoke this handler.",
-          "default": true
-        }
-      },
-      "required": [
-          "commands"
-      ]
-    },
-    "tickHandlerArray": {
-      "type": "array",
-      "description": "An array of Tick Event Handlers to execute as time passes.",
-      "items": {
-        "$ref": "#/definitions/tickHandler"
-      }
-    },
+    "tickHandler": commonDefinition.tickHandler,
+    "tickHandlerArray": commonDefinition.tickHandlerArray,
     "ComponentArray": {
       "type": "array",
       "items": {
@@ -1518,9 +1484,30 @@ export const JSON_SCHEMA : IJsonSchema = {
       "description": "A list of one or more resource groups"
     },
     "settings": {
-      "patternProperties": {
-        "^.*$": {
-          "$ref": "#/definitions/Setting"
+      "type": "object",
+      "properties": {
+        "idleTimeout": {
+          "type": "number",
+          "description": "Time before document closes due to inactivity"
+        },
+        "supportsResizing": {
+          "type": "boolean",
+          "description": "Determines whether the runtime should perform resizing"
+        },
+        "pseudoLocalization": {
+          "type": "object",
+          "description": "Specifies Pseudo-localization related settings",
+          "properties": {
+            "expansionPercentage": {
+                "type": "number",
+                "description": "denoting percentage length by which strings are to be expanded, default: 30"
+            },
+            "enabled": {
+                "type": "boolean",
+                "description": "Determines whether the runtime should perform pseudoLocalization. default: false"
+            }
+          },
+          "unevaluatedProperties": false
         }
       },
       "description": "A map of document-wide settings."
@@ -1566,7 +1553,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "2022.2",
         "2023.1",
         "2023.2",
-        "2023.3"
+        "2023.3",
+        "2024.1"
       ]
     },
     "license": {

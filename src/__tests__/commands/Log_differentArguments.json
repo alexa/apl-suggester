@@ -1,0 +1,49 @@
+[
+  {
+    "type":"Log",
+    "level":"info",
+    "message":"printing info log with argument value as NULL",
+    "arguments":[]
+  },
+  {
+    "type":"Log",
+    "level":"warn",
+    "message":"printing warning log with argument value as STRING",
+    "arguments":[
+      "String 1",
+      "String 2",
+      "String 3" 
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"error",
+    "message":"printing error log with argument value as NUMBERS",
+    "arguments":[
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"critical",
+    "message":"printing critical log with argument value as ARRAY",
+    "arguments":[
+      [1, "array1", 2, "array2"]
+    ]
+  },
+  {
+    "type":"Log",
+    "level":"debug",
+    "message":"printing debug log with argument value as NESTED OBJECT",
+    "arguments":[              
+      1,
+      2,
+      {
+        "nested1":"object1",
+        "nested2":"object2"
+      }
+    ]
+  }          
+]

@@ -37,6 +37,13 @@
             ]
         }
     ],
+    "handleVisibilityChange": [
+        {
+            "description": "test visibility change handler",
+            "when": true,
+            "commands": []
+        }
+    ],
     "actions": [
         {
             "name": "activate",

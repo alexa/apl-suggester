@@ -18,12 +18,20 @@
         {
             "name": "booleanValueAsNumber",
             "type": "boolean",
-            "value": 1
+            "value": 1,
+            "onChange": [
+                {
+                    "type": "SetValue",
+                    "property": "opacity",
+                    "value": 1
+                }
+            ] 
         },
         {
             "name": "booleanValueAsNull",
             "type": "boolean",
-            "value": null
+            "value": null,
+            "onChange": []
         }
     ],
     "handleTick": [

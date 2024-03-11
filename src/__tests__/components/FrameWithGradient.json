@@ -1,0 +1,6 @@
+{
+    "type": "Frame",
+    "background": {
+        "colorRange": ["black", "white"]
+    }
+}

@@ -24,6 +24,13 @@
             ]
         }
     ],
+    "handleVisibilityChange": [
+        {
+            "description": "test visibility change handler",
+            "when": true,
+            "commands": []
+        }
+    ],
     "width": 10,
     "bind": [
         {

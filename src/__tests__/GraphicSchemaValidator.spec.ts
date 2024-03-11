@@ -38,14 +38,14 @@ describe('GraphicSchemaValidator.', () => {
         expect(result.length).to.be.equal(10);
         expect(result[0].path).to.be.equal('/');
         expect(result[0].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[0].errorMessage.indexOf('pathData') > 0).to.be.equal(true);
+        expect(result[0].errorMessage).to.include('pathData');
         expect(result[1].path).to.be.equal('/');
         expect(result[1].level).to.be.equal(NotificationLevel.WARN);
         expect(result[2].path).to.be.equal('/');
         expect(result[2].level).to.be.equal(NotificationLevel.WARN);
         expect(result[3].path).to.be.equal('/bind/0');
         expect(result[3].level).to.be.equal(NotificationLevel.WARN);
-        expect(result[3].errorMessage.indexOf('value') > 0).to.be.equal(true);
+        expect(result[3].errorMessage).to.include('value');
         expect(result[4].path).to.be.equal('/filters/0/type');
         expect(result[4].level).to.be.equal(NotificationLevel.WARN);
         expect(result[5].path).to.be.equal('/filters/0/horizontalOffset');

@@ -15,21 +15,30 @@
  */
 
 /* tslint:disable */
-
+ 
 import { IJsonSchema } from "../IJsonSchema";
-
+ 
 export const JSON_SCHEMA: IJsonSchema = {
   type: "object",
   properties: {
     type: {
-      const: "RemoveItem",
-      description: "The RemoveItem command.",
+      const: "Log",
+      description: "The Log command.",
     },
-    componentId: {
+    level: {
+      enum: ["debug", "info", "warn", "error", "critical"],
+      description: "The level enumerated value represents severity",
+    },
+    message: {
       type: "string",
-      description: "The id of the component.",
+      description: "The log message",
+    },
+    arguments: {
+      type: "array",
+      description:
+        "Optional information that may be included along with the log message for additional context",
     },
   },
-  required: ["type"],
-  additionalProperties: false,
+  required: ["type", "message"],
+  unevaluatedProperties: false,
 };

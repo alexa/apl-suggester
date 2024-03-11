@@ -4,10 +4,12 @@
   "screenMode": "${environment.screenMode}",
   "width": "50vw",
   "height": "100vh",
-  "onMount": {
-    "type": "Fish:AutoCycleHealthMonitors",
-    "seconds": 30
-  },
+  "onMount": [
+    {
+      "type": "Fish:AutoCycleHealthMonitors",
+      "seconds": 30
+    }
+  ],
   "monitors": {
     "Temperature": {
       "low": 78,

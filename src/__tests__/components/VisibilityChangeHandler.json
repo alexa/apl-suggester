@@ -1,0 +1,11 @@
+{
+    "type": "Text",
+    "text": "${ordinal}",
+    "handleVisibilityChange": [
+        {
+            "description": "should fail",
+            "when": "not boolean",
+            "commands": []
+        }
+    ]
+}

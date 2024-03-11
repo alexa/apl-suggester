@@ -18,6 +18,7 @@
 'use strict';
 import { IJsonSchema, Categories, SCHEMA_URI } from './IJsonSchema';
 import { JSON_SCHEMA as baseSchema } from "./BaseComponent";
+
 export const JSON_SCHEMA : IJsonSchema = {
   "$schema": SCHEMA_URI,
   "definitions": baseSchema.definitions,
