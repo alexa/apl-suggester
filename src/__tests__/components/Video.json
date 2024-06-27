@@ -23,6 +23,7 @@
     "autoplay": true,
     "audioTrack": "background",
     "scale": "best-fill",
+    "screenLock": true,
     "onEnd": [{
         "type": "SetValue",
         "property": "opacity",

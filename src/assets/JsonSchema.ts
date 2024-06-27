@@ -1554,7 +1554,8 @@ export const JSON_SCHEMA : IJsonSchema = {
         "2023.1",
         "2023.2",
         "2023.3",
-        "2024.1"
+        "2024.1",
+        "2024.2"
       ]
     },
     "license": {
