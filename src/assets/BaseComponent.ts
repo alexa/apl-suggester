@@ -401,7 +401,8 @@ export const JSON_SCHEMA : IJsonSchema = {
       },
       screenLock: {
         type: "boolean",
-        description: "If true, disable the Interaction Timer"
+        description: "If true, disable the Interaction Timer",
+        default: true
       },
       sequencer: {
         type: "string",
@@ -583,6 +584,11 @@ export const JSON_SCHEMA : IJsonSchema = {
       category: Categories.aboutComponent,
       description: "Command(s) to execute when a cursor (mouse pointer) exits the component’s active region"
     },
+    onLayout: {
+      $ref: "#/definitions/CommandArray",
+      category: Categories.aboutComponent,
+      description: "Command(s) to execute when change to the layout calculation for the component occur.",
+    },
     opacity: {
       type: "number",
       category: Categories.aboutComponent,
@@ -622,6 +628,13 @@ export const JSON_SCHEMA : IJsonSchema = {
       $ref: "#/definitions/absoluteDimension",
       category: Categories.padding,
       description: "Space to add to the end edge of this component."
+    },
+    pointerEvents: {
+      type: "string",
+      category: Categories.aboutComponent,
+      description: "Controls whether the component can be the target of touch events.",
+      default: "auto",
+      enum: ["auto", "none"],
     },
     preserve: {
       category: Categories.aboutComponent,

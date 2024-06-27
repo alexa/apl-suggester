@@ -190,6 +190,14 @@
                             "value": "Exit"
                         }
                     ],
+                    "onLayout": [
+                        {
+                            "type": "SetValue",
+                            "componentId": "textComp",
+                            "property": "text",
+                            "value": "Layout"
+                        }
+                    ],
                     "item": [
                         {
                             "type": "Frame",

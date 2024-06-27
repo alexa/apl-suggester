@@ -146,6 +146,11 @@ export const JSON_SCHEMA : IJsonSchema = {
       ],
       "default": "best-fit"
     },
+    "screenLock": {
+      "type": "boolean",
+      "category": Categories.video,
+      "description": "If a playing video should extend the document lifecycle.",
+    },
     "onEnd": {
       "$ref": "#/definitions/CommandArray",
       "category": Categories.video,
